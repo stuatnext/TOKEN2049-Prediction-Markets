@@ -188,16 +188,6 @@
       ]
     },
     {
-      "item": "Direct post links for Vishal K. Gupta and Predict365",
-      "state": "Profile link only",
-      "detail": "Both attendance statements were captured from public LinkedIn posts. We link to the profile or site until the direct post links are added.",
-      "events": [],
-      "sources": [
-        "src-vishal-li",
-        "src-predict365"
-      ]
-    },
-    {
       "item": "Named Polymarket staff at the Kick-Off",
       "state": "Not identified",
       "detail": "The event is confirmed (hosted by 528 Collective). Shayne Coplan is confirmed in Singapore via TOKEN2049. No public roster of Polymarket staff attending the party has been found.",
@@ -225,6 +215,13 @@
       "sources": [
         "src-reppo"
       ]
+    },
+    {
+      "item": "Unverified leads on Who's Going",
+      "state": "Unverified",
+      "detail": "Tom Wolf, Reppo's RG, CJ Hetherington, Matt Restivo, Pär Helgosson and Jacelynn Pang are shown as Unverified: they came from research leads without a public source link yet. The same goes for the direct post links for Vishal K. Gupta and Predict365.",
+      "events": [],
+      "sources": []
     }
   ],
   "practical": [
@@ -244,7 +241,6 @@
     }
   ],
   "promo": {
-    "unlock_after_saves": 3,
     "code": "STUART400OFF",
     "url": "https://tickets.next.io/NEXTPredict-2026?promo=STUART400OFF",
     "label": "NEXTPredict NYC 2026 ticket discount",

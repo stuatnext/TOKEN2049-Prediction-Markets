@@ -129,7 +129,7 @@ const A = ids(attendance, "attendance");
 for (const a of attendance) {
   const w = `attendance "${a.id}"`;
   if (!AST.includes(a.attendance_status)) err(`${w}: attendance_status "${a.attendance_status}" must be one of ${AST.join(", ")}`);
-  if (!["confirmed", "pending"].includes(a.confidence)) err(`${w}: confidence must be confirmed or pending`);
+  if (!["confirmed", "unverified", "pending"].includes(a.confidence)) err(`${w}: confidence must be confirmed, unverified or pending`);
   if (a.confidence === "pending" && a.public) err(`${w}: pending records must have "public": false`);
   if (a.person_id && !P.has(a.person_id)) err(`${w}: unknown person "${a.person_id}"`);
   if (a.company_id && !C.has(a.company_id)) err(`${w}: unknown company "${a.company_id}"`);
@@ -137,7 +137,7 @@ for (const a of attendance) {
   if (a.entity_type === "person" && a.public && !a.person_id) err(`${w}: public person records need a person_id (add them to people.json)`);
   for (const e of a.event_ids || []) if (!E.has(e)) err(`${w}: unknown event "${e}"`);
   for (const d of a.dates || []) if (!days.has(d)) err(`${w}: date ${d} is not a listed day`);
-  if (a.public) {
+  if (a.public && a.confidence === "confirmed") {
     if (!a.source_url || !/^https:\/\//.test(a.source_url)) err(`${w}: public records need a source_url (evidence rule)`);
     if (a.source_id && !S.has(a.source_id)) err(`${w}: unknown source "${a.source_id}"`);
     if (!a.evidence_summary) err(`${w}: missing evidence_summary`);
