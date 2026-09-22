@@ -5,16 +5,16 @@
     "title": "Official Hyperliquid annual ecosystem event",
     "date": "2026-10-05",
     "end_date": null,
-    "start": null,
-    "end": null,
-    "time_note": "Time TBC",
-    "venue": "Singapore (venue TBC)",
+    "start": "09:00",
+    "end": "17:00",
+    "time_note": null,
+    "venue": "Singapore (venue not yet published)",
     "map_query": null,
     "type": "side-event",
     "official": false,
     "relevance": "strong",
-    "access": "approval",
-    "access_note": "Apply; final details still to be published",
+    "access": "invite",
+    "access_note": "Invite-only; reported cap of 200 C-suite and department heads",
     "audiences": [
       "builders",
       "founders",
@@ -30,7 +30,7 @@
     "stack_layers": [
       "venue"
     ],
-    "summary": "Hyperliquid opens its Singapore week with an annual ecosystem gathering for builders and users. Exact time and venue were still pending in the latest official notice.",
+    "summary": "Hyperliquid’s own annual ecosystem event opening TOKEN week. Reported as invite-only and capped at 200 C-suite and department heads, with doors 09:00–17:00 and a speaking agenda from 15:00 to 17:00.",
     "why": "Hyperliquid (through HIP-4) is trying to make outcome markets a permissionless building block that other teams can deploy, rather than a single-company product. This is the ecosystem's own opening event of the week.",
     "questions": [
       "What new outcome-market deployments will be live by Singapore?",
@@ -49,12 +49,13 @@
     ],
     "sources": [
       "src-hl-forum",
-      "src-hl-ann"
+      "src-hl-ann",
+      "src-hype-sg"
     ],
     "status": "listed",
-    "status_note": "Announced by Hyperliquid. Time and venue not yet published.",
-    "clash_note": "May clash with Haruko x Kalshi (Mon 17:00–21:30) once the time is published.",
-    "last_updated": "2026-09-22"
+    "status_note": "Date from Hyperliquid’s announcement; time, format and cap as reported by Hype Global. Venue still not published.",
+    "clash_note": "Overlaps the start of Haruko x Kalshi (from 17:00) only if the event runs late.",
+    "last_updated": "2026-09-23"
   },
   {
     "id": "haruko-x-kalshi",
@@ -1534,7 +1535,7 @@
       "frontend"
     ],
     "summary": "Polymarket’s first exclusive Singapore event, publicly hosted by 528 Collective. Curated, and full with a waitlist at the latest check.",
-    "why": "The main Wednesday-evening gathering for the Polymarket ecosystem: builders, traders and partners.",
+    "why": "The main Wednesday-evening gathering for the Polymarket ecosystem: builders, traders and partners. Context: Singapore’s gambling regulator has blocked access to Polymarket since January 2025, so this is an ecosystem and networking event rather than a local product launch.",
     "questions": [
       "What is being built around Polymarket that is not visible from the consumer frontend?",
       "Which infrastructure, liquidity and distribution partners are becoming strategically important?"
@@ -1556,7 +1557,8 @@
       "Traders"
     ],
     "sources": [
-      "src-poly-kickoff"
+      "src-poly-kickoff",
+      "src-sg-poly-block"
     ],
     "status": "listed",
     "status_note": "Organiser event page (Luma).",
@@ -2201,7 +2203,7 @@
       "oracle",
       "venue"
     ],
-    "summary": "A dedicated prediction-markets conference covering market structure, liquidity and regulation, with private meeting rooms and a partner/demo area. Co-located with Agentic Finance.",
+    "summary": "A dedicated prediction-markets conference by More & More covering market structure, liquidity and regulation, with private meeting rooms and a partner/demo area. Co-hosted with Agentic Finance (a closed-door, invitation-only summit for about 400 senior decision-makers) at the same venue on the same day.",
     "why": "The biggest block of prediction-market-specific programming of the week, with particular depth on sports market structure and infrastructure. The co-located Agentic Finance audience adds finance, compliance and media people.",
     "questions": [
       "What sports-book infrastructure transfers into prediction markets and what does not?",
@@ -2226,19 +2228,25 @@
         "role": "listed"
       }
     ],
-    "companies": [],
+    "companies": [
+      {
+        "id": "more-and-more",
+        "role": "host"
+      }
+    ],
     "also_listed": [
       "Agentic Finance speakers"
     ],
     "sources": [
       "src-theodds",
       "src-theodds-luma",
-      "src-agentic"
+      "src-agentic",
+      "src-mnm-agentic"
     ],
     "status": "conflict",
     "status_note": "Organiser currently shows a 20:00 finish, but the final end time still needs confirming in event week.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "powerscale-social-prediction-market",
@@ -2780,6 +2788,66 @@
     "status": "provisional",
     "status_note": "Reported in our sweep. The organiser page hasn’t been linked yet, so confirm before going.",
     "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "hype-singapore",
+    "legacy_id": "",
+    "title": "HYPE Singapore: Hyperliquid Conference & Hackathon",
+    "date": "2026-10-06",
+    "end_date": "2026-10-07",
+    "start": null,
+    "end": null,
+    "time_note": "Full day",
+    "venue": "Singapore (venue to be announced)",
+    "map_query": null,
+    "type": "forum",
+    "official": false,
+    "relevance": "strong",
+    "access": "registration",
+    "access_note": "Register on Luma",
+    "audiences": [
+      "builders",
+      "founders",
+      "investors"
+    ],
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "topics": [
+      "infrastructure",
+      "defi"
+    ],
+    "stack_layers": [
+      "venue"
+    ],
+    "summary": "Two-day Hyperliquid builder conference with a 24-hour hackathon (150+ developers, $50,000+ in prizes, 500–700+ attendees), sitting between the official Hyperliquid event and TOKEN2049.",
+    "why": "If you want to see who is actually building on Hyperliquid, including HIP-4 outcome markets, this is the builder-level room of the week.",
+    "questions": [
+      "Which hackathon teams are building on HIP-4 outcome markets?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "hype-global",
+        "role": "host"
+      },
+      {
+        "id": "hyperliquid",
+        "role": "subject"
+      }
+    ],
+    "also_listed": [
+      "Hyperliquid builders",
+      "Developers"
+    ],
+    "sources": [
+      "src-hype-sg",
+      "src-hype-sg-luma"
+    ],
+    "status": "listed",
+    "status_note": "Organiser listing. Venue and full programme not yet announced.",
+    "clash_note": "Runs alongside the Hyperliquid Forum on Tuesday.",
     "last_updated": "2026-09-23"
   }
 ]
