@@ -1,0 +1,30 @@
+name: Report a correction
+description: A wrong time, changed venue or access status, new speaker, or anything else that needs fixing.
+title: "Correction: "
+labels: ["correction"]
+body:
+  - type: input
+    id: record
+    attributes:
+      label: Which listing?
+      description: Paste the page link, or the record ID (e.g. events/the-odds-prediction-markets-live).
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of change?
+      options: ["Time or date", "Venue", "Access / registration status", "New or changed speaker", "Event cancelled", "Company or person details", "Something else"]
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What should it say?
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source link
+      description: A public link that supports the change.

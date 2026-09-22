@@ -1,0 +1,681 @@
+[
+  {
+    "id": "kalshi",
+    "name": "Kalshi",
+    "category": "platforms",
+    "description": "US event-contract exchange and one of the two best-known prediction-market venues. During TOKEN2049 week, John Wang (Head of Crypto) speaks twice on the official programme, and Kalshi co-hosts evenings with Haruko and Insilico. Its full order-book data streams over DoubleZero, and ION and Coinbase support clearing and settlement of its event contracts. Kalshi Klear has been reported as requesting institutional margining; that is a request, not an approval.",
+    "stack_layers": [
+      "frontend",
+      "venue",
+      "clearing",
+      "margin",
+      "policy"
+    ],
+    "ecosystems": [
+      "kalshi"
+    ],
+    "sources": [
+      "src-token-agenda1",
+      "src-dz-block",
+      "src-ion",
+      "src-kalshi-margin",
+      "src-haruko-kalshi",
+      "src-insilico"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "polymarket",
+    "name": "Polymarket",
+    "category": "platforms",
+    "description": "Prediction-market platform and one of the two best-known venues. Its founder headlines a main-stage fireside, and it hosts its first Singapore kick-off event on Wednesday evening. FT reporting says Polymarket is pushing for financial-product treatment in the UK/EU; regulators' positions are contested.",
+    "stack_layers": [
+      "frontend",
+      "venue",
+      "policy"
+    ],
+    "ecosystems": [
+      "polymarket"
+    ],
+    "sources": [
+      "src-token-agenda1",
+      "src-poly-kickoff",
+      "src-poly-eu"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "hyperliquid",
+    "name": "Hyperliquid",
+    "category": "platforms",
+    "description": "Onchain trading venue. Its HIP-4 upgrade lets third-party builders deploy outcome markets permissionlessly, with shared-margin mechanics. Hosts an ecosystem event on Monday and is the focus of the Hyperliquid Forum on Tuesday; Jeff Yan speaks on the main stage.",
+    "stack_layers": [
+      "venue",
+      "margin"
+    ],
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "sources": [
+      "src-hl-ann",
+      "src-hl-forum",
+      "src-sec-hl",
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "predict-fun",
+    "name": "Predict.fun",
+    "category": "platforms",
+    "description": "Prediction-market platform and TOKEN2049 Gold sponsor. It has announced Chainlink-based market lifecycle and settlement, and block trading of 100,000+ shares with liquidity from Susquehanna Crypto (company claims).",
+    "stack_layers": [
+      "venue",
+      "liquidity",
+      "oracle"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-token-partners",
+      "src-predict-chainlink",
+      "src-predict-block"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "outcome",
+    "name": "Outcome / Outcome Labs",
+    "category": "builders",
+    "description": "Builder in the Hyperliquid outcome-market ecosystem. Ahmed Salih (Outcome Labs) and Jack Booth (Outcome) are listed for the Hyperliquid Forum.",
+    "stack_layers": [
+      "venue",
+      "frontend"
+    ],
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "sources": [
+      "src-hl-forum"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "predict365",
+    "name": "Predict365",
+    "category": "platforms",
+    "description": "Prediction-market product that appears in the distribution layer of our research. Plans to attend TOKEN2049 were signalled on social media but have not been independently verified.",
+    "stack_layers": [
+      "frontend"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-predict365"
+    ],
+    "note": "TOKEN2049 attendance not independently verified.",
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "powerscale",
+    "name": "PowerScale",
+    "category": "platforms",
+    "description": "Consumer and social prediction-market product combining crypto, anime and social features. Hosts a free Thursday evening event.",
+    "stack_layers": [
+      "frontend"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-token-week"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "lighter",
+    "name": "Lighter",
+    "category": "platforms",
+    "description": "Represented by Vladimir Novakovski on “The Speculation Age” panel with Kalshi and Robinhood.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "robinhood",
+    "name": "Robinhood",
+    "category": "platforms",
+    "description": "Brokerage. Its Robinhood Chain session and its seat on “The Speculation Age” panel speak to whether prediction markets end up as one asset inside mainstream trading apps.",
+    "stack_layers": [
+      "frontend"
+    ],
+    "ecosystems": [],
+    "sources": [
+      "src-token-agenda1",
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "zoomex",
+    "name": "Zoomex",
+    "category": "platforms",
+    "description": "Crypto trading platform hosting a Wednesday traders’ after-party whose panel covers derivatives, TradFi and prediction markets.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-zoomex",
+      "src-zoomex-pr"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "chainup",
+    "name": "ChainUp",
+    "category": "infrastructure",
+    "description": "Enterprise crypto infrastructure provider and TOKEN2049 Gold sponsor (booth PB4-8). Sells Hermes, white-label prediction-market software with shared-liquidity claims that have not been independently tested. Hosts the Institutional Ark evening on Tuesday.",
+    "stack_layers": [
+      "frontend"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-chainup-token",
+      "src-chainup-hermes",
+      "src-chainup-ark",
+      "src-token-partners"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "doublezero",
+    "name": "DoubleZero",
+    "category": "infrastructure",
+    "description": "Specialised low-latency network. Kalshi streams full order books over DoubleZero, and it has expanded the categories of Kalshi data it carries. Founder Austin Federa gives a Thursday keynote.",
+    "stack_layers": [
+      "data-transport"
+    ],
+    "ecosystems": [
+      "kalshi"
+    ],
+    "sources": [
+      "src-dz-block",
+      "src-dz-pr",
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "kaiko",
+    "name": "Kaiko",
+    "category": "infrastructure",
+    "description": "Digital-asset market-data provider and co-host of Wednesday's Opening Bell institutional breakfast. Adjacent to the prediction-market data layer.",
+    "stack_layers": [
+      "data-transport"
+    ],
+    "ecosystems": [],
+    "sources": [
+      "src-breakfast"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "chainlink",
+    "name": "Chainlink",
+    "category": "infrastructure",
+    "description": "Oracle and data infrastructure. Predict.fun has adopted Chainlink for market lifecycle and settlement. Listed as a HypurrCo partner and a Finality Forum participant.",
+    "stack_layers": [
+      "oracle"
+    ],
+    "ecosystems": [],
+    "sources": [
+      "src-predict-chainlink",
+      "src-hypurrco",
+      "src-finality"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "ion",
+    "name": "ION",
+    "category": "infrastructure",
+    "description": "Financial-markets infrastructure firm that partnered with Coinbase to support Kalshi event contracts, covering clearing, reporting, resolution and settlement.",
+    "stack_layers": [
+      "clearing"
+    ],
+    "ecosystems": [
+      "kalshi"
+    ],
+    "sources": [
+      "src-ion"
+    ],
+    "note": "No TOKEN2049-week appearance recorded; included for the stack.",
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "haruko",
+    "name": "Haruko",
+    "category": "infrastructure",
+    "description": "Institutional portfolio and risk platform with Kalshi and Polymarket integrations. Co-hosts Monday's invite-only gathering with Kalshi. The integrations are documented; actual institutional usage is not.",
+    "stack_layers": [
+      "portfolio-risk"
+    ],
+    "ecosystems": [
+      "kalshi",
+      "polymarket"
+    ],
+    "sources": [
+      "src-haruko",
+      "src-haruko-kalshi",
+      "src-haruko-event"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "insilico",
+    "name": "Insilico Terminal",
+    "category": "infrastructure",
+    "description": "Trading terminal and execution tooling. Co-hosts the Kalshi x Insilico Asia Session for active traders on Thursday, and is listed as a HypurrCo partner.",
+    "stack_layers": [
+      "execution"
+    ],
+    "ecosystems": [
+      "kalshi",
+      "hyperliquid"
+    ],
+    "sources": [
+      "src-insilico",
+      "src-hypurrco"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "nansen",
+    "name": "Nansen",
+    "category": "infrastructure",
+    "description": "Listed as a partner of HypurrCo Gathers.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-hypurrco"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "tread-fi",
+    "name": "Tread.fi",
+    "category": "infrastructure",
+    "description": "Listed as a partner of HypurrCo Gathers.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-hypurrco"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "wintermute",
+    "name": "Wintermute",
+    "category": "trading",
+    "description": "Market maker that has publicly entered prediction markets as a two-sided liquidity provider. It has separately argued that the category has infrastructure weaknesses around thin books, fees and APIs (company opinion). Listed as a HypurrCo partner and a Finality Forum participant.",
+    "stack_layers": [
+      "liquidity"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-wintermute-entry",
+      "src-wintermute-infra",
+      "src-wintermute-events",
+      "src-hypurrco",
+      "src-finality"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "susquehanna-crypto",
+    "name": "Susquehanna Crypto",
+    "category": "trading",
+    "description": "Named by Predict.fun as the liquidity provider behind its block-trading service (company claim).",
+    "stack_layers": [
+      "liquidity"
+    ],
+    "ecosystems": [],
+    "sources": [
+      "src-predict-block"
+    ],
+    "note": "No TOKEN2049-week appearance recorded; included for the stack.",
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "selini",
+    "name": "Selini",
+    "category": "trading",
+    "description": "Trading firm associated with Jordi Alexander, who speaks on market making and moderates “The Speculation Age”.",
+    "stack_layers": [
+      "liquidity"
+    ],
+    "ecosystems": [],
+    "sources": [],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "limitless-labs",
+    "name": "Limitless Labs",
+    "category": "trading",
+    "description": "Associated with CJ Hetherington, whose focus is sports market making, pricing and liquidity.",
+    "stack_layers": [
+      "liquidity"
+    ],
+    "ecosystems": [],
+    "sources": [],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "flow-traders",
+    "name": "Flow Traders",
+    "category": "trading",
+    "description": "Listed as a Finality Forum participant.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-finality"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "gsr",
+    "name": "GSR",
+    "category": "trading",
+    "description": "Listed as a Finality Forum participant.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-finality"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "citadel-securities",
+    "name": "Citadel Securities",
+    "category": "trading",
+    "description": "Named in a provisional, unconfirmed invite-only mixer with Ripple.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [],
+    "note": "Event unconfirmed.",
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "quant-ferryman",
+    "name": "Quant Ferryman",
+    "category": "trading",
+    "description": "Host of Thursday's HFT Closed-Door Meetup.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-dexpal"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "moirai",
+    "name": "Moirai",
+    "category": "trading",
+    "description": "Host of Thursday's Prediction Market Traders Night.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-dexpal"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "falconx",
+    "name": "FalconX",
+    "category": "institutional",
+    "description": "Institutional digital-asset trading firm, placed in the institutional-execution layer of the prediction-market stack (with Kemet) in our research. Joshua Lim speaks on Wednesday's tokenised-markets panel.",
+    "stack_layers": [
+      "execution"
+    ],
+    "ecosystems": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": "The execution-layer placement comes from our research notes rather than a linked public source.",
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "coinbase",
+    "name": "Coinbase",
+    "category": "institutional",
+    "description": "Partnered with ION to support Kalshi event contracts. Coinbase Institutional is on Thursday's capital-flows panel, and Coinbase is listed at the Finality Forum.",
+    "stack_layers": [
+      "clearing"
+    ],
+    "ecosystems": [],
+    "sources": [
+      "src-ion",
+      "src-token-agenda2",
+      "src-finality"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "nasdaq",
+    "name": "Nasdaq",
+    "category": "institutional",
+    "description": "Exchange operator. CEO Adena Friedman gives a main-stage fireside on Thursday.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "cme",
+    "name": "CME",
+    "category": "institutional",
+    "description": "Derivatives exchange group, participating in Thursday's institutional capital-flows panel.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "invesco",
+    "name": "Invesco",
+    "category": "institutional",
+    "description": "Asset manager, participating in Thursday's institutional capital-flows panel.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "ripple",
+    "name": "Ripple",
+    "category": "institutional",
+    "description": "Listed as a Finality Forum participant, and named in a provisional, unconfirmed mixer with Citadel Securities.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-finality"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "visa",
+    "name": "Visa",
+    "category": "institutional",
+    "description": "Listed as a Finality Forum participant.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-finality"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "paxos",
+    "name": "Paxos",
+    "category": "institutional",
+    "description": "Participant in the White House to Wall Street policy session.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "kraken",
+    "name": "Kraken",
+    "category": "platforms",
+    "description": "Participant in the White House to Wall Street policy session.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "21shares",
+    "name": "21Shares",
+    "category": "institutional",
+    "description": "Listed as a partner of HypurrCo Gathers.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-hypurrco"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "zenith",
+    "name": "Zenith",
+    "category": "institutional",
+    "description": "Co-host of the Opening Bell institutional breakfast.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-breakfast"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "t-rex",
+    "name": "T-REX",
+    "category": "institutional",
+    "description": "Co-host of the Opening Bell institutional breakfast.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-breakfast"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "pantera",
+    "name": "Pantera",
+    "category": "investors",
+    "description": "Participants listed on the White House to Wall Street policy session.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "hyperliquid-policy-center",
+    "name": "Hyperliquid Policy Center",
+    "category": "policy",
+    "description": "Policy organisation in the Hyperliquid ecosystem. Jake Chervinsky speaks on the White House to Wall Street session, and the Center is listed as a HypurrCo partner.",
+    "stack_layers": [
+      "policy"
+    ],
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "sources": [
+      "src-token-agenda1",
+      "src-hypurrco"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "grandstand",
+    "name": "Grandstand",
+    "category": "sports",
+    "description": "Associated with Matt Restivo; sports data, latency and pricing infrastructure.",
+    "stack_layers": [
+      "data-transport"
+    ],
+    "ecosystems": [],
+    "sources": [],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "psg-labs",
+    "name": "PSG Labs",
+    "category": "sports",
+    "description": "Associated with Pär Helgosson; sports pricing and market structure.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [],
+    "note": null,
+    "last_updated": "2026-09-22"
+  }
+]

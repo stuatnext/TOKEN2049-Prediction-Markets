@@ -1,0 +1,599 @@
+[
+  {
+    "id": "shayne-coplan",
+    "name": "Shayne Coplan",
+    "org": "polymarket",
+    "org_label": null,
+    "role": null,
+    "group": "platforms",
+    "why": "The most prominent Polymarket voice at TOKEN2049. The main-stage fireside is the place to hear how Polymarket defines the business it is becoming.",
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "john-wang",
+    "name": "John Wang",
+    "org": "kalshi",
+    "org_label": null,
+    "role": "Head of Crypto, Kalshi",
+    "group": "platforms",
+    "why": "Speaks twice on the official programme. Covers where event contracts meet perps and the wider “everything tradable” push.",
+    "sources": [
+      "src-token-agenda1",
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "andy-ross",
+    "name": "Andy Ross",
+    "org": "kalshi",
+    "org_label": null,
+    "role": null,
+    "group": "platforms",
+    "why": "Listed in connection with the Haruko x Kalshi opening-week gathering. Relevant to institutional requirements: margin, data, clearing and portfolio integration.",
+    "sources": [
+      "src-haruko-event"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "jeff-yan",
+    "name": "Jeff Yan",
+    "org": "hyperliquid",
+    "org_label": null,
+    "role": null,
+    "group": "platforms",
+    "why": "Leads Hyperliquid's main-stage session. HIP-4 makes Hyperliquid directly relevant to permissionless outcome markets.",
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "vladimir-novakovski",
+    "name": "Vladimir Novakovski",
+    "org": "lighter",
+    "org_label": null,
+    "role": null,
+    "group": "platforms",
+    "why": "On “The Speculation Age” panel alongside Kalshi and Robinhood.",
+    "sources": [
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "johann-kerbrat",
+    "name": "Johann Kerbrat",
+    "org": "robinhood",
+    "org_label": null,
+    "role": null,
+    "group": "platforms",
+    "why": "Robinhood's perspective on distribution: will prediction markets be a destination, or one more asset inside a brokerage app?",
+    "sources": [
+      "src-token-agenda1",
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "jordi-alexander",
+    "name": "Jordi Alexander",
+    "org": "selini",
+    "org_label": null,
+    "role": null,
+    "group": "trading",
+    "why": "Market-maker and trader perspective. Speaks on Market Wizards, moderates “The Speculation Age” and is listed for the Hyperliquid Forum.",
+    "sources": [
+      "src-token-agenda1",
+      "src-token-agenda2",
+      "src-hl-forum"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "dim-selk",
+    "name": "Dim Selk",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "trading",
+    "why": "Speaks on the Market Wizards trading and market-making session.",
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "austin-federa",
+    "name": "Austin Federa",
+    "org": "doublezero",
+    "org_label": null,
+    "role": "Founder, DoubleZero",
+    "group": "infrastructure",
+    "why": "DoubleZero carries Kalshi's full order-book market data. Austin Federa is the key voice on low-latency market-data transport for prediction markets.",
+    "sources": [
+      "src-token-agenda2",
+      "src-hl-forum",
+      "src-dz-block"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "jacelynn-pang",
+    "name": "Jacelynn Pang",
+    "org": "chainup",
+    "org_label": null,
+    "role": null,
+    "group": "infrastructure",
+    "why": "Associated with ChainUp's TOKEN2049 presence and Hermes, its white-label prediction-market infrastructure.",
+    "sources": [
+      "src-chainup-token",
+      "src-chainup-ark"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "ahmed-salih",
+    "name": "Ahmed Salih",
+    "org": "outcome",
+    "org_label": "Outcome Labs",
+    "role": null,
+    "group": "builders",
+    "why": "Listed for the Hyperliquid Forum. Relevant to what is live under HIP-4 and where liquidity and settlement responsibilities sit.",
+    "sources": [
+      "src-hl-forum"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "jack-booth",
+    "name": "Jack Booth",
+    "org": "outcome",
+    "org_label": null,
+    "role": null,
+    "group": "builders",
+    "why": "Listed for the Hyperliquid Forum. Former TON Society co-founder, bringing a consumer-distribution perspective to outcome markets.",
+    "sources": [
+      "src-hl-forum"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "ian-weisberger",
+    "name": "Ian Weisberger",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": "Listed for the Hyperliquid Forum.",
+    "sources": [
+      "src-hl-forum"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "joshua-lim",
+    "name": "Joshua Lim",
+    "org": "falconx",
+    "org_label": null,
+    "role": null,
+    "group": "institutional",
+    "why": "On the institutional tokenised-markets panel. FalconX sits in the institutional-execution layer of the prediction-market stack.",
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "adena-friedman",
+    "name": "Adena Friedman",
+    "org": "nasdaq",
+    "org_label": null,
+    "role": "CEO, Nasdaq",
+    "group": "institutional",
+    "why": "A benchmark voice for mature exchange infrastructure and market integrity.",
+    "sources": [
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "jake-chervinsky",
+    "name": "Jake Chervinsky",
+    "org": "hyperliquid-policy-center",
+    "org_label": null,
+    "role": null,
+    "group": "policy",
+    "why": "Policy perspective on permissionless financial products, including outcome markets.",
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "cj-hetherington",
+    "name": "CJ Hetherington",
+    "org": "limitless-labs",
+    "org_label": null,
+    "role": null,
+    "group": "sports",
+    "why": "Sports market making, pricing and liquidity mechanics.",
+    "sources": [
+      "src-theodds"
+    ],
+    "note": "Listed in connection with The Odds in our research. Confirm on the organiser page.",
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "matt-restivo",
+    "name": "Matt Restivo",
+    "org": "grandstand",
+    "org_label": null,
+    "role": null,
+    "group": "sports",
+    "why": "Sports data, latency and pricing infrastructure.",
+    "sources": [
+      "src-theodds"
+    ],
+    "note": "Listed in connection with The Odds in our research. Confirm on the organiser page.",
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "par-helgosson",
+    "name": "Pär Helgosson",
+    "org": "psg-labs",
+    "org_label": null,
+    "role": null,
+    "group": "sports",
+    "why": "Sports pricing and market structure.",
+    "sources": [
+      "src-theodds"
+    ],
+    "note": "Listed in connection with The Odds in our research. Confirm on the organiser page.",
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "michael-adams",
+    "name": "Michael Adams",
+    "org": null,
+    "org_label": "Background: Caerus / Swish (per organiser bio)",
+    "role": null,
+    "group": "sports",
+    "why": "Sports trading infrastructure and prediction-market expansion.",
+    "sources": [
+      "src-michael-adams",
+      "src-theodds"
+    ],
+    "note": "Affiliation taken from the current organiser bio. Reconfirm close to the event.",
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "balaji-srinivasan",
+    "name": "Balaji Srinivasan",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "armani-ferrante",
+    "name": "Armani Ferrante",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "kyle-samani",
+    "name": "Kyle Samani",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1",
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "stani-kulechov",
+    "name": "Stani Kulechov",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "guy-young",
+    "name": "Guy Young",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "kain-warwick",
+    "name": "Kain Warwick",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "guy-wuollet",
+    "name": "Guy Wuollet",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "akshay-bd",
+    "name": "Akshay BD",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "hart-lambur",
+    "name": "Hart Lambur",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "alexander-good",
+    "name": "Alexander Good",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "alex-svanevik",
+    "name": "Alex Svanevik",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "ran-neuner",
+    "name": "Ran Neuner",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "pauline-shangett",
+    "name": "Pauline Shangett",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "kelvin-koh",
+    "name": "Kelvin Koh",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "rajiv-patel-oconnor",
+    "name": "Rajiv Patel-O’Connor",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "larry-cermak",
+    "name": "Larry Cermak",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "andrew-mccormick",
+    "name": "Andrew McCormick",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "michael-higgins",
+    "name": "Michael Higgins",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "roland-chai",
+    "name": "Roland Chai",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "jenny-johnson",
+    "name": "Jenny Johnson",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "richard-teng",
+    "name": "Richard Teng",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "joanna-ossinger",
+    "name": "Joanna Ossinger",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": null,
+    "sources": [
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-22"
+  }
+]

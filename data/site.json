@@ -1,0 +1,198 @@
+{
+  "title": "Prediction Markets at TOKEN2049 Singapore 2026",
+  "tagline": "The unofficial directory of prediction-market events, sessions, companies and people across TOKEN2049 week.",
+  "last_updated": "2026-09-22",
+  "research_cutoff": "22 September 2026 (UK) / 23 September 2026 (Singapore)",
+  "timezone": "SGT (UTC+8)",
+  "utc_offset_hours": 8,
+  "days": [
+    {
+      "date": "2026-10-05",
+      "label": "Mon 5 Oct",
+      "long": "Monday 5 October",
+      "note": "TOKEN2049 week begins"
+    },
+    {
+      "date": "2026-10-06",
+      "label": "Tue 6 Oct",
+      "long": "Tuesday 6 October",
+      "note": "Hyperliquid Forum day"
+    },
+    {
+      "date": "2026-10-07",
+      "label": "Wed 7 Oct",
+      "long": "Wednesday 7 October",
+      "note": "TOKEN2049 main conference, day 1"
+    },
+    {
+      "date": "2026-10-08",
+      "label": "Thu 8 Oct",
+      "long": "Thursday 8 October",
+      "note": "TOKEN2049 main conference, day 2"
+    },
+    {
+      "date": "2026-10-09",
+      "label": "Fri 9 Oct",
+      "long": "Friday 9 October",
+      "note": "Closing day"
+    }
+  ],
+  "main_days": [
+    "2026-10-07",
+    "2026-10-08"
+  ],
+  "curator": {
+    "name": "NEXTPredict",
+    "url": ""
+  },
+  "repo_url": "https://github.com/stuatnext/TOKEN2049-Prediction-Markets",
+  "open_questions": [
+    {
+      "item": "Official Hyperliquid Monday event: time and venue",
+      "state": "Open",
+      "detail": "Not yet published. Watch Hyperliquid's announcement channel and the Hyperliquid Forum page.",
+      "events": [
+        "hyperliquid-ecosystem-event"
+      ],
+      "sources": [
+        "src-hl-ann",
+        "src-hl-forum"
+      ]
+    },
+    {
+      "item": "The Odds: final finish time",
+      "state": "Timing conflict",
+      "detail": "The organiser currently indicates 20:00. Recheck the final-week agenda.",
+      "events": [
+        "the-odds-prediction-markets-live"
+      ],
+      "sources": [
+        "src-theodds"
+      ]
+    },
+    {
+      "item": "PowerScale: final finish time",
+      "state": "Minor timing conflict",
+      "detail": "Official TOKEN2049 Week shows 19:30; some mirror listings have shown 20:00.",
+      "events": [
+        "powerscale-social-prediction-market"
+      ],
+      "sources": [
+        "src-token-week"
+      ]
+    },
+    {
+      "item": "Ripple x Citadel Securities Sundown Mixer",
+      "state": "Provisional",
+      "detail": "No first-party invite or event page found. Treat as unconfirmed.",
+      "events": [
+        "ripple-citadel-sundown-mixer"
+      ],
+      "sources": []
+    },
+    {
+      "item": "Prediction Market Traders Night (Moirai): who attends",
+      "state": "Unknown",
+      "detail": "The public description is thin and the attendee profile is not public.",
+      "events": [
+        "moirai-traders-night"
+      ],
+      "sources": [
+        "src-dexpal"
+      ]
+    },
+    {
+      "item": "HFT Closed-Door Meetup: prediction-market relevance",
+      "state": "Unknown",
+      "detail": "No prediction-market market makers, data or execution firms are confirmed.",
+      "events": [
+        "hft-closed-door-meetup"
+      ],
+      "sources": [
+        "src-dexpal"
+      ]
+    },
+    {
+      "item": "HIP-4 deployment and activity numbers",
+      "state": "Not included",
+      "detail": "We don't publish activity figures here. See Hyperliquid's filing and announcements, and note the difference between organic and incentive-driven activity.",
+      "events": [],
+      "sources": [
+        "src-sec-hl",
+        "src-hl-ann"
+      ]
+    },
+    {
+      "item": "Haruko: institutional prediction-market usage",
+      "state": "Integration documented, usage unknown",
+      "detail": "An available integration is not the same as adoption.",
+      "events": [
+        "haruko-x-kalshi"
+      ],
+      "sources": [
+        "src-haruko",
+        "src-haruko-kalshi"
+      ]
+    },
+    {
+      "item": "Kalshi institutional margin",
+      "state": "Request reported, not approved",
+      "detail": "Kalshi Klear's request to margin event contracts for qualifying participants has been reported. Check the CFTC status before relying on it.",
+      "events": [
+        "kalshi-bringing-perps-to-america"
+      ],
+      "sources": [
+        "src-kalshi-margin"
+      ]
+    },
+    {
+      "item": "Polymarket UK/EU classification",
+      "state": "Contested",
+      "detail": "FT reporting on Polymarket seeking financial-product treatment. Regulators' positions are not settled.",
+      "events": [
+        "polymarket-coplan-fireside"
+      ],
+      "sources": [
+        "src-poly-eu"
+      ]
+    },
+    {
+      "item": "Michael Adams: current affiliation",
+      "state": "Organiser bio used",
+      "detail": "We use the current organiser bio. Reconfirm close to The Odds.",
+      "events": [
+        "the-odds-prediction-markets-live"
+      ],
+      "sources": [
+        "src-michael-adams"
+      ]
+    },
+    {
+      "item": "Sports speakers at The Odds",
+      "state": "Confirm with organiser",
+      "detail": "CJ Hetherington, Matt Restivo and Pär Helgosson are listed in connection with The Odds in our research. Check the organiser page for the final line-up.",
+      "events": [
+        "the-odds-prediction-markets-live"
+      ],
+      "sources": [
+        "src-theodds"
+      ]
+    }
+  ],
+  "practical": [
+    {
+      "title": "Media accreditation deadline",
+      "body": "TOKEN2049 says media accreditation must be submitted before 12:00 SGT on 1 October. Processing can take up to five working days, and there is no onsite accreditation.",
+      "sources": [
+        "src-token-media"
+      ]
+    },
+    {
+      "title": "Times are Singapore time",
+      "body": "All times are SGT (UTC+8). Programmes change, so recheck agendas 24–48 hours before you travel to an event.",
+      "sources": [
+        "src-token-faq"
+      ]
+    }
+  ]
+}
