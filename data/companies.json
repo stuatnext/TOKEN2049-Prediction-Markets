@@ -3,7 +3,7 @@
     "id": "kalshi",
     "name": "Kalshi",
     "category": "platforms",
-    "description": "US event-contract exchange and one of the two best-known prediction-market venues. During TOKEN2049 week, John Wang (Head of Crypto) speaks twice on the official programme, and Kalshi co-hosts evenings with Haruko and Insilico. Its full order-book data streams over DoubleZero, and ION and Coinbase support clearing and settlement of its event contracts. Kalshi Klear has been reported as requesting institutional margining; that is a request, not an approval.",
+    "description": "US event-contract exchange and one of the two best-known prediction-market venues. During TOKEN2049 week, John Wang (Head of Crypto) speaks twice on the official programme, and Kalshi co-hosts evenings with Haruko and Insilico. Its full order-book data streams over DoubleZero, and ION and Coinbase support clearing and settlement of its event contracts. Kalshi Klear has been reported as requesting institutional margining; that is a request, not an approval. Internationally, Kalshi has begun expanding through brokerage partners (XP in Brazil; Alpaca’s infrastructure), which makes Asia-based distribution a live question.",
     "stack_layers": [
       "frontend",
       "venue",
@@ -20,10 +20,12 @@
       "src-ion",
       "src-kalshi-margin",
       "src-haruko-kalshi",
-      "src-insilico"
+      "src-insilico",
+      "src-kalshi-alpaca",
+      "src-kalshi-xp"
     ],
     "note": null,
-    "last_updated": "2026-09-22",
+    "last_updated": "2026-09-23",
     "types": [
       "venue",
       "exchange"
@@ -33,7 +35,7 @@
     "id": "polymarket",
     "name": "Polymarket",
     "category": "platforms",
-    "description": "Prediction-market platform and one of the two best-known venues. Its founder headlines a main-stage fireside, and it hosts its first Singapore kick-off event on Wednesday evening. FT reporting says Polymarket is pushing for financial-product treatment in the UK/EU; regulators' positions are contested.",
+    "description": "Prediction-market platform and one of the two best-known venues. Its founder headlines a main-stage fireside, and it hosts its first Singapore kick-off event on Wednesday evening. FT reporting says Polymarket is pushing for financial-product treatment in the UK/EU; regulators' positions are contested. In Singapore specifically, the Gambling Regulatory Authority declared Polymarket an unlicensed gambling site and ordered it blocked in January 2025.",
     "stack_layers": [
       "frontend",
       "venue",
@@ -45,10 +47,11 @@
     "sources": [
       "src-token-agenda1",
       "src-poly-kickoff",
-      "src-poly-eu"
+      "src-poly-eu",
+      "src-sg-poly-block"
     ],
     "note": null,
-    "last_updated": "2026-09-22",
+    "last_updated": "2026-09-23",
     "types": [
       "venue"
     ]
@@ -137,7 +140,7 @@
     "sources": [
       "src-predict365"
     ],
-    "note": "The team’s attendance post was captured from LinkedIn. The direct post link hasn’t been added yet.",
+    "note": null,
     "last_updated": "2026-09-23",
     "types": [
       "venue"
@@ -1303,6 +1306,41 @@
     "last_updated": "2026-09-23",
     "types": [
       "infrastructure"
+    ]
+  },
+  {
+    "id": "hype-global",
+    "name": "Hype Global",
+    "category": "organisers",
+    "description": "Hyperliquid event platform running HYPE Singapore, a hackathon and conference on 6–7 October.",
+    "stack_layers": [],
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "sources": [
+      "src-hype-sg"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "types": [
+      "other"
+    ]
+  },
+  {
+    "id": "more-and-more",
+    "name": "More & More",
+    "category": "organisers",
+    "description": "Event organiser behind The Odds: Prediction Markets Live and Agentic Finance (Thu 8 Oct, Suntec City).",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-mnm-agentic",
+      "src-theodds"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "types": [
+      "other"
     ]
   }
 ]

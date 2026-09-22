@@ -57,18 +57,6 @@
   "repo_url": "https://github.com/stuatnext/TOKEN2049-Prediction-Markets",
   "open_questions": [
     {
-      "item": "Official Hyperliquid Monday event: time and venue",
-      "state": "Open",
-      "detail": "Not yet published. Watch Hyperliquid's announcement channel and the Hyperliquid Forum page.",
-      "events": [
-        "hyperliquid-ecosystem-event"
-      ],
-      "sources": [
-        "src-hl-ann",
-        "src-hl-forum"
-      ]
-    },
-    {
       "item": "The Odds: final finish time",
       "state": "Timing conflict",
       "detail": "The organiser currently indicates 20:00. Recheck the final-week agenda.",
@@ -219,9 +207,21 @@
     {
       "item": "Unverified leads on Who's Going",
       "state": "Unverified",
-      "detail": "Tom Wolf, Reppo's RG, CJ Hetherington, Matt Restivo, Pär Helgosson and Jacelynn Pang are shown as Unverified: they came from research leads without a public source link yet. The same goes for the direct post links for Vishal K. Gupta and Predict365.",
+      "detail": "Tom Wolf, Reppo’s RG, CJ Hetherington, Matt Restivo, Pär Helgosson and Jacelynn Pang are shown as Unverified. They came from research leads without a public source link.",
       "events": [],
       "sources": []
+    },
+    {
+      "item": "Official Hyperliquid Monday event: venue",
+      "state": "Open",
+      "detail": "Date, hours (09:00–17:00) and format are now reported by Hype Global. The venue still isn’t published.",
+      "events": [
+        "hyperliquid-ecosystem-event"
+      ],
+      "sources": [
+        "src-hype-sg",
+        "src-hl-ann"
+      ]
     }
   ],
   "practical": [

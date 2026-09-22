@@ -425,5 +425,47 @@
     "type": "Company / primary",
     "url": "https://reppo.xyz/",
     "note": "Prediction-market protocol for curating AI training data."
+  },
+  {
+    "id": "src-hype-sg",
+    "name": "HYPE Singapore 2026: Hyperliquid Hackathon & Conference",
+    "type": "Organiser / event page",
+    "url": "https://hype.global/events/singapore-2026",
+    "note": "6–7 October: 24-hour hackathon plus conference for Hyperliquid builders. Also describes the official Hyperliquid event on 5 October (invite-only, capped at 200, 09:00–17:00, speaking agenda 15:00–17:00)."
+  },
+  {
+    "id": "src-hype-sg-luma",
+    "name": "HYPE Singapore (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/qc27yx6b",
+    "note": "Registration page."
+  },
+  {
+    "id": "src-mnm-agentic",
+    "name": "Agentic Finance & The Odds (More & More)",
+    "type": "Organiser / event page",
+    "url": "https://mnm.live/agentic-finance",
+    "note": "Two co-hosted summits by More & More, Thu 8 Oct, Suntec City. Agentic Finance is closed-door, by invitation, for about 400 senior decision-makers."
+  },
+  {
+    "id": "src-sg-poly-block",
+    "name": "Singapore blocks Polymarket (CoinDesk)",
+    "type": "Reported",
+    "url": "https://www.coindesk.com/policy/2025/01/13/singapore-blocks-polymarket-following-taiwan-and-france",
+    "note": "January 2025: Singapore’s Gambling Regulatory Authority declared Polymarket an unlicensed gambling site and ordered ISPs to block it."
+  },
+  {
+    "id": "src-kalshi-alpaca",
+    "name": "Kalshi partners with brokerage Alpaca (CNBC)",
+    "type": "Reported",
+    "url": "https://www.cnbc.com/2026/08/31/kalshi-looks-international-partners-with-brokerage-alpaca.html",
+    "note": "Kalshi’s international push via Alpaca’s brokerage infrastructure."
+  },
+  {
+    "id": "src-kalshi-xp",
+    "name": "Kalshi begins global expansion with XP in Brazil (PYMNTS)",
+    "type": "Reported",
+    "url": "https://www.pymnts.com/partnerships/2026/kalshi-begins-global-expansion-with-xp-deal-brazil/",
+    "note": "Kalshi’s first expansion outside the US (March 2026)."
   }
 ]
