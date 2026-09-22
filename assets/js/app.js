@@ -1098,13 +1098,14 @@ afterRender.stack = (parts) => {
 const AST = {
   official_speaker: { label: "Official speaker", desc: "Named on the official TOKEN2049 programme." },
   publicly_attending: { label: "Publicly attending", desc: "Has said publicly that they will attend TOKEN2049 Singapore 2026." },
-  company_attending: { label: "Company attending", desc: "The company’s own site or account says its team will be at TOKEN2049. Individual employees aren’t inferred." },
+  company_attending: { label: "Company team attending", desc: "The company’s own site or account says its team will be at TOKEN2049. Individual employees aren’t inferred unless the company names them." },
   exhibitor: { label: "Exhibitor", desc: "Officially listed as an exhibitor. This proves the organisation is present, not any particular person." },
   sponsor: { label: "Sponsor / partner", desc: "Officially listed as a TOKEN2049 sponsor or partner. This proves the organisation is present, not any particular person." },
   side_event_host: { label: "Side-event host", desc: "Publicly named as the host of an event during TOKEN2049 week." },
   side_event_speaker: { label: "Side-event speaker", desc: "Publicly named as a speaker at a relevant side event." },
+  confirmed_participant: { label: "Confirmed participant", desc: "An event organiser has publicly named the organisation or person as a confirmed participant." },
   meeting_signal: { label: "Meeting signal", desc: "Has publicly invited meetings during the week, but hasn’t clearly said they’ll attend." },
-  launch_signal: { label: "TOKEN2049 launch signal", desc: "Has announced a launch timed around TOKEN2049. This doesn’t confirm any named person will attend." },
+  launch_signal: { label: "Launch at TOKEN", desc: "Has announced a launch timed around TOKEN2049. This doesn’t confirm any named person will attend." },
 };
 const AROLE = {
   founder: "Founder / CEO", trader: "Trader", "market-maker": "Market maker", investor: "Investor", builder: "Builder / engineer",
@@ -1314,7 +1315,7 @@ function goingResearch() {
 function whereToFind(recs, entityName) {
   if (!recs?.length) return "";
   return `<section><h2>Where to find ${esc(entityName)}</h2><p class="small muted">Only where public evidence supports it.</p>
-  <ul class="source-list">${recs.map((a) => `<li><span class="type">${esc(AST[a.attendance_status].label)}${a.dates.length ? ` · ${a.dates.map((d) => esc(dayOf(d).label)).join(", ")}` : ""}</span>
+  <ul class="source-list">${recs.slice().sort((x, y) => (x.dates[0] || "9").localeCompare(y.dates[0] || "9")).map((a) => `<li><span class="type">${esc(AST[a.attendance_status].label)}${a.dates.length ? ` · ${a.dates.map((d) => esc(dayOf(d).label)).join(", ")}` : ""}</span>
     ${esc(a.evidence_summary)}
     ${a.event_ids.length ? `<p>${a.event_ids.map((id) => D.ev.get(id)).map((e) => `<a href="${evUrl(e)}">${esc(e.title)}</a> <span class="muted">(${esc(dayRange(e))}, ${esc(timeLabel(e))})</span>`).join("<br>")}</p>` : ""}
     <p>${a.source_url ? `<a href="${esc(a.source_url)}" target="_blank" rel="noopener">Proof / source ↗</a> · ` : ""}Last verified ${esc(fmtDate(a.last_verified))}</p></li>`).join("")}</ul></section>`;

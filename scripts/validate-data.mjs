@@ -84,7 +84,7 @@ for (const p of people) {
   if (p.org && !C.has(p.org)) err(`${w}: unknown org "${p.org}"`);
   if (!ENUMS.group.includes(p.group)) err(`${w}: group "${p.group}" invalid`);
   checkSources(w, p.sources);
-  if (!events.some((e) => (e.people || []).some((x) => x.id === p.id))) warn(`${w}: not linked to any event`);
+  if (!events.some((e) => (e.people || []).some((x) => x.id === p.id)) && !attendance.some((a) => a.person_id === p.id && a.public)) warn(`${w}: not linked to any event or public attendance record`);
 }
 
 for (const c of companies) {
@@ -122,7 +122,7 @@ const used = new Set([
 for (const s of sources) if (!used.has(s.id)) warn(`source "${s.id}" is not referenced by any record`);
 
 // ---- Who's Going: every public record needs its own evidence
-const AST = ["official_speaker", "publicly_attending", "company_attending", "exhibitor", "sponsor", "side_event_host", "side_event_speaker", "meeting_signal", "launch_signal"];
+const AST = ["official_speaker", "publicly_attending", "company_attending", "exhibitor", "sponsor", "side_event_host", "side_event_speaker", "confirmed_participant", "meeting_signal", "launch_signal"];
 const ROLE = ["founder", "trader", "market-maker", "investor", "builder", "institutional", "infrastructure", "sports", "media", "regulation", "business", "other"];
 const CTYPE = ["venue", "trading-firm", "market-maker", "infrastructure", "data", "oracle", "exchange", "institutional", "sports", "media", "investor", "compliance", "other"];
 const A = ids(attendance, "attendance");

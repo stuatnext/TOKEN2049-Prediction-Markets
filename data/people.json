@@ -24,7 +24,7 @@
     "org_label": null,
     "role": "Head of Crypto, Kalshi",
     "group": "platforms",
-    "why": "Speaks twice on the official programme. Covers where event contracts meet perps and the wider “everything tradable” push.",
+    "why": "Kalshi’s Head of Crypto. Speaks twice on the official programme and is a named host of the Thursday-night Kalshi x Insilico trader session.",
     "sources": [
       "src-token-agenda1",
       "src-token-agenda2"
@@ -32,7 +32,8 @@
     "note": null,
     "last_updated": "2026-09-22",
     "roles": [
-      "business"
+      "business",
+      "trader"
     ]
   },
   {
@@ -40,16 +41,18 @@
     "name": "Andy Ross",
     "org": "kalshi",
     "org_label": null,
-    "role": null,
-    "group": "platforms",
-    "why": "Listed in connection with the Haruko x Kalshi opening-week gathering. Relevant to institutional requirements: margin, data, clearing and portfolio integration.",
+    "role": "Head of Institutional, Kalshi",
+    "group": "institutional",
+    "why": "Kalshi’s institutional lead. He co-hosts the Monday Haruko x Kalshi evening and speaks on prediction markets and institutional adoption at the Global Onchain Summit on Tuesday, so he’s reachable before the main conference starts.",
     "sources": [
+      "src-gos-andy",
       "src-haruko-event"
     ],
     "note": null,
-    "last_updated": "2026-09-22",
+    "last_updated": "2026-09-23",
     "roles": [
-      "institutional"
+      "institutional",
+      "business"
     ]
   },
   {
@@ -116,12 +119,13 @@
     "group": "trading",
     "why": "Market-maker and trader perspective. Speaks on Market Wizards, moderates “The Speculation Age” and is listed for the Hyperliquid Forum.",
     "sources": [
+      "src-hl-forum",
+      "src-hlforum-speakers",
       "src-token-agenda1",
-      "src-token-agenda2",
-      "src-hl-forum"
+      "src-token-agenda2"
     ],
     "note": null,
-    "last_updated": "2026-09-22",
+    "last_updated": "2026-09-23",
     "roles": [
       "trader",
       "market-maker"
@@ -149,16 +153,17 @@
     "name": "Austin Federa",
     "org": "doublezero",
     "org_label": null,
-    "role": "Founder, DoubleZero",
+    "role": "Co-Founder, DoubleZero",
     "group": "infrastructure",
     "why": "DoubleZero carries Kalshi's full order-book market data. Austin Federa is the key voice on low-latency market-data transport for prediction markets.",
     "sources": [
-      "src-token-agenda2",
+      "src-dz-block",
       "src-hl-forum",
-      "src-dz-block"
+      "src-hlforum-speakers",
+      "src-token-agenda2"
     ],
     "note": null,
-    "last_updated": "2026-09-22",
+    "last_updated": "2026-09-23",
     "roles": [
       "founder",
       "infrastructure"
@@ -188,15 +193,17 @@
     "name": "Ahmed Salih",
     "org": "outcome",
     "org_label": "Outcome Labs",
-    "role": null,
+    "role": "Co-Founder, Outcome Labs",
     "group": "builders",
     "why": "Listed for the Hyperliquid Forum. Relevant to what is live under HIP-4 and where liquidity and settlement responsibilities sit.",
     "sources": [
-      "src-hl-forum"
+      "src-hl-forum",
+      "src-hlforum-speakers"
     ],
     "note": null,
-    "last_updated": "2026-09-22",
+    "last_updated": "2026-09-23",
     "roles": [
+      "founder",
       "builder"
     ]
   },
@@ -221,18 +228,20 @@
   {
     "id": "ian-weisberger",
     "name": "Ian Weisberger",
-    "org": null,
+    "org": "coinroutes",
     "org_label": null,
-    "role": null,
-    "group": "speakers",
-    "why": "Listed for the Hyperliquid Forum.",
+    "role": "Co-Founder & CEO, CoinRoutes",
+    "group": "infrastructure",
+    "why": "Execution infrastructure (smart order routing). Speaking at the Hyperliquid Forum.",
     "sources": [
-      "src-hl-forum"
+      "src-hl-forum",
+      "src-hlforum-speakers"
     ],
     "note": null,
-    "last_updated": "2026-09-22",
+    "last_updated": "2026-09-23",
     "roles": [
-      "other"
+      "founder",
+      "infrastructure"
     ]
   },
   {
@@ -616,17 +625,18 @@
     "id": "rajiv-patel-oconnor",
     "name": "Rajiv Patel-O’Connor",
     "org": null,
-    "org_label": null,
-    "role": null,
-    "group": "speakers",
-    "why": null,
+    "org_label": "Framework Ventures",
+    "role": "General Partner, Framework Ventures",
+    "group": "investors",
+    "why": "Investor on the official programme and at the Hyperliquid Forum.",
     "sources": [
+      "src-hlforum-speakers",
       "src-token-agenda1"
     ],
     "note": null,
-    "last_updated": "2026-09-22",
+    "last_updated": "2026-09-23",
     "roles": [
-      "other"
+      "investor"
     ]
   },
   {
@@ -649,17 +659,18 @@
   {
     "id": "andrew-mccormick",
     "name": "Andrew McCormick",
-    "org": null,
+    "org": "chainlink",
     "org_label": null,
     "role": null,
-    "group": "speakers",
-    "why": null,
+    "group": "infrastructure",
+    "why": "Chainlink on the official tokenised-markets panel. Chainlink sits in the oracle and resolution layer of the prediction-market stack.",
     "sources": [
       "src-token-agenda1"
     ],
     "note": null,
-    "last_updated": "2026-09-22",
+    "last_updated": "2026-09-23",
     "roles": [
+      "infrastructure",
       "institutional"
     ]
   },
@@ -795,6 +806,533 @@
     "last_updated": "2026-09-23",
     "roles": [
       "investor"
+    ]
+  },
+  {
+    "id": "ryan-watkins",
+    "name": "Ryan Watkins",
+    "org": null,
+    "org_label": "Syncracy Capital",
+    "role": "Co-founder, Syncracy Capital",
+    "group": "investors",
+    "why": "Speaking at the Hyperliquid Forum, which has a dedicated Prediction & Outcome Markets (HIP-4) theme.",
+    "sources": [
+      "src-hlforum-speakers"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "investor",
+      "founder"
+    ]
+  },
+  {
+    "id": "david-schamis",
+    "name": "David Schamis",
+    "org": null,
+    "org_label": "Hyperliquid Strategies",
+    "role": "CEO, Hyperliquid Strategies Inc",
+    "group": "institutional",
+    "why": "Speaking at the Hyperliquid Forum, which has a dedicated Prediction & Outcome Markets (HIP-4) theme.",
+    "sources": [
+      "src-hlforum-speakers"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "founder",
+      "institutional"
+    ]
+  },
+  {
+    "id": "hanson-birringer",
+    "name": "Hanson Birringer",
+    "org": null,
+    "org_label": "Hyperdash",
+    "role": "Co-Founder & CRO, Hyperdash",
+    "group": "builders",
+    "why": "Speaking at the Hyperliquid Forum, which has a dedicated Prediction & Outcome Markets (HIP-4) theme.",
+    "sources": [
+      "src-hlforum-speakers"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "founder",
+      "builder"
+    ]
+  },
+  {
+    "id": "christy-choi",
+    "name": "Christy Choi",
+    "org": null,
+    "org_label": "TENET Fund",
+    "role": "Founder & Managing Partner, TENET Fund",
+    "group": "investors",
+    "why": "Speaking at the Hyperliquid Forum, which has a dedicated Prediction & Outcome Markets (HIP-4) theme.",
+    "sources": [
+      "src-hlforum-speakers"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "investor",
+      "founder"
+    ]
+  },
+  {
+    "id": "david-knox",
+    "name": "David Knox",
+    "org": null,
+    "org_label": "Hyperion DeFi",
+    "role": "CFO, Hyperion DeFi",
+    "group": "institutional",
+    "why": "Speaking at the Hyperliquid Forum, which has a dedicated Prediction & Outcome Markets (HIP-4) theme.",
+    "sources": [
+      "src-hlforum-speakers"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "institutional"
+    ]
+  },
+  {
+    "id": "blake-player",
+    "name": "Blake Player",
+    "org": null,
+    "org_label": "VALR",
+    "role": "CCO, VALR",
+    "group": "platforms",
+    "why": "Speaking at the Hyperliquid Forum, which has a dedicated Prediction & Outcome Markets (HIP-4) theme.",
+    "sources": [
+      "src-hlforum-speakers"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "business"
+    ]
+  },
+  {
+    "id": "ness",
+    "name": "Ness",
+    "org": "hyperlend",
+    "org_label": null,
+    "role": "CEO, HyperLend",
+    "group": "builders",
+    "why": "Speaking at the Hyperliquid Forum, which has a dedicated Prediction & Outcome Markets (HIP-4) theme.",
+    "sources": [
+      "src-hlforum-speakers"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "founder",
+      "builder"
+    ]
+  },
+  {
+    "id": "spencer-applebaum",
+    "name": "Spencer Applebaum",
+    "org": null,
+    "org_label": "Multicoin Capital",
+    "role": "GP & Co-Head of Venture, Multicoin Capital",
+    "group": "investors",
+    "why": "Speaking at the Hyperliquid Forum, which has a dedicated Prediction & Outcome Markets (HIP-4) theme.",
+    "sources": [
+      "src-hlforum-speakers"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "investor"
+    ]
+  },
+  {
+    "id": "taha-el-magbri",
+    "name": "Taha El-Magbri",
+    "org": null,
+    "org_label": "Paragon",
+    "role": "Founder, Paragon",
+    "group": "builders",
+    "why": "Speaking at the Hyperliquid Forum, which has a dedicated Prediction & Outcome Markets (HIP-4) theme.",
+    "sources": [
+      "src-hlforum-speakers"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "founder",
+      "builder"
+    ]
+  },
+  {
+    "id": "deven-matthews",
+    "name": "Deven Matthews",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": "Speaking at the Hyperliquid Forum, which has a dedicated Prediction & Outcome Markets (HIP-4) theme.",
+    "sources": [
+      "src-hlforum-speakers"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "other"
+    ]
+  },
+  {
+    "id": "chandler-de-kock",
+    "name": "Chandler De Kock",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": "Speaking at the Hyperliquid Forum, which has a dedicated Prediction & Outcome Markets (HIP-4) theme.",
+    "sources": [
+      "src-hlforum-speakers"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "other"
+    ]
+  },
+  {
+    "id": "shiliang-tang",
+    "name": "Shiliang Tang",
+    "org": "monarq",
+    "org_label": null,
+    "role": "CEO, Monarq Asset Management",
+    "group": "investors",
+    "why": "Trading and institutional investing perspective on the official programme (Wed 7 Oct).",
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "investor",
+      "trader"
+    ]
+  },
+  {
+    "id": "andrei-grachev",
+    "name": "Andrei Grachev",
+    "org": "dwf-labs",
+    "org_label": null,
+    "role": "Managing Partner, DWF Labs",
+    "group": "trading",
+    "why": "Market maker and investor; gives an official keynote (Wed 7 Oct, 12:00, Bit Digital Stage).",
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "market-maker",
+      "investor"
+    ]
+  },
+  {
+    "id": "giovanni-vicioso",
+    "name": "Giovanni Vicioso",
+    "org": "cme",
+    "org_label": null,
+    "role": null,
+    "group": "institutional",
+    "why": "CME on the official institutional capital-flows panel. Relevant to whether event contracts fit existing derivatives mandates.",
+    "sources": [
+      "src-token-agenda2"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "institutional"
+    ]
+  },
+  {
+    "id": "zack-nelson",
+    "name": "Zack Nelson",
+    "org": "predictbay",
+    "org_label": null,
+    "role": "CMO, PredictBay",
+    "group": "platforms",
+    "why": "PredictBay is a new prediction-market entrant on Sui. He presents one-minute markets built on DeepBook Predict at Sui Basecamp.",
+    "sources": [
+      "src-sui-basecamp",
+      "src-predictbay"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "business"
+    ]
+  },
+  {
+    "id": "vishal-gupta",
+    "name": "Vishal K. Gupta",
+    "org": "true-markets",
+    "org_label": null,
+    "role": "CEO, True Markets",
+    "group": "trading",
+    "why": "Ex-Coinbase head of exchange. He has said publicly that he wants to talk about advanced execution and prediction markets, particularly “markets on markets”.",
+    "sources": [
+      "src-vishal-li"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "founder",
+      "trader"
+    ]
+  },
+  {
+    "id": "hein-tibosch",
+    "name": "Hein Tibosch",
+    "org": "flow-traders",
+    "org_label": null,
+    "role": null,
+    "group": "trading",
+    "why": "Named by Flow Traders as part of its TOKEN2049 Singapore team (liquidity provision and OTC trading).",
+    "sources": [
+      "src-flowtraders-li",
+      "src-hein-li"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "trader",
+      "market-maker"
+    ]
+  },
+  {
+    "id": "ruben-brons",
+    "name": "Ruben Brons",
+    "org": "flow-traders",
+    "org_label": null,
+    "role": null,
+    "group": "trading",
+    "why": "Named by Flow Traders as part of its TOKEN2049 Singapore team (liquidity provision and OTC trading).",
+    "sources": [
+      "src-flowtraders-li"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "trader",
+      "market-maker"
+    ]
+  },
+  {
+    "id": "stephen-dowds",
+    "name": "Stephen Dowds",
+    "org": "flow-traders",
+    "org_label": null,
+    "role": null,
+    "group": "trading",
+    "why": "Named by Flow Traders as part of its TOKEN2049 Singapore team (liquidity provision and OTC trading).",
+    "sources": [
+      "src-flowtraders-li"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "trader",
+      "market-maker"
+    ]
+  },
+  {
+    "id": "jaden-chan",
+    "name": "Jaden Chan",
+    "org": "flow-traders",
+    "org_label": null,
+    "role": null,
+    "group": "trading",
+    "why": "Named by Flow Traders as part of its TOKEN2049 Singapore team (liquidity provision and OTC trading).",
+    "sources": [
+      "src-flowtraders-li"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "trader",
+      "market-maker"
+    ]
+  },
+  {
+    "id": "chloe-han",
+    "name": "Chloe Han",
+    "org": "flow-traders",
+    "org_label": null,
+    "role": null,
+    "group": "trading",
+    "why": "Named by Flow Traders as part of its TOKEN2049 Singapore team (liquidity provision and OTC trading).",
+    "sources": [
+      "src-flowtraders-li"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "trader",
+      "market-maker"
+    ]
+  },
+  {
+    "id": "adrian-rymill",
+    "name": "Adrian Rymill",
+    "org": "haruko",
+    "org_label": null,
+    "role": null,
+    "group": "infrastructure",
+    "why": "Listed as a host of Haruko x Kalshi (Mon 5 Oct).",
+    "sources": [
+      "src-haruko-event",
+      "src-haruko-hosts-li"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "business"
+    ]
+  },
+  {
+    "id": "elyse-quek",
+    "name": "Elyse Quek",
+    "org": "haruko",
+    "org_label": null,
+    "role": null,
+    "group": "infrastructure",
+    "why": "Listed as a host of Haruko x Kalshi (Mon 5 Oct).",
+    "sources": [
+      "src-haruko-event"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "business"
+    ]
+  },
+  {
+    "id": "daniel-holmes",
+    "name": "Daniel Holmes",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": "Listed as a host of Haruko x Kalshi (Mon 5 Oct).",
+    "sources": [
+      "src-haruko-event"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "other"
+    ]
+  },
+  {
+    "id": "jake-khorozian",
+    "name": "Jake Khorozian",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": "Listed as a host of Haruko x Kalshi (Mon 5 Oct).",
+    "sources": [
+      "src-haruko-event"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "other"
+    ]
+  },
+  {
+    "id": "ico-beast",
+    "name": "ico beast",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "speakers",
+    "why": "Listed as a host of Haruko x Kalshi (Mon 5 Oct). Also a host of the Kalshi x Insilico Asia Session (Thu 8 Oct).",
+    "sources": [
+      "src-haruko-event"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "other"
+    ]
+  },
+  {
+    "id": "irene-liao",
+    "name": "Irene Liao",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "trading",
+    "why": "Listed as a host of the Kalshi x Insilico Terminal Asia Session (Thu 8 Oct), a gathering for active traders, market makers, founders and investors.",
+    "sources": [
+      "src-insilico"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "trader"
+    ]
+  },
+  {
+    "id": "vktr",
+    "name": "VKTR",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "trading",
+    "why": "Listed as a host of the Kalshi x Insilico Terminal Asia Session (Thu 8 Oct), a gathering for active traders, market makers, founders and investors.",
+    "sources": [
+      "src-insilico"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "trader"
+    ]
+  },
+  {
+    "id": "ultra",
+    "name": "ultra",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "trading",
+    "why": "Listed as a host of the Kalshi x Insilico Terminal Asia Session (Thu 8 Oct), a gathering for active traders, market makers, founders and investors.",
+    "sources": [
+      "src-insilico"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "trader"
+    ]
+  },
+  {
+    "id": "sokio",
+    "name": "Sokio",
+    "org": null,
+    "org_label": null,
+    "role": null,
+    "group": "trading",
+    "why": "Listed as a host of the Kalshi x Insilico Terminal Asia Session (Thu 8 Oct), a gathering for active traders, market makers, founders and investors.",
+    "sources": [
+      "src-insilico"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "trader"
     ]
   }
 ]

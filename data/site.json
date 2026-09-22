@@ -177,24 +177,6 @@
       ]
     },
     {
-      "item": "Attendance posts not yet recovered",
-      "state": "Verification pending",
-      "detail": "Several people and companies have reportedly announced plans to attend, but we couldn't find the original public posts. They stay off Who's Going until we can.",
-      "events": [],
-      "sources": []
-    },
-    {
-      "item": "Kalshi x Insilico named hosts",
-      "state": "Open",
-      "detail": "The individual hosts named on the event page still need capturing.",
-      "events": [
-        "kalshi-x-insilico-asia-session"
-      ],
-      "sources": [
-        "src-insilico"
-      ]
-    },
-    {
       "item": "Sports speakers at The Odds",
       "state": "Confirm with organiser",
       "detail": "CJ Hetherington, Matt Restivo and Pär Helgosson are linked to The Odds in our research. Check the organiser page for the final line-up.",
@@ -203,6 +185,45 @@
       ],
       "sources": [
         "src-theodds"
+      ]
+    },
+    {
+      "item": "Direct post links for Vishal K. Gupta and Predict365",
+      "state": "Profile link only",
+      "detail": "Both attendance statements were captured from public LinkedIn posts. We link to the profile or site until the direct post links are added.",
+      "events": [],
+      "sources": [
+        "src-vishal-li",
+        "src-predict365"
+      ]
+    },
+    {
+      "item": "Named Polymarket staff at the Kick-Off",
+      "state": "Not identified",
+      "detail": "The event is confirmed (hosted by 528 Collective). Shayne Coplan is confirmed in Singapore via TOKEN2049. No public roster of Polymarket staff attending the party has been found.",
+      "events": [
+        "polymarket-singapore-kickoff"
+      ],
+      "sources": [
+        "src-poly-kickoff"
+      ]
+    },
+    {
+      "item": "Searched but not confirmed",
+      "state": "No 2026 evidence",
+      "detail": "Limitless, Myriad, Opinion Labs, Azuro, Novig, ProphetX, Hedgehog, Mimir, Susquehanna Crypto, GSR and Jump: no current public evidence of TOKEN2049 Singapore attendance yet. Tarek Mansour isn’t listed just because Kalshi is present.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "item": "Reppo at gm AI v2",
+      "state": "Provisional",
+      "detail": "Session reported in our sweep; organiser page not yet linked.",
+      "events": [
+        "reppo-gm-ai"
+      ],
+      "sources": [
+        "src-reppo"
       ]
     }
   ],

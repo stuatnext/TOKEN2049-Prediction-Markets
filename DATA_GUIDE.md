@@ -175,7 +175,7 @@ Attendance is its own dataset, so you can add people quickly without touching an
 
 | Field | What to put |
 |---|---|
-| `attendance_status` | `official_speaker` · `publicly_attending` (the person said so themselves) · `company_attending` (the company's own site or account says its team is going; don't add individual employees) · `exhibitor` · `sponsor` (sponsor or partner) · `side_event_host` · `side_event_speaker` · `meeting_signal` (asked for meetings but didn't clearly say they're attending) · `launch_signal` (launch timed around TOKEN2049; not proof anyone attends) |
+| `attendance_status` | `official_speaker` · `publicly_attending` (the person said so themselves) · `company_attending` (the company's own site or account says its team is going; don't add individual employees) · `exhibitor` · `sponsor` (sponsor or partner) · `side_event_host` · `side_event_speaker` · `confirmed_participant` (an organiser names them as a confirmed participant) · `meeting_signal` (asked for meetings but didn't clearly say they're attending) · `launch_signal` (launch timed around TOKEN2049; not proof anyone attends) |
 | `confidence` / `public` | `"confirmed"` + `true` to publish. For leads without a recovered public source, use `"pending"` + `false`. They then only appear at `#/going?research=1`. **This repository is public, so anyone can read pending records.** Keep them factual and free of private notes |
 | `dates` | Only days the evidence itself supports (e.g. the day of their session). Leave `[]` for a generic "I'll be at TOKEN2049" post |
 | `event_ids` | Events this evidence ties them to. It makes them appear under "People you can expect there" |

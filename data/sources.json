@@ -334,5 +334,96 @@
     "type": "Individual / LinkedIn",
     "url": "https://sg.linkedin.com/in/stuart-crowley-b2b561104",
     "note": "Curator of this directory."
+  },
+  {
+    "id": "src-gos-site",
+    "name": "Global Onchain Summit Singapore 2026",
+    "type": "Organiser / event page",
+    "url": "https://globalonchainsummit.com/",
+    "note": "Tuesday 6 October summit, powered by CoinGape."
+  },
+  {
+    "id": "src-gos-eventbrite",
+    "name": "Global Onchain Summit Singapore 2026 tickets",
+    "type": "Organiser / event page",
+    "url": "https://www.eventbrite.com/e/global-onchain-summit-singapore-2026-tickets-1988759612537",
+    "note": "Tuesday 6 October, 1–5 PM."
+  },
+  {
+    "id": "src-gos-andy",
+    "name": "Andy Ross to speak at Onchain Summit Singapore 2026",
+    "type": "Reported",
+    "url": "https://www.kucoin.com/es/square/post/content_6a8e99f4f0435f000705178c",
+    "note": "Andy Ross, Head of Institutional at Kalshi, speaking on prediction markets and institutional adoption; Pullman Singapore Hill Street."
+  },
+  {
+    "id": "src-hlforum-speakers",
+    "name": "Hyperliquid Forum by DAYS (speakers and participants)",
+    "type": "Organiser / event page",
+    "url": "https://www.hyperliquidforum.com/singapore",
+    "note": "Confirmed speakers with titles, confirmed participating firms, and the Prediction & Outcome Markets (HIP-4) theme."
+  },
+  {
+    "id": "src-sui-basecamp",
+    "name": "Sui Basecamp 2026",
+    "type": "Organiser / event page",
+    "url": "https://www.sui.io/basecamp",
+    "note": "Sui’s conference at Marina Bay Sands, 7–8 October, alongside TOKEN2049. Zack Nelson (PredictBay) is listed among the speakers."
+  },
+  {
+    "id": "src-predictbay",
+    "name": "PredictBay: DeepBook Predict",
+    "type": "Company / primary",
+    "url": "https://predictbay.io/deepbook-predict",
+    "note": "Prediction markets on Sui via DeepBook Predict. The company says paper mode is its tradeable product today and that the DeepBook Predict integration is on testnet."
+  },
+  {
+    "id": "src-predictbay-launch",
+    "name": "PredictBay emerges from stealth with 1-minute Sui prediction markets",
+    "type": "Company / press release",
+    "url": "https://www.crypto-reporter.com/newsfeed/predictbay-emerges-from-stealth-with-26-1-billion-in-paper-volume-and-1-minute-sui-prediction-markets-taking-aim-at-polymarket-and-kalshi-130376/",
+    "note": "Launch announcement. Volume figures are paper-trading volume (company claim)."
+  },
+  {
+    "id": "src-hotcoin-pm",
+    "name": "Hotcoin launches Prediction Market feature",
+    "type": "Reported",
+    "url": "https://tradersunion.com/news/brokers-news/show/2429818-hotcoin-unveils-prediction-market-feature/",
+    "note": "Hotcoin’s prediction-market product and launch campaign (24 Apr–4 May 2026)."
+  },
+  {
+    "id": "src-flowtraders-li",
+    "name": "Flow Traders on LinkedIn",
+    "type": "Company social",
+    "url": "https://www.linkedin.com/company/flow-traders",
+    "note": "Flow Traders’ public post naming its TOKEN2049 Singapore 2026 team (liquidity provision and OTC)."
+  },
+  {
+    "id": "src-hein-li",
+    "name": "Hein Tibosch on LinkedIn",
+    "type": "Individual / LinkedIn",
+    "url": "https://www.linkedin.com/in/hein-tibosch-04a2b69/",
+    "note": "Says he will be in Singapore for TOKEN2049 and invites meetings."
+  },
+  {
+    "id": "src-vishal-li",
+    "name": "Vishal K. Gupta on LinkedIn",
+    "type": "Individual / LinkedIn",
+    "url": "https://www.linkedin.com/in/vishalkg/",
+    "note": "Public post (22 Sep 2026): will be at KBW and TOKEN2049; wants to discuss advanced execution and prediction markets, “with a focus on markets on markets”."
+  },
+  {
+    "id": "src-haruko-hosts-li",
+    "name": "Adrian Rymill (Haruko) on LinkedIn",
+    "type": "Individual / LinkedIn",
+    "url": "https://sg.linkedin.com/in/adrianrymill",
+    "note": "Haruko; listed as a host of the Haruko x Kalshi event."
+  },
+  {
+    "id": "src-reppo",
+    "name": "Reppo: training AI using prediction markets",
+    "type": "Company / primary",
+    "url": "https://reppo.xyz/",
+    "note": "Prediction-market protocol for curating AI training data."
   }
 ]

@@ -96,7 +96,27 @@
     "people": [
       {
         "id": "andy-ross",
-        "role": "listed"
+        "role": "host"
+      },
+      {
+        "id": "adrian-rymill",
+        "role": "host"
+      },
+      {
+        "id": "daniel-holmes",
+        "role": "host"
+      },
+      {
+        "id": "elyse-quek",
+        "role": "host"
+      },
+      {
+        "id": "jake-khorozian",
+        "role": "host"
+      },
+      {
+        "id": "ico-beast",
+        "role": "host"
       }
     ],
     "companies": [
@@ -121,7 +141,7 @@
     "status": "listed",
     "status_note": "Listed on a side-event directory; company pages support the Haruko–Kalshi relationship.",
     "clash_note": "May clash with the official Hyperliquid ecosystem event once its time is published.",
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "hyperliquid-forum",
@@ -169,26 +189,74 @@
     "people": [
       {
         "id": "austin-federa",
-        "role": "listed"
+        "role": "speaker"
       },
       {
         "id": "ahmed-salih",
-        "role": "listed"
+        "role": "speaker"
       },
       {
         "id": "jack-booth",
-        "role": "listed"
+        "role": "speaker"
       },
       {
         "id": "jordi-alexander",
-        "role": "listed"
+        "role": "speaker"
       },
       {
         "id": "ian-weisberger",
-        "role": "listed"
+        "role": "speaker"
       },
       {
         "id": "arthur-hayes",
+        "role": "speaker"
+      },
+      {
+        "id": "ryan-watkins",
+        "role": "speaker"
+      },
+      {
+        "id": "david-schamis",
+        "role": "speaker"
+      },
+      {
+        "id": "hanson-birringer",
+        "role": "speaker"
+      },
+      {
+        "id": "christy-choi",
+        "role": "speaker"
+      },
+      {
+        "id": "david-knox",
+        "role": "speaker"
+      },
+      {
+        "id": "blake-player",
+        "role": "speaker"
+      },
+      {
+        "id": "ness",
+        "role": "speaker"
+      },
+      {
+        "id": "spencer-applebaum",
+        "role": "speaker"
+      },
+      {
+        "id": "rajiv-patel-oconnor",
+        "role": "speaker"
+      },
+      {
+        "id": "taha-el-magbri",
+        "role": "speaker"
+      },
+      {
+        "id": "deven-matthews",
+        "role": "speaker"
+      },
+      {
+        "id": "chandler-de-kock",
         "role": "speaker"
       }
     ],
@@ -204,6 +272,58 @@
       {
         "id": "grayscale",
         "role": "host"
+      },
+      {
+        "id": "tradexyz",
+        "role": "participant"
+      },
+      {
+        "id": "galaxy-digital",
+        "role": "participant"
+      },
+      {
+        "id": "21shares",
+        "role": "participant"
+      },
+      {
+        "id": "maven11",
+        "role": "participant"
+      },
+      {
+        "id": "selini",
+        "role": "participant"
+      },
+      {
+        "id": "longhash",
+        "role": "participant"
+      },
+      {
+        "id": "hyperlend",
+        "role": "participant"
+      },
+      {
+        "id": "edge-capital",
+        "role": "participant"
+      },
+      {
+        "id": "sp-global",
+        "role": "participant"
+      },
+      {
+        "id": "bitwise",
+        "role": "participant"
+      },
+      {
+        "id": "coinroutes",
+        "role": "participant"
+      },
+      {
+        "id": "nextblock",
+        "role": "participant"
+      },
+      {
+        "id": "stablejack",
+        "role": "participant"
       }
     ],
     "also_listed": [
@@ -214,7 +334,8 @@
       "src-hl-ann",
       "src-sec-hl",
       "src-cryptonews-hlforum",
-      "src-grayscale-hlforum"
+      "src-grayscale-hlforum",
+      "src-hlforum-speakers"
     ],
     "status": "listed",
     "status_note": "Organiser page. Hyperliquid's SEC filing and announcements provide HIP-4 context.",
@@ -1313,7 +1434,12 @@
         "role": "speaker"
       }
     ],
-    "companies": [],
+    "companies": [
+      {
+        "id": "chainlink",
+        "role": "speaker-affiliation"
+      }
+    ],
     "also_listed": [],
     "sources": [
       "src-token-agenda1"
@@ -1321,7 +1447,7 @@
     "status": "verified",
     "status_note": "Official TOKEN2049 agenda.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "perps-x-institutional",
@@ -1407,7 +1533,7 @@
       "venue",
       "frontend"
     ],
-    "summary": "Polymarket’s first exclusive Singapore event. Curated, and full with a waitlist at the latest check.",
+    "summary": "Polymarket’s first exclusive Singapore event, publicly hosted by 528 Collective. Curated, and full with a waitlist at the latest check.",
     "why": "The main Wednesday-evening gathering for the Polymarket ecosystem: builders, traders and partners.",
     "questions": [
       "What is being built around Polymarket that is not visible from the consumer frontend?",
@@ -1417,6 +1543,10 @@
     "companies": [
       {
         "id": "polymarket",
+        "role": "host"
+      },
+      {
+        "id": "528-collective",
         "role": "host"
       }
     ],
@@ -1431,7 +1561,7 @@
     "status": "listed",
     "status_note": "Organiser event page (Luma).",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "zoomex-traders-after-party",
@@ -1921,7 +2051,12 @@
     "questions": [
       "Would event contracts sit inside existing derivatives mandates or need separate risk/governance treatment?"
     ],
-    "people": [],
+    "people": [
+      {
+        "id": "giovanni-vicioso",
+        "role": "speaker"
+      }
+    ],
     "companies": [
       {
         "id": "cme",
@@ -1943,7 +2078,7 @@
     "status": "verified",
     "status_note": "Official TOKEN2049 agenda.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "the-speculation-age",
@@ -2250,7 +2385,32 @@
       "Where are books thin, feeds poor or settlement rules operationally awkward?",
       "Which tools are you forced to build yourself?"
     ],
-    "people": [],
+    "people": [
+      {
+        "id": "irene-liao",
+        "role": "host"
+      },
+      {
+        "id": "vktr",
+        "role": "host"
+      },
+      {
+        "id": "john-wang",
+        "role": "host"
+      },
+      {
+        "id": "ico-beast",
+        "role": "host"
+      },
+      {
+        "id": "ultra",
+        "role": "host"
+      },
+      {
+        "id": "sokio",
+        "role": "host"
+      }
+    ],
     "companies": [
       {
         "id": "kalshi",
@@ -2264,7 +2424,8 @@
     "also_listed": [
       "Active traders",
       "Market makers",
-      "Kalshi team"
+      "Founders",
+      "Investors"
     ],
     "sources": [
       "src-insilico"
@@ -2272,7 +2433,7 @@
     "status": "listed",
     "status_note": "Organiser event page (Luma).",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "finality-forum",
@@ -2388,6 +2549,231 @@
     ],
     "status": "verified",
     "status_note": "Official TOKEN2049 site.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "global-onchain-summit",
+    "legacy_id": "",
+    "title": "Global Onchain Summit Singapore 2026",
+    "date": "2026-10-06",
+    "end_date": null,
+    "start": "13:00",
+    "end": "17:00",
+    "time_note": null,
+    "venue": "Pullman Singapore Hill Street",
+    "map_query": "Pullman Singapore Hill Street",
+    "type": "forum",
+    "official": false,
+    "relevance": "strong",
+    "access": "registration",
+    "access_note": "Ticketed (Eventbrite)",
+    "audiences": [
+      "institutions",
+      "investors",
+      "general"
+    ],
+    "ecosystems": [
+      "kalshi"
+    ],
+    "topics": [
+      "institutional",
+      "regulation"
+    ],
+    "stack_layers": [
+      "policy"
+    ],
+    "summary": "Afternoon onchain-finance summit powered by CoinGape. Kalshi’s Head of Institutional, Andy Ross, speaks on prediction markets, institutional adoption and next-generation market infrastructure.",
+    "why": "A rare chance to hear Kalshi’s institutional lead on prediction markets before the main conference. Our sweep lists his session as “Prediction Markets: The Institutional Opportunity”.",
+    "questions": [
+      "What is the first thing institutions ask for after they have basic access?"
+    ],
+    "people": [
+      {
+        "id": "andy-ross",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "coingape",
+        "role": "host"
+      },
+      {
+        "id": "kalshi",
+        "role": "speaker-affiliation"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-gos-site",
+      "src-gos-eventbrite",
+      "src-gos-andy"
+    ],
+    "status": "listed",
+    "status_note": "Organiser listing (Eventbrite / official site). Session title from our sweep; check the final agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "predictbay-sui-basecamp",
+    "legacy_id": "",
+    "title": "Predict, Watch, Verify: One-Minute Markets on Sui with PredictBay",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "12:30",
+    "end": null,
+    "time_note": "End time not published",
+    "venue": "Sui Basecamp, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "side-event",
+    "official": false,
+    "relevance": "core",
+    "access": "registration",
+    "access_note": "Sui Basecamp registration",
+    "audiences": [
+      "builders",
+      "founders",
+      "traders"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "topics": [
+      "consumer",
+      "infrastructure"
+    ],
+    "stack_layers": [
+      "venue",
+      "frontend"
+    ],
+    "summary": "PredictBay CMO Zack Nelson presents one-minute prediction markets on Sui built on DeepBook Predict, at Sui Basecamp (7–8 Oct, alongside TOKEN2049).",
+    "why": "A genuinely new prediction-market entrant that wasn’t in the original guide. By PredictBay’s own disclosure, paper trading is the live product and its DeepBook Predict integration is on testnet, so ask what’s real money today.",
+    "questions": [
+      "What is live with real funds today, and when does DeepBook Predict reach mainnet?",
+      "How are one-minute markets resolved, and who supplies liquidity?"
+    ],
+    "people": [
+      {
+        "id": "zack-nelson",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "predictbay",
+        "role": "host"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-sui-basecamp",
+      "src-predictbay",
+      "src-predictbay-launch"
+    ],
+    "status": "listed",
+    "status_note": "Sui Basecamp speaker listing. Session title and 12:30 slot are from the current Sui Basecamp agenda; an older cached PredictBay page said 6 October.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "dwf-labs-keynote",
+    "legacy_id": "",
+    "title": "Keynote: Andrei Grachev (DWF Labs)",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "12:00",
+    "end": "12:15",
+    "time_note": null,
+    "venue": "Bit Digital Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "traders",
+      "market-makers",
+      "investors"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "market-making",
+      "trading"
+    ],
+    "stack_layers": [
+      "liquidity"
+    ],
+    "summary": "Official TOKEN2049 keynote from DWF Labs Managing Partner Andrei Grachev.",
+    "why": "A market-maker and investor view of crypto markets. Adjacent context for prediction-market liquidity.",
+    "questions": [],
+    "people": [
+      {
+        "id": "andrei-grachev",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "dwf-labs",
+        "role": "speaker-affiliation"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda. Session title not recorded.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "reppo-gm-ai",
+    "legacy_id": "",
+    "title": "gm AI v2: Open Reinforcement Learning via Prediction Markets (Reppo)",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": null,
+    "end": null,
+    "time_note": "Time TBC",
+    "venue": "Singapore (venue to confirm)",
+    "map_query": null,
+    "type": "side-event",
+    "official": false,
+    "relevance": "wildcard",
+    "access": "unknown",
+    "access_note": "Check the organiser listing",
+    "audiences": [
+      "builders",
+      "founders",
+      "media"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "ai-agents",
+      "consumer"
+    ],
+    "stack_layers": [
+      "oracle"
+    ],
+    "summary": "Reppo, which uses prediction markets to curate AI training data, is reported to be presenting “Open Reinforcement Learning via Prediction Markets” at gm AI v2.",
+    "why": "The strange and interesting intersection of prediction markets and AI training.",
+    "questions": [],
+    "people": [],
+    "companies": [
+      {
+        "id": "reppo",
+        "role": "host"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-reppo"
+    ],
+    "status": "provisional",
+    "status_note": "Reported in our sweep. The organiser page hasn’t been linked yet, so confirm before going.",
     "clash_note": null,
     "last_updated": "2026-09-23"
   }
