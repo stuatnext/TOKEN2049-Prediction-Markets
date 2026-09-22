@@ -102,7 +102,7 @@ async function loadData() {
 
   // Who's Going: public records only; pending leads are kept for the research view
   D.attendanceAll = attendance;
-  D.att = attendance.filter((a) => a.public && a.confidence === "confirmed");
+  D.att = attendance.filter((a) => a.public && a.confidence !== "pending");
   D.attByPerson = new Map();
   D.attByCompany = new Map();
   D.attByEvent = new Map();
@@ -325,6 +325,8 @@ function home(_, q) {
     <div class="meta"><span>${E.length} events</span><span>${D.people.size} people</span><span>${D.companies.size} companies</span><span>Last updated ${esc(fmtDate(D.site.last_updated))}</span><span>All times SGT</span></div>
   </section>
 
+  ${promoCard(true)}
+
   <section class="section" aria-labelledby="h-entry">
     <div class="section-head"><h2 id="h-entry">Start here</h2></div>
     <div class="entry-grid">${entries.map(([l, h, n, p]) => `<a class="entry${p ? " primary" : ""}" href="${h}">${esc(l)}${n != null ? ` <span class="n">${n}</span>` : ""}</a>`).join("")}</div>
@@ -395,6 +397,7 @@ function home(_, q) {
     <p>An independent, curated guide to where prediction markets show up across TOKEN2049 week. It was compiled from the official TOKEN2049 programme, organiser pages, company announcements and other cited public sources. Every listing links back to its source.</p>
     <p class="small muted">Last updated ${esc(fmtDate(D.site.last_updated))}. This is not live data: schedules and access details can change, so check the organiser link before travelling.</p>
     ${curatorPanel()}
+  ${promoCard()}
     <p style="margin-top:12px"><a href="#/about">How this directory is compiled →</a></p>
   </section>`;
 }
@@ -902,10 +905,10 @@ function eventDetail(id) {
 /** "People you can expect there": named hosts/speakers or people with evidence for this specific event. */
 function expectThere(e) {
   const att = D.attByEvent.get(e.id) || [];
-  const attP = new Set(att.filter((a) => a.person_id).map((a) => a.person_id));
+  const attP = new Set(att.filter((a) => a.person_id && a.confidence === "confirmed").map((a) => a.person_id));
   const firm = e.people.filter((x) => x.role !== "listed" || attP.has(x.id));
   const soft = e.people.filter((x) => x.role === "listed" && !attP.has(x.id));
-  const orgs = att.filter((a) => !a.person_id);
+  const orgs = att.filter((a) => !a.person_id && a.confidence === "confirmed");
   if (!firm.length && !soft.length && !orgs.length && !e.also_listed.length) return "";
   const mini = (x) => { const p = D.people.get(x.id); const org = D.companies.get(p.org); return `<a class="mini" href="#/people/${p.id}"><span class="avatar" aria-hidden="true">${esc(initials(p.name))}</span><span><strong>${esc(p.name)}</strong><span>${esc(PROLE[x.role])}${org ? ` · ${esc(org.name)}` : p.org_label ? ` · ${esc(p.org_label)}` : ""}</span></span></a>`; };
   return `<section><h2>People you can expect there</h2>
@@ -1160,6 +1163,7 @@ function buildGoing() {
       interests: [...new Set(recs.flatMap((a) => a.interests))],
       first, isNew: first >= newCut && first > (D.site.first_published || ""), lastVerified: recs.map((a) => a.last_verified).sort().pop(),
       curator: person?.id === D.site.curator.person_id,
+      unverified: recs.every((a) => a.confidence === "unverified"),
     };
   }).sort((a, b) => RELR[a.rel] - RELR[b.rel] || Number(b.isNew) - Number(a.isNew) || a.name.localeCompare(b.name));
 }
@@ -1171,6 +1175,7 @@ const GFILTERS = [
   { key: "ctype", label: "Company type", opts: CTYPE, get: (g) => g.ctypes },
   { key: "ev", label: "Attendance evidence", opts: Object.fromEntries(Object.entries(AST).map(([k, v]) => [k, v.label])), get: (g) => g.statuses },
   { key: "day", label: "Availability (where evidence gives a day)", opts: null, get: (g) => g.dates },
+  { key: "ver", label: "Verification", opts: { confirmed: "Confirmed with a source", unverified: "Unverified lead" }, get: (g) => [g.unverified ? "unverified" : "confirmed"] },
 ];
 const gOpts = (f) => (f.key === "day" ? Object.fromEntries(D.days.map((d) => [d.date, d.label])) : f.opts);
 function goingFilter(q) {
@@ -1192,7 +1197,7 @@ function goingCard(g, o = {}) {
   return `<article class="card going-card${g.curator ? " is-curator" : ""}">
     <div class="gc-head"><span class="avatar${g.person ? "" : " sq"}" aria-hidden="true">${esc(initials(g.name))}</span>
       <div><h3><a href="${g.href}">${esc(g.name)}</a></h3><p class="org">${esc(line)}</p></div></div>
-    <div class="chip-row">${relChip(g.rel)}${g.statuses.map(evidenceChip).join("")}${newChip(g)}</div>
+    <div class="chip-row">${g.unverified ? `<span class="chip chip-warn" title="No public source link yet">Unverified</span>` : ""}${relChip(g.rel)}${g.statuses.map(evidenceChip).join("")}${newChip(g)}</div>
     ${o.compact ? "" : `<p class="why">${esc(blurb)}</p>`}
     ${tags.length && !o.compact ? `<p class="apps">${tags.map(esc).join(" · ")}</p>` : ""}
     ${g.dates.length ? `<p class="apps">📍 ${g.dates.map((d) => esc(dayOf(d).label.slice(0, 3))).join(", ")}${g.events.length ? ` · ${plural(g.events.length, "event")}` : ""}</p>` : ""}
@@ -1214,9 +1219,9 @@ function going(parts, q) {
   return `<p class="eyebrow">Who’s going?</p>
   <h1>Who’s going to TOKEN2049?</h1>
   <p class="lede">Prediction-market people, companies and adjacent organisations with public evidence that they’ll be around TOKEN2049 Singapore.</p>
-  <p class="notice info">This is <strong>not</strong> TOKEN2049’s official attendee list. It’s compiled from public attendance announcements, the official programme, sponsor and exhibitor listings, and side-event pages. Every entry links to its evidence. We never assume someone is attending just because their employer is a sponsor, runs a booth or has a launch planned.</p>
+  <p class="notice info">This is <strong>not</strong> TOKEN2049’s official attendee list. It’s compiled from public attendance announcements, the official programme, sponsor and exhibitor listings, and side-event pages. Confirmed entries link to their evidence. Entries marked <strong>Unverified</strong> are research leads we haven’t sourced yet, so treat them as maybes. <a href="#/going?ver=confirmed">Show confirmed only</a>.</p>
   <div class="stat-row">${stats.map(([v, l]) => `<div class="stat"><b>${v}</b><span>${esc(l)}</span></div>`).join("")}</div>
-  <p class="small muted">Counts come straight from the ${D.att.length} public evidence records. Last verified ${esc(fmtDate(D.site.last_updated))}.</p>
+  <p class="small muted">Counts come straight from the ${D.att.length} public records (${D.going.filter((g) => g.unverified).length} unverified). Last verified ${esc(fmtDate(D.site.last_updated))}.</p>
   <div class="chip-row" role="group" aria-label="Discover" style="margin:18px 0 6px">
     <a class="toggle" href="#/going" aria-pressed="${!q.get("g") && q.get("recent") !== "1"}">Everyone</a>
     <a class="toggle" href="#/going?recent=1" aria-pressed="${q.get("recent") === "1"}">✦ Recently confirmed <span class="n">${n((g) => g.isNew)}</span></a>
@@ -1236,6 +1241,7 @@ function going(parts, q) {
   </dialog>
   <section class="section panel"><h2>Evidence types</h2><p class="small muted">These are different kinds of evidence, and they aren’t equivalent.</p>
     <dl class="kv">${Object.entries(AST).map(([k, v]) => `<dt>${evidenceChip(k)}</dt><dd class="small">${esc(v.desc)}</dd>`).join("")}</dl>
+    ${promoCard(true)}
     <p class="small" style="margin-top:14px">Announced you’re going? <a href="${issueUrl("attendance.yml")}" rel="noopener">Add yourself with a link to your public post</a>.</p></section>`;
 }
 function goingFilterGroups(q) {
@@ -1304,7 +1310,7 @@ function goingResearch() {
   setMeta("Attendance research leads");
   const pend = D.attendanceAll.filter((a) => !a.public);
   return `<a class="back-link" href="#/going">← Who’s going</a>
-  <h1>Research leads (not public evidence)</h1>
+  <h1>Research leads</h1>
   <p class="notice">These leads suggest someone may attend, but the original public source hasn’t been recovered or verified, so they don’t appear on Who’s Going. Note: this repository is public, so anyone can read these entries in <code>data/attendance.json</code>.</p>
   <div class="table-wrap"><table><thead><tr><th>Who</th><th>Claimed status</th><th>Lead</th></tr></thead><tbody>
   ${pend.map((a) => `<tr><td>${esc(a.person_id ? D.people.get(a.person_id)?.name : a.name)}${a.company_label ? `<br><span class="small muted">${esc(a.company_label)}</span>` : ""}</td><td>${esc(AST[a.attendance_status].label)}</td><td class="small">${esc(a.evidence_summary)}</td></tr>`).join("")}
@@ -1315,38 +1321,20 @@ function goingResearch() {
 function whereToFind(recs, entityName) {
   if (!recs?.length) return "";
   return `<section><h2>Where to find ${esc(entityName)}</h2><p class="small muted">Only where public evidence supports it.</p>
-  <ul class="source-list">${recs.slice().sort((x, y) => (x.dates[0] || "9").localeCompare(y.dates[0] || "9")).map((a) => `<li><span class="type">${esc(AST[a.attendance_status].label)}${a.dates.length ? ` · ${a.dates.map((d) => esc(dayOf(d).label)).join(", ")}` : ""}</span>
+  <ul class="source-list">${recs.slice().sort((x, y) => (x.dates[0] || "9").localeCompare(y.dates[0] || "9")).map((a) => `<li><span class="type">${a.confidence === "unverified" ? "Unverified · " : ""}${esc(AST[a.attendance_status].label)}${a.dates.length ? ` · ${a.dates.map((d) => esc(dayOf(d).label)).join(", ")}` : ""}</span>
     ${esc(a.evidence_summary)}
     ${a.event_ids.length ? `<p>${a.event_ids.map((id) => D.ev.get(id)).map((e) => `<a href="${evUrl(e)}">${esc(e.title)}</a> <span class="muted">(${esc(dayRange(e))}, ${esc(timeLabel(e))})</span>`).join("<br>")}</p>` : ""}
     <p>${a.source_url ? `<a href="${esc(a.source_url)}" target="_blank" rel="noopener">Proof / source ↗</a> · ` : ""}Last verified ${esc(fmtDate(a.last_verified))}</p></li>`).join("")}</ul></section>`;
 }
 
-// ---------------------------------------------------------------- PROMO (unlockable)
-const promo = {
-  unlocked() { try { return localStorage.getItem("tpm2049:promo") === "1"; } catch { return false; } },
-  unlock() { try { localStorage.setItem("tpm2049:promo", "1"); } catch { /* ignore */ } },
-};
-function maybeUnlockPromo() {
-  const P = D.site.promo;
-  if (!P || promo.unlocked()) return;
-  if (saved.all().filter((id) => D.ev.has(id)).length >= P.unlock_after_saves) {
-    promo.unlock();
-    setTimeout(() => toast("🎁 You’ve unlocked a NEXTPredict NYC discount. See My schedule.", { label: "Show me", run: () => (location.hash = "#/schedule?at=promo") }), 600);
-  }
-}
-function promoCard() {
+// ---------------------------------------------------------------- PROMO
+function maybeUnlockPromo() {}
+function promoCard(compact = false) {
   const P = D.site.promo, C = D.site.curator;
   if (!P) return "";
-  const have = saved.all().filter((id) => D.ev.has(id)).length;
-  if (!promo.unlocked()) {
-    return `<div class="promo locked" id="promo"><p class="eyebrow">🔒 Unlockable</p><h3>Save ${P.unlock_after_saves} events to unlock a ${esc(P.label)}</h3>
-      <div class="bars" aria-hidden="true"><span class="b-core" style="flex:${Math.min(have, P.unlock_after_saves)}"></span><span style="flex:${Math.max(P.unlock_after_saves - have, 0)}"></span></div>
-      <p class="small muted" style="margin:8px 0 0">${Math.min(have, P.unlock_after_saves)} of ${P.unlock_after_saves} saved. ${esc(P.disclosure)}</p></div>`;
-  }
-  return `<div class="promo" id="promo"><p class="eyebrow">🎁 Unlocked</p><h3>${esc(C.summit.name)}: ${esc(C.summit.dates)}, ${esc(C.summit.place)}</h3>
-    <p>Prediction markets’ own summit, two weeks before the US midterms. Your code:</p>
-    <p class="code-box"><span class="mono">${esc(P.code)}</span><button type="button" class="btn btn-small" data-copy="${esc(P.code)}">Copy</button></p>
-    <div class="btn-row"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Claim on tickets.next.io ↗</a><a class="btn" href="${esc(C.summit.url)}" target="_blank" rel="noopener">About the summit</a></div>
+  return `<div class="promo" id="promo"><p class="eyebrow">🎁 NEXTPredict offer</p><h3>${esc(C.summit.name)}: ${esc(C.summit.dates)}, ${esc(C.summit.place)}</h3>
+    ${compact ? "" : `<p>Prediction markets’ own summit, two weeks before the US midterms. Use code <span class="mono">${esc(P.code)}</span> at checkout.</p>`}
+    <div class="btn-row"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Get your NEXTPredict NYC discount ↗</a>${compact ? "" : `<button type="button" class="btn" data-copy="${esc(P.code)}">Copy code ${esc(P.code)}</button><a class="btn" href="${esc(C.summit.url)}" target="_blank" rel="noopener">About the summit</a>`}</div>
     <p class="small muted" style="margin:10px 0 0">${esc(P.disclosure)}</p></div>`;
 }
 function curatorPanel() {
@@ -1403,6 +1391,7 @@ function about() {
   return `<h1>About this directory</h1>
   <p class="lede">An independent, unofficial guide to where prediction markets actually show up during TOKEN2049 Singapore week, 5–9 October 2026. Curated by ${curator()}.</p>
   ${curatorPanel()}
+  ${promoCard()}
   <div class="grid grid-2" style="margin-top:16px">
     <div class="panel"><h2>How it’s compiled</h2><p>Listings are assembled from:</p><ul>
       <li>the official TOKEN2049 programme, partner list and TOKEN2049 Week side-event directory</li><li>official event organiser pages (Luma, organiser sites and channels)</li>

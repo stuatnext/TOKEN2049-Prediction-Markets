@@ -2761,7 +2761,12 @@
     "summary": "Reppo, which uses prediction markets to curate AI training data, is reported to be presenting “Open Reinforcement Learning via Prediction Markets” at gm AI v2.",
     "why": "The strange and interesting intersection of prediction markets and AI training.",
     "questions": [],
-    "people": [],
+    "people": [
+      {
+        "id": "rg-reppo",
+        "role": "listed"
+      }
+    ],
     "companies": [
       {
         "id": "reppo",
