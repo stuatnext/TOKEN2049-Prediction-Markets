@@ -1,0 +1,2780 @@
+[
+  {
+    "id": "hyperliquid-ecosystem-event",
+    "legacy_id": "hl-official",
+    "title": "Official Hyperliquid annual ecosystem event",
+    "date": "2026-10-05",
+    "end_date": null,
+    "start": null,
+    "end": null,
+    "time_note": "Time TBC",
+    "venue": "Singapore (venue TBC)",
+    "map_query": null,
+    "type": "side-event",
+    "official": false,
+    "relevance": "strong",
+    "access": "approval",
+    "access_note": "Apply; final details still to be published",
+    "audiences": [
+      "builders",
+      "founders",
+      "general"
+    ],
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "topics": [
+      "infrastructure",
+      "defi"
+    ],
+    "stack_layers": [
+      "venue"
+    ],
+    "summary": "Hyperliquid opens its Singapore week with an annual ecosystem gathering for builders and users. Exact time and venue were still pending in the latest official notice.",
+    "why": "Hyperliquid (through HIP-4) is trying to make outcome markets a permissionless building block that other teams can deploy, rather than a single-company product. This is the ecosystem's own opening event of the week.",
+    "questions": [
+      "What new outcome-market deployments will be live by Singapore?",
+      "Who is actually supplying liquidity to third-party HIP-4 markets?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "hyperliquid",
+        "role": "host"
+      }
+    ],
+    "also_listed": [
+      "Hyperliquid ecosystem",
+      "Outcome-market builders"
+    ],
+    "sources": [
+      "src-hl-forum",
+      "src-hl-ann"
+    ],
+    "status": "listed",
+    "status_note": "Announced by Hyperliquid. Time and venue not yet published.",
+    "clash_note": "May clash with Haruko x Kalshi (Mon 17:00–21:30) once the time is published.",
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "haruko-x-kalshi",
+    "legacy_id": "haruko-kalshi",
+    "title": "More than a million, Haruko x Kalshi",
+    "date": "2026-10-05",
+    "end_date": null,
+    "start": "17:00",
+    "end": "21:30",
+    "time_note": null,
+    "venue": "Downtown Core (exact address shared after approval)",
+    "map_query": null,
+    "type": "networking",
+    "official": false,
+    "relevance": "core",
+    "access": "approval",
+    "access_note": "Invite-only; approval required",
+    "audiences": [
+      "institutions",
+      "traders",
+      "investors"
+    ],
+    "ecosystems": [
+      "kalshi"
+    ],
+    "topics": [
+      "institutional",
+      "risk"
+    ],
+    "stack_layers": [
+      "portfolio-risk"
+    ],
+    "summary": "Invite-only opening-week gathering hosted around Haruko and Kalshi participants.",
+    "why": "Haruko connects prediction-market and derivatives exposure to institutional portfolio and risk systems, and has announced a Kalshi integration. Expect people working on the institutional plumbing. Note: the integration is documented; how widely institutions use it is not.",
+    "questions": [
+      "Who is actually carrying prediction-market positions inside institutional portfolio systems?",
+      "What changes operationally when event-contract exposure sits beside crypto or derivatives books?"
+    ],
+    "people": [
+      {
+        "id": "andy-ross",
+        "role": "host"
+      },
+      {
+        "id": "adrian-rymill",
+        "role": "host"
+      },
+      {
+        "id": "daniel-holmes",
+        "role": "host"
+      },
+      {
+        "id": "elyse-quek",
+        "role": "host"
+      },
+      {
+        "id": "jake-khorozian",
+        "role": "host"
+      },
+      {
+        "id": "ico-beast",
+        "role": "host"
+      }
+    ],
+    "companies": [
+      {
+        "id": "haruko",
+        "role": "host"
+      },
+      {
+        "id": "kalshi",
+        "role": "host"
+      }
+    ],
+    "also_listed": [
+      "Haruko team",
+      "Kalshi participants"
+    ],
+    "sources": [
+      "src-haruko-event",
+      "src-haruko",
+      "src-haruko-kalshi"
+    ],
+    "status": "listed",
+    "status_note": "Listed on a side-event directory; company pages support the Haruko–Kalshi relationship.",
+    "clash_note": "May clash with the official Hyperliquid ecosystem event once its time is published.",
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "hyperliquid-forum",
+    "legacy_id": "hl-forum",
+    "title": "Hyperliquid Forum Singapore",
+    "date": "2026-10-06",
+    "end_date": null,
+    "start": null,
+    "end": null,
+    "time_note": "Full day",
+    "venue": "Raffles Hotel, 1 Beach Road",
+    "map_query": "Raffles Hotel, 1 Beach Road, Singapore",
+    "type": "forum",
+    "official": false,
+    "relevance": "core",
+    "access": "approval",
+    "access_note": "Curated; approval required",
+    "audiences": [
+      "institutions",
+      "builders",
+      "founders",
+      "investors",
+      "market-makers"
+    ],
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "topics": [
+      "institutional",
+      "infrastructure",
+      "liquidity"
+    ],
+    "stack_layers": [
+      "venue",
+      "liquidity",
+      "data-transport"
+    ],
+    "summary": "Full-day institutional Hyperliquid forum, run by DAYS as part of the Digital Asset Yield Summit and reported as co-hosted by Grayscale. Its six themes include custody, liquidity and execution, capital efficiency, tokenised markets, and prediction and outcome markets.",
+    "why": "The clearest place to see what happens when outcome markets become infrastructure that other teams can deploy (Hyperliquid's HIP-4). Listed participants include people from DoubleZero, Outcome, Outcome Labs and Selini.",
+    "questions": [
+      "What exactly is live under HIP-4 now?",
+      "What is still subsidised or incentive-driven?",
+      "How do settlement responsibility and liquidity work across third-party builders?"
+    ],
+    "people": [
+      {
+        "id": "austin-federa",
+        "role": "speaker"
+      },
+      {
+        "id": "ahmed-salih",
+        "role": "speaker"
+      },
+      {
+        "id": "jack-booth",
+        "role": "speaker"
+      },
+      {
+        "id": "jordi-alexander",
+        "role": "speaker"
+      },
+      {
+        "id": "ian-weisberger",
+        "role": "speaker"
+      },
+      {
+        "id": "arthur-hayes",
+        "role": "speaker"
+      },
+      {
+        "id": "ryan-watkins",
+        "role": "speaker"
+      },
+      {
+        "id": "david-schamis",
+        "role": "speaker"
+      },
+      {
+        "id": "hanson-birringer",
+        "role": "speaker"
+      },
+      {
+        "id": "christy-choi",
+        "role": "speaker"
+      },
+      {
+        "id": "david-knox",
+        "role": "speaker"
+      },
+      {
+        "id": "blake-player",
+        "role": "speaker"
+      },
+      {
+        "id": "ness",
+        "role": "speaker"
+      },
+      {
+        "id": "spencer-applebaum",
+        "role": "speaker"
+      },
+      {
+        "id": "rajiv-patel-oconnor",
+        "role": "speaker"
+      },
+      {
+        "id": "taha-el-magbri",
+        "role": "speaker"
+      },
+      {
+        "id": "deven-matthews",
+        "role": "speaker"
+      },
+      {
+        "id": "chandler-de-kock",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "hyperliquid",
+        "role": "subject"
+      },
+      {
+        "id": "days",
+        "role": "host"
+      },
+      {
+        "id": "grayscale",
+        "role": "host"
+      },
+      {
+        "id": "tradexyz",
+        "role": "participant"
+      },
+      {
+        "id": "galaxy-digital",
+        "role": "participant"
+      },
+      {
+        "id": "21shares",
+        "role": "participant"
+      },
+      {
+        "id": "maven11",
+        "role": "participant"
+      },
+      {
+        "id": "selini",
+        "role": "participant"
+      },
+      {
+        "id": "longhash",
+        "role": "participant"
+      },
+      {
+        "id": "hyperlend",
+        "role": "participant"
+      },
+      {
+        "id": "edge-capital",
+        "role": "participant"
+      },
+      {
+        "id": "sp-global",
+        "role": "participant"
+      },
+      {
+        "id": "bitwise",
+        "role": "participant"
+      },
+      {
+        "id": "coinroutes",
+        "role": "participant"
+      },
+      {
+        "id": "nextblock",
+        "role": "participant"
+      },
+      {
+        "id": "stablejack",
+        "role": "participant"
+      }
+    ],
+    "also_listed": [
+      "Hyperliquid builders"
+    ],
+    "sources": [
+      "src-hl-forum",
+      "src-hl-ann",
+      "src-sec-hl",
+      "src-cryptonews-hlforum",
+      "src-grayscale-hlforum",
+      "src-hlforum-speakers"
+    ],
+    "status": "listed",
+    "status_note": "Organiser page. Hyperliquid's SEC filing and announcements provide HIP-4 context.",
+    "clash_note": "Runs alongside the Digital Asset Yield Summit at the same venue.",
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "digital-asset-yield-summit",
+    "legacy_id": "yield-summit",
+    "title": "Digital Asset Yield Summit",
+    "date": "2026-10-06",
+    "end_date": null,
+    "start": null,
+    "end": null,
+    "time_note": "Full day",
+    "venue": "Raffles Hotel, 1 Beach Road",
+    "map_query": "Raffles Hotel, 1 Beach Road, Singapore",
+    "type": "forum",
+    "official": false,
+    "relevance": "adjacent",
+    "access": "approval",
+    "access_note": "Curated; approval required",
+    "audiences": [
+      "institutions",
+      "investors",
+      "market-makers"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "institutional",
+      "defi"
+    ],
+    "stack_layers": [],
+    "summary": "Institutional digital-asset income event running in conjunction with the Hyperliquid Forum.",
+    "why": "Not a prediction-market event. Relevant where allocators, market makers or infrastructure firms overlap with prediction-market questions. Easy to combine with the Hyperliquid Forum.",
+    "questions": [
+      "Do institutional allocators see event contracts as a trade, a hedge, or a separate product bucket?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "days",
+        "role": "host"
+      }
+    ],
+    "also_listed": [
+      "Institutional allocators",
+      "Trading firms"
+    ],
+    "sources": [
+      "src-hl-forum",
+      "src-cryptonews-hlforum"
+    ],
+    "status": "listed",
+    "status_note": "Listed on the Hyperliquid Forum page.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "chainup-institutional-ark",
+    "legacy_id": "chainup-ark",
+    "title": "The Institutional Ark by ChainUp",
+    "date": "2026-10-06",
+    "end_date": null,
+    "start": "20:00",
+    "end": "23:00",
+    "time_note": null,
+    "venue": "Monti at 1-Pavilion",
+    "map_query": "Monti, 1-Pavilion, Singapore",
+    "type": "closed-door",
+    "official": false,
+    "relevance": "strong",
+    "access": "invite",
+    "access_note": "Invitation only; closed-door",
+    "audiences": [
+      "institutions",
+      "investors",
+      "founders",
+      "builders"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "topics": [
+      "infrastructure",
+      "institutional",
+      "distribution"
+    ],
+    "stack_layers": [
+      "frontend"
+    ],
+    "summary": "Institutional evening for executives, allocators and infrastructure firms, hosted by ChainUp.",
+    "why": "ChainUp sells Hermes, white-label prediction-market software that claims shared liquidity. The room is likely to include businesses considering launching their own prediction market. Hermes claims are the company's own and have not been independently tested.",
+    "questions": [
+      "Show me where liquidity actually originates in a new Hermes deployment.",
+      "What happens if upstream liquidity disappears?",
+      "Which controls and settlement responsibilities stay with the operator?"
+    ],
+    "people": [
+      {
+        "id": "jacelynn-pang",
+        "role": "listed"
+      }
+    ],
+    "companies": [
+      {
+        "id": "chainup",
+        "role": "host"
+      }
+    ],
+    "also_listed": [
+      "ChainUp product team"
+    ],
+    "sources": [
+      "src-chainup-ark",
+      "src-chainup-token",
+      "src-chainup-hermes"
+    ],
+    "status": "listed",
+    "status_note": "Organiser page.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "opening-bell-breakfast",
+    "legacy_id": "opening-bell",
+    "title": "Opening Bell: Zenith, Kaiko & T-REX",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "09:00",
+    "end": null,
+    "time_note": "End time not published",
+    "venue": "Near Marina Bay Sands",
+    "map_query": null,
+    "type": "closed-door",
+    "official": false,
+    "relevance": "adjacent",
+    "access": "approval",
+    "access_note": "Approval required",
+    "audiences": [
+      "institutions"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "data",
+      "tokenisation",
+      "institutional"
+    ],
+    "stack_layers": [
+      "data-transport"
+    ],
+    "summary": "Institutional breakfast focused on digital-asset market structure, tokenisation and settlement.",
+    "why": "Kaiko's involvement makes it relevant to the market-data layer. It overlaps the Polymarket main-stage fireside.",
+    "questions": [
+      "What would a professional prediction-market data product need that current exchange feeds do not provide?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "zenith",
+        "role": "host"
+      },
+      {
+        "id": "kaiko",
+        "role": "host"
+      },
+      {
+        "id": "t-rex",
+        "role": "host"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-breakfast"
+    ],
+    "status": "listed",
+    "status_note": "Organiser page. End time not published.",
+    "clash_note": "Likely overlaps the 09:30 Polymarket fireside on the OKX Main Stage. The breakfast's end time isn't published, so this can't be calculated.",
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "chainup-booth",
+    "legacy_id": "chainup-booth",
+    "title": "ChainUp at TOKEN2049 (booth PB4-8)",
+    "date": "2026-10-07",
+    "end_date": "2026-10-08",
+    "start": null,
+    "end": null,
+    "time_note": "Expo hours",
+    "venue": "Marina Bay Sands, booth PB4-8",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "exhibition",
+    "official": false,
+    "relevance": "strong",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass (expo floor)",
+    "audiences": [
+      "founders",
+      "builders",
+      "institutions",
+      "general"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "topics": [
+      "infrastructure",
+      "distribution"
+    ],
+    "stack_layers": [
+      "frontend"
+    ],
+    "summary": "ChainUp is a TOKEN2049 Gold sponsor exhibiting its enterprise infrastructure suite, which explicitly includes prediction markets.",
+    "why": "The practical place to see a demo of Hermes, its white-label prediction-market product, and ask how market creation, settlement and liquidity routing work.",
+    "questions": [
+      "Can you demonstrate market creation, settlement and liquidity routing live?",
+      "Which prediction-market customers or pilots can be discussed on the record?"
+    ],
+    "people": [
+      {
+        "id": "jacelynn-pang",
+        "role": "listed"
+      }
+    ],
+    "companies": [
+      {
+        "id": "chainup",
+        "role": "exhibitor"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-chainup-token",
+      "src-chainup-hermes",
+      "src-token-partners"
+    ],
+    "status": "verified",
+    "status_note": "Sponsorship on the official TOKEN2049 partners page; booth number from ChainUp.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "predict-fun-expo",
+    "legacy_id": "predictfun-floor",
+    "title": "Predict.fun at TOKEN2049 (Gold sponsor)",
+    "date": "2026-10-07",
+    "end_date": "2026-10-08",
+    "start": null,
+    "end": null,
+    "time_note": "Expo hours",
+    "venue": "Marina Bay Sands (booth not recorded)",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "exhibition",
+    "official": false,
+    "relevance": "core",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass (expo floor)",
+    "audiences": [
+      "traders",
+      "market-makers",
+      "builders",
+      "general"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "topics": [
+      "liquidity",
+      "trading",
+      "infrastructure"
+    ],
+    "stack_layers": [
+      "venue",
+      "liquidity",
+      "oracle"
+    ],
+    "summary": "Predict.fun is listed as a TOKEN2049 Gold sponsor. Its recent announcements cover Chainlink-based market lifecycle and settlement, and block trading of 100,000+ shares with liquidity from Susquehanna Crypto.",
+    "why": "One prediction-market company that touches oracle/lifecycle automation, professional liquidity and block execution, which makes it a compact way to see several layers of the stack. These details are company claims.",
+    "questions": [
+      "Who is using the 100k+ share block service?",
+      "What remains manual in market creation and settlement?",
+      "How much liquidity is organic versus supported by professional counterparties?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "predict-fun",
+        "role": "sponsor"
+      },
+      {
+        "id": "chainlink",
+        "role": "partner"
+      },
+      {
+        "id": "susquehanna-crypto",
+        "role": "partner"
+      }
+    ],
+    "also_listed": [
+      "Predict.fun team"
+    ],
+    "sources": [
+      "src-token-partners",
+      "src-predict-chainlink",
+      "src-predict-block"
+    ],
+    "status": "verified",
+    "status_note": "Gold sponsorship on the official TOKEN2049 partners page. Booth location not recorded.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "polymarket-coplan-fireside",
+    "legacy_id": "token-coplan",
+    "title": "Polymarket Fireside Chat: Shayne Coplan with Balaji Srinivasan",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "09:30",
+    "end": "10:00",
+    "time_note": null,
+    "venue": "OKX Main Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "core",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "general",
+      "traders",
+      "founders",
+      "investors",
+      "media"
+    ],
+    "ecosystems": [
+      "polymarket"
+    ],
+    "topics": [
+      "distribution",
+      "regulation"
+    ],
+    "stack_layers": [
+      "venue",
+      "frontend"
+    ],
+    "summary": "TOKEN2049 flagship conversation centred on Polymarket, prediction-market growth and what comes next.",
+    "why": "Polymarket on the main stage. Listen for how the company now defines itself (exchange, information network, media or consumer app) and where institutional participation fits.",
+    "questions": [
+      "Does Polymarket describe itself as an exchange, information network, media product, consumer app or some combination?",
+      "What does it want to own versus outsource as the stack matures?"
+    ],
+    "people": [
+      {
+        "id": "shayne-coplan",
+        "role": "speaker"
+      },
+      {
+        "id": "balaji-srinivasan",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "polymarket",
+        "role": "subject"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1",
+      "src-poly-eu",
+      "src-token-speakers"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "market-wizards",
+    "legacy_id": "token-wizards",
+    "title": "Market Wizards",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "09:50",
+    "end": "10:10",
+    "time_note": null,
+    "venue": "MEXC Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "traders",
+      "market-makers"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "market-making",
+      "trading",
+      "liquidity"
+    ],
+    "stack_layers": [
+      "liquidity"
+    ],
+    "summary": "Trading and market-making session with Dim Selk and Jordi Alexander.",
+    "why": "Market-making context. Useful for understanding which parts of crypto market making carry over to binary and multi-outcome contracts.",
+    "questions": [
+      "What parts of crypto market making transfer cleanly into binary or multi-outcome contracts?"
+    ],
+    "people": [
+      {
+        "id": "dim-selk",
+        "role": "speaker"
+      },
+      {
+        "id": "jordi-alexander",
+        "role": "speaker"
+      }
+    ],
+    "companies": [],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "building-the-neobrokerage",
+    "legacy_id": "token-neobrokerage",
+    "title": "Building the Neobrokerage",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "10:10",
+    "end": "10:30",
+    "time_note": null,
+    "venue": "MEXC Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "founders",
+      "builders",
+      "investors"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "distribution"
+    ],
+    "stack_layers": [
+      "frontend"
+    ],
+    "summary": "Brokerage and distribution discussion with Armani Ferrante and Kyle Samani.",
+    "why": "Who owns the customer when new asset classes, prediction markets included, are embedded inside broader trading apps?",
+    "questions": [
+      "Do prediction markets become a destination or simply another instrument inside a brokerage?"
+    ],
+    "people": [
+      {
+        "id": "armani-ferrante",
+        "role": "speaker"
+      },
+      {
+        "id": "kyle-samani",
+        "role": "speaker"
+      }
+    ],
+    "companies": [],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1",
+      "src-token-speakers"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "defi-institutional-breakthrough",
+    "legacy_id": "token-defi-inst",
+    "title": "DeFi’s Institutional Breakthrough",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "10:20",
+    "end": "11:00",
+    "time_note": null,
+    "venue": "OKX Main Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "institutions",
+      "investors",
+      "builders"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "defi",
+      "institutional"
+    ],
+    "stack_layers": [],
+    "summary": "Institutional DeFi panel with Stani Kulechov, Guy Young, Kain Warwick and Guy Wuollet.",
+    "why": "A comparison point: how infrastructure changed once retail-native DeFi sought institutional capital. Prediction markets may now be going through the same transition.",
+    "questions": [
+      "Which institutional controls emerged only after DeFi reached scale, and do PMs now face the same transition?"
+    ],
+    "people": [
+      {
+        "id": "stani-kulechov",
+        "role": "speaker"
+      },
+      {
+        "id": "guy-young",
+        "role": "speaker"
+      },
+      {
+        "id": "kain-warwick",
+        "role": "speaker"
+      },
+      {
+        "id": "guy-wuollet",
+        "role": "speaker"
+      }
+    ],
+    "companies": [],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1",
+      "src-token-speakers"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "everything-trades-nobody-sleeps",
+    "legacy_id": "token-everything-trades",
+    "title": "Wall St. 2049: Everything Trades, Nobody Sleeps",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "10:30",
+    "end": "10:45",
+    "time_note": null,
+    "venue": "MEXC Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "general",
+      "media"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "category"
+    ],
+    "stack_layers": [],
+    "summary": "Session built explicitly around an “everything is tradable” framing of markets.",
+    "why": "Shows how TOKEN2049 is grouping prediction markets into a wider expansion of tradable outcomes and assets.",
+    "questions": [
+      "What gets lost when every measurable outcome becomes framed as tradable?"
+    ],
+    "people": [
+      {
+        "id": "akshay-bd",
+        "role": "speaker"
+      }
+    ],
+    "companies": [],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "hyperliquid-first-principles",
+    "legacy_id": "token-hl",
+    "title": "Hyperliquid: Rebuilding Finance from First Principles",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "11:00",
+    "end": "11:35",
+    "time_note": null,
+    "venue": "OKX Main Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "strong",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "general",
+      "builders",
+      "traders",
+      "investors"
+    ],
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "topics": [
+      "infrastructure",
+      "defi"
+    ],
+    "stack_layers": [
+      "venue",
+      "margin"
+    ],
+    "summary": "Hyperliquid flagship session with Jeff Yan and Hart Lambur.",
+    "why": "HIP-4 makes Hyperliquid directly relevant to permissionless outcome markets and shared-collateral infrastructure.",
+    "questions": [
+      "Where do outcome markets sit in Hyperliquid’s long-term product architecture?",
+      "How much responsibility should be pushed to third-party builders?"
+    ],
+    "people": [
+      {
+        "id": "jeff-yan",
+        "role": "speaker"
+      },
+      {
+        "id": "hart-lambur",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "hyperliquid",
+        "role": "subject"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1",
+      "src-hl-ann",
+      "src-sec-hl",
+      "src-token-speakers"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "ai-agents-trading",
+    "legacy_id": "token-ai-agents",
+    "title": "AI Agents Trading on the Blockchain",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "11:00",
+    "end": "11:20",
+    "time_note": null,
+    "venue": "BingX Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "builders",
+      "traders"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "ai-agents",
+      "trading"
+    ],
+    "stack_layers": [],
+    "summary": "Session on agentic trading.",
+    "why": "Relevant if AI agents become prediction-market users, liquidity providers or autonomous participants.",
+    "questions": [
+      "Are prediction markets especially suitable for autonomous agents because positions have bounded outcomes and explicit resolution rules?"
+    ],
+    "people": [
+      {
+        "id": "alexander-good",
+        "role": "speaker"
+      }
+    ],
+    "companies": [],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "agentic-trading-ai-vs-humans",
+    "legacy_id": "token-agentic-trading",
+    "title": "Agentic Trading: Will AI Outperform Human Traders?",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "11:00",
+    "end": "11:15",
+    "time_note": null,
+    "venue": "Bit Digital Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "builders",
+      "traders"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "ai-agents",
+      "trading"
+    ],
+    "stack_layers": [],
+    "summary": "AI trading session with Alex Svanevik.",
+    "why": "Another angle on AI agents as market participants, including how agents would read contract rules and settlement terms.",
+    "questions": [
+      "Where would agents obtain reliable contract semantics and settlement rules?"
+    ],
+    "people": [
+      {
+        "id": "alex-svanevik",
+        "role": "speaker"
+      }
+    ],
+    "companies": [],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "kalshi-bringing-perps-to-america",
+    "legacy_id": "token-john-wang",
+    "title": "Bringing Perps to America",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "11:40",
+    "end": "12:00",
+    "time_note": null,
+    "venue": "MEXC Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "core",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "traders",
+      "institutions",
+      "investors",
+      "regulators",
+      "general"
+    ],
+    "ecosystems": [
+      "kalshi"
+    ],
+    "topics": [
+      "regulation",
+      "institutional",
+      "clearing"
+    ],
+    "stack_layers": [
+      "margin",
+      "clearing"
+    ],
+    "summary": "John Wang, Head of Crypto at Kalshi, on perpetuals and US market expansion.",
+    "why": "Kalshi increasingly sits where event contracts meet broader derivatives. Separately, Kalshi Klear has been reported as requesting permission to margin event contracts for qualifying institutions. That is a request, not an approval.",
+    "questions": [
+      "If institutional event contracts move from full collateralisation toward margin, what changes first in risk, clearing and participation?",
+      "Does Kalshi see event contracts and perps converging operationally?"
+    ],
+    "people": [
+      {
+        "id": "john-wang",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "kalshi",
+        "role": "speaker-affiliation"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1",
+      "src-kalshi-margin"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "robinhood-chain",
+    "legacy_id": "token-robinhood-chain",
+    "title": "Robinhood Chain",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "12:10",
+    "end": "12:30",
+    "time_note": null,
+    "venue": "BingX Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "general",
+      "founders",
+      "investors"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "distribution"
+    ],
+    "stack_layers": [
+      "frontend"
+    ],
+    "summary": "Johann Kerbrat and Ran Neuner on Robinhood’s blockchain and distribution strategy.",
+    "why": "Robinhood is central to whether prediction markets become a destination product or another asset inside a brokerage app.",
+    "questions": [
+      "Who owns discovery and education when event contracts are embedded inside an existing brokerage?"
+    ],
+    "people": [
+      {
+        "id": "johann-kerbrat",
+        "role": "speaker"
+      },
+      {
+        "id": "ran-neuner",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "robinhood",
+        "role": "subject"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1",
+      "src-token-speakers"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "next-billion-users",
+    "legacy_id": "token-pauline",
+    "title": "Next Billion Users Should Never Touch Blockchain",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "12:30",
+    "end": "12:45",
+    "time_note": null,
+    "venue": "Bit Digital Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "founders",
+      "builders",
+      "media"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "consumer"
+    ],
+    "stack_layers": [],
+    "summary": "A consumer and mainstreaming critique from Pauline Shangett.",
+    "why": "An outsider's view on trust and user experience. Useful for thinking about what a prediction product must simplify before mainstream users trust it.",
+    "questions": [
+      "What would a prediction product have to hide or simplify before mainstream users trust it?"
+    ],
+    "people": [
+      {
+        "id": "pauline-shangett",
+        "role": "speaker"
+      }
+    ],
+    "companies": [],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "white-house-to-wall-street",
+    "legacy_id": "token-policy",
+    "title": "From the White House to Wall Street: What’s Next for Crypto?",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "14:50",
+    "end": "15:20",
+    "time_note": null,
+    "venue": "BingX Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "regulators",
+      "institutions",
+      "general"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "regulation"
+    ],
+    "stack_layers": [
+      "policy"
+    ],
+    "summary": "Policy and institutional session including Jake Chervinsky of the Hyperliquid Policy Center, with participants from Kraken, Paxos and Pantera.",
+    "why": "Relevant to the regulatory boundary around permissionless financial products, including outcome markets.",
+    "questions": [
+      "How should responsibility be divided between protocol, deployer and frontend when event contracts are permissionless?"
+    ],
+    "people": [
+      {
+        "id": "jake-chervinsky",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "hyperliquid-policy-center",
+        "role": "speaker-affiliation"
+      },
+      {
+        "id": "kraken",
+        "role": "participant"
+      },
+      {
+        "id": "paxos",
+        "role": "participant"
+      },
+      {
+        "id": "pantera",
+        "role": "participant"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "cryptos-identity-crisis",
+    "legacy_id": "token-identity",
+    "title": "Crypto’s Identity Crisis: What Are We Actually Betting On?",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "15:30",
+    "end": "16:00",
+    "time_note": null,
+    "venue": "MEXC Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "general",
+      "media"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "category"
+    ],
+    "stack_layers": [],
+    "summary": "Session on crypto’s market identity: speculation versus utility.",
+    "why": "Framing material on where the line sits between useful risk transfer and pure speculation. Prediction markets sit right on that line.",
+    "questions": [
+      "Where is the line between useful risk transfer and pure speculation in tokenised markets?"
+    ],
+    "people": [
+      {
+        "id": "kelvin-koh",
+        "role": "speaker"
+      },
+      {
+        "id": "rajiv-patel-oconnor",
+        "role": "speaker"
+      },
+      {
+        "id": "larry-cermak",
+        "role": "speaker"
+      }
+    ],
+    "companies": [],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "tokenized-markets-institutional-finance",
+    "legacy_id": "token-inst-markets",
+    "title": "Tokenized Markets: How Institutional Finance Moves Onchain",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "15:50",
+    "end": "16:20",
+    "time_note": null,
+    "venue": "BingX Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "strong",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "institutions",
+      "investors",
+      "traders"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "institutional",
+      "clearing",
+      "trading"
+    ],
+    "stack_layers": [
+      "execution",
+      "clearing"
+    ],
+    "summary": "Andrew McCormick, Michael Higgins, Joshua Lim and Roland Chai discuss institutional finance moving onchain.",
+    "why": "Joshua Lim (FalconX) is on the panel, and FalconX sits in the institutional-execution layer of the prediction-market stack. A good session for the question of what institutions need after execution access: clearing, risk, data or prime services.",
+    "questions": [
+      "After execution access, what is the next bottleneck for institutional event contracts?",
+      "Which functions will be supplied by existing financial-market infrastructure rather than PM-native companies?"
+    ],
+    "people": [
+      {
+        "id": "andrew-mccormick",
+        "role": "speaker"
+      },
+      {
+        "id": "michael-higgins",
+        "role": "speaker"
+      },
+      {
+        "id": "joshua-lim",
+        "role": "speaker"
+      },
+      {
+        "id": "roland-chai",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "chainlink",
+        "role": "speaker-affiliation"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "perps-x-institutional",
+    "legacy_id": "perps-inst-side",
+    "title": "Perps x Institutional: Trading, Liquidity & the Onchain Economy",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "16:00",
+    "end": "20:30",
+    "time_note": null,
+    "venue": "Singapore (venue shared after approval)",
+    "map_query": null,
+    "type": "side-event",
+    "official": false,
+    "relevance": "adjacent",
+    "access": "approval",
+    "access_note": "Approval required",
+    "audiences": [
+      "traders",
+      "market-makers",
+      "institutions"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "trading",
+      "liquidity",
+      "defi",
+      "ai-agents"
+    ],
+    "stack_layers": [
+      "liquidity",
+      "execution"
+    ],
+    "summary": "Side event covering perps, RWA, stablecoins, DeFi liquidity, AI and live trading.",
+    "why": "Focused on perps rather than prediction markets. Relevant mainly as a gathering of market makers and execution specialists whose problems overlap with event contracts.",
+    "questions": [
+      "Which execution problems in perps reappear in event contracts?"
+    ],
+    "people": [],
+    "companies": [],
+    "also_listed": [
+      "Trading firms",
+      "Liquidity providers"
+    ],
+    "sources": [
+      "src-dexpal"
+    ],
+    "status": "listed",
+    "status_note": "Listed on a third-party side-event directory (Dexpal).",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "polymarket-singapore-kickoff",
+    "legacy_id": "poly-kickoff",
+    "title": "Polymarket Singapore Kick-Off",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "17:00",
+    "end": "22:00",
+    "time_note": null,
+    "venue": "High House, Raffles Place",
+    "map_query": "High House, Raffles Place, Singapore",
+    "type": "networking",
+    "official": false,
+    "relevance": "core",
+    "access": "waitlist",
+    "access_note": "Invitation-only; full with a waitlist at the latest check",
+    "audiences": [
+      "builders",
+      "traders",
+      "founders",
+      "investors",
+      "general"
+    ],
+    "ecosystems": [
+      "polymarket"
+    ],
+    "topics": [
+      "distribution"
+    ],
+    "stack_layers": [
+      "venue",
+      "frontend"
+    ],
+    "summary": "Polymarket’s first exclusive Singapore event, publicly hosted by 528 Collective. Curated, and full with a waitlist at the latest check.",
+    "why": "The main Wednesday-evening gathering for the Polymarket ecosystem: builders, traders and partners.",
+    "questions": [
+      "What is being built around Polymarket that is not visible from the consumer frontend?",
+      "Which infrastructure, liquidity and distribution partners are becoming strategically important?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "polymarket",
+        "role": "host"
+      },
+      {
+        "id": "528-collective",
+        "role": "host"
+      }
+    ],
+    "also_listed": [
+      "Polymarket ecosystem",
+      "Builders",
+      "Traders"
+    ],
+    "sources": [
+      "src-poly-kickoff"
+    ],
+    "status": "listed",
+    "status_note": "Organiser event page (Luma).",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "zoomex-traders-after-party",
+    "legacy_id": "zoomex",
+    "title": "Zoomex Traders After Party @ TOKEN2049",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "18:30",
+    "end": "22:00",
+    "time_note": null,
+    "venue": "Echo Live Party Singapore",
+    "map_query": "Echo Live Party Singapore",
+    "type": "networking",
+    "official": false,
+    "relevance": "adjacent",
+    "access": "open",
+    "access_note": "Open; capacity limited",
+    "audiences": [
+      "traders",
+      "general"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "trading"
+    ],
+    "stack_layers": [],
+    "summary": "Traders’ after-party with a panel that explicitly spans derivatives, TradFi and prediction markets.",
+    "why": "Prediction markets are named in the panel description, but this is a general traders’ party rather than a prediction-market event.",
+    "questions": [
+      "Who on the panel actually trades prediction markets versus discussing them conceptually?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "zoomex",
+        "role": "host"
+      }
+    ],
+    "also_listed": [
+      "Traders",
+      "Panel participants"
+    ],
+    "sources": [
+      "src-zoomex",
+      "src-zoomex-pr"
+    ],
+    "status": "listed",
+    "status_note": "Organiser event page; corroborated by a Zoomex press release.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "ripple-citadel-sundown-mixer",
+    "legacy_id": "ripple-citadel",
+    "title": "Ripple x Citadel Securities Sundown Mixer",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "17:00",
+    "end": "20:00",
+    "time_note": null,
+    "venue": "Singapore (venue not confirmed)",
+    "map_query": null,
+    "type": "networking",
+    "official": false,
+    "relevance": "adjacent",
+    "access": "invite",
+    "access_note": "Invite-only",
+    "audiences": [
+      "institutions",
+      "market-makers"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "institutional",
+      "market-making"
+    ],
+    "stack_layers": [],
+    "summary": "An invitation-only mixer involving Ripple and Citadel Securities that surfaced in earlier research. No first-party event page has been found.",
+    "why": "Potentially relevant for institutional market-making conversations, but unconfirmed.",
+    "questions": [
+      "Does Citadel Securities see event contracts as a distinct market-making problem or another derivative microstructure problem?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "ripple",
+        "role": "host"
+      },
+      {
+        "id": "citadel-securities",
+        "role": "host"
+      }
+    ],
+    "also_listed": [],
+    "sources": [],
+    "status": "provisional",
+    "status_note": "No first-party source found. Treat as unconfirmed.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "new-institutional-market",
+    "legacy_id": "token-inst-market",
+    "title": "The New Institutional Market: Tokenized Assets. Global Liquidity. Onchain Settlement",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "09:10",
+    "end": "09:40",
+    "time_note": null,
+    "venue": "OKX Main Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "institutions",
+      "investors"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "institutional",
+      "tokenisation",
+      "clearing"
+    ],
+    "stack_layers": [],
+    "summary": "Institutional tokenisation session with Jenny Johnson and Richard Teng.",
+    "why": "How established finance thinks about tokenised infrastructure, settlement and global liquidity. A useful benchmark for prediction markets' own institutional push.",
+    "questions": [
+      "Which parts of traditional post-trade infrastructure remain non-negotiable when new instruments move onchain?"
+    ],
+    "people": [
+      {
+        "id": "jenny-johnson",
+        "role": "speaker"
+      },
+      {
+        "id": "richard-teng",
+        "role": "speaker"
+      }
+    ],
+    "companies": [],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda2",
+      "src-token-speakers"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "hypurrco-gathers",
+    "legacy_id": "hypurrco",
+    "title": "HypurrCo / HypurrCollective Gathers",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "11:00",
+    "end": "15:00",
+    "time_note": null,
+    "venue": "Bugis area (exact location shared close to the event)",
+    "map_query": null,
+    "type": "meetup",
+    "official": false,
+    "relevance": "strong",
+    "access": "approval",
+    "access_note": "Approval only",
+    "audiences": [
+      "builders",
+      "investors",
+      "founders",
+      "market-makers"
+    ],
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "topics": [
+      "infrastructure",
+      "liquidity",
+      "market-making"
+    ],
+    "stack_layers": [
+      "venue",
+      "liquidity",
+      "oracle"
+    ],
+    "summary": "Curated Hyperliquid ecosystem gathering for builders, investors and partners. Listed partners include Hyperliquid Policy Center, Insilico, Nansen, Chainlink, Wintermute, Tread.fi and 21Shares, among others.",
+    "why": "A dense concentration of Hyperliquid, outcome-market and market-infrastructure companies in one room.",
+    "questions": [
+      "Which PM/outcome products are actually live on Hyperliquid by this week?",
+      "Who is making the markets and who is subsidising liquidity?",
+      "What breaks if permissionless outcome deployment grows 10x?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "hyperliquid-policy-center",
+        "role": "partner"
+      },
+      {
+        "id": "insilico",
+        "role": "partner"
+      },
+      {
+        "id": "nansen",
+        "role": "partner"
+      },
+      {
+        "id": "chainlink",
+        "role": "partner"
+      },
+      {
+        "id": "wintermute",
+        "role": "partner"
+      },
+      {
+        "id": "tread-fi",
+        "role": "partner"
+      },
+      {
+        "id": "21shares",
+        "role": "partner"
+      }
+    ],
+    "also_listed": [
+      "Hyperliquid ecosystem",
+      "Outcome-market builders"
+    ],
+    "sources": [
+      "src-hypurrco",
+      "src-hl-forum"
+    ],
+    "status": "listed",
+    "status_note": "Organiser channel (Telegram).",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "hft-closed-door-meetup",
+    "legacy_id": "hft-meetup",
+    "title": "HFT Closed-Door Meetup",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "11:00",
+    "end": "14:00",
+    "time_note": null,
+    "venue": "Downtown Core",
+    "map_query": null,
+    "type": "closed-door",
+    "official": false,
+    "relevance": "adjacent",
+    "access": "approval",
+    "access_note": "Approval required",
+    "audiences": [
+      "traders",
+      "market-makers",
+      "institutions"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "trading",
+      "market-making",
+      "data"
+    ],
+    "stack_layers": [
+      "data-transport",
+      "liquidity"
+    ],
+    "summary": "Closed-door trading, infrastructure and institutional meetup hosted by Quant Ferryman.",
+    "why": "Not prediction-market-specific. Relevant if you care about latency, feed normalisation and inventory problems that also show up in event contracts.",
+    "questions": [
+      "Which latency, feed-normalisation and inventory problems are genuinely different in event contracts?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "quant-ferryman",
+        "role": "host"
+      }
+    ],
+    "also_listed": [
+      "HFT firms",
+      "Market makers",
+      "Infrastructure firms"
+    ],
+    "sources": [
+      "src-dexpal"
+    ],
+    "status": "listed",
+    "status_note": "Listed on a third-party side-event directory (Dexpal). Prediction-market participation not confirmed.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "doublezero-keynote",
+    "legacy_id": "token-doublezero",
+    "title": "Austin Federa / DoubleZero keynote",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "11:30",
+    "end": "11:45",
+    "time_note": null,
+    "venue": "Marina Bay Sands (stage: check the TOKEN2049 app)",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "strong",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "builders",
+      "traders",
+      "market-makers",
+      "institutions"
+    ],
+    "ecosystems": [
+      "kalshi"
+    ],
+    "topics": [
+      "data",
+      "infrastructure"
+    ],
+    "stack_layers": [
+      "data-transport"
+    ],
+    "summary": "Keynote from DoubleZero founder Austin Federa.",
+    "why": "DoubleZero now carries Kalshi’s full order-book market data, which puts specialised low-latency networking inside the prediction-market stack.",
+    "questions": [
+      "Why do prediction markets need purpose-built low-latency transport now?",
+      "Which users are consuming full order-book data over the network?"
+    ],
+    "people": [
+      {
+        "id": "austin-federa",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "doublezero",
+        "role": "speaker-affiliation"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda2",
+      "src-dz-block",
+      "src-dz-pr"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda. Stage not recorded.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "nasdaq-adena-friedman",
+    "legacy_id": "token-nasdaq",
+    "title": "Fireside Chat with Nasdaq CEO Adena Friedman",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "14:00",
+    "end": "14:20",
+    "time_note": null,
+    "venue": "OKX Main Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "institutions",
+      "general"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "institutional"
+    ],
+    "stack_layers": [],
+    "summary": "Main-stage conversation on exchange infrastructure.",
+    "why": "An outside benchmark for what mature exchange infrastructure, market integrity and distribution look like.",
+    "questions": [
+      "Which functions must become boring before a new asset class becomes institutionally normal?"
+    ],
+    "people": [
+      {
+        "id": "adena-friedman",
+        "role": "speaker"
+      },
+      {
+        "id": "joanna-ossinger",
+        "role": "listed"
+      }
+    ],
+    "companies": [
+      {
+        "id": "nasdaq",
+        "role": "speaker-affiliation"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda2",
+      "src-token-speakers"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "future-of-real-world-assets",
+    "legacy_id": "token-rwa",
+    "title": "The Future of Real World Assets: On Chain Equities, Perps, and Beyond",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "15:00",
+    "end": "15:20",
+    "time_note": null,
+    "venue": "OKX Main Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "investors",
+      "general"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "category",
+      "tokenisation"
+    ],
+    "stack_layers": [],
+    "summary": "Kyle Samani on the expansion of tradable onchain assets.",
+    "why": "Frames the growing set of onchain instruments. Runs immediately before “The Speculation Age” on the same stage.",
+    "questions": [
+      "Where do event contracts fit among the expanding set of onchain instruments?"
+    ],
+    "people": [
+      {
+        "id": "kyle-samani",
+        "role": "speaker"
+      }
+    ],
+    "companies": [],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda2"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "institutional-capital-flows",
+    "legacy_id": "token-capital",
+    "title": "Institutional Crypto Capital Flows",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "15:00",
+    "end": "15:30",
+    "time_note": null,
+    "venue": "BingX Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "institutions",
+      "investors"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "institutional"
+    ],
+    "stack_layers": [],
+    "summary": "Institutional flow panel with CME, Coinbase Institutional and Invesco participants.",
+    "why": "Relevant to whether event contracts would sit inside existing derivatives mandates or need separate treatment.",
+    "questions": [
+      "Would event contracts sit inside existing derivatives mandates or need separate risk/governance treatment?"
+    ],
+    "people": [
+      {
+        "id": "giovanni-vicioso",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "cme",
+        "role": "participant"
+      },
+      {
+        "id": "coinbase",
+        "role": "participant"
+      },
+      {
+        "id": "invesco",
+        "role": "participant"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda2"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "the-speculation-age",
+    "legacy_id": "token-speculation-age",
+    "title": "The Speculation Age: When Everything Becomes Tradable",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "15:20",
+    "end": "15:50",
+    "time_note": null,
+    "venue": "OKX Main Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "core",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "general",
+      "traders",
+      "founders",
+      "investors",
+      "media"
+    ],
+    "ecosystems": [
+      "kalshi"
+    ],
+    "topics": [
+      "category",
+      "distribution"
+    ],
+    "stack_layers": [
+      "frontend",
+      "venue"
+    ],
+    "summary": "Johann Kerbrat (Robinhood), Vladimir Novakovski (Lighter) and John Wang (Kalshi), moderated by Jordi Alexander.",
+    "why": "The official session most directly about what prediction markets are becoming: a destination of their own, or one instrument inside an “everything-tradable” brokerage.",
+    "questions": [
+      "Does the customer think in asset classes or simply opportunities?",
+      "Who owns discovery, liquidity and risk when everything is tradable in one interface?"
+    ],
+    "people": [
+      {
+        "id": "johann-kerbrat",
+        "role": "speaker"
+      },
+      {
+        "id": "vladimir-novakovski",
+        "role": "speaker"
+      },
+      {
+        "id": "john-wang",
+        "role": "speaker"
+      },
+      {
+        "id": "jordi-alexander",
+        "role": "moderator"
+      }
+    ],
+    "companies": [
+      {
+        "id": "robinhood",
+        "role": "speaker-affiliation"
+      },
+      {
+        "id": "lighter",
+        "role": "speaker-affiliation"
+      },
+      {
+        "id": "kalshi",
+        "role": "speaker-affiliation"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda2",
+      "src-token-speakers"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "the-odds-prediction-markets-live",
+    "legacy_id": "the-odds",
+    "title": "The Odds: Prediction Markets Live",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "14:00",
+    "end": "20:00",
+    "time_note": null,
+    "venue": "Suntec City",
+    "map_query": "Suntec City, Singapore",
+    "type": "forum",
+    "official": false,
+    "relevance": "core",
+    "access": "registration",
+    "access_note": "Registration; approval may apply",
+    "audiences": [
+      "general",
+      "traders",
+      "market-makers",
+      "founders",
+      "sports",
+      "regulators",
+      "media",
+      "investors"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "topics": [
+      "sports",
+      "liquidity",
+      "regulation"
+    ],
+    "stack_layers": [
+      "liquidity",
+      "oracle",
+      "venue"
+    ],
+    "summary": "A dedicated prediction-markets conference covering market structure, liquidity and regulation, with private meeting rooms and a partner/demo area. Co-located with Agentic Finance.",
+    "why": "The biggest block of prediction-market-specific programming of the week, with particular depth on sports market structure and infrastructure. The co-located Agentic Finance audience adds finance, compliance and media people.",
+    "questions": [
+      "What sports-book infrastructure transfers into prediction markets and what does not?",
+      "Who pays for official data and who carries basis risk?",
+      "What market-maker economics are required for in-play sports contracts?"
+    ],
+    "people": [
+      {
+        "id": "cj-hetherington",
+        "role": "listed"
+      },
+      {
+        "id": "par-helgosson",
+        "role": "listed"
+      },
+      {
+        "id": "michael-adams",
+        "role": "speaker"
+      },
+      {
+        "id": "matt-restivo",
+        "role": "listed"
+      }
+    ],
+    "companies": [],
+    "also_listed": [
+      "Agentic Finance speakers"
+    ],
+    "sources": [
+      "src-theodds",
+      "src-theodds-luma",
+      "src-agentic"
+    ],
+    "status": "conflict",
+    "status_note": "Organiser currently shows a 20:00 finish, but the final end time still needs confirming in event week.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "powerscale-social-prediction-market",
+    "legacy_id": "powerscale",
+    "title": "PowerScale: Crypto x Anime x Social Prediction Market",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "17:00",
+    "end": "19:30",
+    "time_note": null,
+    "venue": "Singapore (see TOKEN2049 Week listing)",
+    "map_query": null,
+    "type": "side-event",
+    "official": false,
+    "relevance": "wildcard",
+    "access": "open",
+    "access_note": "Free; networking",
+    "audiences": [
+      "general",
+      "media",
+      "founders",
+      "builders"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "consumer"
+    ],
+    "stack_layers": [
+      "frontend"
+    ],
+    "summary": "A consumer and social prediction-market product mixing crypto, anime and social features. It sits at the opposite end of the spectrum from institutional clearing.",
+    "why": "Worth a short visit to see prediction packaged as fandom or social engagement rather than finance. Look at what users predict, where rewards come from and how resolution works.",
+    "questions": [
+      "What is the user predicting?",
+      "Where does reward/liquidity come from?",
+      "How does resolution work?",
+      "Do users describe the experience as trading, betting, fandom or gaming?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "powerscale",
+        "role": "host"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-token-week"
+    ],
+    "status": "conflict",
+    "status_note": "Official TOKEN2049 Week lists a 19:30 finish; some mirror listings have shown 20:00.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "moirai-traders-night",
+    "legacy_id": "moirai",
+    "title": "Prediction Market Traders Night",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "18:00",
+    "end": "22:00",
+    "time_note": null,
+    "venue": "Singapore (venue shared after approval)",
+    "map_query": null,
+    "type": "networking",
+    "official": false,
+    "relevance": "core",
+    "access": "approval",
+    "access_note": "Approval required",
+    "audiences": [
+      "traders",
+      "market-makers"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "trading",
+      "market-making"
+    ],
+    "stack_layers": [
+      "liquidity"
+    ],
+    "summary": "Prediction-market traders night hosted by Moirai. The public description is currently thin.",
+    "why": "Explicitly aimed at prediction-market traders. The guest list is not public, so how useful it is depends on who attends.",
+    "questions": [
+      "Who is attending that actually makes markets or runs size?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "moirai",
+        "role": "host"
+      }
+    ],
+    "also_listed": [
+      "Traders",
+      "Market makers"
+    ],
+    "sources": [
+      "src-dexpal"
+    ],
+    "status": "listed",
+    "status_note": "Listed on a third-party side-event directory (Dexpal). Attendee profile unknown.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "kalshi-x-insilico-asia-session",
+    "legacy_id": "insilico-kalshi",
+    "title": "Kalshi x Insilico Terminal: Asia Session @ TOKEN2049",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "19:00",
+    "end": "23:00",
+    "time_note": null,
+    "venue": "Location shared with approved guests",
+    "map_query": null,
+    "type": "networking",
+    "official": false,
+    "relevance": "core",
+    "access": "invite",
+    "access_note": "Approval / invite-only",
+    "audiences": [
+      "traders",
+      "market-makers",
+      "founders",
+      "investors"
+    ],
+    "ecosystems": [
+      "kalshi"
+    ],
+    "topics": [
+      "trading",
+      "market-making"
+    ],
+    "stack_layers": [
+      "execution",
+      "liquidity"
+    ],
+    "summary": "Curated evening for active traders, market makers, founders and investors across the Kalshi and Insilico communities.",
+    "why": "The most trader-focused gathering of the week, aimed at the people whose capital and systems make the markets work.",
+    "questions": [
+      "What annoys active traders most about event contracts today?",
+      "Where are books thin, feeds poor or settlement rules operationally awkward?",
+      "Which tools are you forced to build yourself?"
+    ],
+    "people": [
+      {
+        "id": "irene-liao",
+        "role": "host"
+      },
+      {
+        "id": "vktr",
+        "role": "host"
+      },
+      {
+        "id": "john-wang",
+        "role": "host"
+      },
+      {
+        "id": "ico-beast",
+        "role": "host"
+      },
+      {
+        "id": "ultra",
+        "role": "host"
+      },
+      {
+        "id": "sokio",
+        "role": "host"
+      }
+    ],
+    "companies": [
+      {
+        "id": "kalshi",
+        "role": "host"
+      },
+      {
+        "id": "insilico",
+        "role": "host"
+      }
+    ],
+    "also_listed": [
+      "Active traders",
+      "Market makers",
+      "Founders",
+      "Investors"
+    ],
+    "sources": [
+      "src-insilico"
+    ],
+    "status": "listed",
+    "status_note": "Organiser event page (Luma).",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "finality-forum",
+    "legacy_id": "finality",
+    "title": "Finality Forum @ TOKEN2049 SG",
+    "date": "2026-10-09",
+    "end_date": null,
+    "start": "10:00",
+    "end": "18:00",
+    "time_note": null,
+    "venue": "Singapore (venue not recorded)",
+    "map_query": null,
+    "type": "forum",
+    "official": false,
+    "relevance": "adjacent",
+    "access": "approval",
+    "access_note": "Curated; approval required",
+    "audiences": [
+      "institutions",
+      "investors",
+      "market-makers"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "institutional",
+      "infrastructure",
+      "tokenisation",
+      "ai-agents",
+      "trading"
+    ],
+    "stack_layers": [],
+    "summary": "Institutional digital-assets forum covering infrastructure, payments, RWA/tokenisation, agentic commerce, trading/liquidity and privacy.",
+    "why": "Not a prediction-market conference, which is exactly why it's useful: a chance to ask institutional outsiders whether event contracts are showing up in their infrastructure and client requests.",
+    "questions": [
+      "Do you see prediction markets showing up in client requests yet?",
+      "Which piece of the PM stack looks investable or useful from outside the category?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "flow-traders",
+        "role": "participant"
+      },
+      {
+        "id": "gsr",
+        "role": "participant"
+      },
+      {
+        "id": "wintermute",
+        "role": "participant"
+      },
+      {
+        "id": "chainlink",
+        "role": "participant"
+      },
+      {
+        "id": "visa",
+        "role": "participant"
+      },
+      {
+        "id": "coinbase",
+        "role": "participant"
+      },
+      {
+        "id": "ripple",
+        "role": "participant"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-finality"
+    ],
+    "status": "listed",
+    "status_note": "Organiser event page (Luma). Wintermute is also reported among its speakers.",
+    "clash_note": null,
+    "last_updated": "2026-09-22"
+  },
+  {
+    "id": "after2049",
+    "legacy_id": "after2049",
+    "title": "AFTER2049",
+    "date": "2026-10-09",
+    "end_date": null,
+    "start": null,
+    "end": null,
+    "time_note": "Evening (time not recorded)",
+    "venue": "Marina Bay Sands SkyPark Observation Deck",
+    "map_query": "Marina Bay Sands SkyPark, Singapore",
+    "type": "networking",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 access rules apply (check the official FAQ)",
+    "audiences": [
+      "general"
+    ],
+    "ecosystems": [],
+    "topics": [],
+    "stack_layers": [],
+    "summary": "Official closing event of TOKEN2049 week.",
+    "why": "Not prediction-market-specific: a general networking event for the whole conference.",
+    "questions": [
+      "Who specifically do I need to see here?"
+    ],
+    "people": [],
+    "companies": [],
+    "also_listed": [
+      "TOKEN2049 attendees"
+    ],
+    "sources": [
+      "src-token-home",
+      "src-token-faq"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 site.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "global-onchain-summit",
+    "legacy_id": "",
+    "title": "Global Onchain Summit Singapore 2026",
+    "date": "2026-10-06",
+    "end_date": null,
+    "start": "13:00",
+    "end": "17:00",
+    "time_note": null,
+    "venue": "Pullman Singapore Hill Street",
+    "map_query": "Pullman Singapore Hill Street",
+    "type": "forum",
+    "official": false,
+    "relevance": "strong",
+    "access": "registration",
+    "access_note": "Ticketed (Eventbrite)",
+    "audiences": [
+      "institutions",
+      "investors",
+      "general"
+    ],
+    "ecosystems": [
+      "kalshi"
+    ],
+    "topics": [
+      "institutional",
+      "regulation"
+    ],
+    "stack_layers": [
+      "policy"
+    ],
+    "summary": "Afternoon onchain-finance summit powered by CoinGape. Kalshi’s Head of Institutional, Andy Ross, speaks on prediction markets, institutional adoption and next-generation market infrastructure.",
+    "why": "A rare chance to hear Kalshi’s institutional lead on prediction markets before the main conference. Our sweep lists his session as “Prediction Markets: The Institutional Opportunity”.",
+    "questions": [
+      "What is the first thing institutions ask for after they have basic access?"
+    ],
+    "people": [
+      {
+        "id": "andy-ross",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "coingape",
+        "role": "host"
+      },
+      {
+        "id": "kalshi",
+        "role": "speaker-affiliation"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-gos-site",
+      "src-gos-eventbrite",
+      "src-gos-andy"
+    ],
+    "status": "listed",
+    "status_note": "Organiser listing (Eventbrite / official site). Session title from our sweep; check the final agenda.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "predictbay-sui-basecamp",
+    "legacy_id": "",
+    "title": "Predict, Watch, Verify: One-Minute Markets on Sui with PredictBay",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "12:30",
+    "end": null,
+    "time_note": "End time not published",
+    "venue": "Sui Basecamp, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "side-event",
+    "official": false,
+    "relevance": "core",
+    "access": "registration",
+    "access_note": "Sui Basecamp registration",
+    "audiences": [
+      "builders",
+      "founders",
+      "traders"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "topics": [
+      "consumer",
+      "infrastructure"
+    ],
+    "stack_layers": [
+      "venue",
+      "frontend"
+    ],
+    "summary": "PredictBay CMO Zack Nelson presents one-minute prediction markets on Sui built on DeepBook Predict, at Sui Basecamp (7–8 Oct, alongside TOKEN2049).",
+    "why": "A genuinely new prediction-market entrant that wasn’t in the original guide. By PredictBay’s own disclosure, paper trading is the live product and its DeepBook Predict integration is on testnet, so ask what’s real money today.",
+    "questions": [
+      "What is live with real funds today, and when does DeepBook Predict reach mainnet?",
+      "How are one-minute markets resolved, and who supplies liquidity?"
+    ],
+    "people": [
+      {
+        "id": "zack-nelson",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "predictbay",
+        "role": "host"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-sui-basecamp",
+      "src-predictbay",
+      "src-predictbay-launch"
+    ],
+    "status": "listed",
+    "status_note": "Sui Basecamp speaker listing. Session title and 12:30 slot are from the current Sui Basecamp agenda; an older cached PredictBay page said 6 October.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "dwf-labs-keynote",
+    "legacy_id": "",
+    "title": "Keynote: Andrei Grachev (DWF Labs)",
+    "date": "2026-10-07",
+    "end_date": null,
+    "start": "12:00",
+    "end": "12:15",
+    "time_note": null,
+    "venue": "Bit Digital Stage, Marina Bay Sands",
+    "map_query": "Marina Bay Sands Singapore",
+    "type": "official",
+    "official": true,
+    "relevance": "adjacent",
+    "access": "badge",
+    "access_note": "TOKEN2049 pass",
+    "audiences": [
+      "traders",
+      "market-makers",
+      "investors"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "market-making",
+      "trading"
+    ],
+    "stack_layers": [
+      "liquidity"
+    ],
+    "summary": "Official TOKEN2049 keynote from DWF Labs Managing Partner Andrei Grachev.",
+    "why": "A market-maker and investor view of crypto markets. Adjacent context for prediction-market liquidity.",
+    "questions": [],
+    "people": [
+      {
+        "id": "andrei-grachev",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "dwf-labs",
+        "role": "speaker-affiliation"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-token-agenda1"
+    ],
+    "status": "verified",
+    "status_note": "Official TOKEN2049 agenda. Session title not recorded.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "reppo-gm-ai",
+    "legacy_id": "",
+    "title": "gm AI v2: Open Reinforcement Learning via Prediction Markets (Reppo)",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": null,
+    "end": null,
+    "time_note": "Time TBC",
+    "venue": "Singapore (venue to confirm)",
+    "map_query": null,
+    "type": "side-event",
+    "official": false,
+    "relevance": "wildcard",
+    "access": "unknown",
+    "access_note": "Check the organiser listing",
+    "audiences": [
+      "builders",
+      "founders",
+      "media"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "ai-agents",
+      "consumer"
+    ],
+    "stack_layers": [
+      "oracle"
+    ],
+    "summary": "Reppo, which uses prediction markets to curate AI training data, is reported to be presenting “Open Reinforcement Learning via Prediction Markets” at gm AI v2.",
+    "why": "The strange and interesting intersection of prediction markets and AI training.",
+    "questions": [],
+    "people": [],
+    "companies": [
+      {
+        "id": "reppo",
+        "role": "host"
+      }
+    ],
+    "also_listed": [],
+    "sources": [
+      "src-reppo"
+    ],
+    "status": "provisional",
+    "status_note": "Reported in our sweep. The organiser page hasn’t been linked yet, so confirm before going.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  }
+]

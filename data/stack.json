@@ -1,0 +1,167 @@
+[
+  {
+    "id": "frontend",
+    "name": "Frontend & distribution",
+    "plain": "Where people actually find and use prediction markets: exchange websites and apps, but increasingly brokerages, wallets and white-label products that embed markets inside something else.",
+    "signal": "Prediction markets are increasingly discovered inside broader trading, wallet and white-label environments, not only on a dedicated exchange website.",
+    "question": "Who owns the customer, education, data and support?",
+    "companies": [
+      "polymarket",
+      "kalshi",
+      "robinhood",
+      "chainup",
+      "predict365",
+      "outcome",
+      "powerscale"
+    ],
+    "sources": [
+      "src-token-agenda1",
+      "src-chainup-hermes"
+    ]
+  },
+  {
+    "id": "venue",
+    "name": "Venue & outcome primitives",
+    "plain": "The market itself: who lists contracts, sets the rules and matches trades. Some venues are single companies; Hyperliquid's HIP-4 lets anyone deploy an outcome market on shared infrastructure.",
+    "signal": "Outcome contracts are becoming a deployable market primitive as well as a standalone venue category.",
+    "question": "Who is responsible for market specs, settlement and bad outcomes when anyone can deploy?",
+    "companies": [
+      "polymarket",
+      "kalshi",
+      "predict-fun",
+      "hyperliquid",
+      "outcome"
+    ],
+    "sources": [
+      "src-hl-ann",
+      "src-sec-hl"
+    ]
+  },
+  {
+    "id": "liquidity",
+    "name": "Liquidity & market making",
+    "plain": "Firms and traders who continuously quote buy and sell prices so others can trade. Without them, order books are thin and prices jump.",
+    "signal": "Dedicated two-sided liquidity, block trading and professional market making are becoming visible infrastructure requirements.",
+    "question": "What transfers from crypto/HFT market making, and what is genuinely different in event contracts?",
+    "companies": [
+      "wintermute",
+      "susquehanna-crypto",
+      "selini",
+      "limitless-labs",
+      "predict-fun"
+    ],
+    "sources": [
+      "src-wintermute-entry",
+      "src-wintermute-infra",
+      "src-predict-block"
+    ]
+  },
+  {
+    "id": "execution",
+    "name": "Execution",
+    "plain": "The tools and brokers that route orders into markets, especially for professional and institutional traders who need prime access, algorithms and risk checks.",
+    "signal": "Institutional execution is being folded into existing trading and risk workflows.",
+    "question": "After execution access, what is the next operational bottleneck?",
+    "companies": [
+      "falconx",
+      "insilico"
+    ],
+    "sources": [
+      "src-insilico"
+    ]
+  },
+  {
+    "id": "data-transport",
+    "name": "Market data & transport",
+    "plain": "Getting prices and order-book updates from the venue to traders quickly and reliably. At professional scale this means specialised networks and data vendors.",
+    "signal": "Prediction-market order books now justify specialised low-latency transport and professional data handling.",
+    "question": "Who consumes full order-book feeds, at what latency, and for which strategies?",
+    "companies": [
+      "doublezero",
+      "kaiko",
+      "grandstand"
+    ],
+    "sources": [
+      "src-dz-block",
+      "src-dz-pr"
+    ]
+  },
+  {
+    "id": "oracle",
+    "name": "Oracle, lifecycle & resolution",
+    "plain": "How a market is created, when it closes and how the “answer” is decided. Oracles bring outside facts (a score, an election result) into the system that pays out.",
+    "signal": "Automating market creation, lifecycle and settlement moves source-of-truth risk deeper into infrastructure.",
+    "question": "What happens when the external data source is late, corrected or ambiguous?",
+    "companies": [
+      "chainlink",
+      "predict-fun",
+      "hyperliquid"
+    ],
+    "sources": [
+      "src-predict-chainlink",
+      "src-sec-hl"
+    ]
+  },
+  {
+    "id": "clearing",
+    "name": "Clearing & post-trade",
+    "plain": "The back office after a trade: confirming it, holding collateral, reporting and paying out. This is where prediction markets start to look like regulated derivatives.",
+    "signal": "Event-contract workflows are entering infrastructure familiar to futures brokers (FCMs) and professional derivatives operations.",
+    "question": "Which back-office changes are still specific to prediction markets, and which are now standard derivatives plumbing?",
+    "companies": [
+      "ion",
+      "coinbase",
+      "kalshi"
+    ],
+    "sources": [
+      "src-ion"
+    ]
+  },
+  {
+    "id": "portfolio-risk",
+    "name": "Portfolio & risk",
+    "plain": "Systems that let funds see prediction-market positions next to their other holdings and measure the combined risk.",
+    "signal": "Polymarket and Kalshi exposure can increasingly sit beside other digital-asset positions inside portfolio and risk systems.",
+    "question": "Which institutions are actually doing this, rather than simply having the integration available?",
+    "companies": [
+      "haruko"
+    ],
+    "sources": [
+      "src-haruko",
+      "src-haruko-kalshi"
+    ]
+  },
+  {
+    "id": "margin",
+    "name": "Margin & capital efficiency",
+    "plain": "Whether traders must post the full amount they could lose up front (full collateral) or can use margin. This decides how much capital large players need.",
+    "signal": "The next institutionalisation battle is capital efficiency, not simply access.",
+    "question": "How much does full collateralisation currently limit institutional size and strategy?",
+    "companies": [
+      "kalshi",
+      "hyperliquid"
+    ],
+    "sources": [
+      "src-kalshi-margin",
+      "src-sec-hl"
+    ]
+  },
+  {
+    "id": "policy",
+    "name": "Policy & regulatory perimeter",
+    "plain": "Which rulebook applies: financial markets, derivatives, gambling or something else. The answer differs by country and shapes every layer above.",
+    "signal": "Jurisdictions are still contesting whether prediction products belong in financial-market, derivatives, gambling or other regulatory regimes.",
+    "question": "How does product architecture change when the regulatory identity changes?",
+    "companies": [
+      "polymarket",
+      "kalshi",
+      "hyperliquid-policy-center"
+    ],
+    "sources": [
+      "src-poly-eu",
+      "src-kalshi-margin",
+      "src-token-agenda1",
+      "src-hypurrco"
+    ]
+  }
+]

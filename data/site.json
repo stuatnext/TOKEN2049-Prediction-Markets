@@ -1,0 +1,255 @@
+{
+  "title": "Prediction Markets at TOKEN2049 Singapore 2026",
+  "tagline": "The unofficial directory of prediction-market events, sessions, companies and people across TOKEN2049 week.",
+  "last_updated": "2026-09-23",
+  "research_cutoff": "22 September 2026 (UK) / 23 September 2026 (Singapore)",
+  "timezone": "SGT (UTC+8)",
+  "utc_offset_hours": 8,
+  "days": [
+    {
+      "date": "2026-10-05",
+      "label": "Mon 5 Oct",
+      "long": "Monday 5 October",
+      "note": "TOKEN2049 week begins"
+    },
+    {
+      "date": "2026-10-06",
+      "label": "Tue 6 Oct",
+      "long": "Tuesday 6 October",
+      "note": "Hyperliquid Forum day"
+    },
+    {
+      "date": "2026-10-07",
+      "label": "Wed 7 Oct",
+      "long": "Wednesday 7 October",
+      "note": "TOKEN2049 main conference, day 1"
+    },
+    {
+      "date": "2026-10-08",
+      "label": "Thu 8 Oct",
+      "long": "Thursday 8 October",
+      "note": "TOKEN2049 main conference, day 2"
+    },
+    {
+      "date": "2026-10-09",
+      "label": "Fri 9 Oct",
+      "long": "Friday 9 October",
+      "note": "Closing day"
+    }
+  ],
+  "main_days": [
+    "2026-10-07",
+    "2026-10-08"
+  ],
+  "curator": {
+    "name": "NEXTPredict",
+    "url": "https://nextpredict.io/",
+    "person": "Stuart Crowley",
+    "person_id": "stuart-crowley",
+    "linkedin": "https://sg.linkedin.com/in/stuart-crowley-b2b561104",
+    "summit": {
+      "name": "NEXTPredict NYC 2026",
+      "dates": "22–23 October 2026",
+      "place": "Hudson Yards, New York",
+      "url": "https://nextpredict.io/summits/the-worlds-prediction-markets-summit/"
+    }
+  },
+  "repo_url": "https://github.com/stuatnext/TOKEN2049-Prediction-Markets",
+  "open_questions": [
+    {
+      "item": "Official Hyperliquid Monday event: time and venue",
+      "state": "Open",
+      "detail": "Not yet published. Watch Hyperliquid's announcement channel and the Hyperliquid Forum page.",
+      "events": [
+        "hyperliquid-ecosystem-event"
+      ],
+      "sources": [
+        "src-hl-ann",
+        "src-hl-forum"
+      ]
+    },
+    {
+      "item": "The Odds: final finish time",
+      "state": "Timing conflict",
+      "detail": "The organiser currently indicates 20:00. Recheck the final-week agenda.",
+      "events": [
+        "the-odds-prediction-markets-live"
+      ],
+      "sources": [
+        "src-theodds"
+      ]
+    },
+    {
+      "item": "PowerScale: final finish time",
+      "state": "Minor timing conflict",
+      "detail": "Official TOKEN2049 Week shows 19:30; some mirror listings have shown 20:00.",
+      "events": [
+        "powerscale-social-prediction-market"
+      ],
+      "sources": [
+        "src-token-week"
+      ]
+    },
+    {
+      "item": "Ripple x Citadel Securities Sundown Mixer",
+      "state": "Provisional",
+      "detail": "No first-party invite or event page found. Treat as unconfirmed.",
+      "events": [
+        "ripple-citadel-sundown-mixer"
+      ],
+      "sources": []
+    },
+    {
+      "item": "Prediction Market Traders Night (Moirai): who attends",
+      "state": "Unknown",
+      "detail": "The public description is thin and the attendee profile is not public.",
+      "events": [
+        "moirai-traders-night"
+      ],
+      "sources": [
+        "src-dexpal"
+      ]
+    },
+    {
+      "item": "HFT Closed-Door Meetup: prediction-market relevance",
+      "state": "Unknown",
+      "detail": "No prediction-market market makers, data or execution firms are confirmed.",
+      "events": [
+        "hft-closed-door-meetup"
+      ],
+      "sources": [
+        "src-dexpal"
+      ]
+    },
+    {
+      "item": "HIP-4 deployment and activity numbers",
+      "state": "Not included",
+      "detail": "We don't publish activity figures here. See Hyperliquid's filing and announcements, and note the difference between organic and incentive-driven activity.",
+      "events": [],
+      "sources": [
+        "src-sec-hl",
+        "src-hl-ann"
+      ]
+    },
+    {
+      "item": "Haruko: institutional prediction-market usage",
+      "state": "Integration documented, usage unknown",
+      "detail": "An available integration is not the same as adoption.",
+      "events": [
+        "haruko-x-kalshi"
+      ],
+      "sources": [
+        "src-haruko",
+        "src-haruko-kalshi"
+      ]
+    },
+    {
+      "item": "Kalshi institutional margin",
+      "state": "Request reported, not approved",
+      "detail": "Kalshi Klear's request to margin event contracts for qualifying participants has been reported. Check the CFTC status before relying on it.",
+      "events": [
+        "kalshi-bringing-perps-to-america"
+      ],
+      "sources": [
+        "src-kalshi-margin"
+      ]
+    },
+    {
+      "item": "Polymarket UK/EU classification",
+      "state": "Contested",
+      "detail": "FT reporting on Polymarket seeking financial-product treatment. Regulators' positions are not settled.",
+      "events": [
+        "polymarket-coplan-fireside"
+      ],
+      "sources": [
+        "src-poly-eu"
+      ]
+    },
+    {
+      "item": "Michael Adams: current affiliation",
+      "state": "Organiser bio used",
+      "detail": "We use the current organiser bio. Reconfirm close to The Odds.",
+      "events": [
+        "the-odds-prediction-markets-live"
+      ],
+      "sources": [
+        "src-michael-adams"
+      ]
+    },
+    {
+      "item": "Sports speakers at The Odds",
+      "state": "Confirm with organiser",
+      "detail": "CJ Hetherington, Matt Restivo and Pär Helgosson are linked to The Odds in our research. Check the organiser page for the final line-up.",
+      "events": [
+        "the-odds-prediction-markets-live"
+      ],
+      "sources": [
+        "src-theodds"
+      ]
+    },
+    {
+      "item": "Direct post links for Vishal K. Gupta and Predict365",
+      "state": "Profile link only",
+      "detail": "Both attendance statements were captured from public LinkedIn posts. We link to the profile or site until the direct post links are added.",
+      "events": [],
+      "sources": [
+        "src-vishal-li",
+        "src-predict365"
+      ]
+    },
+    {
+      "item": "Named Polymarket staff at the Kick-Off",
+      "state": "Not identified",
+      "detail": "The event is confirmed (hosted by 528 Collective). Shayne Coplan is confirmed in Singapore via TOKEN2049. No public roster of Polymarket staff attending the party has been found.",
+      "events": [
+        "polymarket-singapore-kickoff"
+      ],
+      "sources": [
+        "src-poly-kickoff"
+      ]
+    },
+    {
+      "item": "Searched but not confirmed",
+      "state": "No 2026 evidence",
+      "detail": "Limitless, Myriad, Opinion Labs, Azuro, Novig, ProphetX, Hedgehog, Mimir, Susquehanna Crypto, GSR and Jump: no current public evidence of TOKEN2049 Singapore attendance yet. Tarek Mansour isn’t listed just because Kalshi is present.",
+      "events": [],
+      "sources": []
+    },
+    {
+      "item": "Reppo at gm AI v2",
+      "state": "Provisional",
+      "detail": "Session reported in our sweep; organiser page not yet linked.",
+      "events": [
+        "reppo-gm-ai"
+      ],
+      "sources": [
+        "src-reppo"
+      ]
+    }
+  ],
+  "practical": [
+    {
+      "title": "Media accreditation deadline",
+      "body": "TOKEN2049 says media accreditation must be submitted before 12:00 SGT on 1 October. Processing can take up to five working days, and there is no onsite accreditation.",
+      "sources": [
+        "src-token-media"
+      ]
+    },
+    {
+      "title": "Times are Singapore time",
+      "body": "All times are SGT (UTC+8). Programmes change, so recheck agendas 24–48 hours before you travel to an event.",
+      "sources": [
+        "src-token-faq"
+      ]
+    }
+  ],
+  "promo": {
+    "unlock_after_saves": 3,
+    "code": "STUART400OFF",
+    "url": "https://tickets.next.io/NEXTPredict-2026?promo=STUART400OFF",
+    "label": "NEXTPredict NYC 2026 ticket discount",
+    "disclosure": "NEXTPredict curates this directory and runs NEXTPredict NYC. This is our own offer, not TOKEN2049’s."
+  },
+  "first_published": "2026-09-22",
+  "new_days": 7
+}

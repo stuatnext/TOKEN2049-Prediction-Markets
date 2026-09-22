@@ -1,0 +1,429 @@
+[
+  {
+    "id": "src-token-home",
+    "name": "TOKEN2049 Singapore",
+    "type": "Primary / official",
+    "url": "https://token2049.com/singapore",
+    "note": "Main conference overview, dates, scale and venue."
+  },
+  {
+    "id": "src-token-faq",
+    "name": "TOKEN2049 Singapore FAQ",
+    "type": "Primary / official",
+    "url": "https://token2049.com/singapore/faqs",
+    "note": "TOKEN2049 Week dates and programme-change caveat."
+  },
+  {
+    "id": "src-token-agenda1",
+    "name": "TOKEN2049 Agenda, Day 1",
+    "type": "Primary / official",
+    "url": "https://www.token2049.com/singapore/agenda",
+    "note": "Official Wednesday 7 October agenda."
+  },
+  {
+    "id": "src-token-agenda2",
+    "name": "TOKEN2049 Agenda, Day 2",
+    "type": "Primary / official",
+    "url": "https://token2049.com/singapore/agenda?630073d5_page=2",
+    "note": "Official Thursday 8 October agenda."
+  },
+  {
+    "id": "src-token-partners",
+    "name": "TOKEN2049 Partners",
+    "type": "Primary / official",
+    "url": "https://www.token2049.com/singapore/partners",
+    "note": "Sponsor, media and community-partner listings. Predict.fun and ChainUp are Gold sponsors; NEXTPredict is a Community Partner."
+  },
+  {
+    "id": "src-token-media",
+    "name": "TOKEN2049 Media Accreditation",
+    "type": "Primary / official",
+    "url": "https://token2049.com/singapore/media-accreditation-guidelines",
+    "note": "Media accreditation deadline and processing guidance."
+  },
+  {
+    "id": "src-token-week",
+    "name": "TOKEN2049 Week",
+    "type": "Primary / official",
+    "url": "https://week.token2049.com/",
+    "note": "Official side-event directory. Recheck close to the event because listings can change."
+  },
+  {
+    "id": "src-dexpal",
+    "name": "TOKEN2049 side events on Dexpal",
+    "type": "Event directory",
+    "url": "https://events.dexpal.io/token2049",
+    "note": "Side-event discovery and access status."
+  },
+  {
+    "id": "src-haruko-event",
+    "name": "More than a million, Haruko x Kalshi",
+    "type": "Organiser / event page",
+    "url": "https://events.dexpal.io/token2049/T2049-142",
+    "note": "Monday invite-only Haruko x Kalshi event."
+  },
+  {
+    "id": "src-haruko",
+    "name": "Haruko Resources",
+    "type": "Company / primary",
+    "url": "https://www.haruko.io/resources/",
+    "note": "Haruko institutional portfolio and risk integrations, including Polymarket context."
+  },
+  {
+    "id": "src-haruko-kalshi",
+    "name": "Haruko x Kalshi integration",
+    "type": "Company / primary",
+    "url": "https://www.haruko.io/blog/haruko-partners-with-kalshi-to-enhance-risk-and-portfolio-management-for-perpetual-futures/",
+    "note": "Kalshi integration into Haruko portfolio/risk management."
+  },
+  {
+    "id": "src-hl-forum",
+    "name": "Hyperliquid Forum Singapore",
+    "type": "Organiser / event page",
+    "url": "https://www.hyperliquidforum.com/singapore",
+    "note": "Tuesday institutional forum and official Hyperliquid-week context."
+  },
+  {
+    "id": "src-hl-ann",
+    "name": "Hyperliquid announcements",
+    "type": "Primary social / official",
+    "url": "https://t.me/s/hyperliquid_announcements?before=546",
+    "note": "Official ecosystem event notice and current HIP-4/outcomes announcements."
+  },
+  {
+    "id": "src-hypurrco",
+    "name": "HypurrCo / HypurrCollective updates",
+    "type": "Organiser social",
+    "url": "https://t.me/s/hypurrco?before=236",
+    "note": "Thursday ecosystem gathering details and partners."
+  },
+  {
+    "id": "src-chainup-token",
+    "name": "ChainUp at TOKEN2049",
+    "type": "Company / primary",
+    "url": "https://chainup.com/events/chainup-at-token2049-singapore-2026/",
+    "note": "Booth, event presence and prediction-market product positioning."
+  },
+  {
+    "id": "src-chainup-ark",
+    "name": "The Institutional Ark by ChainUp",
+    "type": "Organiser / event page",
+    "url": "https://chainup.com/news/institutional-ark-by-chainup-at-token2049-singapore-2026/",
+    "note": "Tuesday institutional dinner/event."
+  },
+  {
+    "id": "src-chainup-hermes",
+    "name": "ChainUp Hermes white-label prediction markets",
+    "type": "Company claim",
+    "url": "https://chainup.com/white-label-prediction-markets-software/",
+    "note": "White-label deployment and shared-liquidity claims. Company claim; not independently tested."
+  },
+  {
+    "id": "src-poly-kickoff",
+    "name": "Polymarket Singapore Kick-Off",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/polymarketsingapore",
+    "note": "Wednesday invite-only Singapore event; full with a waitlist at the latest check."
+  },
+  {
+    "id": "src-insilico",
+    "name": "Kalshi x Insilico Terminal Asia Session",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/w931emv1",
+    "note": "Thursday trader, market maker, founder and investor session."
+  },
+  {
+    "id": "src-zoomex",
+    "name": "Zoomex Traders After Party",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/izz3a6xc",
+    "note": "Wednesday afterparty with a panel explicitly spanning derivatives, TradFi and prediction markets."
+  },
+  {
+    "id": "src-zoomex-pr",
+    "name": "Zoomex event announcement",
+    "type": "Company / press release",
+    "url": "https://www.globenewswire.com/news-release/2026/09/21/3365363/0/en/zoomex-to-host-traders-after-party-during-token2049-singapore-connecting-traders-and-the-web3-community.html",
+    "note": "Corroborates prediction markets in the event panel description."
+  },
+  {
+    "id": "src-theodds",
+    "name": "The Odds: Prediction Markets Live",
+    "type": "Organiser / event page",
+    "url": "https://mnm.live/theodds/t2049singapore",
+    "note": "Thursday prediction-markets conference at Suntec City."
+  },
+  {
+    "id": "src-theodds-luma",
+    "name": "The Odds / Agentic Finance event registration",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/8oxs8lco",
+    "note": "Registration/access information."
+  },
+  {
+    "id": "src-agentic",
+    "name": "Agentic Finance speaker list",
+    "type": "Organiser / event page",
+    "url": "https://mnm.live/agentic-finance/speakers",
+    "note": "Co-located cross-sector source pool at Suntec."
+  },
+  {
+    "id": "src-breakfast",
+    "name": "Opening Bell: Zenith, Kaiko & T-REX",
+    "type": "Organiser / event page",
+    "url": "https://events.trymimetic.com/events/singapore/opening-bell-an-institutional-breakfast-by-zenith-kaiko-t-rex-oct-2026",
+    "note": "Wednesday institutional breakfast near MBS."
+  },
+  {
+    "id": "src-finality",
+    "name": "Finality Forum Singapore",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/g2lg0htf",
+    "note": "Friday institutional digital-asset forum."
+  },
+  {
+    "id": "src-ion",
+    "name": "ION partners with Coinbase to support Kalshi event contracts",
+    "type": "Company / primary",
+    "url": "https://iongroup.com/press-release/markets/ion-partners-with-coinbase-to-support-kalshis-event-contracts/",
+    "note": "Clearing, reporting, resolution and settlement infrastructure."
+  },
+  {
+    "id": "src-dz-block",
+    "name": "Kalshi streams order books via DoubleZero",
+    "type": "Reported / trade media",
+    "url": "https://www.theblock.co/news/markets/2026-08-12-kalshi-first-prediction-market-to-stream-full-order-books-via-doublezero-411589",
+    "note": "Low-latency market-data transport story."
+  },
+  {
+    "id": "src-dz-pr",
+    "name": "DoubleZero expands Kalshi market data",
+    "type": "Company / press release",
+    "url": "https://www.prnewswire.com/news-releases/doublezero-expands-market-data-platform-edge-with-kalshi-ahead-of-election-season-302873467.html",
+    "note": "Expansion of Kalshi data categories over DoubleZero Edge."
+  },
+  {
+    "id": "src-wintermute-entry",
+    "name": "Wintermute enters prediction markets",
+    "type": "Company / primary",
+    "url": "https://www.wintermute.com/insights/news/announcements/wintermute-enters-prediction-markets-as-a-liquidity-provider-as-event-contract-trading-surpasses-60-billion-in-2026",
+    "note": "Wintermute's announcement of two-sided PM liquidity provision. Volume framing is a company claim unless independently checked."
+  },
+  {
+    "id": "src-wintermute-infra",
+    "name": "Wintermute: prediction markets have an infrastructure problem",
+    "type": "Company opinion",
+    "url": "https://www.wintermute.com/insights/views/opinions/the-prediction-market-boom-has-an-infrastructure-problem",
+    "note": "Wintermute's view on thin books, fees, APIs and infrastructure. Opinion, not neutral fact."
+  },
+  {
+    "id": "src-predict-chainlink",
+    "name": "Predict.fun adopts Chainlink infrastructure",
+    "type": "Company / primary",
+    "url": "https://predict.fun/news/predict-fun-adopts-chainlink-as-core-infrastructure-powering-high-speed-crypto-prediction-markets",
+    "note": "Market lifecycle and settlement/oracle architecture claimed by Predict.fun."
+  },
+  {
+    "id": "src-predict-block",
+    "name": "Predict.fun block trading",
+    "type": "Company / primary",
+    "url": "https://predict.fun/id/news/predict-fun-delivers-streamlined-on-chain-block-trading-platform-for-prediction-markets",
+    "note": "Block trading 100,000+ shares and Susquehanna Crypto liquidity claim."
+  },
+  {
+    "id": "src-sec-hl",
+    "name": "Hyperliquid / HIP-4 SEC filing",
+    "type": "Primary filing",
+    "url": "https://www.sec.gov/Archives/edgar/data/2078856/000119312526391097/d168095ds1.htm",
+    "note": "Current filing context on HIP-4, builder stakes, outcome markets and activity metrics. Read alongside newer official Hyperliquid announcements."
+  },
+  {
+    "id": "src-kalshi-margin",
+    "name": "Kalshi institutional margin request",
+    "type": "Reported",
+    "url": "https://qz.com/kalshi-cftc-margin-trading-prediction-markets-092226",
+    "note": "22 September report on Kalshi Klear's request for event-contract margining for qualifying institutional/self-clearing participants. Request is not approval."
+  },
+  {
+    "id": "src-poly-eu",
+    "name": "Polymarket UK/EU classification push",
+    "type": "Reported / FT",
+    "url": "https://www.ft.com/content/ec52d0ab-3f68-476f-b308-b8e682d9c75b",
+    "note": "22 September reporting on Polymarket lobbying for financial-product treatment; regulators' positions are contested and must be attributed."
+  },
+  {
+    "id": "src-wintermute-events",
+    "name": "Wintermute events calendar",
+    "type": "Company / primary",
+    "url": "https://www.wintermute.com/events",
+    "note": "Current event presence and public calendar context."
+  },
+  {
+    "id": "src-predict365",
+    "name": "Predict365",
+    "type": "Company / primary",
+    "url": "https://predict365.com/",
+    "note": "Current public product positioning."
+  },
+  {
+    "id": "src-michael-adams",
+    "name": "Michael Adams speaker bio",
+    "type": "Organiser / event page",
+    "url": "https://mnm.live/agentic-finance/speakers/michael-adams",
+    "note": "Current organiser identity and Caerus/Swish background."
+  },
+  {
+    "id": "src-token-speakers",
+    "name": "TOKEN2049 Singapore speakers",
+    "type": "Primary / official",
+    "url": "https://token2049.com/singapore/speakers",
+    "note": "Official speaker list with titles and affiliations."
+  },
+  {
+    "id": "src-cryptobriefing-speakers",
+    "name": "TOKEN2049 Singapore 2026 brings crypto leaders to Marina Bay Sands",
+    "type": "Reported / trade media",
+    "url": "https://cryptobriefing.com/token2049-singapore-2026-brings-crypto-leaders-to-marina-bay-sands-this-october/",
+    "note": "First-100 speaker announcement coverage, including titles for Shayne Coplan, Jeff Yan, Adena Friedman and Jenny Johnson."
+  },
+  {
+    "id": "src-fortune-lighter",
+    "name": "Lighter CEO Vlad Novakovski on perpetual futures (Fortune)",
+    "type": "Reported",
+    "url": "https://fortune.com/2026/01/15/perps-lighter-ceo-vlad-novakovski-perpetual-futures-crypto-future-growth/",
+    "note": "Identifies Vladimir Novakovski as Lighter CEO."
+  },
+  {
+    "id": "src-grayscale-hlforum",
+    "name": "Grayscale co-hosts Hyperliquid Forum in Singapore on October 6",
+    "type": "Reported / trade media",
+    "url": "https://cryptobriefing.com/grayscale-hyperliquid-forum-singapore/",
+    "note": "Grayscale as co-host of the Hyperliquid Forum."
+  },
+  {
+    "id": "src-cryptonews-hlforum",
+    "name": "Hyperliquid Forum by DAYS brings institutional capital face to face with the Hyperliquid ecosystem",
+    "type": "Reported / trade media",
+    "url": "https://crypto.news/hyperliquid-forum-by-days-brings-institutional-capital-face-to-face-with-the-hyperliquid-ecosystem/",
+    "note": "Forum run by DAYS as part of the Digital Asset Yield Summit; six themes including prediction and outcome markets; Arthur Hayes (Maelstrom) among confirmed speakers."
+  },
+  {
+    "id": "src-nijinn-launch",
+    "name": "Predictive Labs unveils Nijinn (Coinsilium announcement)",
+    "type": "Company / press release",
+    "url": "https://www.tradingview.com/news/eqs:01cf957cc094b:0-coinsilium-group-limited-predictive-labs-unveils-nijinn-coinsilium-increases-strategic-investment-and-accelerates-venture-building-strategy/",
+    "note": "Nijinn is a cross-venue prediction-market data product; commercial launch of Nijinn Pro planned around TOKEN2049 Singapore."
+  },
+  {
+    "id": "src-nijinn-proactive",
+    "name": "Coinsilium backs Predictive Labs’ Nijinn (Proactive Investors)",
+    "type": "Reported",
+    "url": "https://www.proactiveinvestors.com/companies/news/1095491/coinsilium-backs-predictive-labs-nijinn-to-cut-through-prediction-market-noise-1095491.html",
+    "note": "Coverage of Nijinn and its rollout timeline."
+  },
+  {
+    "id": "src-nextpredict-summit",
+    "name": "NEXTPredict NYC 2026: The World's Prediction Markets Summit",
+    "type": "Organiser / event page",
+    "url": "https://nextpredict.io/summits/the-worlds-prediction-markets-summit/",
+    "note": "NEXTPredict's prediction-markets summit, Hudson Yards, New York, 22–23 October 2026. Run by the curator of this directory."
+  },
+  {
+    "id": "src-stuart-linkedin",
+    "name": "Stuart Crowley on LinkedIn",
+    "type": "Individual / LinkedIn",
+    "url": "https://sg.linkedin.com/in/stuart-crowley-b2b561104",
+    "note": "Curator of this directory."
+  },
+  {
+    "id": "src-gos-site",
+    "name": "Global Onchain Summit Singapore 2026",
+    "type": "Organiser / event page",
+    "url": "https://globalonchainsummit.com/",
+    "note": "Tuesday 6 October summit, powered by CoinGape."
+  },
+  {
+    "id": "src-gos-eventbrite",
+    "name": "Global Onchain Summit Singapore 2026 tickets",
+    "type": "Organiser / event page",
+    "url": "https://www.eventbrite.com/e/global-onchain-summit-singapore-2026-tickets-1988759612537",
+    "note": "Tuesday 6 October, 1–5 PM."
+  },
+  {
+    "id": "src-gos-andy",
+    "name": "Andy Ross to speak at Onchain Summit Singapore 2026",
+    "type": "Reported",
+    "url": "https://www.kucoin.com/es/square/post/content_6a8e99f4f0435f000705178c",
+    "note": "Andy Ross, Head of Institutional at Kalshi, speaking on prediction markets and institutional adoption; Pullman Singapore Hill Street."
+  },
+  {
+    "id": "src-hlforum-speakers",
+    "name": "Hyperliquid Forum by DAYS (speakers and participants)",
+    "type": "Organiser / event page",
+    "url": "https://www.hyperliquidforum.com/singapore",
+    "note": "Confirmed speakers with titles, confirmed participating firms, and the Prediction & Outcome Markets (HIP-4) theme."
+  },
+  {
+    "id": "src-sui-basecamp",
+    "name": "Sui Basecamp 2026",
+    "type": "Organiser / event page",
+    "url": "https://www.sui.io/basecamp",
+    "note": "Sui’s conference at Marina Bay Sands, 7–8 October, alongside TOKEN2049. Zack Nelson (PredictBay) is listed among the speakers."
+  },
+  {
+    "id": "src-predictbay",
+    "name": "PredictBay: DeepBook Predict",
+    "type": "Company / primary",
+    "url": "https://predictbay.io/deepbook-predict",
+    "note": "Prediction markets on Sui via DeepBook Predict. The company says paper mode is its tradeable product today and that the DeepBook Predict integration is on testnet."
+  },
+  {
+    "id": "src-predictbay-launch",
+    "name": "PredictBay emerges from stealth with 1-minute Sui prediction markets",
+    "type": "Company / press release",
+    "url": "https://www.crypto-reporter.com/newsfeed/predictbay-emerges-from-stealth-with-26-1-billion-in-paper-volume-and-1-minute-sui-prediction-markets-taking-aim-at-polymarket-and-kalshi-130376/",
+    "note": "Launch announcement. Volume figures are paper-trading volume (company claim)."
+  },
+  {
+    "id": "src-hotcoin-pm",
+    "name": "Hotcoin launches Prediction Market feature",
+    "type": "Reported",
+    "url": "https://tradersunion.com/news/brokers-news/show/2429818-hotcoin-unveils-prediction-market-feature/",
+    "note": "Hotcoin’s prediction-market product and launch campaign (24 Apr–4 May 2026)."
+  },
+  {
+    "id": "src-flowtraders-li",
+    "name": "Flow Traders on LinkedIn",
+    "type": "Company social",
+    "url": "https://www.linkedin.com/company/flow-traders",
+    "note": "Flow Traders’ public post naming its TOKEN2049 Singapore 2026 team (liquidity provision and OTC)."
+  },
+  {
+    "id": "src-hein-li",
+    "name": "Hein Tibosch on LinkedIn",
+    "type": "Individual / LinkedIn",
+    "url": "https://www.linkedin.com/in/hein-tibosch-04a2b69/",
+    "note": "Says he will be in Singapore for TOKEN2049 and invites meetings."
+  },
+  {
+    "id": "src-vishal-li",
+    "name": "Vishal K. Gupta on LinkedIn",
+    "type": "Individual / LinkedIn",
+    "url": "https://www.linkedin.com/in/vishalkg/",
+    "note": "Public post (22 Sep 2026): will be at KBW and TOKEN2049; wants to discuss advanced execution and prediction markets, “with a focus on markets on markets”."
+  },
+  {
+    "id": "src-haruko-hosts-li",
+    "name": "Adrian Rymill (Haruko) on LinkedIn",
+    "type": "Individual / LinkedIn",
+    "url": "https://sg.linkedin.com/in/adrianrymill",
+    "note": "Haruko; listed as a host of the Haruko x Kalshi event."
+  },
+  {
+    "id": "src-reppo",
+    "name": "Reppo: training AI using prediction markets",
+    "type": "Company / primary",
+    "url": "https://reppo.xyz/",
+    "note": "Prediction-market protocol for curating AI training data."
+  }
+]

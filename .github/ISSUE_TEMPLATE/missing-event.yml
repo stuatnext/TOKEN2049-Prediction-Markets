@@ -1,0 +1,44 @@
+name: Suggest a missing event
+description: Tell us about a prediction-market event, session or side event we haven't listed.
+title: "Missing event: "
+labels: ["missing-event"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping. Please include a public source link (organiser page, official agenda or announcement). We only list events we can source.
+        Please don't include private contact details or invite codes.
+  - type: input
+    id: event-title
+    attributes:
+      label: Event name
+    validations:
+      required: true
+  - type: input
+    id: when
+    attributes:
+      label: Date and time (Singapore time)
+      placeholder: "Thu 8 Oct, 18:00–22:00"
+    validations:
+      required: true
+  - type: input
+    id: venue
+    attributes:
+      label: Venue (if public)
+  - type: input
+    id: source
+    attributes:
+      label: Source link
+      description: The organiser's page or another public first-party source.
+    validations:
+      required: true
+  - type: dropdown
+    id: access
+    attributes:
+      label: Access
+      options: ["Open", "Registration required", "Approval required", "Invite only", "Waitlist", "Sold out", "TOKEN2049 pass", "Not sure"]
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is it relevant to prediction markets?
+      description: One or two sentences. Who is it for, and who is speaking or hosting?
