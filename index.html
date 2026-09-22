@@ -40,6 +40,7 @@
         <a href="#/start" data-nav="start">Start here</a>
         <a href="#/calendar" data-nav="calendar">Calendar</a>
         <a href="#/events" data-nav="events">Events</a>
+        <a href="#/going" data-nav="going">Who’s going</a>
         <a href="#/people" data-nav="people">People</a>
         <a href="#/companies" data-nav="companies">Companies</a>
         <a href="#/stack" data-nav="stack">The stack</a>
@@ -61,9 +62,9 @@
   </main>
 
   <nav class="tabbar" aria-label="Quick navigation">
-    <a href="#/" data-nav="home"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg><span>Home</span></a>
     <a href="#/calendar" data-nav="calendar"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 5h14v15H5zM5 9h14M9 3v4M15 3v4"/></svg><span>Calendar</span></a>
     <a href="#/events" data-nav="events"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 104.2 11.5L20 20.8M10.5 4a6.5 6.5 0 010 13"/></svg><span>Search</span></a>
+    <a href="#/going" data-nav="going"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 4.5a3.5 3.5 0 010 7M18 14c2 .6 3.5 2.7 3.5 6"/></svg><span>Who’s going</span></a>
     <a href="#/schedule" data-nav="schedule"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg><span>Saved <b data-saved-count>0</b></span></a>
     <button type="button" data-open-more aria-haspopup="dialog"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>More</span></button>
   </nav>
@@ -71,8 +72,10 @@
   <dialog class="sheet" id="more-sheet" aria-label="More pages">
     <div class="sheet-head"><strong>Explore</strong><button type="button" class="icon-btn" data-close aria-label="Close menu">✕</button></div>
     <nav class="sheet-nav" aria-label="All pages">
+      <a href="#/">Home</a>
       <a href="#/start">Start here</a>
       <a href="#/calendar">Calendar</a>
+      <a href="#/going">Who’s going?</a>
       <a href="#/events">Events directory</a>
       <a href="#/people">People</a>
       <a href="#/companies">Companies</a>

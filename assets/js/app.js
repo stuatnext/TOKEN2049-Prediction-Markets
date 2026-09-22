@@ -54,8 +54,8 @@ const D = {};
 const view = () => document.getElementById("view");
 
 async function loadData() {
-  const names = ["events", "people", "companies", "stack", "sources", "site"];
-  const [events, people, companies, stack, sources, site] = await Promise.all(
+  const names = ["events", "people", "companies", "stack", "sources", "site", "attendance"];
+  const [events, people, companies, stack, sources, site, attendance] = await Promise.all(
     names.map((n) => fetch(`data/${n}.json`, { cache: "no-cache" }).then((r) => {
       if (!r.ok) throw new Error(`Could not load data/${n}.json (${r.status})`);
       return r.json();
@@ -99,6 +99,19 @@ async function loadData() {
     ].join(" "));
   }
   D.clash = new Map(D.events.map((e) => [e.id, D.events.filter((o) => overlaps(e, o))]));
+
+  // Who's Going: public records only; pending leads are kept for the research view
+  D.attendanceAll = attendance;
+  D.att = attendance.filter((a) => a.public && a.confidence === "confirmed");
+  D.attByPerson = new Map();
+  D.attByCompany = new Map();
+  D.attByEvent = new Map();
+  for (const a of D.att) {
+    if (a.person_id) (D.attByPerson.get(a.person_id) || D.attByPerson.set(a.person_id, []).get(a.person_id)).push(a);
+    else if (a.company_id) (D.attByCompany.get(a.company_id) || D.attByCompany.set(a.company_id, []).get(a.company_id)).push(a);
+    for (const e of a.event_ids) (D.attByEvent.get(e) || D.attByEvent.set(e, []).get(e)).push(a);
+  }
+  D.going = buildGoing();
 }
 
 // ---------------------------------------------------------------- small helpers
@@ -208,7 +221,7 @@ function setQuery(q, { replace = true } = {}) {
   else location.hash = hash;
 }
 
-const ROUTES = { "": home, start, week, calendar, events, people, companies, stack, schedule, about };
+const ROUTES = { "": home, start, week, calendar, events, going, people, companies, stack, schedule, about };
 
 function render({ keepScroll = false } = {}) {
   const { parts, q } = parseHash();
@@ -277,6 +290,7 @@ function home(_, q) {
   const cnt = (fn) => E.filter(fn).length;
   const entries = [
     ["New to prediction markets", "#/start", null, true],
+    ["Who’s going?", "#/going", D.going.length],
     ["Show me everything", "#/events", E.length],
     ["Traders & market makers", "#/events?aud=traders,market-makers", cnt((e) => e.audiences.some((a) => a === "traders" || a === "market-makers"))],
     ["Institutional / TradFi", "#/events?aud=institutions", cnt((e) => e.audiences.includes("institutions"))],
@@ -314,6 +328,12 @@ function home(_, q) {
   <section class="section" aria-labelledby="h-entry">
     <div class="section-head"><h2 id="h-entry">Start here</h2></div>
     <div class="entry-grid">${entries.map(([l, h, n, p]) => `<a class="entry${p ? " primary" : ""}" href="${h}">${esc(l)}${n != null ? ` <span class="n">${n}</span>` : ""}</a>`).join("")}</div>
+  </section>
+
+  <section class="section" aria-labelledby="h-going">
+    <div class="section-head"><h2 id="h-going">Who’s heading to Singapore?</h2><a class="more" href="#/going">Explore everyone (${D.going.length}) →</a></div>
+    <p class="muted small">Prediction-market people and companies with public evidence they’ll be there, drawn from across platforms, trading, infrastructure, builders, investors and media.</p>
+    <div class="grid grid-3">${homeGoing().map((g) => goingCard(g, { compact: true })).join("")}</div>
   </section>
 
   <section class="section" aria-labelledby="h-next">
@@ -373,9 +393,19 @@ function home(_, q) {
   <section class="section panel" aria-labelledby="h-about">
     <h2 id="h-about">About this directory</h2>
     <p>An independent, curated guide to where prediction markets show up across TOKEN2049 week. It was compiled from the official TOKEN2049 programme, organiser pages, company announcements and other cited public sources. Every listing links back to its source.</p>
-    <p class="small muted">Last updated ${esc(fmtDate(D.site.last_updated))}. This is not live data: schedules and access details can change, so check the organiser link before travelling. Curated by ${curator()}.</p>
-    <a href="#/about">How this directory is compiled →</a>
+    <p class="small muted">Last updated ${esc(fmtDate(D.site.last_updated))}. This is not live data: schedules and access details can change, so check the organiser link before travelling.</p>
+    ${curatorPanel()}
+    <p style="margin-top:12px"><a href="#/about">How this directory is compiled →</a></p>
   </section>`;
+}
+
+/** Home mix: round-robin across discovery groups so it isn't sorted by fame. */
+function homeGoing() {
+  const picked = [], seen = new Set();
+  const pools = DISCOVER.map(([, , fn]) => D.going.filter(fn).sort((a, b) => Number(b.isNew) - Number(a.isNew) || RELR[a.rel] - RELR[b.rel]));
+  for (let round = 0; picked.length < 9 && round < 6; round++)
+    for (const pool of pools) { const g = pool.find((x) => !seen.has(x.key)); if (g && picked.length < 9) { picked.push(g); seen.add(g.key); } }
+  return picked;
 }
 
 function personMini(p) {
@@ -830,10 +860,7 @@ function eventDetail(id) {
         ${e.clash_note ? `<p class="notice">${esc(e.clash_note)}</p>` : ""}
         ${clashes.length ? `<p class="small muted">Overlaps ${plural(clashes.length, "other listing")}:</p><div class="event-list">${clashes.map((o) => eventCard(o, { compact: true })).join("")}</div>` : ""}</section>` : ""}
 
-      ${e.people.length || e.also_listed.length ? `<section><h2>People to know</h2>
-        ${e.people.length ? `<div class="person-list">${e.people.map((x) => { const p = D.people.get(x.id); const org = D.companies.get(p.org); return `<a class="mini" href="#/people/${p.id}"><span class="avatar" aria-hidden="true">${esc(initials(p.name))}</span><span><strong>${esc(p.name)}</strong><span>${esc(PROLE[x.role])}${org ? ` · ${esc(org.name)}` : p.org_label ? ` · ${esc(p.org_label)}` : ""}</span></span></a>`; }).join("")}</div>` : ""}
-        ${e.people.some((x) => x.role === "listed") ? `<p class="small muted" style="margin-top:8px">“Listed” means the person appears in connection with this event in our sources. It doesn’t guarantee they will attend.</p>` : ""}
-        ${e.also_listed.length ? `<p class="small" style="margin-top:10px"><span class="muted">Audience described in listings:</span> ${e.also_listed.map(esc).join(", ")}</p>` : ""}</section>` : ""}
+      ${expectThere(e)}
 
       ${e.companies.length ? `<section><h2>Companies</h2><div class="co-list">${e.companies.map((x) => companyMini(D.companies.get(x.id), CROLE[x.role])).join("")}</div></section>` : ""}
 
@@ -872,6 +899,23 @@ function eventDetail(id) {
     </aside>
   </div>`;
 }
+/** "People you can expect there": named hosts/speakers or people with evidence for this specific event. */
+function expectThere(e) {
+  const att = D.attByEvent.get(e.id) || [];
+  const attP = new Set(att.filter((a) => a.person_id).map((a) => a.person_id));
+  const firm = e.people.filter((x) => x.role !== "listed" || attP.has(x.id));
+  const soft = e.people.filter((x) => x.role === "listed" && !attP.has(x.id));
+  const orgs = att.filter((a) => !a.person_id);
+  if (!firm.length && !soft.length && !orgs.length && !e.also_listed.length) return "";
+  const mini = (x) => { const p = D.people.get(x.id); const org = D.companies.get(p.org); return `<a class="mini" href="#/people/${p.id}"><span class="avatar" aria-hidden="true">${esc(initials(p.name))}</span><span><strong>${esc(p.name)}</strong><span>${esc(PROLE[x.role])}${org ? ` · ${esc(org.name)}` : p.org_label ? ` · ${esc(p.org_label)}` : ""}</span></span></a>`; };
+  return `<section><h2>People you can expect there</h2>
+    ${firm.length ? `<div class="person-list">${firm.map(mini).join("")}</div>` : `<p class="small muted">No individuals are publicly named for this event yet.</p>`}
+    ${orgs.length ? `<p class="small" style="margin-top:10px"><span class="muted">Organisations with public evidence:</span> ${orgs.map((a) => `<a href="#/companies/${a.company_id}">${esc(D.companies.get(a.company_id).name)}</a> (${esc(AST[a.attendance_status].label.toLowerCase())})`).join(", ")}</p>` : ""}
+    ${soft.length ? `<h3 style="margin-top:16px;font-size:.9rem">Listed in connection with this event</h3><p class="small muted">Named in our sources, but their role or attendance isn’t confirmed.</p><div class="person-list">${soft.map(mini).join("")}</div>` : ""}
+    ${e.also_listed.length ? `<p class="small" style="margin-top:10px"><span class="muted">Audience described in listings:</span> ${e.also_listed.map(esc).join(", ")}</p>` : ""}
+    <p class="small" style="margin-top:8px"><a href="#/going">See everyone going →</a></p></section>`;
+}
+
 function sourceItem(s) {
   return `<li><span class="type">${esc(s.type)}</span><a href="${esc(s.url)}" rel="noopener" target="_blank">${esc(s.name)} ↗</a><p>${esc(s.note)}</p></li>`;
 }
@@ -934,8 +978,11 @@ function personDetail(id) {
     <h1>${esc(p.name)}</h1>
     <p class="lede" style="margin:0">${esc(p.role || "")}${p.role && (org || p.org_label) ? " · " : ""}${org ? `<a href="#/companies/${org.id}">${esc(org.name)}</a>` : esc(p.org_label || "")}</p>
     ${p.note ? `<p class="notice" style="margin-top:14px">${esc(p.note)}</p>` : ""}
+    ${p.links?.length ? `<div class="btn-row" style="margin-top:14px">${p.links.map((l) => `<a class="btn btn-small" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("")}</div>` : ""}
+    ${(D.attByPerson.get(p.id) || []).length ? `<div class="chip-row" style="margin-top:12px">${[...new Set(D.attByPerson.get(p.id).map((a) => a.attendance_status))].map(evidenceChip).join("")}</div>` : ""}
     ${p.why ? `<section><h2>Why they’re relevant</h2><p>${esc(p.why)}</p></section>` : ""}
-    <section><h2>Appearing at</h2>${ev.length ? `<div class="event-list">${ev.map((x) => `<div><p class="small muted" style="margin:0 0 4px">${esc(PROLE[x.role])}</p>${eventCard(x.event, { compact: true })}</div>`).join("")}</div>` : `<p class="muted">No events recorded.</p>`}</section>
+    ${whereToFind(D.attByPerson.get(p.id), p.name)}
+    <section><h2>Event appearances</h2>${ev.length ? `<div class="event-list">${ev.map((x) => `<div><p class="small muted" style="margin:0 0 4px">${esc(PROLE[x.role])}</p>${eventCard(x.event, { compact: true })}</div>`).join("")}</div>` : `<p class="muted">No events recorded.</p>`}</section>
     ${p.sources.length ? `<section><h2>Sources</h2><ul class="source-list">${p.sources.map((s) => D.sources.get(s)).filter(Boolean).map(sourceItem).join("")}</ul>
     <p class="small muted" style="margin-top:10px"><a href="${issueUrl("correction.yml", { title: `Correction: ${p.name}`, record: `people/${p.id}` })}" rel="noopener">Report a correction</a></p></section>` : ""}
   </article>
@@ -997,6 +1044,8 @@ function companyDetail(id) {
     <h1>${esc(c.name)}</h1>
     <p class="lede">${esc(c.description)}</p>
     ${c.note ? `<p class="notice">${esc(c.note)}</p>` : ""}
+    ${(D.attByCompany.get(c.id) || []).length ? `<div class="chip-row">${[...new Set(D.attByCompany.get(c.id).map((a) => a.attendance_status))].map(evidenceChip).join("")}</div>` : ""}
+    ${whereToFind(D.attByCompany.get(c.id), c.name)}
     <section><h2>At TOKEN2049 week</h2>${ev.length ? `<div class="event-list">${ev.map((x) => `<div><p class="small muted" style="margin:0 0 4px">${x.role === "via" ? `Via ${esc(D.people.get(x.via).name)} (${esc(PROLE[x.viaRole].toLowerCase())})` : esc(CROLE[x.role])}</p>${eventCard(x.event, { compact: true })}</div>`).join("")}</div>` : `<p class="muted">No TOKEN2049-week event is recorded for this organisation. It’s included for its place in the prediction-market stack.</p>`}</section>
     ${ecoEvents.length ? `<section><h2>Elsewhere in the ${esc(ECO[ecoKey])} ecosystem</h2><p class="small muted">Tagged to this ecosystem, but ${esc(c.name)} isn’t listed as a host, sponsor or speaker.</p><div class="event-list">${ecoEvents.map((e) => eventCard(e, { compact: true })).join("")}</div></section>` : ""}
     ${ppl.length ? `<section><h2>People</h2><div class="person-list">${ppl.map(personMini).join("")}</div></section>` : ""}
@@ -1045,6 +1094,267 @@ afterRender.stack = (parts) => {
   if (parts[0]) document.getElementById(`layer-${parts[0]}`)?.scrollIntoView({ block: "start" });
 };
 
+// ---------------------------------------------------------------- WHO'S GOING
+const AST = {
+  official_speaker: { label: "Official speaker", desc: "Named on the official TOKEN2049 programme." },
+  publicly_attending: { label: "Publicly attending", desc: "Has said publicly that they will attend TOKEN2049 Singapore 2026." },
+  company_attending: { label: "Company attending", desc: "The company’s own site or account says its team will be at TOKEN2049. Individual employees aren’t inferred." },
+  exhibitor: { label: "Exhibitor", desc: "Officially listed as an exhibitor. This proves the organisation is present, not any particular person." },
+  sponsor: { label: "Sponsor / partner", desc: "Officially listed as a TOKEN2049 sponsor or partner. This proves the organisation is present, not any particular person." },
+  side_event_host: { label: "Side-event host", desc: "Publicly named as the host of an event during TOKEN2049 week." },
+  side_event_speaker: { label: "Side-event speaker", desc: "Publicly named as a speaker at a relevant side event." },
+  meeting_signal: { label: "Meeting signal", desc: "Has publicly invited meetings during the week, but hasn’t clearly said they’ll attend." },
+  launch_signal: { label: "TOKEN2049 launch signal", desc: "Has announced a launch timed around TOKEN2049. This doesn’t confirm any named person will attend." },
+};
+const AROLE = {
+  founder: "Founder / CEO", trader: "Trader", "market-maker": "Market maker", investor: "Investor", builder: "Builder / engineer",
+  institutional: "Institutional markets", infrastructure: "Infrastructure", sports: "Sports", media: "Media / journalist",
+  regulation: "Regulation / compliance", business: "Business development", other: "Other",
+};
+const CTYPE = {
+  venue: "Prediction-market venue", "trading-firm": "Trading firm", "market-maker": "Market maker", infrastructure: "Infrastructure",
+  data: "Data", oracle: "Oracle / settlement", exchange: "Exchange", institutional: "Institutional finance", sports: "Sports",
+  media: "Media", investor: "Investor", compliance: "Compliance", other: "Other",
+};
+const GECO = { kalshi: "Kalshi", polymarket: "Polymarket", hyperliquid: "Hyperliquid / HIP-4", multi: "Multi-platform", independent: "Independent" };
+const TYPE_ROLE = { "market-maker": "market-maker", "trading-firm": "trader", infrastructure: "infrastructure", data: "infrastructure", oracle: "infrastructure", institutional: "institutional", sports: "sports", media: "media", investor: "investor", compliance: "regulation" };
+const DISCOVER = [
+  ["platforms", "Prediction-market platforms", (g) => g.ctypes.includes("venue") || g.person?.group === "platforms"],
+  ["trading", "Traders & market makers", (g) => g.roles.some((r) => r === "trader" || r === "market-maker")],
+  ["institutional", "Institutional / market structure", (g) => g.roles.includes("institutional")],
+  ["infrastructure", "Infrastructure & data", (g) => g.roles.includes("infrastructure")],
+  ["sports", "Sports prediction markets", (g) => g.roles.includes("sports")],
+  ["builders", "Builders", (g) => g.roles.includes("builder")],
+  ["investors", "Investors", (g) => g.roles.includes("investor")],
+  ["media", "Journalists & creators", (g) => g.roles.includes("media")],
+];
+const RELR = { core: 0, strong: 1, adjacent: 2, wildcard: 3 };
+
+/** One entry per person or company, combining all of its public attendance records. */
+function buildGoing() {
+  const map = new Map();
+  for (const a of D.att) {
+    const key = a.person_id ? `p:${a.person_id}` : `c:${a.company_id}`;
+    if (!map.has(key)) map.set(key, []);
+    map.get(key).push(a);
+  }
+  const newest = D.site.last_updated;
+  const newCut = new Date(Date.parse(newest) - (D.site.new_days || 7) * 864e5).toISOString().slice(0, 10);
+  return [...map.entries()].map(([key, recs]) => {
+    const person = key.startsWith("p:") ? D.people.get(recs[0].person_id) : null;
+    const company = person ? D.companies.get(person.org) : D.companies.get(recs[0].company_id);
+    const ctypes = company?.types || [];
+    const roles = person ? person.roles || ["other"] : [...new Set(ctypes.map((t) => TYPE_ROLE[t]).filter(Boolean))];
+    const ecos = [...new Set(recs.flatMap((a) => a.ecosystems))];
+    const first = recs.map((a) => a.first_confirmed).filter(Boolean).sort()[0] || "";
+    return {
+      key, recs, person, company, ctypes, roles: roles.length ? roles : ["other"],
+      id: person ? person.id : company.id, name: person ? person.name : company.name,
+      href: person ? `#/people/${person.id}` : `#/companies/${company.id}`,
+      rel: recs.map((a) => a.pm_relevance).sort((x, y) => RELR[x] - RELR[y])[0],
+      ecos, geco: [...ecos.filter((e) => e !== "independent"), ...(ecos.filter((e) => e !== "independent").length > 1 ? ["multi"] : []), ...(ecos.includes("independent") ? ["independent"] : [])],
+      statuses: [...new Set(recs.map((a) => a.attendance_status))],
+      dates: [...new Set(recs.flatMap((a) => a.dates))].sort(),
+      events: [...new Set(recs.flatMap((a) => a.event_ids))],
+      interests: [...new Set(recs.flatMap((a) => a.interests))],
+      first, isNew: first >= newCut && first > (D.site.first_published || ""), lastVerified: recs.map((a) => a.last_verified).sort().pop(),
+      curator: person?.id === D.site.curator.person_id,
+    };
+  }).sort((a, b) => RELR[a.rel] - RELR[b.rel] || Number(b.isNew) - Number(a.isNew) || a.name.localeCompare(b.name));
+}
+
+const GFILTERS = [
+  { key: "role", label: "Role", opts: AROLE, get: (g) => g.roles },
+  { key: "rel", label: "Prediction-market relevance", opts: { core: "Core prediction markets", strong: "Strongly relevant", adjacent: "Adjacent" }, get: (g) => [g.rel] },
+  { key: "eco", label: "Ecosystem", opts: GECO, get: (g) => g.geco },
+  { key: "ctype", label: "Company type", opts: CTYPE, get: (g) => g.ctypes },
+  { key: "ev", label: "Attendance evidence", opts: Object.fromEntries(Object.entries(AST).map(([k, v]) => [k, v.label])), get: (g) => g.statuses },
+  { key: "day", label: "Availability (where evidence gives a day)", opts: null, get: (g) => g.dates },
+];
+const gOpts = (f) => (f.key === "day" ? Object.fromEntries(D.days.map((d) => [d.date, d.label])) : f.opts);
+function goingFilter(q) {
+  const text = q.get("q") || "", recent = q.get("recent") === "1", grp = DISCOVER.find((d) => d[0] === q.get("g"));
+  return D.going.filter((g) =>
+    GFILTERS.every((f) => { const sel = (q.get(f.key) || "").split(",").filter(Boolean); return !sel.length || f.get(g).some((v) => sel.includes(v)); }) &&
+    (!recent || g.isNew) && (!grp || grp[2](g)) &&
+    (!text || matches(norm(`${g.name} ${g.person?.role || ""} ${g.company?.name || ""} ${g.person?.org_label || ""} ${g.recs.map((a) => a.evidence_summary).join(" ")} ${g.interests.join(" ")}`), text)));
+}
+
+const evidenceChip = (st) => `<span class="chip chip-ev ev-${st}" title="${esc(AST[st].desc)}">${esc(AST[st].label)}</span>`;
+const newChip = (g) => (g.isNew ? `<span class="chip chip-new">New</span>` : "");
+
+function goingCard(g, o = {}) {
+  const line = g.person ? (g.person.role || g.company?.name || g.person.org_label || "") : g.ctypes.map((t) => CTYPE[t]).join(" · ");
+  const best = g.recs.find((a) => a.attendance_status !== "official_speaker") || g.recs[0];
+  const blurb = g.person?.why || best.evidence_summary;
+  const tags = [...new Set([...(g.roles.filter((r) => r !== "other").map((r) => AROLE[r])), ...g.ecos.filter((e) => e !== "independent").map((e) => ECO[e])])].slice(0, 3);
+  return `<article class="card going-card${g.curator ? " is-curator" : ""}">
+    <div class="gc-head"><span class="avatar${g.person ? "" : " sq"}" aria-hidden="true">${esc(initials(g.name))}</span>
+      <div><h3><a href="${g.href}">${esc(g.name)}</a></h3><p class="org">${esc(line)}</p></div></div>
+    <div class="chip-row">${relChip(g.rel)}${g.statuses.map(evidenceChip).join("")}${newChip(g)}</div>
+    ${o.compact ? "" : `<p class="why">${esc(blurb)}</p>`}
+    ${tags.length && !o.compact ? `<p class="apps">${tags.map(esc).join(" · ")}</p>` : ""}
+    ${g.dates.length ? `<p class="apps">📍 ${g.dates.map((d) => esc(dayOf(d).label.slice(0, 3))).join(", ")}${g.events.length ? ` · ${plural(g.events.length, "event")}` : ""}</p>` : ""}
+    <div class="gc-actions"><a class="btn btn-small" href="${g.href}">Profile</a>${best.source_url ? `<a class="btn btn-small" href="${esc(best.source_url)}" target="_blank" rel="noopener">Proof / source ↗</a>` : ""}</div>
+  </article>`;
+}
+
+function going(parts, q) {
+  if (q.get("research") === "1") return goingResearch();
+  setMeta("Who’s going?", "Prediction-market people, companies and adjacent organisations with public evidence they’ll be in Singapore for TOKEN2049 week.");
+  const G = D.going;
+  const n = (fn) => G.filter(fn).length;
+  const stats = [
+    [n((g) => g.person), "people"], [n((g) => !g.person), "companies"],
+    [n((g) => g.roles.some((r) => r === "trader" || r === "market-maker")), "traders & MMs"],
+    [n((g) => g.ctypes.includes("venue")), "PM platforms"],
+    [n((g) => g.roles.includes("infrastructure")), "infra & data"],
+  ];
+  return `<p class="eyebrow">Who’s going?</p>
+  <h1>Who’s going to TOKEN2049?</h1>
+  <p class="lede">Prediction-market people, companies and adjacent organisations with public evidence that they’ll be around TOKEN2049 Singapore.</p>
+  <p class="notice info">This is <strong>not</strong> TOKEN2049’s official attendee list. It’s compiled from public attendance announcements, the official programme, sponsor and exhibitor listings, and side-event pages. Every entry links to its evidence. We never assume someone is attending just because their employer is a sponsor, runs a booth or has a launch planned.</p>
+  <div class="stat-row">${stats.map(([v, l]) => `<div class="stat"><b>${v}</b><span>${esc(l)}</span></div>`).join("")}</div>
+  <p class="small muted">Counts come straight from the ${D.att.length} public evidence records. Last verified ${esc(fmtDate(D.site.last_updated))}.</p>
+  <div class="chip-row" role="group" aria-label="Discover" style="margin:18px 0 6px">
+    <a class="toggle" href="#/going" aria-pressed="${!q.get("g") && q.get("recent") !== "1"}">Everyone</a>
+    <a class="toggle" href="#/going?recent=1" aria-pressed="${q.get("recent") === "1"}">✦ Recently confirmed <span class="n">${n((g) => g.isNew)}</span></a>
+    ${DISCOVER.map(([k, l, fn]) => `<a class="toggle" href="#/going?g=${k}" aria-pressed="${q.get("g") === k}">${esc(l)} <span class="n">${n(fn)}</span></a>`).join("")}
+  </div>
+  <div class="search-box" style="margin-top:12px">${SEARCH_ICON}<label class="visually-hidden" for="g-search">Search who’s going</label>
+    <input id="g-search" type="search" placeholder="Search names, companies, interests…" value="${esc(q.get("q") || "")}" autocomplete="off"></div>
+  <div class="filter-bar"><button type="button" class="btn btn-small filter-open-btn" data-open-filters>Filters <span data-filter-count></span></button><div class="active-filters" data-active></div></div>
+  <div class="dir-layout">
+    <aside class="filter-panel" aria-label="Filters" data-filters>${goingFilterGroups(q)}</aside>
+    <div data-results aria-live="polite">${goingResults(q)}</div>
+  </div>
+  <dialog class="sheet" id="filter-sheet" aria-label="Filter who’s going">
+    <div class="sheet-head"><strong>Filters</strong><button type="button" class="icon-btn" data-close aria-label="Close filters">✕</button></div>
+    <div class="sheet-body" data-filters>${goingFilterGroups(q)}</div>
+    <div class="sheet-foot"><button type="button" class="btn" data-clear>Clear all</button><button type="button" class="btn btn-primary" data-close style="flex:1" data-show-count>Show results</button></div>
+  </dialog>
+  <section class="section panel"><h2>Evidence types</h2><p class="small muted">These are different kinds of evidence, and they aren’t equivalent.</p>
+    <dl class="kv">${Object.entries(AST).map(([k, v]) => `<dt>${evidenceChip(k)}</dt><dd class="small">${esc(v.desc)}</dd>`).join("")}</dl>
+    <p class="small" style="margin-top:14px">Announced you’re going? <a href="${issueUrl("attendance.yml")}" rel="noopener">Add yourself with a link to your public post</a>.</p></section>`;
+}
+function goingFilterGroups(q) {
+  return GFILTERS.map((f) => {
+    const sel = (q.get(f.key) || "").split(",").filter(Boolean);
+    const opts = Object.keys(gOpts(f)).filter((k) => D.going.some((g) => f.get(g).includes(k)));
+    if (!opts.length) return "";
+    return `<fieldset class="filter-group"><legend>${esc(f.label)}</legend><div class="opts">${opts.map((k) =>
+      `<button type="button" class="toggle" data-filter="${f.key}" data-v="${k}" aria-pressed="${sel.includes(k)}">${esc(gOpts(f)[k])} <span class="n">${D.going.filter((g) => f.get(g).includes(k)).length}</span></button>`).join("")}</div></fieldset>`;
+  }).join("");
+}
+function goingResults(q) {
+  const list = goingFilter(q);
+  const anyFilter = GFILTERS.some((f) => q.get(f.key)) || q.get("q") || q.get("g") || q.get("recent");
+  if (!list.length) return `<p class="empty">No one matches. <button type="button" class="btn btn-small" data-clear>Clear filters</button></p>`;
+  if (anyFilter) return `<p class="result-count">${plural(list.length, "entry", "entries")}</p><div class="grid grid-2">${list.map((g) => goingCard(g)).join("")}</div>`;
+  return DISCOVER.map(([k, l, fn]) => {
+    const inGroup = list.filter(fn);
+    if (!inGroup.length) return "";
+    return `<section class="day-group"><h2 class="day-heading">${esc(l)} <span class="n">${inGroup.length}</span> <a class="small" style="margin-left:auto" href="#/going?g=${k}">See all →</a></h2><div class="grid grid-2">${inGroup.slice(0, 4).map((g) => goingCard(g)).join("")}</div></section>`;
+  }).join("") + `<section class="day-group"><h2 class="day-heading">Everyone else <span class="n">${list.filter((g) => !DISCOVER.some((d) => d[2](g))).length}</span></h2><div class="grid grid-2">${list.filter((g) => !DISCOVER.some((d) => d[2](g))).map((g) => goingCard(g, { compact: true })).join("")}</div></section>`;
+}
+afterRender.going = () => {
+  if (!document.getElementById("g-search")) return;
+  const sheet = document.getElementById("filter-sheet");
+  const refresh = (focusSel) => {
+    const { q } = parseHash();
+    PAGE.querySelector("[data-results]").innerHTML = goingResults(q);
+    PAGE.querySelectorAll("[data-filters]").forEach((el) => (el.innerHTML = goingFilterGroups(q)));
+    const active = GFILTERS.flatMap((f) => (q.get(f.key) || "").split(",").filter(Boolean).map((v) => [f, v]));
+    PAGE.querySelector("[data-active]").innerHTML = active.map(([f, v]) => `<button type="button" data-filter="${f.key}" data-v="${v}" aria-label="Remove filter ${esc(gOpts(f)[v])}">${esc(gOpts(f)[v])} ✕</button>`).join("");
+    PAGE.querySelector("[data-filter-count]").textContent = active.length ? `(${active.length})` : "";
+    PAGE.querySelector("[data-show-count]").textContent = `Show ${plural(goingFilter(q).length, "result")}`;
+    if (focusSel) PAGE.querySelector(focusSel)?.focus();
+  };
+  PAGE.addEventListener("click", (ev) => {
+    const b = ev.target.closest("[data-filter]");
+    if (b) {
+      const { q } = parseHash();
+      const cur = new Set((q.get(b.dataset.filter) || "").split(",").filter(Boolean));
+      cur.has(b.dataset.v) ? cur.delete(b.dataset.v) : cur.add(b.dataset.v);
+      cur.size ? q.set(b.dataset.filter, [...cur].join(",")) : q.delete(b.dataset.filter);
+      setQuery(q);
+      refresh(b.closest("dialog") ? `dialog [data-filter="${b.dataset.filter}"][data-v="${b.dataset.v}"]` : null);
+      return;
+    }
+    if (ev.target.closest("[data-clear]")) {
+      const { q } = parseHash();
+      GFILTERS.forEach((f) => q.delete(f.key)); q.delete("q");
+      PAGE.querySelector("#g-search").value = "";
+      setQuery(q); refresh(); return;
+    }
+    if (ev.target.closest("[data-open-filters]")) sheet.showModal();
+    if (ev.target.closest("#filter-sheet [data-close]")) sheet.close();
+  });
+  sheet.addEventListener("click", (ev) => { if (ev.target === sheet) sheet.close(); });
+  let t;
+  PAGE.querySelector("#g-search").addEventListener("input", (ev) => {
+    clearTimeout(t);
+    t = setTimeout(() => { const { q } = parseHash(); ev.target.value.trim() ? q.set("q", ev.target.value.trim()) : q.delete("q"); setQuery(q); refresh(); }, 150);
+  });
+  refresh();
+};
+
+function goingResearch() {
+  setMeta("Attendance research leads");
+  const pend = D.attendanceAll.filter((a) => !a.public);
+  return `<a class="back-link" href="#/going">← Who’s going</a>
+  <h1>Research leads (not public evidence)</h1>
+  <p class="notice">These leads suggest someone may attend, but the original public source hasn’t been recovered or verified, so they don’t appear on Who’s Going. Note: this repository is public, so anyone can read these entries in <code>data/attendance.json</code>.</p>
+  <div class="table-wrap"><table><thead><tr><th>Who</th><th>Claimed status</th><th>Lead</th></tr></thead><tbody>
+  ${pend.map((a) => `<tr><td>${esc(a.person_id ? D.people.get(a.person_id)?.name : a.name)}${a.company_label ? `<br><span class="small muted">${esc(a.company_label)}</span>` : ""}</td><td>${esc(AST[a.attendance_status].label)}</td><td class="small">${esc(a.evidence_summary)}</td></tr>`).join("")}
+  </tbody></table></div>`;
+}
+
+/** Evidence list for a person or company page: "Where to find them". */
+function whereToFind(recs, entityName) {
+  if (!recs?.length) return "";
+  return `<section><h2>Where to find ${esc(entityName)}</h2><p class="small muted">Only where public evidence supports it.</p>
+  <ul class="source-list">${recs.map((a) => `<li><span class="type">${esc(AST[a.attendance_status].label)}${a.dates.length ? ` · ${a.dates.map((d) => esc(dayOf(d).label)).join(", ")}` : ""}</span>
+    ${esc(a.evidence_summary)}
+    ${a.event_ids.length ? `<p>${a.event_ids.map((id) => D.ev.get(id)).map((e) => `<a href="${evUrl(e)}">${esc(e.title)}</a> <span class="muted">(${esc(dayRange(e))}, ${esc(timeLabel(e))})</span>`).join("<br>")}</p>` : ""}
+    <p>${a.source_url ? `<a href="${esc(a.source_url)}" target="_blank" rel="noopener">Proof / source ↗</a> · ` : ""}Last verified ${esc(fmtDate(a.last_verified))}</p></li>`).join("")}</ul></section>`;
+}
+
+// ---------------------------------------------------------------- PROMO (unlockable)
+const promo = {
+  unlocked() { try { return localStorage.getItem("tpm2049:promo") === "1"; } catch { return false; } },
+  unlock() { try { localStorage.setItem("tpm2049:promo", "1"); } catch { /* ignore */ } },
+};
+function maybeUnlockPromo() {
+  const P = D.site.promo;
+  if (!P || promo.unlocked()) return;
+  if (saved.all().filter((id) => D.ev.has(id)).length >= P.unlock_after_saves) {
+    promo.unlock();
+    setTimeout(() => toast("🎁 You’ve unlocked a NEXTPredict NYC discount. See My schedule.", { label: "Show me", run: () => (location.hash = "#/schedule?at=promo") }), 600);
+  }
+}
+function promoCard() {
+  const P = D.site.promo, C = D.site.curator;
+  if (!P) return "";
+  const have = saved.all().filter((id) => D.ev.has(id)).length;
+  if (!promo.unlocked()) {
+    return `<div class="promo locked" id="promo"><p class="eyebrow">🔒 Unlockable</p><h3>Save ${P.unlock_after_saves} events to unlock a ${esc(P.label)}</h3>
+      <div class="bars" aria-hidden="true"><span class="b-core" style="flex:${Math.min(have, P.unlock_after_saves)}"></span><span style="flex:${Math.max(P.unlock_after_saves - have, 0)}"></span></div>
+      <p class="small muted" style="margin:8px 0 0">${Math.min(have, P.unlock_after_saves)} of ${P.unlock_after_saves} saved. ${esc(P.disclosure)}</p></div>`;
+  }
+  return `<div class="promo" id="promo"><p class="eyebrow">🎁 Unlocked</p><h3>${esc(C.summit.name)}: ${esc(C.summit.dates)}, ${esc(C.summit.place)}</h3>
+    <p>Prediction markets’ own summit, two weeks before the US midterms. Your code:</p>
+    <p class="code-box"><span class="mono">${esc(P.code)}</span><button type="button" class="btn btn-small" data-copy="${esc(P.code)}">Copy</button></p>
+    <div class="btn-row"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Claim on tickets.next.io ↗</a><a class="btn" href="${esc(C.summit.url)}" target="_blank" rel="noopener">About the summit</a></div>
+    <p class="small muted" style="margin:10px 0 0">${esc(P.disclosure)}</p></div>`;
+}
+function curatorPanel() {
+  const C = D.site.curator;
+  return `<div class="curator"><span class="avatar" aria-hidden="true">SC</span><div>
+    <p style="margin:0"><strong>Curated by <a href="#/people/${C.person_id}">${esc(C.person)}</a></strong>, ${esc(C.name)}. Stuart is in Singapore for TOKEN2049 week representing NEXTPredict and ${esc(C.summit.name)}. Say hello if you’re working on prediction markets.</p>
+    <div class="btn-row" style="margin-top:8px"><a class="btn btn-small" href="${esc(C.linkedin)}" target="_blank" rel="noopener">Stuart on LinkedIn ↗</a><a class="btn btn-small" href="${esc(C.summit.url)}" target="_blank" rel="noopener">${esc(C.summit.name)} ↗</a></div></div></div>`;
+}
+
 // ---------------------------------------------------------------- MY SCHEDULE
 function schedule(_, q) {
   setMeta("My TOKEN PM schedule", "Your saved prediction-market events at TOKEN2049 Singapore, with clashes and free time.");
@@ -1063,6 +1373,7 @@ function schedule(_, q) {
   return `<h1>My TOKEN PM schedule</h1>
   <p class="lede">Star events anywhere in the directory and they appear here in time order, with clashes and free time shown.</p>
   <p class="small muted">Saved in this browser only. There’s no account, and nothing is sent anywhere. To move your schedule to another device, use the share link or calendar export.</p>
+  ${promoCard()}
   ${list.length ? `
   <div class="panel" style="margin:16px 0">
     <p style="margin:0 0 10px"><strong>${plural(list.length, "event")} saved</strong>${clashPairs.length ? ` · <span style="color:var(--clash)">⚠ ${plural(clashPairs.length, "clash", "clashes")}</span>` : " · no clashes"}</p>
@@ -1090,6 +1401,7 @@ function about() {
   const updated = D.events.filter((e) => e.last_updated > D.site.last_updated);
   return `<h1>About this directory</h1>
   <p class="lede">An independent, unofficial guide to where prediction markets actually show up during TOKEN2049 Singapore week, 5–9 October 2026. Curated by ${curator()}.</p>
+  ${curatorPanel()}
   <div class="grid grid-2" style="margin-top:16px">
     <div class="panel"><h2>How it’s compiled</h2><p>Listings are assembled from:</p><ul>
       <li>the official TOKEN2049 programme, partner list and TOKEN2049 Week side-event directory</li><li>official event organiser pages (Luma, organiser sites and channels)</li>
@@ -1118,11 +1430,11 @@ function about() {
 
   <section class="section panel" id="submit"><h2>Submit something we missed</h2>
     <p>Spotted a missing event, a wrong time, a new speaker or a change in access? Open an issue on GitHub. It takes a minute and every report is reviewed before anything changes.</p>
-    <div class="btn-row"><a class="btn btn-primary" href="${issueUrl("missing-event.yml")}" rel="noopener">Suggest a missing event</a><a class="btn" href="${issueUrl("correction.yml")}" rel="noopener">Report a correction</a></div>
+    <div class="btn-row"><a class="btn btn-primary" href="${issueUrl("missing-event.yml")}" rel="noopener">Suggest a missing event</a><a class="btn" href="${issueUrl("correction.yml")}" rel="noopener">Report a correction</a><a class="btn" href="${issueUrl("attendance.yml")}" rel="noopener">I’m going: add me</a></div>
   </section>
 
   <section class="section"><h2>What this directory leaves out</h2>
-    <p>This directory is public. It doesn’t include private contact details, relationship notes, outreach status, ticket codes, promo codes or unpublished commercial information. Social-media claims that couldn’t be independently checked have been left out. Inclusion doesn’t mean endorsement, and this site is not affiliated with TOKEN2049 or any listed organiser.</p>
+    <p>This directory is public. It doesn’t include private contact details, relationship notes, outreach status, ticket codes or unpublished commercial information. The only offer on the site is NEXTPredict’s own, clearly labelled NEXTPredict NYC discount. Social-media claims that couldn’t be independently checked have been left out. Inclusion doesn’t mean endorsement, and this site is not affiliated with TOKEN2049 or any listed organiser.</p>
   </section>
 
   <section class="section"><h2>Source register (${srcs.length})</h2><ul class="source-list">${srcs.map(sourceItem).join("")}</ul></section>`;
@@ -1140,6 +1452,7 @@ function onSaveToggle(id, btn) {
     b.closest(".event-card")?.classList.toggle("is-saved", on);
   });
   updateCounts();
+  if (on) maybeUnlockPromo();
   const clashes = on ? (D.clash.get(id) || []).filter((o) => saved.has(o.id)) : [];
   toast(on ? (clashes.length ? `Saved. ⚠ Clashes with ${clashes[0].title}${clashes.length > 1 ? ` and ${clashes.length - 1} more` : ""}` : "Saved to My schedule") : "Removed from My schedule",
     { label: "Undo", run: () => { saved.toggle(id); rerenderIfNeeded(); } });
@@ -1179,6 +1492,7 @@ document.addEventListener("click", (ev) => {
     const ids = all.dataset.saveAll.split(",").filter((id) => D.ev.has(id));
     const before = saved.all();
     saved.add(ids);
+    maybeUnlockPromo();
     toast(`Added ${plural(ids.filter((i) => !before.includes(i)).length, "event")} to My schedule`, { label: "Undo", run: () => { saved.write(before); rerenderIfNeeded(); } });
     rerenderIfNeeded();
     return;
@@ -1196,6 +1510,8 @@ document.addEventListener("click", (ev) => {
     download("my-token2049-pm-schedule.ics", buildICS(list, { sources: D.sources, pageUrl: (x) => absUrl(evUrl(x)) }));
     return;
   }
+  const cp = t.closest("[data-copy]");
+  if (cp) { navigator.clipboard?.writeText(cp.dataset.copy).then(() => toast("Code copied"), () => prompt("Copy this code:", cp.dataset.copy)); return; }
   const sh = t.closest("[data-share]");
   if (sh) { const e = D.ev.get(sh.dataset.share); share(absUrl(evUrl(e)), e.title); return; }
   if (t.closest("[data-share-schedule]")) { share(absUrl(`#/schedule?share=${saved.all().filter((id) => D.ev.has(id)).join(",")}`), "My TOKEN2049 prediction-market schedule"); return; }
@@ -1222,6 +1538,6 @@ window.addEventListener("storage", (e) => { if (e.key?.startsWith("tpm2049:saved
     return;
   }
   document.querySelector("[data-footer-meta]").innerHTML =
-    `Last updated ${esc(fmtDate(D.site.last_updated))} · Times in ${esc(D.site.timezone)} · Curated by ${curator()} · <a href="#/about">How this is compiled</a> · <a href="${issueUrl("missing-event.yml")}" rel="noopener">Submit something we missed</a>`;
+    `Last updated ${esc(fmtDate(D.site.last_updated))} · Times in ${esc(D.site.timezone)} · Curated by <a href="${esc(D.site.curator.linkedin)}" rel="noopener" target="_blank">${esc(D.site.curator.person)}</a>, ${curator()} · <a href="${esc(D.site.curator.summit.url)}" rel="noopener" target="_blank">${esc(D.site.curator.summit.name)}</a> · <a href="#/about">How this is compiled</a> · <a href="${issueUrl("missing-event.yml")}" rel="noopener">Submit something we missed</a>`;
   render();
 })();

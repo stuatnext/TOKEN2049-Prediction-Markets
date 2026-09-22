@@ -1,0 +1,2010 @@
+[
+  {
+    "entity_type": "person",
+    "person_id": "shayne-coplan",
+    "company_id": "polymarket",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "polymarket"
+    ],
+    "interests": [
+      "distribution",
+      "regulation"
+    ],
+    "event_ids": [
+      "polymarket-coplan-fireside"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Polymarket Fireside Chat: Shayne Coplan with Balaji Srinivasan” (07 Oct 09:30).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "shayne-coplan-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "balaji-srinivasan",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "polymarket"
+    ],
+    "interests": [
+      "distribution",
+      "regulation"
+    ],
+    "event_ids": [
+      "polymarket-coplan-fireside"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Polymarket Fireside Chat: Shayne Coplan with Balaji Srinivasan” (07 Oct 09:30).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "balaji-srinivasan-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "dim-selk",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "liquidity",
+      "market-making",
+      "trading"
+    ],
+    "event_ids": [
+      "market-wizards"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Market Wizards” (07 Oct 09:50).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "dim-selk-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "jordi-alexander",
+    "company_id": "selini",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07",
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "kalshi"
+    ],
+    "interests": [
+      "category",
+      "distribution",
+      "liquidity",
+      "market-making",
+      "trading"
+    ],
+    "event_ids": [
+      "market-wizards",
+      "the-speculation-age"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Market Wizards” (07 Oct 09:50); “The Speculation Age: When Everything Becomes Tradable” (08 Oct 15:20).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "jordi-alexander-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "armani-ferrante",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "distribution"
+    ],
+    "event_ids": [
+      "building-the-neobrokerage"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Building the Neobrokerage” (07 Oct 10:10).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "armani-ferrante-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "kyle-samani",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07",
+      "2026-10-08"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "category",
+      "distribution",
+      "tokenisation"
+    ],
+    "event_ids": [
+      "building-the-neobrokerage",
+      "future-of-real-world-assets"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Building the Neobrokerage” (07 Oct 10:10); “The Future of Real World Assets: On Chain Equities, Perps, and Beyond” (08 Oct 15:00).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "kyle-samani-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "stani-kulechov",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "defi",
+      "institutional"
+    ],
+    "event_ids": [
+      "defi-institutional-breakthrough"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “DeFi’s Institutional Breakthrough” (07 Oct 10:20).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "stani-kulechov-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "guy-young",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "defi",
+      "institutional"
+    ],
+    "event_ids": [
+      "defi-institutional-breakthrough"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “DeFi’s Institutional Breakthrough” (07 Oct 10:20).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "guy-young-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "kain-warwick",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "defi",
+      "institutional"
+    ],
+    "event_ids": [
+      "defi-institutional-breakthrough"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “DeFi’s Institutional Breakthrough” (07 Oct 10:20).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "kain-warwick-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "guy-wuollet",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "defi",
+      "institutional"
+    ],
+    "event_ids": [
+      "defi-institutional-breakthrough"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “DeFi’s Institutional Breakthrough” (07 Oct 10:20).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "guy-wuollet-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "akshay-bd",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "category"
+    ],
+    "event_ids": [
+      "everything-trades-nobody-sleeps"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Wall St. 2049: Everything Trades, Nobody Sleeps” (07 Oct 10:30).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "akshay-bd-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "jeff-yan",
+    "company_id": "hyperliquid",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "interests": [
+      "defi",
+      "infrastructure"
+    ],
+    "event_ids": [
+      "hyperliquid-first-principles"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Hyperliquid: Rebuilding Finance from First Principles” (07 Oct 11:00).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "jeff-yan-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "hart-lambur",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "interests": [
+      "defi",
+      "infrastructure"
+    ],
+    "event_ids": [
+      "hyperliquid-first-principles"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Hyperliquid: Rebuilding Finance from First Principles” (07 Oct 11:00).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "hart-lambur-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "alexander-good",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "ai-agents",
+      "trading"
+    ],
+    "event_ids": [
+      "ai-agents-trading"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “AI Agents Trading on the Blockchain” (07 Oct 11:00).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "alexander-good-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "alex-svanevik",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "ai-agents",
+      "trading"
+    ],
+    "event_ids": [
+      "agentic-trading-ai-vs-humans"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Agentic Trading: Will AI Outperform Human Traders?” (07 Oct 11:00).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "alex-svanevik-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "john-wang",
+    "company_id": "kalshi",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07",
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "kalshi"
+    ],
+    "interests": [
+      "category",
+      "clearing",
+      "distribution",
+      "institutional",
+      "regulation"
+    ],
+    "event_ids": [
+      "kalshi-bringing-perps-to-america",
+      "the-speculation-age"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Bringing Perps to America” (07 Oct 11:40); “The Speculation Age: When Everything Becomes Tradable” (08 Oct 15:20).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "john-wang-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "johann-kerbrat",
+    "company_id": "robinhood",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07",
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "kalshi"
+    ],
+    "interests": [
+      "category",
+      "distribution"
+    ],
+    "event_ids": [
+      "robinhood-chain",
+      "the-speculation-age"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Robinhood Chain” (07 Oct 12:10); “The Speculation Age: When Everything Becomes Tradable” (08 Oct 15:20).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "johann-kerbrat-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "ran-neuner",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "distribution"
+    ],
+    "event_ids": [
+      "robinhood-chain"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Robinhood Chain” (07 Oct 12:10).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "ran-neuner-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "pauline-shangett",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "consumer"
+    ],
+    "event_ids": [
+      "next-billion-users"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Next Billion Users Should Never Touch Blockchain” (07 Oct 12:30).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "pauline-shangett-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "jake-chervinsky",
+    "company_id": "hyperliquid-policy-center",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "regulation"
+    ],
+    "event_ids": [
+      "white-house-to-wall-street"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “From the White House to Wall Street: What’s Next for Crypto?” (07 Oct 14:50).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "jake-chervinsky-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "kelvin-koh",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "category"
+    ],
+    "event_ids": [
+      "cryptos-identity-crisis"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Crypto’s Identity Crisis: What Are We Actually Betting On?” (07 Oct 15:30).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "kelvin-koh-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "rajiv-patel-oconnor",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "category"
+    ],
+    "event_ids": [
+      "cryptos-identity-crisis"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Crypto’s Identity Crisis: What Are We Actually Betting On?” (07 Oct 15:30).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "rajiv-patel-oconnor-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "larry-cermak",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "category"
+    ],
+    "event_ids": [
+      "cryptos-identity-crisis"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Crypto’s Identity Crisis: What Are We Actually Betting On?” (07 Oct 15:30).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "larry-cermak-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "andrew-mccormick",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [],
+    "interests": [
+      "clearing",
+      "institutional",
+      "trading"
+    ],
+    "event_ids": [
+      "tokenized-markets-institutional-finance"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Tokenized Markets: How Institutional Finance Moves Onchain” (07 Oct 15:50).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "andrew-mccormick-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "michael-higgins",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [],
+    "interests": [
+      "clearing",
+      "institutional",
+      "trading"
+    ],
+    "event_ids": [
+      "tokenized-markets-institutional-finance"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Tokenized Markets: How Institutional Finance Moves Onchain” (07 Oct 15:50).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "michael-higgins-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "joshua-lim",
+    "company_id": "falconx",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [],
+    "interests": [
+      "clearing",
+      "institutional",
+      "trading"
+    ],
+    "event_ids": [
+      "tokenized-markets-institutional-finance"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Tokenized Markets: How Institutional Finance Moves Onchain” (07 Oct 15:50).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "joshua-lim-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "roland-chai",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [],
+    "interests": [
+      "clearing",
+      "institutional",
+      "trading"
+    ],
+    "event_ids": [
+      "tokenized-markets-institutional-finance"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda1",
+    "source_url": "https://www.token2049.com/singapore/agenda",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Tokenized Markets: How Institutional Finance Moves Onchain” (07 Oct 15:50).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "roland-chai-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "jenny-johnson",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "clearing",
+      "institutional",
+      "tokenisation"
+    ],
+    "event_ids": [
+      "new-institutional-market"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda2",
+    "source_url": "https://token2049.com/singapore/agenda?630073d5_page=2",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “The New Institutional Market: Tokenized Assets. Global Liquidity. Onchain Settlement” (08 Oct 09:10).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "jenny-johnson-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "richard-teng",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "clearing",
+      "institutional",
+      "tokenisation"
+    ],
+    "event_ids": [
+      "new-institutional-market"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda2",
+    "source_url": "https://token2049.com/singapore/agenda?630073d5_page=2",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “The New Institutional Market: Tokenized Assets. Global Liquidity. Onchain Settlement” (08 Oct 09:10).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "richard-teng-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "austin-federa",
+    "company_id": "doublezero",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "kalshi"
+    ],
+    "interests": [
+      "data",
+      "infrastructure"
+    ],
+    "event_ids": [
+      "doublezero-keynote"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda2",
+    "source_url": "https://token2049.com/singapore/agenda?630073d5_page=2",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Austin Federa / DoubleZero keynote” (08 Oct 11:30).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "austin-federa-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "adena-friedman",
+    "company_id": "nasdaq",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "institutional"
+    ],
+    "event_ids": [
+      "nasdaq-adena-friedman"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda2",
+    "source_url": "https://token2049.com/singapore/agenda?630073d5_page=2",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Fireside Chat with Nasdaq CEO Adena Friedman” (08 Oct 14:00).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "adena-friedman-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "joanna-ossinger",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "institutional"
+    ],
+    "event_ids": [
+      "nasdaq-adena-friedman"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda2",
+    "source_url": "https://token2049.com/singapore/agenda?630073d5_page=2",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “Fireside Chat with Nasdaq CEO Adena Friedman” (08 Oct 14:00).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "joanna-ossinger-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "vladimir-novakovski",
+    "company_id": "lighter",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "kalshi"
+    ],
+    "interests": [
+      "category",
+      "distribution"
+    ],
+    "event_ids": [
+      "the-speculation-age"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-agenda2",
+    "source_url": "https://token2049.com/singapore/agenda?630073d5_page=2",
+    "source_date": null,
+    "evidence_summary": "Named on the official TOKEN2049 programme: “The Speculation Age: When Everything Becomes Tradable” (08 Oct 15:20).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "vladimir-novakovski-official-speaker",
+    "attendance_status": "official_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "austin-federa",
+    "company_id": "doublezero",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-06"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "interests": [
+      "institutional",
+      "infrastructure",
+      "liquidity"
+    ],
+    "event_ids": [
+      "hyperliquid-forum"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-hl-forum",
+    "source_url": "https://www.hyperliquidforum.com/singapore",
+    "source_date": null,
+    "evidence_summary": "Listed for the Hyperliquid Forum (Tue 6 Oct).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "austin-federa-hyperliquid-forum-speaker",
+    "attendance_status": "side_event_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "ahmed-salih",
+    "company_id": "outcome",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-06"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "interests": [
+      "institutional",
+      "infrastructure",
+      "liquidity"
+    ],
+    "event_ids": [
+      "hyperliquid-forum"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-hl-forum",
+    "source_url": "https://www.hyperliquidforum.com/singapore",
+    "source_date": null,
+    "evidence_summary": "Listed for the Hyperliquid Forum (Tue 6 Oct).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "ahmed-salih-hyperliquid-forum-speaker",
+    "attendance_status": "side_event_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "jack-booth",
+    "company_id": "outcome",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-06"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "interests": [
+      "institutional",
+      "infrastructure",
+      "liquidity"
+    ],
+    "event_ids": [
+      "hyperliquid-forum"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-hl-forum",
+    "source_url": "https://www.hyperliquidforum.com/singapore",
+    "source_date": null,
+    "evidence_summary": "Listed for the Hyperliquid Forum (Tue 6 Oct).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "jack-booth-hyperliquid-forum-speaker",
+    "attendance_status": "side_event_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "jordi-alexander",
+    "company_id": "selini",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-06"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "interests": [
+      "institutional",
+      "infrastructure",
+      "liquidity"
+    ],
+    "event_ids": [
+      "hyperliquid-forum"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-hl-forum",
+    "source_url": "https://www.hyperliquidforum.com/singapore",
+    "source_date": null,
+    "evidence_summary": "Listed for the Hyperliquid Forum (Tue 6 Oct).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "jordi-alexander-hyperliquid-forum-speaker",
+    "attendance_status": "side_event_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "ian-weisberger",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-06"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "interests": [
+      "institutional",
+      "infrastructure",
+      "liquidity"
+    ],
+    "event_ids": [
+      "hyperliquid-forum"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-hl-forum",
+    "source_url": "https://www.hyperliquidforum.com/singapore",
+    "source_date": null,
+    "evidence_summary": "Listed for the Hyperliquid Forum (Tue 6 Oct).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "ian-weisberger-hyperliquid-forum-speaker",
+    "attendance_status": "side_event_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "arthur-hayes",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-06"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "interests": [
+      "institutional",
+      "infrastructure",
+      "liquidity"
+    ],
+    "event_ids": [
+      "hyperliquid-forum"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-cryptonews-hlforum",
+    "source_url": "https://crypto.news/hyperliquid-forum-by-days-brings-institutional-capital-face-to-face-with-the-hyperliquid-ecosystem/",
+    "source_date": null,
+    "evidence_summary": "Reported among confirmed speakers at the Hyperliquid Forum (Tue 6 Oct).",
+    "first_confirmed": "2026-09-23",
+    "last_verified": "2026-09-23",
+    "id": "arthur-hayes-hyperliquid-forum-speaker",
+    "attendance_status": "side_event_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "michael-adams",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [
+      "sports",
+      "liquidity",
+      "regulation"
+    ],
+    "event_ids": [
+      "the-odds-prediction-markets-live"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-michael-adams",
+    "source_url": "https://mnm.live/agentic-finance/speakers/michael-adams",
+    "source_date": null,
+    "evidence_summary": "Speaker bio on the organiser’s Agentic Finance speaker pages; The Odds is co-located with Agentic Finance (Thu 8 Oct, Suntec City).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "michael-adams-the-odds-prediction-markets-live-speaker",
+    "attendance_status": "side_event_speaker"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "chainup",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07",
+      "2026-10-08"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [],
+    "event_ids": [
+      "chainup-booth"
+    ],
+    "source_type": "company_site",
+    "source_id": "src-chainup-token",
+    "source_url": "https://chainup.com/events/chainup-at-token2049-singapore-2026/",
+    "source_date": null,
+    "evidence_summary": "ChainUp says its team will be at TOKEN2049 Singapore at booth PB4-8, demonstrating its infrastructure suite, which includes prediction-market technology (Hermes). No individual attendees are inferred.",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "chainup-company-attending",
+    "attendance_status": "company_attending"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "chainup",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07",
+      "2026-10-08"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [],
+    "event_ids": [
+      "chainup-booth"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-partners",
+    "source_url": "https://www.token2049.com/singapore/partners",
+    "source_date": null,
+    "evidence_summary": "Listed as a Gold sponsor on the official TOKEN2049 partners page.",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "chainup-sponsor",
+    "attendance_status": "sponsor"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "chainup",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-06"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [],
+    "event_ids": [
+      "chainup-institutional-ark"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-chainup-ark",
+    "source_url": "https://chainup.com/news/institutional-ark-by-chainup-at-token2049-singapore-2026/",
+    "source_date": null,
+    "evidence_summary": "Hosts The Institutional Ark (Tue 6 Oct, Monti at 1-Pavilion).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "chainup-side-event-host",
+    "attendance_status": "side_event_host"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "predict-fun",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07",
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [],
+    "event_ids": [
+      "predict-fun-expo"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-partners",
+    "source_url": "https://www.token2049.com/singapore/partners",
+    "source_date": null,
+    "evidence_summary": "Listed as a Gold sponsor on the official TOKEN2049 partners page. No named employee is inferred.",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "predict-fun-sponsor",
+    "attendance_status": "sponsor"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "nextpredict",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [],
+    "event_ids": [],
+    "source_type": "official_programme",
+    "source_id": "src-token-partners",
+    "source_url": "https://www.token2049.com/singapore/partners",
+    "source_date": null,
+    "evidence_summary": "Listed as a Community Partner on the official TOKEN2049 partners page.",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "nextpredict-sponsor",
+    "attendance_status": "sponsor"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "wintermute",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07",
+      "2026-10-08"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [],
+    "event_ids": [],
+    "source_type": "company_site",
+    "source_id": "src-wintermute-events",
+    "source_url": "https://www.wintermute.com/events",
+    "source_date": null,
+    "evidence_summary": "Wintermute’s own events calendar lists it as speaking at TOKEN2049 Singapore (7–8 Oct). The speaker isn’t named in our sources. It is also reported among Finality Forum speakers and listed as a HypurrCo partner.",
+    "first_confirmed": "2026-09-23",
+    "last_verified": "2026-09-23",
+    "id": "wintermute-company-attending",
+    "attendance_status": "company_attending"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "kalshi",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-05",
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "kalshi"
+    ],
+    "interests": [],
+    "event_ids": [
+      "haruko-x-kalshi",
+      "kalshi-x-insilico-asia-session"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-insilico",
+    "source_url": "https://luma.com/w931emv1",
+    "source_date": null,
+    "evidence_summary": "Named as co-host of Haruko x Kalshi (Mon 5 Oct) and Kalshi x Insilico Terminal: Asia Session (Thu 8 Oct).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "kalshi-side-event-host",
+    "attendance_status": "side_event_host"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "haruko",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-05"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "kalshi",
+      "polymarket"
+    ],
+    "interests": [],
+    "event_ids": [
+      "haruko-x-kalshi"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-haruko-event",
+    "source_url": "https://events.dexpal.io/token2049/T2049-142",
+    "source_date": null,
+    "evidence_summary": "Co-host of “More than a million, Haruko x Kalshi” (Mon 5 Oct).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "haruko-side-event-host",
+    "attendance_status": "side_event_host"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "insilico",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "kalshi",
+      "hyperliquid"
+    ],
+    "interests": [],
+    "event_ids": [
+      "kalshi-x-insilico-asia-session"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-insilico",
+    "source_url": "https://luma.com/w931emv1",
+    "source_date": null,
+    "evidence_summary": "Co-host of the Kalshi x Insilico Terminal Asia Session (Thu 8 Oct).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "insilico-side-event-host",
+    "attendance_status": "side_event_host"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "polymarket",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "polymarket"
+    ],
+    "interests": [],
+    "event_ids": [
+      "polymarket-singapore-kickoff"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-poly-kickoff",
+    "source_url": "https://luma.com/polymarketsingapore",
+    "source_date": null,
+    "evidence_summary": "Hosts the Polymarket Singapore Kick-Off (Wed 7 Oct, High House).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "polymarket-side-event-host",
+    "attendance_status": "side_event_host"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "hyperliquid",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-05"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "interests": [],
+    "event_ids": [
+      "hyperliquid-ecosystem-event"
+    ],
+    "source_type": "company_social",
+    "source_id": "src-hl-ann",
+    "source_url": "https://t.me/s/hyperliquid_announcements?before=546",
+    "source_date": null,
+    "evidence_summary": "Announced its annual ecosystem event for Monday 5 October; time and venue still TBC.",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "hyperliquid-side-event-host",
+    "attendance_status": "side_event_host"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "moirai",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [
+      "moirai-traders-night"
+    ],
+    "source_type": "event_directory",
+    "source_id": "src-dexpal",
+    "source_url": "https://events.dexpal.io/token2049",
+    "source_date": null,
+    "evidence_summary": "Hosts Prediction Market Traders Night (Thu 8 Oct).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "moirai-side-event-host",
+    "attendance_status": "side_event_host"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "powerscale",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [],
+    "event_ids": [
+      "powerscale-social-prediction-market"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-token-week",
+    "source_url": "https://week.token2049.com/",
+    "source_date": null,
+    "evidence_summary": "Hosts a social prediction-market event on the official TOKEN2049 Week listing (Thu 8 Oct).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "powerscale-side-event-host",
+    "attendance_status": "side_event_host"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "zoomex",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [
+      "zoomex-traders-after-party"
+    ],
+    "source_type": "company_press",
+    "source_id": "src-zoomex-pr",
+    "source_url": "https://www.globenewswire.com/news-release/2026/09/21/3365363/0/en/zoomex-to-host-traders-after-party-during-token2049-singapore-connecting-traders-and-the-web3-community.html",
+    "source_date": null,
+    "evidence_summary": "Hosts the Zoomex Traders After Party, whose panel covers prediction markets (Wed 7 Oct).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "zoomex-side-event-host",
+    "attendance_status": "side_event_host"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "grayscale",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-06"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "interests": [],
+    "event_ids": [
+      "hyperliquid-forum"
+    ],
+    "source_type": "media_report",
+    "source_id": "src-grayscale-hlforum",
+    "source_url": "https://cryptobriefing.com/grayscale-hyperliquid-forum-singapore/",
+    "source_date": null,
+    "evidence_summary": "Reported as co-host of the Hyperliquid Forum (Tue 6 Oct).",
+    "first_confirmed": "2026-09-23",
+    "last_verified": "2026-09-23",
+    "id": "grayscale-side-event-host",
+    "attendance_status": "side_event_host"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "kaiko",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [
+      "opening-bell-breakfast"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-breakfast",
+    "source_url": "https://events.trymimetic.com/events/singapore/opening-bell-an-institutional-breakfast-by-zenith-kaiko-t-rex-oct-2026",
+    "source_date": null,
+    "evidence_summary": "Co-host of the Opening Bell institutional breakfast (Wed 7 Oct).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "kaiko-side-event-host",
+    "attendance_status": "side_event_host"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "quant-ferryman",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [
+      "hft-closed-door-meetup"
+    ],
+    "source_type": "event_directory",
+    "source_id": "src-dexpal",
+    "source_url": "https://events.dexpal.io/token2049",
+    "source_date": null,
+    "evidence_summary": "Hosts the HFT Closed-Door Meetup (Thu 8 Oct).",
+    "first_confirmed": "2026-09-22",
+    "last_verified": "2026-09-23",
+    "id": "quant-ferryman-side-event-host",
+    "attendance_status": "side_event_host"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "predictive-labs",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [],
+    "event_ids": [],
+    "source_type": "company_press",
+    "source_id": "src-nijinn-launch",
+    "source_url": "https://www.tradingview.com/news/eqs:01cf957cc094b:0-coinsilium-group-limited-predictive-labs-unveils-nijinn-coinsilium-increases-strategic-investment-and-accelerates-venture-building-strategy/",
+    "source_date": null,
+    "evidence_summary": "Company announcement says the commercial launch of Nijinn Pro, its cross-venue prediction-market data product, is planned around TOKEN2049 Singapore. This is not confirmation that any named person will attend.",
+    "first_confirmed": "2026-09-23",
+    "last_verified": "2026-09-23",
+    "id": "predictive-labs-launch-signal",
+    "attendance_status": "launch_signal"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "stuart-crowley",
+    "company_id": "nextpredict",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [
+      "prediction-markets",
+      "media",
+      "market-structure"
+    ],
+    "event_ids": [],
+    "source_type": "self_declared",
+    "source_id": "src-stuart-linkedin",
+    "source_url": "https://sg.linkedin.com/in/stuart-crowley-b2b561104",
+    "source_date": null,
+    "evidence_summary": "Curator of this directory. Attending TOKEN2049 week in Singapore representing NEXTPredict and the NEXTPredict NYC summit (22–23 Oct).",
+    "first_confirmed": "2026-09-23",
+    "last_verified": "2026-09-23",
+    "id": "stuart-crowley-publicly-attending",
+    "attendance_status": "publicly_attending"
+  },
+  {
+    "entity_type": "person",
+    "person_id": null,
+    "company_id": null,
+    "name": "Vishal K. Gupta",
+    "confidence": "pending",
+    "public": false,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "core",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [],
+    "source_type": "internal_lead",
+    "source_id": null,
+    "source_url": null,
+    "source_date": null,
+    "evidence_summary": "Reported to have posted that he will be at KBW and TOKEN2049 and wants to discuss prediction markets, including “markets on markets”. The original public post hasn’t been recovered yet.",
+    "first_confirmed": null,
+    "last_verified": "2026-09-23",
+    "id": "vishal-k-gupta-pending",
+    "attendance_status": "publicly_attending",
+    "company_label": "True Markets (CEO)"
+  },
+  {
+    "entity_type": "person",
+    "person_id": null,
+    "company_id": null,
+    "name": "Predict365",
+    "confidence": "pending",
+    "public": false,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "core",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [],
+    "source_type": "internal_lead",
+    "source_id": null,
+    "source_url": null,
+    "source_date": null,
+    "evidence_summary": "A captured announcement reportedly says its team will be at Marina Bay Sands on 7–8 October, seeking meetings across prediction markets, trading and fintech. The original public post hasn’t been recovered yet.",
+    "first_confirmed": null,
+    "last_verified": "2026-09-23",
+    "id": "predict365-pending",
+    "attendance_status": "company_attending",
+    "company_label": "Predict365"
+  },
+  {
+    "entity_type": "person",
+    "person_id": null,
+    "company_id": null,
+    "name": "Tom Wolf",
+    "confidence": "pending",
+    "public": false,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "core",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [],
+    "source_type": "internal_lead",
+    "source_id": null,
+    "source_url": null,
+    "source_date": null,
+    "evidence_summary": "Reportedly invited prediction-market platforms attending TOKEN2049/KBW to get in touch. That’s a meeting signal, not proof of attendance, and the original post hasn’t been recovered.",
+    "first_confirmed": null,
+    "last_verified": "2026-09-23",
+    "id": "tom-wolf-pending",
+    "attendance_status": "meeting_signal",
+    "company_label": "Investor / adviser"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "andy-ross",
+    "company_id": null,
+    "name": null,
+    "confidence": "pending",
+    "public": false,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "core",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [],
+    "source_type": "internal_lead",
+    "source_id": null,
+    "source_url": null,
+    "source_date": null,
+    "evidence_summary": "Listed in connection with Haruko x Kalshi. Role (host, speaker or guest) not confirmed.",
+    "first_confirmed": null,
+    "last_verified": "2026-09-23",
+    "id": "andy-ross-pending",
+    "attendance_status": "side_event_host",
+    "company_label": null
+  },
+  {
+    "entity_type": "person",
+    "person_id": "jacelynn-pang",
+    "company_id": null,
+    "name": null,
+    "confidence": "pending",
+    "public": false,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "core",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [],
+    "source_type": "internal_lead",
+    "source_id": null,
+    "source_url": null,
+    "source_date": null,
+    "evidence_summary": "Associated with ChainUp's TOKEN2049 presence. Company presence doesn't prove individual attendance.",
+    "first_confirmed": null,
+    "last_verified": "2026-09-23",
+    "id": "jacelynn-pang-pending",
+    "attendance_status": "company_attending",
+    "company_label": null
+  },
+  {
+    "entity_type": "person",
+    "person_id": "cj-hetherington",
+    "company_id": null,
+    "name": null,
+    "confidence": "pending",
+    "public": false,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "core",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [],
+    "source_type": "internal_lead",
+    "source_id": null,
+    "source_url": null,
+    "source_date": null,
+    "evidence_summary": "Linked to The Odds in a captured speaker post. Not yet confirmed on the organiser page.",
+    "first_confirmed": null,
+    "last_verified": "2026-09-23",
+    "id": "cj-hetherington-pending",
+    "attendance_status": "side_event_speaker",
+    "company_label": null
+  },
+  {
+    "entity_type": "person",
+    "person_id": "matt-restivo",
+    "company_id": null,
+    "name": null,
+    "confidence": "pending",
+    "public": false,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "core",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [],
+    "source_type": "internal_lead",
+    "source_id": null,
+    "source_url": null,
+    "source_date": null,
+    "evidence_summary": "Linked to The Odds in a captured speaker post. Not yet confirmed on the organiser page.",
+    "first_confirmed": null,
+    "last_verified": "2026-09-23",
+    "id": "matt-restivo-pending",
+    "attendance_status": "side_event_speaker",
+    "company_label": null
+  },
+  {
+    "entity_type": "person",
+    "person_id": "par-helgosson",
+    "company_id": null,
+    "name": null,
+    "confidence": "pending",
+    "public": false,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "core",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [],
+    "source_type": "internal_lead",
+    "source_id": null,
+    "source_url": null,
+    "source_date": null,
+    "evidence_summary": "Linked to The Odds in a captured speaker post. Not yet confirmed on the organiser page.",
+    "first_confirmed": null,
+    "last_verified": "2026-09-23",
+    "id": "par-helgosson-pending",
+    "attendance_status": "side_event_speaker",
+    "company_label": null
+  },
+  {
+    "entity_type": "person",
+    "person_id": null,
+    "company_id": null,
+    "name": "Kalshi x Insilico named hosts",
+    "confidence": "pending",
+    "public": false,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "core",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [],
+    "source_type": "internal_lead",
+    "source_id": null,
+    "source_url": null,
+    "source_date": null,
+    "evidence_summary": "Named individual hosts on the Luma page haven't been captured yet (the page couldn't be reached during this update).",
+    "first_confirmed": null,
+    "last_verified": "2026-09-23",
+    "id": "kalshi-insilico-named-hosts-pending",
+    "attendance_status": "side_event_host",
+    "company_label": "Kalshi / Insilico"
+  }
+]

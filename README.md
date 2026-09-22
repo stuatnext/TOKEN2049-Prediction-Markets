@@ -1,9 +1,9 @@
 # Prediction Markets at TOKEN2049 Singapore 2026
 
 The unofficial directory of prediction-market events, sessions, companies and people across TOKEN2049 week (5–9 October 2026).
-It's a calendar, a searchable directory, a guide to the prediction-market "stack", and a personal schedule builder with clash detection and calendar export.
+It's a calendar, a searchable directory, a "Who's Going?" attendance directory with linked evidence, a guide to the prediction-market "stack", and a personal schedule builder with clash detection and calendar export.
 
-Curated by NEXTPredict. Not affiliated with TOKEN2049.
+Curated by [Stuart Crowley](https://sg.linkedin.com/in/stuart-crowley-b2b561104) of [NEXTPredict](https://nextpredict.io/) ([NEXTPredict NYC 2026](https://nextpredict.io/summits/the-worlds-prediction-markets-summit/)). Not affiliated with TOKEN2049.
 
 ## What's in here
 
@@ -17,7 +17,8 @@ data/people.json           People
 data/companies.json        Companies / organisations
 data/stack.json            The 10 layers of the prediction-market stack
 data/sources.json          Every source link
-data/site.json             Site settings: last-updated date, days, "still checking" list
+data/attendance.json       Who's Going evidence records (one per piece of evidence)
+data/site.json             Site settings: last-updated date, days, curator, promo, "still checking" list
 scripts/validate-data.mjs  Checks the data files for mistakes
 .github/ISSUE_TEMPLATE/    "Suggest a missing event" and "Report a correction" forms
 DATA_GUIDE.md              How to add or change an event, person or company
@@ -62,4 +63,5 @@ Pages use `#` links so they work on GitHub Pages without server configuration, f
 - `#/people/john-wang`
 - `#/calendar/thu`
 - `#/stack/clearing`
+- `#/going` (Who's Going), e.g. `#/going?role=trader,market-maker`
 - `#/schedule?share=…` (a shared schedule)

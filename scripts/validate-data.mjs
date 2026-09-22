@@ -10,6 +10,7 @@ const companies = load("companies.json");
 const stack = load("stack.json");
 const sources = load("sources.json");
 const site = load("site.json");
+const attendance = load("attendance.json");
 
 const ENUMS = {
   type: ["official", "side-event", "forum", "meetup", "networking", "closed-door", "exhibition", "other"],
@@ -116,13 +117,40 @@ const used = new Set([
   ...stack.flatMap((l) => l.sources || []),
   ...(site.open_questions || []).flatMap((q) => q.sources || []),
   ...(site.practical || []).flatMap((q) => q.sources || []),
+  ...attendance.map((a) => a.source_id).filter(Boolean),
 ]);
 for (const s of sources) if (!used.has(s.id)) warn(`source "${s.id}" is not referenced by any record`);
+
+// ---- Who's Going: every public record needs its own evidence
+const AST = ["official_speaker", "publicly_attending", "company_attending", "exhibitor", "sponsor", "side_event_host", "side_event_speaker", "meeting_signal", "launch_signal"];
+const ROLE = ["founder", "trader", "market-maker", "investor", "builder", "institutional", "infrastructure", "sports", "media", "regulation", "business", "other"];
+const CTYPE = ["venue", "trading-firm", "market-maker", "infrastructure", "data", "oracle", "exchange", "institutional", "sports", "media", "investor", "compliance", "other"];
+const A = ids(attendance, "attendance");
+for (const a of attendance) {
+  const w = `attendance "${a.id}"`;
+  if (!AST.includes(a.attendance_status)) err(`${w}: attendance_status "${a.attendance_status}" must be one of ${AST.join(", ")}`);
+  if (!["confirmed", "pending"].includes(a.confidence)) err(`${w}: confidence must be confirmed or pending`);
+  if (a.confidence === "pending" && a.public) err(`${w}: pending records must have "public": false`);
+  if (a.person_id && !P.has(a.person_id)) err(`${w}: unknown person "${a.person_id}"`);
+  if (a.company_id && !C.has(a.company_id)) err(`${w}: unknown company "${a.company_id}"`);
+  if (!a.person_id && !a.company_id && !a.name) err(`${w}: needs person_id, company_id or name`);
+  if (a.entity_type === "person" && a.public && !a.person_id) err(`${w}: public person records need a person_id (add them to people.json)`);
+  for (const e of a.event_ids || []) if (!E.has(e)) err(`${w}: unknown event "${e}"`);
+  for (const d of a.dates || []) if (!days.has(d)) err(`${w}: date ${d} is not a listed day`);
+  if (a.public) {
+    if (!a.source_url || !/^https:\/\//.test(a.source_url)) err(`${w}: public records need a source_url (evidence rule)`);
+    if (a.source_id && !S.has(a.source_id)) err(`${w}: unknown source "${a.source_id}"`);
+    if (!a.evidence_summary) err(`${w}: missing evidence_summary`);
+    if (!a.last_verified) err(`${w}: missing last_verified`);
+  }
+}
+for (const p of people) for (const r of p.roles || []) if (!ROLE.includes(r)) err(`person "${p.id}": role "${r}" must be one of ${ROLE.join(", ")}`);
+for (const c of companies) for (const t of c.types || []) if (!CTYPE.includes(t)) err(`company "${c.id}": type "${t}" must be one of ${CTYPE.join(", ")}`);
 
 for (const w of warnings) console.log("warning:", w);
 for (const e of errors) console.error("ERROR:", e);
 console.log(
-  `\n${events.length} events, ${people.length} people, ${companies.length} companies, ${stack.length} stack layers, ${sources.length} sources.`
+  `\n${events.length} events, ${people.length} people, ${companies.length} companies, ${stack.length} stack layers, ${sources.length} sources, ${attendance.length} attendance records (${attendance.filter((a) => a.public).length} public).`
 );
 if (errors.length) {
   console.error(`${errors.length} error(s) found.`);

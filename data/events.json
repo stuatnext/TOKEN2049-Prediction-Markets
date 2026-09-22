@@ -159,7 +159,7 @@
       "liquidity",
       "data-transport"
     ],
-    "summary": "Institutional Hyperliquid forum covering capital, infrastructure and a dedicated prediction/outcome-markets theme.",
+    "summary": "Full-day institutional Hyperliquid forum, run by DAYS as part of the Digital Asset Yield Summit and reported as co-hosted by Grayscale. Its six themes include custody, liquidity and execution, capital efficiency, tokenised markets, and prediction and outcome markets.",
     "why": "The clearest place to see what happens when outcome markets become infrastructure that other teams can deploy (Hyperliquid's HIP-4). Listed participants include people from DoubleZero, Outcome, Outcome Labs and Selini.",
     "questions": [
       "What exactly is live under HIP-4 now?",
@@ -186,12 +186,24 @@
       {
         "id": "ian-weisberger",
         "role": "listed"
+      },
+      {
+        "id": "arthur-hayes",
+        "role": "speaker"
       }
     ],
     "companies": [
       {
         "id": "hyperliquid",
         "role": "subject"
+      },
+      {
+        "id": "days",
+        "role": "host"
+      },
+      {
+        "id": "grayscale",
+        "role": "host"
       }
     ],
     "also_listed": [
@@ -200,12 +212,14 @@
     "sources": [
       "src-hl-forum",
       "src-hl-ann",
-      "src-sec-hl"
+      "src-sec-hl",
+      "src-cryptonews-hlforum",
+      "src-grayscale-hlforum"
     ],
     "status": "listed",
     "status_note": "Organiser page. Hyperliquid's SEC filing and announcements provide HIP-4 context.",
     "clash_note": "Runs alongside the Digital Asset Yield Summit at the same venue.",
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "digital-asset-yield-summit",
@@ -240,18 +254,24 @@
       "Do institutional allocators see event contracts as a trade, a hedge, or a separate product bucket?"
     ],
     "people": [],
-    "companies": [],
+    "companies": [
+      {
+        "id": "days",
+        "role": "host"
+      }
+    ],
     "also_listed": [
       "Institutional allocators",
       "Trading firms"
     ],
     "sources": [
-      "src-hl-forum"
+      "src-hl-forum",
+      "src-cryptonews-hlforum"
     ],
     "status": "listed",
     "status_note": "Listed on the Hyperliquid Forum page.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "chainup-institutional-ark",
@@ -565,7 +585,8 @@
     "also_listed": [],
     "sources": [
       "src-token-agenda1",
-      "src-poly-eu"
+      "src-poly-eu",
+      "src-token-speakers"
     ],
     "status": "verified",
     "status_note": "Official TOKEN2049 agenda.",
@@ -672,7 +693,8 @@
     "companies": [],
     "also_listed": [],
     "sources": [
-      "src-token-agenda1"
+      "src-token-agenda1",
+      "src-token-speakers"
     ],
     "status": "verified",
     "status_note": "Official TOKEN2049 agenda.",
@@ -732,7 +754,8 @@
     "companies": [],
     "also_listed": [],
     "sources": [
-      "src-token-agenda1"
+      "src-token-agenda1",
+      "src-token-speakers"
     ],
     "status": "verified",
     "status_note": "Official TOKEN2049 agenda.",
@@ -844,7 +867,8 @@
     "sources": [
       "src-token-agenda1",
       "src-hl-ann",
-      "src-sec-hl"
+      "src-sec-hl",
+      "src-token-speakers"
     ],
     "status": "verified",
     "status_note": "Official TOKEN2049 agenda.",
@@ -1059,7 +1083,8 @@
     ],
     "also_listed": [],
     "sources": [
-      "src-token-agenda1"
+      "src-token-agenda1",
+      "src-token-speakers"
     ],
     "status": "verified",
     "status_note": "Official TOKEN2049 agenda.",
@@ -1552,7 +1577,8 @@
     "companies": [],
     "also_listed": [],
     "sources": [
-      "src-token-agenda2"
+      "src-token-agenda2",
+      "src-token-speakers"
     ],
     "status": "verified",
     "status_note": "Official TOKEN2049 agenda.",
@@ -1810,7 +1836,8 @@
     ],
     "also_listed": [],
     "sources": [
-      "src-token-agenda2"
+      "src-token-agenda2",
+      "src-token-speakers"
     ],
     "status": "verified",
     "status_note": "Official TOKEN2049 agenda.",
@@ -1992,7 +2019,8 @@
     ],
     "also_listed": [],
     "sources": [
-      "src-token-agenda2"
+      "src-token-agenda2",
+      "src-token-speakers"
     ],
     "status": "verified",
     "status_note": "Official TOKEN2049 agenda.",
@@ -2318,7 +2346,7 @@
       "src-finality"
     ],
     "status": "listed",
-    "status_note": "Organiser event page (Luma).",
+    "status_note": "Organiser event page (Luma). Wintermute is also reported among its speakers.",
     "clash_note": null,
     "last_updated": "2026-09-22"
   },
@@ -2331,7 +2359,7 @@
     "start": null,
     "end": null,
     "time_note": "Evening (time not recorded)",
-    "venue": "Marina Bay Sands SkyPark",
+    "venue": "Marina Bay Sands SkyPark Observation Deck",
     "map_query": "Marina Bay Sands SkyPark, Singapore",
     "type": "networking",
     "official": true,
@@ -2361,6 +2389,6 @@
     "status": "verified",
     "status_note": "Official TOKEN2049 site.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   }
 ]

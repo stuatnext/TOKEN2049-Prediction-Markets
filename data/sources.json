@@ -271,5 +271,68 @@
     "type": "Organiser / event page",
     "url": "https://mnm.live/agentic-finance/speakers/michael-adams",
     "note": "Current organiser identity and Caerus/Swish background."
+  },
+  {
+    "id": "src-token-speakers",
+    "name": "TOKEN2049 Singapore speakers",
+    "type": "Primary / official",
+    "url": "https://token2049.com/singapore/speakers",
+    "note": "Official speaker list with titles and affiliations."
+  },
+  {
+    "id": "src-cryptobriefing-speakers",
+    "name": "TOKEN2049 Singapore 2026 brings crypto leaders to Marina Bay Sands",
+    "type": "Reported / trade media",
+    "url": "https://cryptobriefing.com/token2049-singapore-2026-brings-crypto-leaders-to-marina-bay-sands-this-october/",
+    "note": "First-100 speaker announcement coverage, including titles for Shayne Coplan, Jeff Yan, Adena Friedman and Jenny Johnson."
+  },
+  {
+    "id": "src-fortune-lighter",
+    "name": "Lighter CEO Vlad Novakovski on perpetual futures (Fortune)",
+    "type": "Reported",
+    "url": "https://fortune.com/2026/01/15/perps-lighter-ceo-vlad-novakovski-perpetual-futures-crypto-future-growth/",
+    "note": "Identifies Vladimir Novakovski as Lighter CEO."
+  },
+  {
+    "id": "src-grayscale-hlforum",
+    "name": "Grayscale co-hosts Hyperliquid Forum in Singapore on October 6",
+    "type": "Reported / trade media",
+    "url": "https://cryptobriefing.com/grayscale-hyperliquid-forum-singapore/",
+    "note": "Grayscale as co-host of the Hyperliquid Forum."
+  },
+  {
+    "id": "src-cryptonews-hlforum",
+    "name": "Hyperliquid Forum by DAYS brings institutional capital face to face with the Hyperliquid ecosystem",
+    "type": "Reported / trade media",
+    "url": "https://crypto.news/hyperliquid-forum-by-days-brings-institutional-capital-face-to-face-with-the-hyperliquid-ecosystem/",
+    "note": "Forum run by DAYS as part of the Digital Asset Yield Summit; six themes including prediction and outcome markets; Arthur Hayes (Maelstrom) among confirmed speakers."
+  },
+  {
+    "id": "src-nijinn-launch",
+    "name": "Predictive Labs unveils Nijinn (Coinsilium announcement)",
+    "type": "Company / press release",
+    "url": "https://www.tradingview.com/news/eqs:01cf957cc094b:0-coinsilium-group-limited-predictive-labs-unveils-nijinn-coinsilium-increases-strategic-investment-and-accelerates-venture-building-strategy/",
+    "note": "Nijinn is a cross-venue prediction-market data product; commercial launch of Nijinn Pro planned around TOKEN2049 Singapore."
+  },
+  {
+    "id": "src-nijinn-proactive",
+    "name": "Coinsilium backs Predictive Labs’ Nijinn (Proactive Investors)",
+    "type": "Reported",
+    "url": "https://www.proactiveinvestors.com/companies/news/1095491/coinsilium-backs-predictive-labs-nijinn-to-cut-through-prediction-market-noise-1095491.html",
+    "note": "Coverage of Nijinn and its rollout timeline."
+  },
+  {
+    "id": "src-nextpredict-summit",
+    "name": "NEXTPredict NYC 2026: The World's Prediction Markets Summit",
+    "type": "Organiser / event page",
+    "url": "https://nextpredict.io/summits/the-worlds-prediction-markets-summit/",
+    "note": "NEXTPredict's prediction-markets summit, Hudson Yards, New York, 22–23 October 2026. Run by the curator of this directory."
+  },
+  {
+    "id": "src-stuart-linkedin",
+    "name": "Stuart Crowley on LinkedIn",
+    "type": "Individual / LinkedIn",
+    "url": "https://sg.linkedin.com/in/stuart-crowley-b2b561104",
+    "note": "Curator of this directory."
   }
 ]

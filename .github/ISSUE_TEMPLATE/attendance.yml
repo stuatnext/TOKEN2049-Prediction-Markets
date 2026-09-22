@@ -1,0 +1,42 @@
+name: I'm going (add to Who's Going)
+description: Add a person or company to Who's Going, with a link to a public post that says so.
+title: "Who's going: "
+labels: ["attendance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We only list attendance that has its own public evidence: a post, a company page, an official programme or an event page.
+        Working for a sponsor or exhibitor isn't enough on its own. Please don't include email addresses or phone numbers.
+  - type: input
+    id: name
+    attributes:
+      label: Person or company name
+    validations:
+      required: true
+  - type: input
+    id: company
+    attributes:
+      label: Company and role (if a person)
+  - type: dropdown
+    id: evidence
+    attributes:
+      label: What kind of evidence?
+      options: ["Official TOKEN2049 speaker", "Public post saying I/they will attend", "Company page/account says team is attending", "Exhibitor / sponsor / partner listing", "Hosting a side event", "Speaking at a side event", "Looking for meetings during the week", "Launch timed around TOKEN2049"]
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Public source link
+      description: A link to the post or page that shows the attendance.
+    validations:
+      required: true
+  - type: input
+    id: days
+    attributes:
+      label: Which days (only if the source says)
+  - type: textarea
+    id: interests
+    attributes:
+      label: What prediction-market topics are you/they interested in?

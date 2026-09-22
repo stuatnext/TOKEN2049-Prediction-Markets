@@ -23,7 +23,11 @@
       "src-insilico"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "venue",
+      "exchange"
+    ]
   },
   {
     "id": "polymarket",
@@ -44,7 +48,10 @@
       "src-poly-eu"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "venue"
+    ]
   },
   {
     "id": "hyperliquid",
@@ -65,7 +72,11 @@
       "src-token-agenda1"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "venue",
+      "exchange"
+    ]
   },
   {
     "id": "predict-fun",
@@ -86,7 +97,10 @@
       "src-predict-block"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "venue"
+    ]
   },
   {
     "id": "outcome",
@@ -104,7 +118,10 @@
       "src-hl-forum"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "venue"
+    ]
   },
   {
     "id": "predict365",
@@ -121,7 +138,10 @@
       "src-predict365"
     ],
     "note": "TOKEN2049 attendance not independently verified.",
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "venue"
+    ]
   },
   {
     "id": "powerscale",
@@ -138,7 +158,10 @@
       "src-token-week"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "venue"
+    ]
   },
   {
     "id": "lighter",
@@ -151,7 +174,10 @@
       "src-token-agenda2"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "exchange"
+    ]
   },
   {
     "id": "robinhood",
@@ -167,7 +193,10 @@
       "src-token-agenda2"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "exchange"
+    ]
   },
   {
     "id": "zoomex",
@@ -181,7 +210,10 @@
       "src-zoomex-pr"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "exchange"
+    ]
   },
   {
     "id": "chainup",
@@ -201,7 +233,10 @@
       "src-token-partners"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "infrastructure"
+    ]
   },
   {
     "id": "doublezero",
@@ -220,7 +255,11 @@
       "src-token-agenda2"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "infrastructure",
+      "data"
+    ]
   },
   {
     "id": "kaiko",
@@ -235,7 +274,10 @@
       "src-breakfast"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "data"
+    ]
   },
   {
     "id": "chainlink",
@@ -252,7 +294,10 @@
       "src-finality"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "oracle"
+    ]
   },
   {
     "id": "ion",
@@ -269,7 +314,11 @@
       "src-ion"
     ],
     "note": "No TOKEN2049-week appearance recorded; included for the stack.",
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "infrastructure",
+      "oracle"
+    ]
   },
   {
     "id": "haruko",
@@ -289,7 +338,10 @@
       "src-haruko-event"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "infrastructure"
+    ]
   },
   {
     "id": "insilico",
@@ -308,7 +360,11 @@
       "src-hypurrco"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "infrastructure",
+      "trading-firm"
+    ]
   },
   {
     "id": "nansen",
@@ -321,7 +377,10 @@
       "src-hypurrco"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "data"
+    ]
   },
   {
     "id": "tread-fi",
@@ -334,7 +393,10 @@
       "src-hypurrco"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "infrastructure"
+    ]
   },
   {
     "id": "wintermute",
@@ -355,7 +417,11 @@
       "src-finality"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "market-maker",
+      "trading-firm"
+    ]
   },
   {
     "id": "susquehanna-crypto",
@@ -370,7 +436,10 @@
       "src-predict-block"
     ],
     "note": "No TOKEN2049-week appearance recorded; included for the stack.",
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "market-maker"
+    ]
   },
   {
     "id": "selini",
@@ -383,7 +452,10 @@
     "ecosystems": [],
     "sources": [],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "trading-firm"
+    ]
   },
   {
     "id": "limitless-labs",
@@ -396,7 +468,11 @@
     "ecosystems": [],
     "sources": [],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "market-maker",
+      "sports"
+    ]
   },
   {
     "id": "flow-traders",
@@ -409,7 +485,11 @@
       "src-finality"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "market-maker",
+      "trading-firm"
+    ]
   },
   {
     "id": "gsr",
@@ -422,7 +502,11 @@
       "src-finality"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "market-maker",
+      "trading-firm"
+    ]
   },
   {
     "id": "citadel-securities",
@@ -433,7 +517,10 @@
     "ecosystems": [],
     "sources": [],
     "note": "Event unconfirmed.",
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "market-maker"
+    ]
   },
   {
     "id": "quant-ferryman",
@@ -446,7 +533,10 @@
       "src-dexpal"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "trading-firm"
+    ]
   },
   {
     "id": "moirai",
@@ -459,7 +549,10 @@
       "src-dexpal"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "trading-firm"
+    ]
   },
   {
     "id": "falconx",
@@ -474,7 +567,11 @@
       "src-token-agenda1"
     ],
     "note": "The execution-layer placement comes from our research notes rather than a linked public source.",
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "institutional",
+      "trading-firm"
+    ]
   },
   {
     "id": "coinbase",
@@ -491,7 +588,11 @@
       "src-finality"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "exchange",
+      "institutional"
+    ]
   },
   {
     "id": "nasdaq",
@@ -504,7 +605,11 @@
       "src-token-agenda2"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "exchange",
+      "institutional"
+    ]
   },
   {
     "id": "cme",
@@ -517,7 +622,11 @@
       "src-token-agenda2"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "exchange",
+      "institutional"
+    ]
   },
   {
     "id": "invesco",
@@ -530,7 +639,10 @@
       "src-token-agenda2"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "institutional"
+    ]
   },
   {
     "id": "ripple",
@@ -543,7 +655,10 @@
       "src-finality"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "institutional"
+    ]
   },
   {
     "id": "visa",
@@ -556,7 +671,10 @@
       "src-finality"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "institutional"
+    ]
   },
   {
     "id": "paxos",
@@ -569,7 +687,10 @@
       "src-token-agenda1"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "institutional"
+    ]
   },
   {
     "id": "kraken",
@@ -582,7 +703,10 @@
       "src-token-agenda1"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "exchange"
+    ]
   },
   {
     "id": "21shares",
@@ -595,7 +719,10 @@
       "src-hypurrco"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "institutional"
+    ]
   },
   {
     "id": "zenith",
@@ -608,7 +735,10 @@
       "src-breakfast"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "institutional"
+    ]
   },
   {
     "id": "t-rex",
@@ -621,7 +751,10 @@
       "src-breakfast"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "institutional"
+    ]
   },
   {
     "id": "pantera",
@@ -634,7 +767,10 @@
       "src-token-agenda1"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "investor"
+    ]
   },
   {
     "id": "hyperliquid-policy-center",
@@ -652,7 +788,10 @@
       "src-hypurrco"
     ],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "compliance"
+    ]
   },
   {
     "id": "grandstand",
@@ -665,7 +804,11 @@
     "ecosystems": [],
     "sources": [],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "sports",
+      "data"
+    ]
   },
   {
     "id": "psg-labs",
@@ -676,6 +819,85 @@
     "ecosystems": [],
     "sources": [],
     "note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-22",
+    "types": [
+      "sports"
+    ]
+  },
+  {
+    "id": "nextpredict",
+    "name": "NEXTPredict",
+    "category": "media",
+    "description": "Prediction-markets news, data and research brand from NEXT.io, and organiser of NEXTPredict NYC 2026 (Hudson Yards, 22–23 October). Listed as a TOKEN2049 Community Partner. NEXTPredict compiles this directory.",
+    "stack_layers": [],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-token-partners",
+      "src-nextpredict-summit"
+    ],
+    "note": "Disclosure: NEXTPredict curates this directory.",
+    "last_updated": "2026-09-23",
+    "types": [
+      "media"
+    ]
+  },
+  {
+    "id": "grayscale",
+    "name": "Grayscale",
+    "category": "institutional",
+    "description": "Digital-asset investment manager, reported as co-host of the Hyperliquid Forum on Tuesday 6 October.",
+    "stack_layers": [],
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "sources": [
+      "src-grayscale-hlforum"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "types": [
+      "institutional",
+      "investor"
+    ]
+  },
+  {
+    "id": "days",
+    "name": "DAYS (Digital Asset Yield Summit)",
+    "category": "organisers",
+    "description": "Organiser of the Digital Asset Yield Summit and the Hyperliquid Forum at Raffles Hotel on Tuesday 6 October.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-cryptonews-hlforum",
+      "src-hl-forum"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "types": [
+      "other"
+    ]
+  },
+  {
+    "id": "predictive-labs",
+    "name": "Predictive Labs (Nijinn)",
+    "category": "infrastructure",
+    "description": "Builds Nijinn, a data product that sits above multiple prediction-market venues and pulls together pricing, fees and resolution rules. The commercial launch of Nijinn Pro is planned around TOKEN2049 Singapore (company announcement). This doesn’t confirm which individuals will attend.",
+    "stack_layers": [
+      "data-transport"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-nijinn-launch",
+      "src-nijinn-proactive"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "types": [
+      "data"
+    ]
   }
 ]

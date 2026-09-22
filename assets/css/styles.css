@@ -163,6 +163,7 @@ a.chip:hover { color: var(--ink); background: var(--line); }
 
 /* toggle chips (filters) */
 .toggle { display: inline-flex; align-items: center; gap: 6px; min-height: 38px; padding: 6px 12px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); color: var(--ink-2); font: 500 .875rem/1.2 var(--font); cursor: pointer; }
+a.toggle { text-decoration: none; }
 .toggle:hover { color: var(--ink); border-color: var(--ink-3); }
 .toggle[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .toggle .n { font: 500 .75rem var(--mono); opacity: .7; }
@@ -419,6 +420,29 @@ th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--li
 th { font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); font-weight: 600; background: var(--surface-2); }
 tr:last-child td { border-bottom: 0; }
 
+/* ---------- Who's going ---------- */
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin-top: 16px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; }
+.stat b { font: 600 1.8rem/1 var(--serif); }
+.stat span { font-size: .82rem; color: var(--ink-3); }
+.going-card { gap: 8px; }
+.going-card .gc-head { display: flex; gap: 12px; align-items: center; }
+.going-card .avatar { flex: none; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--surface-2); font: 600 .85rem var(--mono); color: var(--ink-2); }
+.going-card .avatar.sq { border-radius: 9px; }
+.going-card .gc-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 4px; position: relative; z-index: 2; }
+.going-card.is-curator { border-color: var(--accent); }
+.chip-ev { background: var(--accent-soft); color: var(--accent); }
+.chip-ev.ev-meeting_signal, .chip-ev.ev-launch_signal { background: var(--warn-bg); color: var(--warn); }
+.chip-new { background: var(--saved); color: #fff; }
+.promo { border: 1.5px solid var(--accent); background: var(--accent-soft); border-radius: var(--radius); padding: 16px; margin: 16px 0; }
+.promo.locked { border-style: dashed; border-color: var(--line-strong); background: var(--surface); }
+.promo h3 { margin: 0 0 8px; }
+.promo .bars { height: 8px; max-width: 320px; }
+.code-box { display: inline-flex; align-items: center; gap: 12px; padding: 8px 8px 8px 14px; border: 1px dashed var(--accent); border-radius: 8px; background: var(--surface); font-size: 1.15rem; letter-spacing: .04em; }
+.curator { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: var(--radius); background: var(--surface-2); margin-top: 12px; }
+.curator .avatar { flex: none; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--bg); font: 600 .85rem var(--mono); }
+@media (min-width: 900px) and (max-width: 1180px) { .main-nav a { padding: 8px 6px; font-size: .86rem; } .brand-text { display: none; } }
+
 /* ---------- Phone tightening ---------- */
 .page-title-sm { font-size: 1.5rem; margin-bottom: 4px; }
 @media (max-width: 699px) {
@@ -432,12 +456,19 @@ tr:last-child td { border-bottom: 0; }
   .event-card .save-btn { width: 40px; height: 40px; }
   .event-card.compact .blurb { display: none; }
   .day-tab { min-height: 50px; padding: 6px 2px; }
+  .stat-row { grid-template-columns: repeat(5, 1fr); gap: 4px; }
+  .stat { padding: 8px 4px; text-align: center; }
+  .stat b { font-size: 1.3rem; }
+  .stat span { font-size: .68rem; line-height: 1.2; }
+  .notice { font-size: .85rem; }
   .lede { font-size: 1rem; }
 }
 
 /* ---------- Toast & footer ---------- */
 .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--tabbar-h) + 16px + env(safe-area-inset-bottom)); z-index: 60; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: .92rem; box-shadow: 0 6px 24px rgba(0,0,0,.2); max-width: calc(100vw - 32px); display: flex; gap: 12px; align-items: center; }
 .toast[hidden] { display: none; }
+.toast { width: max-content; max-width: min(92vw, 460px); }
+.toast span { flex: 1; }
 .toast button { background: none; border: 0; color: inherit; font: 600 .9rem var(--font); text-decoration: underline; cursor: pointer; min-height: 32px; }
 @media (min-width: 900px) { .toast { bottom: 24px; } }
 .site-footer { border-top: 1px solid var(--line); margin-top: 40px; padding: 24px 0 32px; font-size: .88rem; color: var(--ink-3); }

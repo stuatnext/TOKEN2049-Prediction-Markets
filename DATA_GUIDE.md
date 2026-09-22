@@ -143,6 +143,55 @@ If the event mentions a person or company that doesn't exist yet, add them to `p
 
 Describe company claims as claims ("company claim", "announced", "reported"), not as facts.
 
+## Who's Going: adding an attendance record (`data/attendance.json`)
+
+Attendance is its own dataset, so you can add people quickly without touching any page layout. **Every public record needs its own evidence.** Never add someone just because they work for a sponsor, run a booth, organise an event, liked a post, or because their company has a launch planned.
+
+```json
+{
+  "id": "jane-example-publicly-attending",
+  "entity_type": "person",
+  "person_id": "jane-example",
+  "company_id": "example-co",
+  "name": null,
+  "confidence": "confirmed",
+  "public": true,
+  "attendance_status": "publicly_attending",
+  "attendance_scope": "TOKEN2049 week",
+  "dates": [],
+  "pm_relevance": "core",
+  "ecosystems": ["polymarket"],
+  "interests": ["market-making"],
+  "event_ids": [],
+  "source_type": "linkedin",
+  "source_id": null,
+  "source_url": "https://www.linkedin.com/posts/…",
+  "source_date": "2026-09-25",
+  "evidence_summary": "Posted that she will be at TOKEN2049 Singapore and wants to meet prediction-market builders.",
+  "first_confirmed": "2026-09-25",
+  "last_verified": "2026-09-25"
+}
+```
+
+| Field | What to put |
+|---|---|
+| `attendance_status` | `official_speaker` · `publicly_attending` (the person said so themselves) · `company_attending` (the company's own site or account says its team is going; don't add individual employees) · `exhibitor` · `sponsor` (sponsor or partner) · `side_event_host` · `side_event_speaker` · `meeting_signal` (asked for meetings but didn't clearly say they're attending) · `launch_signal` (launch timed around TOKEN2049; not proof anyone attends) |
+| `confidence` / `public` | `"confirmed"` + `true` to publish. For leads without a recovered public source, use `"pending"` + `false`. They then only appear at `#/going?research=1`. **This repository is public, so anyone can read pending records.** Keep them factual and free of private notes |
+| `dates` | Only days the evidence itself supports (e.g. the day of their session). Leave `[]` for a generic "I'll be at TOKEN2049" post |
+| `event_ids` | Events this evidence ties them to. It makes them appear under "People you can expect there" |
+| `source_url` | The original public post or page. Prefer the person's or company's own post over third-party attendee trackers |
+| `first_confirmed` | The date you added it. Records added within the last 7 days get a **New** badge and appear under "Recently confirmed" |
+
+One person or company can have several records (e.g. a sponsor that is also a side-event host). They're combined into one card.
+
+A person must exist in `people.json` before they can go public. When you add one, give them `roles` (any of `founder`, `trader`, `market-maker`, `investor`, `builder`, `institutional`, `infrastructure`, `sports`, `media`, `regulation`, `business`, `other`). Companies have `types` (any of `venue`, `trading-firm`, `market-maker`, `infrastructure`, `data`, `oracle`, `exchange`, `institutional`, `sports`, `media`, `investor`, `compliance`, `other`). These drive the filters and the discovery groups.
+
+People can also submit themselves through the "I'm going" GitHub issue form.
+
+## Promo code and curator details
+
+`site.json` → `curator` holds Stuart's name, LinkedIn and summit link. `promo` holds the NEXTPredict NYC code, the claim link, and how many saved events unlock it (`unlock_after_saves`).
+
 ## Changing the "What we're still checking" list
 
 Edit `open_questions` in `data/site.json`. Each item links to event IDs and source IDs. Remove an item once it's resolved.
