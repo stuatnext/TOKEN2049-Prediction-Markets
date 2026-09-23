@@ -201,3 +201,20 @@ Edit `open_questions` in `data/site.json`. Each item links to event IDs and sour
 ## Where the data came from
 
 The first version was extracted from *NEXTPredict TOKEN2049 Prediction Markets Master Field Guide 2026* (research cut-off 22 September 2026). Each event keeps its original ID in `legacy_id`. Internal material from that guide was deliberately not carried over: outreach routes, priority tiers, CRM references, story plans and unverified social-media intelligence.
+
+
+## Play-money questions (the Play tab)
+
+`data/markets.json` holds the questions on the **Play** tab. Visitors trade with play credits only; there is no real money, no prizes and no sign-up, and every visitor's balance and prices live only in their own browser.
+
+| Field | What it means |
+| --- | --- |
+| `starting_balance` | Play credits each visitor starts with |
+| `liquidity` | How much a trade moves the price. Higher = prices move less |
+| `question` | Keep it light, factual and checkable. Avoid questions about anyone's wrongdoing, health or private life, and avoid token-price bets |
+| `seed` | Starting Yes probability (0.01–0.99), the curators' estimate |
+| `resolves` | The exact rule and source used to settle it |
+| `event_id` | Optional link to a related event |
+| `status` / `outcome` | `open` + `null` while trading. To settle, set `"status": "resolved"` and `"outcome": "yes"`, `"no"` or `"void"` (void refunds half a credit per share) |
+
+Winning shares pay 1 credit each, automatically, the next time a visitor opens the Play tab.

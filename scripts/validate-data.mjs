@@ -11,6 +11,7 @@ const stack = load("stack.json");
 const sources = load("sources.json");
 const site = load("site.json");
 const attendance = load("attendance.json");
+const markets = load("markets.json");
 
 const ENUMS = {
   type: ["official", "side-event", "forum", "meetup", "networking", "closed-door", "exhibition", "other"],
@@ -103,6 +104,21 @@ for (const c of companies) {
 for (const l of stack) {
   for (const c of l.companies || []) if (!C.has(c)) err(`stack "${l.id}": unknown company "${c}"`);
   checkSources(`stack "${l.id}"`, l.sources);
+}
+
+// ---- Play-money markets
+if (!(markets.starting_balance > 0) || !(markets.liquidity > 0)) err("markets.json: starting_balance and liquidity must be positive numbers");
+const mIds = new Set();
+for (const m of markets.markets || []) {
+  const w = `market "${m.id}"`;
+  if (!m.id || mIds.has(m.id)) err(`${w}: missing or duplicate id`); mIds.add(m.id);
+  if (!m.question || !m.resolves) err(`${w}: needs a question and a resolves rule`);
+  if (!(m.seed > 0.01 && m.seed < 0.99)) err(`${w}: seed must be between 0.01 and 0.99`);
+  if (!["open", "resolved"].includes(m.status)) err(`${w}: status must be open or resolved`);
+  if (m.status === "resolved" && !["yes", "no", "void"].includes(m.outcome)) err(`${w}: resolved markets need outcome yes, no or void`);
+  if (m.status === "open" && m.outcome) err(`${w}: open markets must have outcome null`);
+  if (m.event_id && !E.has(m.event_id)) err(`${w}: unknown event "${m.event_id}"`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(m.closes || "")) err(`${w}: closes must be YYYY-MM-DD`);
 }
 
 for (const s of sources) {
