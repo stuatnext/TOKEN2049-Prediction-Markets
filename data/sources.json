@@ -91,6 +91,13 @@
     "note": "Organiser registration page. Thursday 8 October, 13:20–17:15 SGT, Singapore (address after registration). Approval required. Speakers include RG (Reppo core contributor) on “Open Reinforcement Learning via Prediction Markets”; agenda has an Agentic Economy Outlook 2026 briefing, six AI product showcases and a book launch."
   },
   {
+    "id": "src-after2049-megatix",
+    "name": "AFTER 2049 presents: Claptone & Crusy (Megatix)",
+    "type": "Primary / official",
+    "url": "https://megatix.com.sg/events/after2049",
+    "note": "Official ticket page, presented by TOKEN2049. Friday 9 October 2026 from 19:00 until late, Marina Bay Sands SkyPark Observation Deck (10 Bayfront Avenue, Tower 3). 18+ with photo ID; smart casual; no guaranteed entry after 23:00; no re-entry after midnight. Claptone, Crusy, ANONM, Leon (FR), Milam, Mo-Shi."
+  },
+  {
     "id": "src-dexpal",
     "name": "TOKEN2049 side events on Dexpal",
     "type": "Event directory",

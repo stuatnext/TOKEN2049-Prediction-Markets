@@ -2588,23 +2588,23 @@
     "title": "AFTER2049",
     "date": "2026-10-09",
     "end_date": null,
-    "start": null,
+    "start": "19:00",
     "end": null,
-    "time_note": "Evening (time not recorded)",
-    "venue": "Marina Bay Sands SkyPark Observation Deck",
+    "time_note": "From 19:00 until late",
+    "venue": "Marina Bay Sands SkyPark Observation Deck, 10 Bayfront Avenue",
     "map_query": "Marina Bay Sands SkyPark, Singapore",
     "type": "networking",
     "official": true,
     "relevance": "adjacent",
-    "access": "badge",
-    "access_note": "TOKEN2049 access rules apply (check the official FAQ)",
+    "access": "registration",
+    "access_note": "Separate ticket on Megatix; 18+ with photo ID; no guaranteed entry after 23:00",
     "audiences": [
       "general"
     ],
     "ecosystems": [],
     "topics": [],
     "stack_layers": [],
-    "summary": "Official closing event of TOKEN2049 week.",
+    "summary": "Official closing party of TOKEN2049 week, headlined by Claptone and Crusy, with ANONM, Leon (FR), Milam and Mo-Shi. Smart casual; no re-entry after midnight.",
     "why": "Not prediction-market-specific: a general networking event for the whole conference.",
     "questions": [
       "Who specifically do I need to see here?"
@@ -2615,11 +2615,12 @@
       "TOKEN2049 attendees"
     ],
     "sources": [
+      "src-after2049-megatix",
       "src-token-home",
       "src-token-faq"
     ],
     "status": "verified",
-    "status_note": "Official TOKEN2049 site.",
+    "status_note": "Official TOKEN2049 site and TOKEN2049’s Megatix ticket page.",
     "clash_note": null,
     "last_updated": "2026-09-23"
   },
