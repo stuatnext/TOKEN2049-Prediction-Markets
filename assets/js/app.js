@@ -1416,7 +1416,13 @@ function whereToFind(recs, entityName) {
 
 // ---------------------------------------------------------------- PROMO
 function maybeUnlockPromo() {}
-const COMMUNITY_MARK = { whatsapp: "WA", telegram: "TG", linkedin: "in", x: "𝕏" };
+/** Simple monochrome channel icons (drawn for this site, in currentColor). */
+const COMMUNITY_MARK = {
+  whatsapp: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.2A8.5 8.5 0 1 0 12 3.5z"/><path fill="currentColor" d="M9.1 7.9c.3 0 .5.1.6.4l.7 1.6c.1.3 0 .5-.1.7l-.5.6c.6 1.2 1.6 2.2 2.8 2.8l.6-.5c.2-.2.5-.2.7-.1l1.6.7c.3.1.4.4.4.6-.1 1.1-1 1.9-2.1 1.8-3.3-.4-5.9-3-6.3-6.3-.1-1.1.7-2.1 1.6-2.3z"/></svg>`,
+  telegram: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.7 4.2 2.9 11.1c-.9.4-.9 1.6.1 1.9l4.4 1.4 1.7 5.2c.3.8 1.3 1 1.9.4l2.5-2.4 4.5 3.3c.7.5 1.6.1 1.8-.7l3-13.6c.2-1-.8-1.8-1.7-1.4zM9.8 14.3l-.5 3.6-1.3-4.1 9.6-6.3-7.8 6.8z"/></svg>`,
+  linkedin: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.5 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM3 9h3v11.5H3zM9 9h2.9v1.6h.1c.4-.8 1.4-1.8 3-1.8 3.2 0 3.8 2.1 3.8 4.8v6.9h-3v-6.1c0-1.5 0-3.3-2-3.3s-2.3 1.6-2.3 3.2v6.2H9z"/></svg>`,
+  x: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.8 8 10.2h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.9 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg>`,
+};
 const communityLinks = () => {
   const M = D.site.curator.community;
   return M ? `<div class="np-community">${M.links.map((l) => `<a class="np-comm np-${l.id}" href="${esc(l.url)}" target="_blank" rel="noopener"><span class="np-mark" aria-hidden="true">${COMMUNITY_MARK[l.id] || "↗"}</span><span>${esc(l.label)}</span></a>`).join("")}</div>` : "";
@@ -1435,27 +1441,36 @@ function nextpredict() {
   const P = D.site.promo, C = D.site.curator, M = C.community;
   setMeta("NEXTPredict", `${C.summit.name}, ${C.summit.dates}, and the NEXTPredict prediction-market community on WhatsApp, Telegram, LinkedIn and X.`);
   return `
-  <section class="np-hero">
-    <p class="eyebrow">From the curators of this guide</p>
-    <h1><span class="np-logo">NEXT<b>Predict</b></span></h1>
-    <p class="lede">NEXTPredict brings together the people building, trading and regulating prediction markets. This TOKEN2049 guide is ours, and so is ${esc(C.summit.name)}.</p>
-  </section>
-  <section class="np-summit">
-    <div class="np-summit-date" aria-hidden="true"><span>Oct</span><b>22–23</b><span>2026</span></div>
-    <div>
-      <p class="eyebrow">The summit</p>
-      <h2>${esc(C.summit.name)}</h2>
-      <p class="np-where">${esc(C.summit.dates)} · ${esc(C.summit.place)}</p>
-      <p>Prediction markets’ own summit, two weeks before the US midterms. Use code <span class="mono">${esc(P.code)}</span> at checkout.</p>
-      <div class="btn-row"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Get your discounted ticket ↗</a><a class="btn" href="${esc(C.summit.url)}" target="_blank" rel="noopener">About the summit ↗</a></div>
+  <section class="npx-hero">
+    <div class="npx-hero-copy">
+      <p class="npx-kicker"><span class="np-logo">NEXT<b>Predict</b></span> · from the curators of this guide</p>
+      <h1>The prediction-markets crowd doesn’t stop at TOKEN2049.</h1>
+      <p class="npx-lede">NEXTPredict brings together the people building, trading and regulating prediction markets. We made this guide, and we run ${esc(C.summit.name)}.</p>
+      <div class="npx-hero-actions"><a class="npx-btn npx-btn-primary" href="${esc(P.url)}" target="_blank" rel="noopener">Get your ticket ↗</a><a class="npx-btn npx-btn-ghost" href="#/nextpredict?at=community">Join the community ↓</a></div>
     </div>
+    <a class="npx-ticket" href="${esc(P.url)}" target="_blank" rel="noopener" aria-label="${esc(C.summit.name)} tickets with code ${esc(P.code)}">
+      <div class="npx-ticket-main">
+        <p class="npx-ticket-label">Admit one · summit</p>
+        <p class="npx-ticket-name">${esc(C.summit.name)}</p>
+        <dl class="npx-ticket-grid">
+          <div><dt>Dates</dt><dd>${esc(C.summit.dates.replace(/ 2026$/, ""))}</dd></div>
+          <div><dt>Where</dt><dd>${esc(C.summit.place)}</dd></div>
+          <div><dt>Why now</dt><dd>Two weeks before the US midterms</dd></div>
+        </dl>
+      </div>
+      <div class="npx-ticket-stub">
+        <span>Your code</span>
+        <b class="mono">${esc(P.code)}</b>
+        <em>Applied automatically ↗</em>
+      </div>
+    </a>
   </section>
-  ${M ? `<section class="section" id="community">
-    <div class="section-head"><h2>Join the community</h2></div>
-    <p class="muted">${esc(M.blurb)}</p>
-    <div class="np-comm-grid">${M.links.map((l) => `<a class="np-comm-card np-${l.id}" href="${esc(l.url)}" target="_blank" rel="noopener"><span class="np-mark" aria-hidden="true">${COMMUNITY_MARK[l.id] || "↗"}</span><strong>${esc(l.label)}</strong><span>${esc(l.cta)} ↗</span></a>`).join("")}</div>
-    <p class="small" style="margin-top:12px"><a href="${esc(M.url)}" target="_blank" rel="noopener">All NEXTPredict communities ↗</a></p>
+
+  ${M ? `<section class="section" id="community" aria-labelledby="h-comm">
+    <div class="section-head home-head"><div><p class="sec-num">Community</p><h2 id="h-comm">Join the conversation</h2><p class="section-sub">${esc(M.blurb)} Pick the channel you already use.</p></div><a class="more" href="${esc(M.url)}" target="_blank" rel="noopener">All communities ↗</a></div>
+    <div class="npx-channels">${M.links.map((l) => `<a class="npx-channel npx-${l.id}" href="${esc(l.url)}" target="_blank" rel="noopener"><span class="npx-icon">${COMMUNITY_MARK[l.id] || ""}</span><span class="npx-channel-text"><strong>${esc(l.label)}</strong><span>${esc(l.cta)}</span></span><span class="npx-arrow" aria-hidden="true">↗</span></a>`).join("")}</div>
   </section>` : ""}
+
   <section class="section">${curatorPanel()}</section>
   <p class="small muted">${esc(P.disclosure)}</p>`;
 }
