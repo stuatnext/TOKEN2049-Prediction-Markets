@@ -568,11 +568,24 @@ function start(_, q) {
   <section class="hero hero-sm">
     <p class="eyebrow">Guide</p>
     <h1>New to prediction markets at TOKEN2049?</h1>
-    <p class="lede">Three steps: pick how you’re attending, get a shortlist, then save what you like to your schedule.</p>
+    <p class="lede">Three steps, about two minutes. See where prediction markets show up, pick how you’re attending, then get a shortlist to save.</p>
+    <ol class="step-rail">
+      <li><a href="#/start?at=g-where"><span class="step">1</span>Know where to look</a></li>
+      <li><a href="#/start?at=g-route"><span class="step">2</span>Pick your route</a></li>
+      <li><a href="#/start?at=finder"><span class="step">3</span>Get your shortlist</a></li>
+    </ol>
   </section>
 
-  <section class="section" aria-labelledby="h-s1">
-    <div class="section-head"><h2 id="h-s1"><span class="step">1</span> Pick your route</h2></div>
+  <section class="section" id="g-where" aria-labelledby="h-s3">
+    <div class="section-head"><h2 id="h-s3"><span class="step">1</span> Know where to look</h2></div>
+    <p class="muted">Prediction markets don’t have one home at TOKEN2049. They show up in four places:</p>
+    <div class="interest-grid">${places.map(([i, t, d, h, c]) => `<a class="interest interest-lg" href="${h}"><span aria-hidden="true">${i}</span><strong>${esc(t)}</strong><small>${esc(d)}</small><em>${typeof c === "number" ? plural(c, "listing") : c}</em></a>`).join("")}</div>
+    <h3 class="subhead">The main ecosystems</h3>
+    <div class="interest-grid">${ecos.map(([t, d, eco, cid]) => `<a class="interest" href="#/events?eco=${eco}"><strong>${esc(t)}</strong><small>${esc(d)}</small><em>${plural(n((e) => e.ecosystems.includes(eco)), "event")} · <span class="link-like" data-href="#/companies/${cid}">profile</span></em></a>`).join("")}</div>
+  </section>
+
+  <section class="section" id="g-route" aria-labelledby="h-s1">
+    <div class="section-head"><h2 id="h-s1"><span class="step">2</span> Pick your route</h2></div>
     <div class="doors doors-plain">
       <div class="door door-static"><span class="door-icon" aria-hidden="true">☀️</span><span class="door-text"><strong>I only have one day</strong><span>The prediction-market highlights for a single day.</span>
         <span class="day-pills">${D.days.map((d) => `<a href="#/calendar/${d.slug}?show=pm&view=agenda">${esc(d.label.slice(0, 3))}</a>`).join("")}</span></span></div>
@@ -583,17 +596,9 @@ function start(_, q) {
   </section>
 
   <section class="section" id="finder" aria-labelledby="h-finder">
-    <div class="section-head"><h2 id="h-finder"><span class="step">2</span> Get your shortlist</h2></div>
+    <div class="section-head"><h2 id="h-finder"><span class="step">3</span> Get your shortlist</h2></div>
     <div class="panel"><p class="muted" style="margin-top:0">Answer three quick questions. Nothing is sent anywhere.</p>
     <div id="finder-root">${finderForm(q)}</div></div>
-  </section>
-
-  <section class="section" aria-labelledby="h-s3">
-    <div class="section-head"><h2 id="h-s3"><span class="step">3</span> Know where to look</h2></div>
-    <p class="muted">Prediction markets don’t have one home at TOKEN2049. They show up in four places:</p>
-    <div class="interest-grid">${places.map(([i, t, d, h, c]) => `<a class="interest interest-lg" href="${h}"><span aria-hidden="true">${i}</span><strong>${esc(t)}</strong><small>${esc(d)}</small><em>${c}</em></a>`).join("")}</div>
-    <h3 class="subhead">The main ecosystems</h3>
-    <div class="interest-grid">${ecos.map(([t, d, eco, cid]) => `<a class="interest" href="#/events?eco=${eco}"><strong>${esc(t)}</strong><small>${esc(d)}</small><em>${n((e) => e.ecosystems.includes(eco))} events · <span class="link-like" data-href="#/companies/${cid}">profile</span></em></a>`).join("")}</div>
   </section>
 
   <section class="section" aria-labelledby="h-ref">
@@ -604,7 +609,7 @@ function start(_, q) {
         <div><h3>Access</h3>${["badge", "open", "registration", "approval", "invite", "waitlist"].map((k) => `<p style="margin:0 0 6px"><span class="chip chip-outline chip-access-${k}">${ACCESS[k]}</span></p>`).join("")}</div>
         <div><h3>Verification</h3>${Object.entries(STATUS).map(([k, v]) => `<p><strong>${esc(v.label)}</strong><span class="def">${esc(v.desc)}</span></p>`).join("")}</div>
       </div></details>
-    <details class="fold fold-card"><summary>Ten terms you’ll hear</summary>
+    <details class="fold fold-card"><summary>${glossary.length} terms you’ll hear</summary>
       <dl class="glossary" style="margin-top:12px">${glossary.map(([t, d]) => `<div><dt>${esc(t)}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl></details>
   </section>`;
 }
@@ -1298,25 +1303,19 @@ function going(parts, q) {
   setMeta("Who’s going?", "Prediction-market people, companies and adjacent organisations with public evidence they’ll be in Singapore for TOKEN2049 week.");
   const G = D.going;
   const n = (fn) => G.filter(fn).length;
-  const stats = [
-    [n((g) => g.person), "people"], [n((g) => !g.person), "companies"],
-    [n((g) => g.roles.some((r) => r === "trader" || r === "market-maker")), "traders & MMs"],
-    [n((g) => g.ctypes.includes("venue")), "PM platforms"],
-    [n((g) => g.roles.includes("infrastructure")), "infra & data"],
-  ];
+  const nUnv = n((g) => g.unverified);
   return `<p class="eyebrow">Who’s going?</p>
   <h1>Who’s going to TOKEN2049?</h1>
-  <p class="lede">The prediction-market people and companies you can find in Singapore during TOKEN2049 week.</p>
-  <p class="notice info small">Not TOKEN2049’s official attendee list. Built from public announcements, the official programme, sponsor lists and event pages; every confirmed entry links to its source. <strong>Unverified</strong> means we haven’t found a source yet. <a href="#/going?ver=confirmed">Show confirmed only</a>.</p>
-  <div class="stat-row">${stats.map(([v, l]) => `<div class="stat"><b>${v}</b><span>${esc(l)}</span></div>`).join("")}</div>
-  <p class="small muted">Counts come straight from the ${D.att.length} public records (${D.going.filter((g) => g.unverified).length} unverified). Last verified ${esc(fmtDate(D.site.last_updated))}.</p>
-  <div class="chip-row chip-scroll" role="group" aria-label="Discover" style="margin:18px 0 6px">
+  <p class="lede"><b>${n((g) => g.person)} people</b> and <b>${n((g) => !g.person)} companies</b> in prediction markets with public evidence they’ll be in Singapore, including ${n((g) => g.roles.some((r) => r === "trader" || r === "market-maker"))} traders and market makers and ${n((g) => g.ctypes.includes("venue"))} prediction-market platforms.</p>
+  <p class="trust-line">Not TOKEN2049’s attendee list. Every confirmed entry links to its source${nUnv ? `; ${nUnv} marked Unverified don’t have one yet (<a href="#/going?ver=confirmed">hide them</a>)` : ""}. <a href="#/going?at=evidence">How we check</a> · checked ${esc(fmtDate(D.site.last_updated))}</p>
+  <div class="search-box search-lg" style="margin-top:18px">${SEARCH_ICON}<label class="visually-hidden" for="g-search">Search who’s going</label>
+    <input id="g-search" type="search" placeholder="Search a name, company or interest, e.g. Kalshi, market maker…" value="${esc(q.get("q") || "")}" autocomplete="off"></div>
+  <p class="browse-label">Or browse</p>
+  <div class="chip-row chip-scroll" role="group" aria-label="Browse by group" style="margin:0 0 6px">
     <a class="toggle" href="#/going" aria-pressed="${!q.get("g") && q.get("recent") !== "1"}">Everyone</a>
     <a class="toggle" href="#/going?recent=1" aria-pressed="${q.get("recent") === "1"}">✦ Recently confirmed <span class="n">${n((g) => g.isNew)}</span></a>
     ${DISCOVER.map(([k, l, fn]) => `<a class="toggle" href="#/going?g=${k}" aria-pressed="${q.get("g") === k}">${esc(l)} <span class="n">${n(fn)}</span></a>`).join("")}
   </div>
-  <div class="search-box" style="margin-top:12px">${SEARCH_ICON}<label class="visually-hidden" for="g-search">Search who’s going</label>
-    <input id="g-search" type="search" placeholder="Search names, companies, interests…" value="${esc(q.get("q") || "")}" autocomplete="off"></div>
   <div class="filter-bar"><button type="button" class="btn btn-small filter-open-btn" data-open-filters>Filters <span data-filter-count></span></button><div class="active-filters" data-active></div></div>
   <div class="dir-layout">
     <aside class="filter-panel" aria-label="Filters" data-filters>${goingFilterGroups(q)}</aside>
@@ -1327,7 +1326,7 @@ function going(parts, q) {
     <div class="sheet-body" data-filters>${goingFilterGroups(q)}</div>
     <div class="sheet-foot"><button type="button" class="btn" data-clear>Clear all</button><button type="button" class="btn btn-primary" data-close style="flex:1" data-show-count>Show results</button></div>
   </dialog>
-  <section class="section panel"><h2>Evidence types</h2><p class="small muted">These are different kinds of evidence, and they aren’t equivalent.</p>
+  <section class="section panel" id="evidence"><h2>How we check: evidence types</h2><p class="small muted">These are different kinds of evidence, and they aren’t equivalent.</p>
     <dl class="kv">${Object.entries(AST).map(([k, v]) => `<dt>${evidenceChip(k)}</dt><dd class="small">${esc(v.desc)}</dd>`).join("")}</dl>
     ${promoCard(true)}
     <p class="small" style="margin-top:14px">Announced you’re going? <a href="${issueUrl("attendance.yml")}" rel="noopener">Add yourself with a link to your public post</a>.</p></section>`;
