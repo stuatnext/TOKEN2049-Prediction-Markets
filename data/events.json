@@ -2310,19 +2310,19 @@
   {
     "id": "powerscale-social-prediction-market",
     "legacy_id": "powerscale",
-    "title": "PowerScale: Crypto x Anime x Social Prediction Market",
+    "title": "PowerScale: Crypto × Meme × Anime × Social Opinion Market",
     "date": "2026-10-08",
     "end_date": null,
-    "start": "17:00",
-    "end": "19:30",
+    "start": "18:00",
+    "end": "21:00",
     "time_note": null,
-    "venue": "Singapore (see TOKEN2049 Week listing)",
+    "venue": "Singapore (address not published)",
     "map_query": null,
     "type": "side-event",
     "official": false,
     "relevance": "wildcard",
     "access": "open",
-    "access_note": "Free; networking",
+    "access_note": "Free; register on Luma, no approval needed",
     "audiences": [
       "general",
       "media",
@@ -2336,7 +2336,7 @@
     "stack_layers": [
       "frontend"
     ],
-    "summary": "A consumer and social prediction-market product mixing crypto, anime and social features. It sits at the opposite end of the spectrum from institutional clearing.",
+    "summary": "Crowd-voted anime battles with cosplay creators, with Belief Market showing the results live on screen as the room divides. Hosted by Daniel Im of Belief Market. It sits at the opposite end of the spectrum from institutional clearing.",
     "why": "Worth a short visit to see prediction packaged as fandom or social engagement rather than finance. Look at what users predict, where rewards come from and how resolution works.",
     "questions": [
       "What is the user predicting?",
@@ -2351,14 +2351,17 @@
         "role": "host"
       }
     ],
-    "also_listed": [],
+    "also_listed": [
+      "Belief Market"
+    ],
     "sources": [
+      "src-powerscale-luma",
       "src-token-week"
     ],
     "status": "conflict",
-    "status_note": "Official TOKEN2049 Week lists a 19:30 finish; some mirror listings have shown 20:00.",
+    "status_note": "Times follow the organiser’s Luma page (18:00–21:00). The official TOKEN2049 Week listing, submitted by the same organiser, still shows 17:00–20:00. Check the Luma page on the day.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "moirai-traders-night",
