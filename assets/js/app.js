@@ -129,6 +129,8 @@ const absUrl = (hash) => `${location.origin}${location.pathname}${hash}`;
 const eventsOn = (iso) => D.events.filter((e) => eventDays(e).includes(iso)).sort((a, b) => sortKey(a, iso).localeCompare(sortKey(b, iso)));
 const fmtDate = (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 const plural = (n, one, many = one + "s") => `${n} ${n === 1 ? one : many}`;
+/** Relevance score out of 10, e.g. "9/10". Bands match the relevance tiers. */
+const scoreChip = (e) => (e.score ? `<span class="chip score-chip s-${e.score >= 8 ? "hi" : e.score >= 6 ? "mid" : "lo"}" title="Relevance score: ${e.score} out of 10"><b>${e.score}</b>/10</span>` : "");
 const relChip = (r) => `<span class="chip rel rel-${r}">${REL[r].label}</span>`;
 const kindChip = (e, short = false) => { const k = kindOf(e); return `<span class="chip chip-kind kind-${k}"><span aria-hidden="true">${KIND_ICON[k]}</span>${esc(short ? KIND_SHORT[k] : KIND[k])}</span>`; };
 const typeChip = (e) => `${kindChip(e)}${formatOf(e) ? `<span class="chip">${esc(formatOf(e))}</span>` : ""}`;
@@ -156,7 +158,7 @@ function eventCard(e, o = {}) {
     <div class="side">${saveBtn(e)}</div>
     ${o.compact ? "" : `<p class="blurb">${esc(e.why)}</p>`}
     ${o.reasons?.length ? `<div class="reasons">${o.reasons.map((r) => `<span class="chip">${esc(r)}</span>`).join("")}</div>` : ""}
-    <div class="foot"><div class="chip-row">${kindChip(e)}${relChip(e.relevance)}${accessChip(e)}${e.status === "provisional" || e.status === "conflict" ? statusChip(e) : ""}${updatedBadge(e)}</div></div>
+    <div class="foot"><div class="chip-row">${kindChip(e)}${scoreChip(e)}${relChip(e.relevance)}${accessChip(e)}${e.status === "provisional" || e.status === "conflict" ? statusChip(e) : ""}${updatedBadge(e)}</div></div>
     ${clashSaved.length ? `<p class="clash-line">⚠ Clashes with ${clashSaved.map((x) => `<a href="${evUrl(x)}">${esc(x.title)}</a> (${esc(timeLabel(x))})`).join(", ")}</p>` : ""}
   </article>`;
 }
@@ -177,7 +179,7 @@ function progItem(e, o = {}) {
       <h3><a href="${evUrl(e)}">${esc(e.title)}</a></h3>
       <p class="prog-venue">${esc(e.venue)}</p>
       <p class="prog-blurb">${esc(e.why)}</p>
-      <div class="chip-row">${relChip(e.relevance)}${accessChip(e)}${e.status === "provisional" || e.status === "conflict" ? statusChip(e) : ""}${updatedBadge(e)}</div>
+      <div class="chip-row">${scoreChip(e)}${relChip(e.relevance)}${accessChip(e)}${e.status === "provisional" || e.status === "conflict" ? statusChip(e) : ""}${updatedBadge(e)}</div>
       ${clash ? `<p class="clash-line">⚠ Clashes with ${clashSaved.map((x) => `<a href="${evUrl(x)}">${esc(x.title)}</a> (${esc(timeLabel(x))})`).join(", ")}</p>` : ""}
       <div class="prog-save">${saveBtn(e)}</div>
     </div>
@@ -370,7 +372,6 @@ function home(_, q) {
   const pmOn = (iso) => eventsOn(iso).filter((e) => e.relevance === "core").length;
   const maxDay = Math.max(...D.days.map((d) => eventsOn(d.date).length));
   return `
-  ${npBanner()}
   <section class="home-hero">
     <div class="hh-copy">
       <p class="hh-eyebrow">Singapore · 5–9 October 2026 · Unofficial guide</p>
@@ -388,6 +389,8 @@ function home(_, q) {
       <p class="hh-foot">${E.length} events · ${D.going.length} people & companies · times in SGT</p>
     </aside>
   </section>
+
+  ${npBanner()}
 
   ${order.map((k, i) => S[k](String(i + 1).padStart(2, "0"))).join("")}
 
@@ -431,7 +434,7 @@ function eventRow(e) {
   return `<article class="event-row r-${e.relevance}${on ? " is-saved" : ""}" data-id="${e.id}">
     <div class="er-when"><span class="er-day">${esc(e.end_date ? dayRange(e) : dayOf(e.date).label.slice(0, 3) + " " + dayOf(e.date).label.slice(4, 6).trim())}</span><span class="er-time${e.start ? "" : " soft"}">${esc(e.start ? e.start : isAllDay(e) ? "All day" : "TBC")}</span></div>
     <div class="er-main"><h3><a href="${evUrl(e)}">${esc(e.title)}</a></h3>
-      <p>${kindChip(e, true)} <i class="rel-dot dot-${e.relevance}" aria-hidden="true"></i><span class="visually-hidden">${esc(REL[e.relevance].label)}.</span> ${esc(e.venue)} · ${esc(ACCESS[e.access])}${e.status === "provisional" || e.status === "conflict" ? ` · <span class="warn-text">${esc(STATUS[e.status].label)}</span>` : ""}</p></div>
+      <p>${kindChip(e, true)} ${scoreChip(e)} <i class="rel-dot dot-${e.relevance}" aria-hidden="true"></i><span class="visually-hidden">${esc(REL[e.relevance].label)}.</span> ${esc(e.venue)} · ${esc(ACCESS[e.access])}${e.status === "provisional" || e.status === "conflict" ? ` · <span class="warn-text">${esc(STATUS[e.status].label)}</span>` : ""}</p></div>
     <div class="er-side">${saveBtn(e)}</div>
   </article>`;
 }
@@ -599,7 +602,7 @@ function start(_, q) {
     <div class="section-head"><h2 id="h-ref">Handy reference</h2></div>
     <details class="fold fold-card"><summary>What the labels mean</summary>
       <div class="grid grid-3" style="margin-top:12px">
-        <div><h3>Relevance</h3>${Object.entries(REL).map(([k, v]) => `<p>${relChip(k)}<span class="def">${esc(v.desc)}</span></p>`).join("")}</div>
+        <div><h3>Relevance</h3>${Object.entries(REL).map(([k, v]) => `<p>${relChip(k)}<span class="def">${esc(v.desc)}</span></p>`).join("")}<p class="def">The score out of 10 ranks listings within these bands: 8–10, 6–7, 3–5 and 1–4.</p></div>
         <div><h3>Access</h3>${["badge", "open", "registration", "approval", "invite", "waitlist"].map((k) => `<p style="margin:0 0 6px"><span class="chip chip-outline chip-access-${k}">${ACCESS[k]}</span></p>`).join("")}</div>
         <div><h3>Verification</h3>${Object.entries(STATUS).map(([k, v]) => `<p><strong>${esc(v.label)}</strong><span class="def">${esc(v.desc)}</span></p>`).join("")}</div>
       </div></details>
@@ -941,7 +944,7 @@ function eventDetail(id) {
   return `<a class="back-link" href="#/events" data-back>← Back</a>
   <div class="detail detail-calm">
     <article>
-      <div class="chip-row">${kindChip(e)}${relChip(e.relevance)}${e.official && e.type !== "official" ? `<span class="chip chip-official">TOKEN2049 official</span>` : ""}${updatedBadge(e)}</div>
+      <div class="chip-row">${kindChip(e)}${scoreChip(e)}${relChip(e.relevance)}${e.official && e.type !== "official" ? `<span class="chip chip-official">TOKEN2049 official</span>` : ""}${updatedBadge(e)}</div>
       <h1>${esc(e.title)}</h1>
       <p class="standfirst">${esc(e.why)}</p>
       <dl class="fact-strip">
@@ -989,7 +992,7 @@ function eventDetail(id) {
         <p class="plan-where">${esc(e.venue)}</p>
         <div class="plan-actions">${acts}</div>
         <dl class="plan-facts">
-          <div><dt>Relevance</dt><dd><b>${esc(REL[e.relevance].label)}</b><span>${esc(REL[e.relevance].desc)}</span></dd></div>
+          <div><dt>Relevance</dt><dd><span class="score-line"><b class="score-big">${e.score}<small>/10</small></b><span class="score-meter" aria-hidden="true">${Array.from({ length: 10 }, (_, i) => `<i class="${i < e.score ? "on" : ""}"></i>`).join("")}</span></span><b>${esc(REL[e.relevance].label)}</b><span>${esc(REL[e.relevance].desc)}</span></dd></div>
           <div><dt>Verification</dt><dd><b>${esc(STATUS[e.status].label)}</b><span>${esc(e.status_note || STATUS[e.status].desc)}</span></dd></div>
           ${clashes.length ? `<div><dt>Clashes</dt><dd><b>${plural(clashes.length, "overlapping listing")}</b><span>See Clashes below.</span></dd></div>` : ""}
           ${e.people.length ? `<div><dt>People</dt><dd><b>${plural(e.people.length, "person", "people")} named</b><span>See who you can expect there below.</span></dd></div>` : ""}
@@ -1438,12 +1441,18 @@ const communityLinks = () => {
   return M ? `<div class="np-community">${M.links.map((l) => `<a class="np-comm np-${l.id}" href="${esc(l.url)}" target="_blank" rel="noopener"><span class="np-mark" aria-hidden="true">${COMMUNITY_MARK[l.id] || "↗"}</span><span>${esc(l.label)}</span></a>`).join("")}</div>` : "";
 };
 /** Slim NEXTPredict strip at the very top of the home page. */
+/** Straight after the TOKEN2049 hero: carry the conversation on to NEXTPredict NYC. */
 function npBanner() {
   const P = D.site.promo, C = D.site.curator;
   if (!P) return "";
-  return `<aside class="np-announce" aria-label="From the curators: NEXTPredict">
-    <p><span class="np-announce-tag">From the curators</span> <strong>${esc(C.summit.name)}</strong> · ${esc(C.summit.dates)} · ${esc(C.summit.place)}</p>
-    <span class="np-announce-links"><a href="${esc(P.url)}" target="_blank" rel="noopener">Get tickets ↗</a><a href="#/nextpredict">Join the community</a></span>
+  return `<aside class="np-continue" aria-label="From the curators: NEXTPredict NYC">
+    <div class="np-continue-date" aria-hidden="true"><span>Oct</span><b>22–23</b><span>New York</span></div>
+    <div class="np-continue-text">
+      <p class="np-continue-kicker">After Singapore · from the curators of this guide</p>
+      <h2>Continue the conversation in New York</h2>
+      <p>The prediction-markets crowd you meet at TOKEN2049 reconvenes at <strong>${esc(C.summit.name)}</strong>, ${esc(C.summit.dates)} at ${esc(C.summit.place)}, two weeks before the US midterms.</p>
+    </div>
+    <div class="np-continue-actions"><a class="pa-primary" href="${esc(P.url)}" target="_blank" rel="noopener">Get tickets <span aria-hidden="true">↗</span></a><a class="np-continue-link" href="#/nextpredict">Join the community →</a></div>
   </aside>`;
 }
 function nextpredict() {
@@ -1559,7 +1568,7 @@ function about() {
 
   <section class="section"><h2>How we label things</h2>
     <div class="grid grid-2">
-      <div class="panel"><h3>Relevance</h3>${Object.entries(REL).map(([k, v]) => `<p>${relChip(k)}<span class="def">${esc(v.desc)}</span></p>`).join("")}<p class="def">These labels describe how directly an event relates to prediction markets. They are not a ranking of quality.</p></div>
+      <div class="panel"><h3>Relevance</h3>${Object.entries(REL).map(([k, v]) => `<p>${relChip(k)}<span class="def">${esc(v.desc)}</span></p>`).join("")}<p class="def">These labels describe how directly an event relates to prediction markets. They are not a ranking of quality. Each listing also has a score out of 10: prediction-market events score 8–10, strongly relevant 6–7, adjacent 3–5 and wildcards 1–4.</p></div>
       <div class="panel"><h3>Verification</h3>${Object.entries(STATUS).map(([k, v]) => `<p><strong>${esc(v.label)}</strong> (${D.events.filter((e) => e.status === k).length})<span class="def">${esc(v.desc)}</span></p>`).join("")}</div>
     </div>
   </section>

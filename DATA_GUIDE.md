@@ -51,6 +51,7 @@ Copy an existing event in `data/events.json` and change the fields. Order in the
   "type": "networking",
   "official": false,
   "relevance": "core",
+  "score": 9,
   "access": "approval",
   "access_note": "Approval required",
   "audiences": ["traders", "market-makers"],
@@ -91,6 +92,7 @@ If the event mentions a person or company that doesn't exist yet, add them to `p
 | `type` | `official` (TOKEN2049 programme session), `side-event`, `forum`, `meetup`, `networking` (party/networking), `closed-door`, `exhibition`, `other` |
 | `official` | `true` for TOKEN2049's own events (sessions, AFTER2049) |
 | `relevance` | `core` = directly about prediction markets · `strong` = not exclusively PM but highly relevant · `adjacent` = useful market-structure context · `wildcard` = strange/experimental |
+| `score` | Relevance score, 1–10, shown as "8/10". It must sit inside its tier: `core` 8–10 (10 = wholly about prediction markets), `strong` 6–7, `adjacent` 3–5, `wildcard` 1–4. The validator rejects anything outside the band |
 | `access` | `open`, `registration`, `approval`, `invite`, `waitlist`, `sold-out`, `badge` (TOKEN2049 pass), `unknown`. Put the organiser's wording in `access_note` |
 | `audiences` | any of `traders`, `market-makers`, `founders`, `builders`, `institutions`, `investors`, `sports`, `media`, `regulators`, `general` |
 | `ecosystems` | any of `kalshi`, `polymarket`, `hyperliquid`, `independent` |
