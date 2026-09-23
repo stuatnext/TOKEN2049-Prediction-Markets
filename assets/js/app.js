@@ -400,11 +400,11 @@ function home(_, q) {
 
   ${HOOKS.homeTop?.(q) || ""}
 
-  ${shareSiteBox()}
-
   ${npBanner()}
 
   ${order.map((k, i) => S[k](String(i + 1).padStart(2, "0"))).join("")}
+
+  ${shareSiteBox()}
 
   <section class="section split" aria-label="About and offer">
     <div class="panel"><h2>About this guide</h2>
