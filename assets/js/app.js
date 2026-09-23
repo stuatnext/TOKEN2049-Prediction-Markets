@@ -1586,7 +1586,7 @@ function shareSiteBox() {
       <p>Share the guide. The post is written for you and tags <b>@${esc(D.site.curator?.x_handle || "")}</b>.</p>
     </div>
     <div class="share-site-btns">
-      <a class="btn share-x" href="https://x.com/intent/post?text=${t}&url=${u}" target="_blank" rel="noopener">Post on X</a>
+      <a class="btn share-x" href="https://x.com/intent/post?text=${t}&url=${u}" target="_blank" rel="noopener">Post on X (Twitter)</a>
       <button type="button" class="btn" data-share-linkedin="https://www.linkedin.com/sharing/share-offsite/?url=${u}">LinkedIn</button>
       <a class="btn" href="https://wa.me/?text=${both}" target="_blank" rel="noopener">WhatsApp</a>
       <a class="btn" href="https://t.me/share/url?url=${u}&text=${t}" target="_blank" rel="noopener">Telegram</a>
