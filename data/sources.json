@@ -49,11 +49,67 @@
     "note": "Official side-event directory. Recheck close to the event because listings can change."
   },
   {
+    "id": "src-perps-institutional-luma",
+    "name": "Perps × Institutional: Trading, Liquidity & the Onchain Economy (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/keq5yo5b",
+    "note": "Organiser registration page, hosted by lil room. Wednesday 7 October, 16:00–19:40, Singapore. Registration is subject to host approval."
+  },
+  {
+    "id": "src-moirai-luma",
+    "name": "Prediction Market Traders Night (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/pb4q4k03",
+    "note": "Organiser page, hosted by Moirai Research. Thursday 8 October, 18:00–22:00 SGT, central Singapore (address to confirmed guests). Invite-only, 40 spots, host approval required. No talks or agenda."
+  },
+  {
+    "id": "src-perp-traders-mixer-luma",
+    "name": "Perp Traders Mixer @Token2049 Singapore (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/lh5uxlii",
+    "note": "Organiser page. Hosted by HyprEarn with DappLooker. Thursday 8 October, 10:00–14:00 SGT, Singapore (venue TBD). Invite-only; approval required. Ecosystem partners Lighter, Pacifica and CryptoMondays."
+  },
+  {
+    "id": "src-hypurrco-luma",
+    "name": "HypurrCo Gathers x Hyperliquid Strategies x Hyperliquid Policy Center x Insilico Terminal (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/mmrfj0pz",
+    "note": "Organiser registration page, hosted by HypurrCollective. Thursday 8 October, 11:00–15:00 SGT, Bugis (exact location revealed the day before). Approved RSVPs only, no +1s. Schedule to be revealed closer to the date."
+  },
+  {
+    "id": "src-powerscale-luma",
+    "name": "PowerScale: Crypto × Meme × Anime × Social Opinion Market (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/dtll2zqx",
+    "note": "Organiser registration page, hosted by Daniel Im (Belief Market). Thursday 8 October, 18:00–21:00 SGT, Singapore (address not published). Free; no approval needed. Live anime battles with crowd voting, cosplay, and Belief Market results shown live on screen."
+  },
+  {
+    "id": "src-gm-ai-luma",
+    "name": "gm AI v2 by 0xJeff, BlockRun, CodecFlow, Dolphin, Kite, OpenServ, Reppo (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/xkjrrfhe",
+    "note": "Organiser registration page. Thursday 8 October, 13:20–17:15 SGT, Singapore (address after registration). Approval required. Speakers include RG (Reppo core contributor) on “Open Reinforcement Learning via Prediction Markets”; agenda has an Agentic Economy Outlook 2026 briefing, six AI product showcases and a book launch."
+  },
+  {
+    "id": "src-after2049-megatix",
+    "name": "AFTER 2049 presents: Claptone & Crusy (Megatix)",
+    "type": "Primary / official",
+    "url": "https://megatix.com.sg/events/after2049",
+    "note": "Official ticket page, presented by TOKEN2049. Friday 9 October 2026 from 19:00 until late, Marina Bay Sands SkyPark Observation Deck (10 Bayfront Avenue, Tower 3). 18+ with photo ID; smart casual; no guaranteed entry after 23:00; no re-entry after midnight. Claptone, Crusy, ANONM, Leon (FR), Milam, Mo-Shi."
+  },
+  {
     "id": "src-dexpal",
     "name": "TOKEN2049 side events on Dexpal",
     "type": "Event directory",
     "url": "https://events.dexpal.io/token2049",
-    "note": "Side-event discovery and access status."
+    "note": "Community-run directory of TOKEN2049 week side events (about 440 listed), with access status. Its footer says it is an unofficial community guide, not affiliated with TOKEN2049. The official side-event directory is TOKEN2049 Week."
+  },
+  {
+    "id": "src-dexpal-perps-institutional",
+    "name": "Perps × Institutional on Dexpal",
+    "type": "Event directory",
+    "url": "https://events.dexpal.io/token2049?event=T2049-221",
+    "note": "Dexpal listing for this event (community-run directory, not affiliated with TOKEN2049)."
   },
   {
     "id": "src-haruko-event",
@@ -301,6 +357,13 @@
     "note": "Grayscale as co-host of the Hyperliquid Forum."
   },
   {
+    "id": "src-days-singapore",
+    "name": "Digital Asset Yield Summit Singapore",
+    "type": "Organiser / event page",
+    "url": "https://daysevent.com/singapore",
+    "note": "DAYS organiser page. Tuesday 6 October at Raffles Hotel, 1 Beach Road. Invite-only; every request is reviewed individually. The agenda includes the Hyperliquid Forum sessions."
+  },
+  {
     "id": "src-cryptonews-hlforum",
     "name": "Hyperliquid Forum by DAYS brings institutional capital face to face with the Hyperliquid ecosystem",
     "type": "Reported / trade media",
@@ -428,17 +491,10 @@
   },
   {
     "id": "src-hype-sg",
-    "name": "HYPE Singapore 2026: Hyperliquid Hackathon & Conference",
+    "name": "Hype Global (HYPE Singapore organiser)",
     "type": "Organiser / event page",
-    "url": "https://hype.global/events/singapore-2026",
-    "note": "6–7 October: 24-hour hackathon plus conference for Hyperliquid builders. Also describes the official Hyperliquid event on 5 October (invite-only, capped at 200, 09:00–17:00, speaking agenda 15:00–17:00)."
-  },
-  {
-    "id": "src-hype-sg-luma",
-    "name": "HYPE Singapore (Luma)",
-    "type": "Organiser / event page",
-    "url": "https://luma.com/qc27yx6b",
-    "note": "Registration page."
+    "url": "https://hype.global/",
+    "note": "Organiser homepage. It still says “Join the biggest Hyperliquid event of the year in Singapore” but gives no date or details. The dedicated HYPE Singapore page, which gave 6–7 October (24-hour hackathon plus conference) and described the official Hyperliquid event on 5 October (invite-only, capped at 200, 09:00–17:00), was offline on 23 September."
   },
   {
     "id": "src-mnm-agentic",

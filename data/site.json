@@ -207,14 +207,25 @@
     {
       "item": "Unverified leads on Who's Going",
       "state": "Unverified",
-      "detail": "Tom Wolf, Reppo’s RG, CJ Hetherington, Matt Restivo, Pär Helgosson and Jacelynn Pang are shown as Unverified. They came from research leads without a public source link.",
+      "detail": "Tom Wolf, CJ Hetherington, Matt Restivo, Pär Helgosson and Jacelynn Pang are shown as Unverified. They came from research leads without a public source link.",
       "events": [],
       "sources": []
     },
     {
+      "item": "HYPE Singapore (6–7 Oct): event pages offline",
+      "state": "Open",
+      "detail": "Hype Global’s HYPE Singapore page and its Luma registration page both returned “not found” on 23 September. The homepage still promotes a Singapore event but gives no date. Not known whether it has moved, been cancelled or is being republished.",
+      "events": [
+        "hype-singapore"
+      ],
+      "sources": [
+        "src-hype-sg"
+      ]
+    },
+    {
       "item": "Official Hyperliquid Monday event: venue",
       "state": "Open",
-      "detail": "Date, hours (09:00–17:00) and format are now reported by Hype Global. The venue still isn’t published.",
+      "detail": "Hours (09:00–17:00) and format were reported by Hype Global, but that page is now offline. The venue still isn’t published.",
       "events": [
         "hyperliquid-ecosystem-event"
       ],

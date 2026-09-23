@@ -156,6 +156,11 @@ a.chip:hover { color: var(--ink); background: var(--line); }
 .dot-core { background: var(--core); } .dot-strong { background: var(--strong); } .dot-adjacent { background: var(--adjacent); } .dot-wildcard { background: var(--wildcard); }
 .chip-outline { background: transparent; border: 1px solid var(--line-strong); }
 .chip-official { background: var(--ink); color: var(--bg); }
+.chip-kind { font-weight: 600; }
+.kind-session { background: #0b0b0b; color: var(--brand, #fff); }
+.kind-booth { background: var(--brand-soft, #fff3b0); color: #0b0b0b; box-shadow: inset 0 0 0 1px #0b0b0b; }
+.kind-side { background: transparent; color: var(--ink); border: 1px solid var(--line-strong); }
+.event-row .chip-kind { font-size: .72rem; padding: 0 6px; vertical-align: 1px; }
 .chip-warn { background: var(--warn-bg); color: var(--warn); }
 .chip-clash { background: var(--clash-bg); color: var(--clash); }
 .chip-access-open, .chip-access-badge { }
@@ -734,3 +739,11 @@ a:hover { text-decoration-color: var(--ink); }
 }
 .door:first-child .door-text span, .door:first-child .door-text em { color: color-mix(in srgb, currentColor 72%, transparent); }
 .doors-plain .door:first-child .door-text span { color: var(--ink-2); }
+
+/* Kind chips in dark mode */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .kind-session { background: var(--brand); color: #0b0b0b; }
+  :root:not([data-theme="light"]) .kind-booth { background: transparent; color: var(--brand); box-shadow: inset 0 0 0 1px var(--brand); }
+}
+:root[data-theme="dark"] .kind-session { background: var(--brand); color: #0b0b0b; }
+:root[data-theme="dark"] .kind-booth { background: transparent; color: var(--brand); box-shadow: inset 0 0 0 1px var(--brand); }
