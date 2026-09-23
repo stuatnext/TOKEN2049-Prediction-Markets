@@ -1489,3 +1489,12 @@ html[data-readable] a { text-decoration-thickness: 3px; }
 .pa-row { flex-wrap: wrap; min-width: 0; }
 .pa-row .pa-btn { flex: 1 1 130px; min-width: 0; }
 a.pa-btn { display: flex; align-items: center; justify-content: center; text-align: center; text-decoration: none; }
+
+/* Share the guide (home) */
+.share-site { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 20px; margin: 4px 0 22px; padding: 16px 18px; border: 2px solid var(--brand); border-radius: 14px; background: color-mix(in srgb, var(--brand) 10%, var(--surface, #fff)); min-width: 0; }
+.share-site-text { flex: 1 1 260px; min-width: 0; }
+.share-site h2 { margin: 0 0 4px; font-size: 1.15rem; }
+.share-site p { margin: 0; }
+.share-site-btns { display: flex; flex-wrap: wrap; gap: 8px; min-width: 0; }
+.share-site-btns .btn { flex: 1 1 auto; min-height: 44px; justify-content: center; }
+.share-site .share-x { background: #0b0b0b; color: #fff; border-color: #0b0b0b; }
