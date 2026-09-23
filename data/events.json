@@ -1504,6 +1504,62 @@
     "last_updated": "2026-09-23"
   },
   {
+    "id": "perp-traders-mixer",
+    "legacy_id": "",
+    "title": "Perp Traders Mixer @Token2049 Singapore",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "10:00",
+    "end": "14:00",
+    "time_note": null,
+    "venue": "Singapore (venue TBD)",
+    "map_query": null,
+    "type": "networking",
+    "official": false,
+    "relevance": "adjacent",
+    "access": "invite",
+    "access_note": "Invite-only; approval required",
+    "audiences": [
+      "traders",
+      "investors",
+      "builders"
+    ],
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "topics": [
+      "trading",
+      "ai-agents"
+    ],
+    "stack_layers": [],
+    "summary": "Invite-only morning mixer hosted by HyprEarn for the Hyperliquid and perp-trading community, with panels and fireside chats on perpetuals. Aimed at perp traders, Hyperliquid-native funds, protocol teams, AI trading builders and VCs.",
+    "why": "Not a prediction-market event and the page doesn't mention them. Relevant as a room of Hyperliquid-native traders and funds, the same crowd most likely to trade HIP-4 outcome markets.",
+    "questions": [
+      "Are Hyperliquid perp traders already trading HIP-4 outcome markets, and what would make them size up?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "lighter",
+        "role": "partner"
+      }
+    ],
+    "also_listed": [
+      "HyprEarn",
+      "DappLooker",
+      "Pacifica",
+      "CryptoMondays",
+      "ELLIPAL"
+    ],
+    "sources": [
+      "src-perp-traders-mixer-luma"
+    ],
+    "status": "listed",
+    "status_note": "Organiser Luma page. Venue not yet announced.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
+  },
+  {
     "id": "polymarket-singapore-kickoff",
     "legacy_id": "poly-kickoff",
     "title": "Polymarket Singapore Kick-Off",
