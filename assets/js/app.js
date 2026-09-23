@@ -400,6 +400,8 @@ function home(_, q) {
 
   ${HOOKS.homeTop?.(q) || ""}
 
+  ${shareSiteBox()}
+
   ${npBanner()}
 
   ${order.map((k, i) => S[k](String(i + 1).padStart(2, "0"))).join("")}
@@ -1570,6 +1572,29 @@ const communityLinks = () => {
 };
 /** Slim NEXTPredict strip at the very top of the home page. */
 /** Straight after the TOKEN2049 hero: carry the conversation on to NEXTPredict NYC. */
+function shareSiteText() {
+  const h = D.site.curator?.x_handle;
+  return `Heading to TOKEN2049 Singapore? Every prediction-market event, side event and who's going, in one free guide${h ? `, put together by @${h}` : ""}.`;
+}
+
+function shareSiteBox() {
+  const url = absUrl(""), text = shareSiteText(), u = encodeURIComponent(url), t = encodeURIComponent(text);
+  const both = encodeURIComponent(`${text} ${url}`);
+  return `<section class="share-site" aria-labelledby="share-site-title">
+    <div class="share-site-text">
+      <h2 id="share-site-title">Know someone going to TOKEN2049?</h2>
+      <p>Share the guide. The post is written for you and tags <b>@${esc(D.site.curator?.x_handle || "")}</b>.</p>
+    </div>
+    <div class="share-site-btns">
+      <a class="btn share-x" href="https://x.com/intent/post?text=${t}&url=${u}" target="_blank" rel="noopener">Post on X</a>
+      <button type="button" class="btn" data-share-linkedin="https://www.linkedin.com/sharing/share-offsite/?url=${u}">LinkedIn</button>
+      <a class="btn" href="https://wa.me/?text=${both}" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn" href="https://t.me/share/url?url=${u}&text=${t}" target="_blank" rel="noopener">Telegram</a>
+      <button type="button" class="btn" data-share-site>More…</button>
+    </div>
+  </section>`;
+}
+
 function npBanner() {
   const P = D.site.promo, C = D.site.curator;
   if (!P) return "";
@@ -1860,6 +1885,20 @@ const a2hs = {
 window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); a2hs.deferred = e; });
 window.addEventListener("appinstalled", () => { a2hs.deferred = null; a2hs.dismiss(); toast("Added to your home screen"); });
 document.addEventListener("click", async (ev) => {
+  const li = ev.target.closest("[data-share-linkedin]");
+  if (li) {
+    // LinkedIn ignores pre-filled text, so copy it for pasting
+    const text = `${shareSiteText().replace(/@(\w+)/, "@Stuart Crowley")} ${absUrl("")}`;
+    try { await navigator.clipboard.writeText(text); toast("Post text copied. Paste it into LinkedIn, then type @Stuart Crowley and pick the profile to tag it."); } catch {}
+    window.open(li.dataset.shareLinkedin, "_blank", "noopener");
+    return;
+  }
+  if (ev.target.closest("[data-share-site]")) {
+    const text = shareSiteText(), url = absUrl("");
+    if (navigator.share) { try { await navigator.share({ title: document.title, text, url }); } catch {} return; }
+    try { await navigator.clipboard.writeText(`${text} ${url}`); toast("Post text and link copied"); } catch { prompt("Copy this:", `${text} ${url}`); }
+    return;
+  }
   if (ev.target.closest("[data-a2hs-close]")) { a2hs.dismiss(); return; }
   if (ev.target.closest("[data-a2hs-open]")) { document.getElementById("more-sheet").close(); a2hs.show(true); return; }
   if (ev.target.closest("[data-a2hs-install]") && a2hs.deferred) {
