@@ -56,6 +56,10 @@ for (const e of events) {
   for (const f of ["title", "date", "venue", "type", "relevance", "access", "summary", "why", "status"])
     if (!e[f]) err(`${w}: missing "${f}"`);
   if (!days.has(e.date)) err(`${w}: date ${e.date} is not one of the days in site.json`);
+  // Relevance score 1-10 must sit inside its tier's band so the number never contradicts the label.
+  const BAND = { core: [8, 10], strong: [6, 7], adjacent: [3, 5], wildcard: [1, 4] };
+  if (!Number.isInteger(e.score)) err(`${w}: score must be a whole number from 1 to 10`);
+  else if (BAND[e.relevance] && (e.score < BAND[e.relevance][0] || e.score > BAND[e.relevance][1])) err(`${w}: score ${e.score} is outside the ${e.relevance} band (${BAND[e.relevance].join("-")})`);
   if (e.end_date && !days.has(e.end_date)) err(`${w}: end_date ${e.end_date} is not a listed day`);
   if (e.start && !timeRe.test(e.start)) err(`${w}: start "${e.start}" must be HH:MM or null`);
   if (e.end && !timeRe.test(e.end)) err(`${w}: end "${e.end}" must be HH:MM or null`);

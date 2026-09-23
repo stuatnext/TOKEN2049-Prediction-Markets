@@ -13,6 +13,7 @@
     "type": "side-event",
     "official": false,
     "relevance": "strong",
+    "score": 7,
     "access": "invite",
     "access_note": "Invite-only; reported cap of 200 C-suite and department heads",
     "audiences": [
@@ -71,6 +72,7 @@
     "type": "networking",
     "official": false,
     "relevance": "core",
+    "score": 8,
     "access": "approval",
     "access_note": "Invite-only; approval required",
     "audiences": [
@@ -159,6 +161,7 @@
     "type": "forum",
     "official": false,
     "relevance": "core",
+    "score": 8,
     "access": "approval",
     "access_note": "Curated; approval required",
     "audiences": [
@@ -359,6 +362,7 @@
     "type": "forum",
     "official": false,
     "relevance": "adjacent",
+    "score": 3,
     "access": "approval",
     "access_note": "Curated; approval required",
     "audiences": [
@@ -412,6 +416,7 @@
     "type": "closed-door",
     "official": false,
     "relevance": "strong",
+    "score": 7,
     "access": "invite",
     "access_note": "Invitation only; closed-door",
     "audiences": [
@@ -478,6 +483,7 @@
     "type": "closed-door",
     "official": false,
     "relevance": "adjacent",
+    "score": 3,
     "access": "approval",
     "access_note": "Approval required",
     "audiences": [
@@ -536,6 +542,7 @@
     "type": "exhibition",
     "official": false,
     "relevance": "strong",
+    "score": 7,
     "access": "badge",
     "access_note": "TOKEN2049 pass (expo floor)",
     "audiences": [
@@ -597,6 +604,7 @@
     "type": "exhibition",
     "official": false,
     "relevance": "core",
+    "score": 8,
     "access": "badge",
     "access_note": "TOKEN2049 pass (expo floor)",
     "audiences": [
@@ -667,6 +675,7 @@
     "type": "official",
     "official": true,
     "relevance": "core",
+    "score": 10,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -734,6 +743,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -788,6 +798,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -842,6 +853,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -903,6 +915,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -949,6 +962,7 @@
     "type": "official",
     "official": true,
     "relevance": "strong",
+    "score": 7,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1016,6 +1030,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1063,6 +1078,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1110,6 +1126,7 @@
     "type": "official",
     "official": true,
     "relevance": "core",
+    "score": 8,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1173,6 +1190,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 4,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1232,6 +1250,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1279,6 +1298,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 4,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1345,6 +1365,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1399,6 +1420,7 @@
     "type": "official",
     "official": true,
     "relevance": "strong",
+    "score": 6,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1469,6 +1491,7 @@
     "type": "side-event",
     "official": false,
     "relevance": "adjacent",
+    "score": 3,
     "access": "approval",
     "access_note": "Approval required",
     "audiences": [
@@ -1521,6 +1544,7 @@
     "type": "networking",
     "official": false,
     "relevance": "adjacent",
+    "score": 5,
     "access": "invite",
     "access_note": "Invite-only; approval required",
     "audiences": [
@@ -1577,6 +1601,7 @@
     "type": "networking",
     "official": false,
     "relevance": "core",
+    "score": 9,
     "access": "waitlist",
     "access_note": "Invitation-only; full with a waitlist at the latest check",
     "audiences": [
@@ -1641,6 +1666,7 @@
     "type": "networking",
     "official": false,
     "relevance": "adjacent",
+    "score": 5,
     "access": "open",
     "access_note": "Open; capacity limited",
     "audiences": [
@@ -1691,6 +1717,7 @@
     "type": "networking",
     "official": false,
     "relevance": "adjacent",
+    "score": 3,
     "access": "invite",
     "access_note": "Invite-only",
     "audiences": [
@@ -1740,6 +1767,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1793,6 +1821,7 @@
     "type": "meetup",
     "official": false,
     "relevance": "strong",
+    "score": 6,
     "access": "approval",
     "access_note": "Approved RSVPs only; no +1s",
     "audiences": [
@@ -1880,6 +1909,7 @@
     "type": "closed-door",
     "official": false,
     "relevance": "strong",
+    "score": 7,
     "access": "approval",
     "access_note": "Approval required",
     "audiences": [
@@ -1938,6 +1968,7 @@
     "type": "official",
     "official": true,
     "relevance": "strong",
+    "score": 6,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1999,6 +2030,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -2055,6 +2087,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -2102,6 +2135,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -2161,6 +2195,7 @@
     "type": "official",
     "official": true,
     "relevance": "core",
+    "score": 9,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -2243,6 +2278,7 @@
     "type": "forum",
     "official": false,
     "relevance": "core",
+    "score": 10,
     "access": "registration",
     "access_note": "Registration; approval may apply",
     "audiences": [
@@ -2327,6 +2363,7 @@
     "type": "side-event",
     "official": false,
     "relevance": "wildcard",
+    "score": 3,
     "access": "open",
     "access_note": "Free; register on Luma, no approval needed",
     "audiences": [
@@ -2383,6 +2420,7 @@
     "type": "networking",
     "official": false,
     "relevance": "core",
+    "score": 9,
     "access": "approval",
     "access_note": "Approval required; 40 spots",
     "audiences": [
@@ -2436,6 +2474,7 @@
     "type": "networking",
     "official": false,
     "relevance": "core",
+    "score": 9,
     "access": "invite",
     "access_note": "Approval / invite-only",
     "audiences": [
@@ -2526,6 +2565,7 @@
     "type": "forum",
     "official": false,
     "relevance": "adjacent",
+    "score": 3,
     "access": "approval",
     "access_note": "Curated; approval required",
     "audiences": [
@@ -2602,6 +2642,7 @@
     "type": "networking",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "registration",
     "access_note": "Separate ticket on Megatix; 18+ with photo ID; no guaranteed entry after 23:00",
     "audiences": [
@@ -2644,6 +2685,7 @@
     "type": "forum",
     "official": false,
     "relevance": "strong",
+    "score": 6,
     "access": "registration",
     "access_note": "Ticketed (Eventbrite)",
     "audiences": [
@@ -2707,6 +2749,7 @@
     "type": "side-event",
     "official": false,
     "relevance": "core",
+    "score": 8,
     "access": "registration",
     "access_note": "Sui Basecamp registration",
     "audiences": [
@@ -2768,6 +2811,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -2821,6 +2865,7 @@
     "type": "side-event",
     "official": false,
     "relevance": "wildcard",
+    "score": 3,
     "access": "approval",
     "access_note": "Approval required",
     "audiences": [
@@ -2882,6 +2927,7 @@
     "type": "forum",
     "official": false,
     "relevance": "strong",
+    "score": 6,
     "access": "registration",
     "access_note": "Registration page offline; check with Hype Global",
     "audiences": [
@@ -2952,6 +2998,7 @@
     "map_query": "Marina One West Tower, 9 Straits View, Singapore",
     "type": "forum",
     "relevance": "core",
+    "score": 9,
     "access": "approval",
     "access_note": "Free; approval required; waitlist on",
     "audiences": [
@@ -3053,6 +3100,7 @@
     "map_query": null,
     "type": "networking",
     "relevance": "core",
+    "score": 9,
     "access": "invite",
     "access_note": "Invite-only; approval required; capacity strictly limited",
     "audiences": [
@@ -3106,6 +3154,7 @@
     "map_query": null,
     "type": "side-event",
     "relevance": "strong",
+    "score": 6,
     "access": "approval",
     "access_note": "Free; approval required; waitlist",
     "audiences": [
@@ -3153,6 +3202,7 @@
     "map_query": "National Gallery Singapore",
     "type": "networking",
     "relevance": "adjacent",
+    "score": 4,
     "access": "approval",
     "access_note": "Approval required; no +1s",
     "audiences": [
