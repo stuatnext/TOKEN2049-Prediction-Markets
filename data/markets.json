@@ -57,6 +57,61 @@
       "resolves": "YES if the Events directory on this site shows 60 or more events at 09:00 SGT on Mon 5 October.",
       "status": "open",
       "outcome": null
+    },
+    {
+      "id": "hip4-new-market",
+      "question": "Will Hyperliquid announce a new HIP-4 outcome-market deployment during TOKEN2049 week?",
+      "category": "Announcements",
+      "event_id": "hyperliquid-forum",
+      "closes": "2026-10-09",
+      "seed": 0.45,
+      "resolves": "YES if Hyperliquid’s official channels announce a new HIP-4 outcome market or deployment between Mon 5 and Fri 9 October (SGT).",
+      "status": "open",
+      "outcome": null
+    },
+    {
+      "id": "predictfun-partnership",
+      "question": "Will Predict.fun announce a new partnership during TOKEN2049 week?",
+      "category": "Announcements",
+      "event_id": "predict-fun-expo",
+      "closes": "2026-10-09",
+      "seed": 0.5,
+      "resolves": "YES if Predict.fun’s official X account or blog announces a new named partner between Mon 5 and Fri 9 October (SGT).",
+      "status": "open",
+      "outcome": null
+    },
+    {
+      "id": "heat-33-thursday",
+      "question": "Will Singapore hit 33°C on Thursday 8 October?",
+      "category": "Weather",
+      "event_id": null,
+      "closes": "2026-10-08",
+      "seed": 0.55,
+      "resolves": "YES if Singapore’s Meteorological Service records a maximum of 33.0°C or higher at Changi on Thu 8 October.",
+      "status": "open",
+      "outcome": null
+    },
+    {
+      "id": "after2049-sellout",
+      "question": "Will AFTER2049 tickets sell out before Friday 9 October?",
+      "category": "Parties",
+      "event_id": "after2049",
+      "closes": "2026-10-09",
+      "seed": 0.6,
+      "resolves": "YES if the official Megatix page shows AFTER2049 as sold out before 00:00 SGT on Fri 9 October.",
+      "status": "open",
+      "outcome": null
+    },
+    {
+      "id": "going-150",
+      "question": "Will Who’s going list 150 or more people and companies by Monday 5 October?",
+      "category": "This guide",
+      "event_id": null,
+      "closes": "2026-10-05",
+      "seed": 0.35,
+      "resolves": "YES if the Who’s going page on this site shows 150 or more people and companies at 09:00 SGT on Mon 5 October.",
+      "status": "open",
+      "outcome": null
     }
   ]
 }
