@@ -435,17 +435,10 @@
   },
   {
     "id": "src-hype-sg",
-    "name": "HYPE Singapore 2026: Hyperliquid Hackathon & Conference",
+    "name": "Hype Global (HYPE Singapore organiser)",
     "type": "Organiser / event page",
-    "url": "https://hype.global/events/singapore-2026",
-    "note": "6–7 October: 24-hour hackathon plus conference for Hyperliquid builders. Also describes the official Hyperliquid event on 5 October (invite-only, capped at 200, 09:00–17:00, speaking agenda 15:00–17:00)."
-  },
-  {
-    "id": "src-hype-sg-luma",
-    "name": "HYPE Singapore (Luma)",
-    "type": "Organiser / event page",
-    "url": "https://luma.com/qc27yx6b",
-    "note": "Registration page."
+    "url": "https://hype.global/",
+    "note": "Organiser homepage. It still says “Join the biggest Hyperliquid event of the year in Singapore” but gives no date or details. The dedicated HYPE Singapore page, which gave 6–7 October (24-hour hackathon plus conference) and described the official Hyperliquid event on 5 October (invite-only, capped at 200, 09:00–17:00), was offline on 23 September."
   },
   {
     "id": "src-mnm-agentic",

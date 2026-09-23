@@ -53,7 +53,7 @@
       "src-hype-sg"
     ],
     "status": "listed",
-    "status_note": "Date from Hyperliquid’s announcement; time, format and cap as reported by Hype Global. Venue still not published.",
+    "status_note": "Date from Hyperliquid’s announcement; time, format and cap as reported by Hype Global on a page that is now offline. Venue still not published.",
     "clash_note": "Overlaps the start of Haruko x Kalshi (from 17:00) only if the event runs late.",
     "last_updated": "2026-09-23"
   },
@@ -2806,7 +2806,7 @@
     "official": false,
     "relevance": "strong",
     "access": "registration",
-    "access_note": "Register on Luma",
+    "access_note": "Registration page offline; check with Hype Global",
     "audiences": [
       "builders",
       "founders",
@@ -2843,11 +2843,10 @@
       "Developers"
     ],
     "sources": [
-      "src-hype-sg",
-      "src-hype-sg-luma"
+      "src-hype-sg"
     ],
-    "status": "listed",
-    "status_note": "Organiser listing. Venue and full programme not yet announced.",
+    "status": "provisional",
+    "status_note": "Hype Global’s event page and Luma registration page were both offline on 23 September. Details below come from those pages before they were removed. Treat as unconfirmed until Hype Global republishes.",
     "clash_note": "Runs alongside the Hyperliquid Forum on Tuesday.",
     "last_updated": "2026-09-23"
   }
