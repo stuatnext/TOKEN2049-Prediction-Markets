@@ -8,26 +8,41 @@ Curated by [Stuart Crowley](https://sg.linkedin.com/in/stuart-crowley-b2b561104)
 ## What's in here
 
 ```
-index.html                 The page shell (header, navigation, footer, SEO tags)
-assets/css/styles.css      All styling (light + dark mode, mobile first)
-assets/js/app.js           The app: pages, filters, calendar, finder, schedule
-assets/js/util.js          Helpers: times, clash detection, .ics export, saved events
-data/events.json           40 events and sessions   ← edit these files to update the site
-data/people.json           People
-data/companies.json        Companies / organisations
-data/stack.json            The 10 layers of the prediction-market stack
-data/sources.json          Every source link
-data/attendance.json       Who's Going evidence records (one per piece of evidence)
-data/site.json             Site settings: last-updated date, days, curator, promo, "still checking" list
-manifest.webmanifest       Lets phones add the site to the home screen
-sw.js                      Offline helper (network first, saved copy when offline)
-assets/icons/              Home-screen icons
-scripts/validate-data.mjs  Checks the data files for mistakes
-.github/ISSUE_TEMPLATE/    "Suggest a missing event" and "Report a correction" forms
-DATA_GUIDE.md              How to add or change an event, person or company
+index.html                   The page shell (header, navigation, menus, footer, SEO tags)
+manifest.webmanifest         Lets phones add the site to the home screen
+sw.js                        Offline helper (network first, saved copy when offline)
+
+assets/css/styles.css        All styling (yellow and black brand, light + dark mode, mobile first)
+assets/js/app.js             The main app: home, calendar, events, Who's going, people, companies,
+                             stack, guide, schedule, NEXTPredict page, play-money market
+assets/js/features.js        Planning tools: Now & next, Plan my day, daily briefing, search,
+                             application tracker, follow people, travel check, week grid,
+                             share image, larger-text mode, recap
+assets/js/util.js            Helpers: times, clash detection, .ics export, saved events
+assets/icons/, favicon.svg,  Icons and the link-preview image
+og-image.png
+
+data/events.json             Events and sessions        ← edit the data files to update the site
+data/people.json             People
+data/companies.json          Companies / organisations
+data/attendance.json         Who's Going evidence records (one per piece of evidence)
+data/stack.json              The 10 layers of the prediction-market stack
+data/sources.json            Every source link
+data/venues.json             Venue locations, used for walking times
+data/markets.json            Questions for the play-money prediction game
+data/site.json               Site settings: last-updated date, days, curator (incl. X handle),
+                             promo code, "still checking" list
+
+scripts/validate-data.mjs    Checks the data files for mistakes
+scripts/build-share-pages.mjs  Builds share/<event>/ pages so shared links show the event name
+share/                       Output of the script above (rebuilt automatically on deploy)
+
+.github/workflows/pages.yml  Checks the data and publishes the site on every push to main
+.github/ISSUE_TEMPLATE/      "Suggest a missing event", "Report a correction" and attendance forms
+DATA_GUIDE.md                How to add or change an event, person, company or venue
 ```
 
-There's no build step and no framework. The browser loads the JSON files and builds each page from them.
+There's no framework and no build step to run yourself. The browser loads the JSON files and builds each page from them.
 
 ## Preview it on your computer
 
@@ -42,6 +57,7 @@ After editing any file in `data/`, check it:
 
 ```bash
 node scripts/validate-data.mjs
+node scripts/build-share-pages.mjs   # optional: refresh the link-preview pages
 ```
 
 ## Publish on GitHub Pages
@@ -67,3 +83,7 @@ Pages use `#` links so they work on GitHub Pages without server configuration, f
 - `#/stack/clearing`
 - `#/going` (Who's Going), e.g. `#/going?role=trader,market-maker`
 - `#/schedule?share=…` (a shared schedule)
+- `#/now` (what's on now and next; the first tab during TOKEN week)
+- `#/plan?day=wed` (Plan my day)
+- `#/briefing/thu` (daily briefing to copy and share)
+- `#/start` (guide for newcomers), `#/play` (play-money game), `#/nextpredict`, `#/about`
