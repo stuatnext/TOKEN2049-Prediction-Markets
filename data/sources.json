@@ -56,6 +56,13 @@
     "note": "Organiser registration page, hosted by lil room. Wednesday 7 October, 16:00–19:40, Singapore. Registration is subject to host approval."
   },
   {
+    "id": "src-moirai-luma",
+    "name": "Prediction Market Traders Night (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/pb4q4k03",
+    "note": "Organiser page, hosted by Moirai Research. Thursday 8 October, 18:00–22:00 SGT, central Singapore (address to confirmed guests). Invite-only, 40 spots, host approval required. No talks or agenda."
+  },
+  {
     "id": "src-dexpal",
     "name": "TOKEN2049 side events on Dexpal",
     "type": "Event directory",

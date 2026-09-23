@@ -2318,7 +2318,7 @@
     "official": false,
     "relevance": "core",
     "access": "approval",
-    "access_note": "Approval required",
+    "access_note": "Approval required; 40 spots",
     "audiences": [
       "traders",
       "market-makers"
@@ -2348,12 +2348,13 @@
       "Market makers"
     ],
     "sources": [
+      "src-moirai-luma",
       "src-dexpal"
     ],
     "status": "listed",
-    "status_note": "Listed on a third-party side-event directory (Dexpal). Attendee profile unknown.",
+    "status_note": "Organiser Luma page (Moirai Research). Invite-only evening for people who trade, make markets in, research or build on prediction markets; 40 spots, confirmed individually.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "kalshi-x-insilico-asia-session",
