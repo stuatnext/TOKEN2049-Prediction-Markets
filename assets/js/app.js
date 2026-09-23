@@ -935,19 +935,22 @@ function eventDetail(id) {
     });
   }
   return `<a class="back-link" href="#/events" data-back>← Back</a>
-  <div class="detail">
+  <div class="detail detail-calm">
     <article>
-      <div class="chip-row">${typeChip(e)}${relChip(e.relevance)}${e.official && e.type !== "official" ? `<span class="chip chip-official">TOKEN2049 official</span>` : ""}${statusChip(e)}${updatedBadge(e)}</div>
+      <div class="chip-row">${kindChip(e)}${relChip(e.relevance)}${e.official && e.type !== "official" ? `<span class="chip chip-official">TOKEN2049 official</span>` : ""}${updatedBadge(e)}</div>
       <h1>${esc(e.title)}</h1>
       <p class="standfirst">${esc(e.why)}</p>
       <dl class="fact-strip">
         <div><dt>When</dt><dd><b>${esc(e.end_date ? dayRange(e) : d.long)}</b><span class="mono">${esc(timeLabel(e))} SGT</span></dd></div>
         <div><dt>Where</dt><dd><b>${esc(e.venue)}</b>${map ? `<span><a href="https://www.google.com/maps/search/?api=1&query=${map}" rel="noopener" target="_blank">Google Maps</a> · <a href="https://maps.apple.com/?q=${map}" rel="noopener" target="_blank">Apple Maps</a></span>` : ""}</dd></div>
-        <div><dt>Getting in</dt><dd><b>${esc(ACCESS[e.access])}</b>${e.access_note && e.access_note !== ACCESS[e.access] ? `<span>${esc(e.access_note)}</span>` : ""}</dd></div>
-        <div><dt>Kind</dt><dd><b>${KIND_ICON[kindOf(e)]} ${esc(KIND[kindOf(e)])}</b>${formatOf(e) ? `<span>${esc(formatOf(e))}</span>` : ""}</dd></div>
+        <div><dt>Getting in</dt><dd><b>${esc(ACCESS[e.access])}</b>${accessExtra(e) ? `<span>${esc(accessExtra(e))}</span>` : ""}</dd></div>
+        <div><dt>Format</dt><dd><b>${esc(formatOf(e) || KIND[kindOf(e)])}</b></dd></div>
       </dl>
-      <div class="detail-cta">${srcs[0] ? `<a class="btn btn-primary btn-lg" href="${esc(srcs[0].url)}" rel="noopener" target="_blank">${e.type === "official" ? "Official agenda" : "Organiser / registration"} ↗</a>` : ""}${saveBtn(e, true)}</div>
-      ${e.status !== "verified" ? `<p class="notice${e.status === "listed" ? " info" : ""}" style="margin-top:14px"><strong>${esc(STATUS[e.status].label)}.</strong> ${esc(e.status_note || STATUS[e.status].desc)}</p>` : ""}
+      <div class="detail-cta">${srcs[0] ? `<a class="btn btn-primary btn-lg" href="${esc(srcs[0].url)}" rel="noopener" target="_blank">${e.type === "official" ? "Official agenda" : "Organiser / registration"} ↗</a>` : ""}${saveBtn(e, true)}
+        <span class="detail-minor">${block ? `<button type="button" class="link-btn" aria-disabled="true" data-ics-blocked="${esc(block)}" title="${esc(block)}">Add to calendar</button>` : `<button type="button" class="link-btn" data-ics="${e.id}">Add to calendar</button>`}<button type="button" class="link-btn" data-share="${e.id}">Share</button></span></div>
+      ${e.status === "provisional" || e.status === "conflict"
+        ? `<p class="notice" style="margin-top:16px"><strong>${esc(STATUS[e.status].label)}.</strong> ${esc(e.status_note || STATUS[e.status].desc)}</p>`
+        : `<p class="verify-line"><span class="verify-dot" aria-hidden="true"></span><strong>${esc(STATUS[e.status].label)}.</strong> ${esc(e.status_note || STATUS[e.status].desc)}</p>`}
 
       <section><h2>What it is</h2><p>${esc(e.summary)}</p></section>
 
@@ -975,21 +978,16 @@ function eventDetail(id) {
 
       ${related.length ? `<section><h2>Related events</h2><div class="event-list">${related.map((o) => eventCard(o, { compact: true })).join("")}</div></section>` : ""}
     </article>
-
-    <aside aria-label="Key facts">
-      <div class="facts">
-        <p class="facts-title">Plan it</p>
-        <dl class="kv">
-          <dt>Relevance</dt><dd>${esc(REL[e.relevance].label)}<span class="def">${esc(REL[e.relevance].desc)}</span></dd>
-          <dt>Verification</dt><dd>${esc(STATUS[e.status].label)}<span class="def">${esc(e.status_note || STATUS[e.status].desc)}</span></dd>
-        </dl>
-        <div class="actions">
-          ${block ? `<button type="button" class="btn" aria-disabled="true" data-ics-blocked="${esc(block)}">Add to calendar</button><span class="def">${esc(block)}</span>` : `<button type="button" class="btn" data-ics="${e.id}">Add to calendar (.ics)</button>`}
-          <button type="button" class="btn" data-share="${e.id}">Share link</button>
-        </div>
-      </div>
-    </aside>
   </div>`;
+}
+/** The access note minus any words that just repeat the access label ("Invite-only; cap of 200" → "Cap of 200"). */
+function accessExtra(e) {
+  const note = (e.access_note || "").trim(), label = ACCESS[e.access] || "";
+  const squash = (t) => t.toLowerCase().replace(/[^a-z]/g, "");
+  if (!note || squash(note) === squash(label)) return "";
+  const parts = note.split(/;\s*/).filter((p) => squash(p) && squash(p) !== squash(label) && !squash(label).startsWith(squash(p)));
+  const rest = parts.join("; ");
+  return rest ? rest.charAt(0).toUpperCase() + rest.slice(1) : "";
 }
 /** "People you can expect there": named hosts/speakers or people with evidence for this specific event. */
 function expectThere(e) {
