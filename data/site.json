@@ -52,6 +52,36 @@
       "dates": "22–23 October 2026",
       "place": "Hudson Yards, New York",
       "url": "https://nextpredict.io/summits/the-worlds-prediction-markets-summit/"
+    },
+    "community": {
+      "url": "https://nextpredict.io/community/",
+      "blurb": "A curated network of operators, traders, investors, builders and industry experts working on prediction markets.",
+      "links": [
+        {
+          "id": "whatsapp",
+          "label": "WhatsApp",
+          "url": "https://go.next.io/nextpredict",
+          "cta": "Join the WhatsApp community"
+        },
+        {
+          "id": "telegram",
+          "label": "Telegram",
+          "url": "https://telegram.me/nextpredictcommunity",
+          "cta": "Join on Telegram"
+        },
+        {
+          "id": "linkedin",
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/groups/26300069/",
+          "cta": "Join the LinkedIn group"
+        },
+        {
+          "id": "x",
+          "label": "X",
+          "url": "https://x.com/nextpredictio",
+          "cta": "Follow @nextpredictio"
+        }
+      ]
     }
   },
   "repo_url": "https://github.com/stuatnext/TOKEN2049-Prediction-Markets",
@@ -207,14 +237,25 @@
     {
       "item": "Unverified leads on Who's Going",
       "state": "Unverified",
-      "detail": "Tom Wolf, Reppo’s RG, CJ Hetherington, Matt Restivo, Pär Helgosson and Jacelynn Pang are shown as Unverified. They came from research leads without a public source link.",
+      "detail": "Tom Wolf, CJ Hetherington, Matt Restivo, Pär Helgosson and Jacelynn Pang are shown as Unverified. They came from research leads without a public source link.",
       "events": [],
       "sources": []
     },
     {
+      "item": "HYPE Singapore (6–7 Oct): event pages offline",
+      "state": "Open",
+      "detail": "Hype Global’s HYPE Singapore page and its Luma registration page both returned “not found” on 23 September. The homepage still promotes a Singapore event but gives no date. Not known whether it has moved, been cancelled or is being republished.",
+      "events": [
+        "hype-singapore"
+      ],
+      "sources": [
+        "src-hype-sg"
+      ]
+    },
+    {
       "item": "Official Hyperliquid Monday event: venue",
       "state": "Open",
-      "detail": "Date, hours (09:00–17:00) and format are now reported by Hype Global. The venue still isn’t published.",
+      "detail": "Hours (09:00–17:00) and format were reported by Hype Global, but that page is now offline. The venue still isn’t published.",
       "events": [
         "hyperliquid-ecosystem-event"
       ],

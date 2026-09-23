@@ -3825,7 +3825,7 @@
     "person_id": "rg-reppo",
     "company_id": null,
     "name": null,
-    "confidence": "unverified",
+    "confidence": "confirmed",
     "public": true,
     "attendance_scope": "TOKEN2049 week",
     "dates": [
@@ -3837,14 +3837,14 @@
     "event_ids": [
       "reppo-gm-ai"
     ],
-    "source_type": "internal_lead",
-    "source_id": null,
-    "source_url": null,
+    "source_type": "organiser_page",
+    "source_id": "src-gm-ai-luma",
+    "source_url": "https://luma.com/xkjrrfhe",
     "source_date": null,
-    "evidence_summary": "Unverified lead. Reppo reportedly said RG will be in Singapore and present at gm AI v2. The original post and event page links haven’t been recovered.",
-    "first_confirmed": null,
+    "evidence_summary": "Listed on the gm AI v2 Luma page as “RG, Reppo Core Contributor”, presenting Open Reinforcement Learning via Prediction Markets (Thu 8 Oct).",
+    "first_confirmed": "2026-09-23",
     "last_verified": "2026-09-23",
-    "id": "reppo-rg-unverified",
+    "id": "reppo-rg-gm-ai",
     "attendance_status": "side_event_speaker",
     "company_label": "Reppo"
   },
@@ -3876,7 +3876,7 @@
     ],
     "source_id": "src-hype-sg",
     "evidence_summary": "Hosts HYPE Singapore, the Hyperliquid hackathon and conference (6–7 Oct).",
-    "source_url": "https://hype.global/events/singapore-2026"
+    "source_url": "https://hype.global/"
   },
   {
     "entity_type": "company",
@@ -3904,5 +3904,202 @@
     "source_id": "src-mnm-agentic",
     "evidence_summary": "Organiser of The Odds: Prediction Markets Live and Agentic Finance (Thu 8 Oct, Suntec City).",
     "source_url": "https://mnm.live/agentic-finance"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "brooke-rizzetto",
+    "company_id": "polymarket",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "polymarket"
+    ],
+    "interests": [],
+    "event_ids": [
+      "thought-leaders-summit"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-tls-luma",
+    "source_url": "https://luma.com/h0vfc5sy",
+    "source_date": null,
+    "evidence_summary": "Listed on the THOUGHT LEADERS SUMMIT Luma page for the panel “Prediction Markets: Peak Hype or Just Getting Started?” (Wed 7 Oct, 15:45–16:30). Speaker.",
+    "first_confirmed": "2026-09-23",
+    "last_verified": "2026-09-23",
+    "id": "brooke-rizzetto-tls",
+    "attendance_status": "side_event_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "ding-x",
+    "company_id": "predict-fun",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [],
+    "event_ids": [
+      "thought-leaders-summit"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-tls-luma",
+    "source_url": "https://luma.com/h0vfc5sy",
+    "source_date": null,
+    "evidence_summary": "Listed on the THOUGHT LEADERS SUMMIT Luma page for the panel “Prediction Markets: Peak Hype or Just Getting Started?” (Wed 7 Oct, 15:45–16:30). Speaker.",
+    "first_confirmed": "2026-09-23",
+    "last_verified": "2026-09-23",
+    "id": "ding-x-tls",
+    "attendance_status": "side_event_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "ahmed-salih",
+    "company_id": "outcome",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "interests": [],
+    "event_ids": [
+      "thought-leaders-summit"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-tls-luma",
+    "source_url": "https://luma.com/h0vfc5sy",
+    "source_date": null,
+    "evidence_summary": "Listed on the THOUGHT LEADERS SUMMIT Luma page for the panel “Prediction Markets: Peak Hype or Just Getting Started?” (Wed 7 Oct, 15:45–16:30). Speaker.",
+    "first_confirmed": "2026-09-23",
+    "last_verified": "2026-09-23",
+    "id": "ahmed-salih-tls",
+    "attendance_status": "side_event_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "lucas-martin-calderon",
+    "company_id": "kash",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [],
+    "event_ids": [
+      "thought-leaders-summit"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-tls-luma",
+    "source_url": "https://luma.com/h0vfc5sy",
+    "source_date": null,
+    "evidence_summary": "Listed on the THOUGHT LEADERS SUMMIT Luma page for the panel “Prediction Markets: Peak Hype or Just Getting Started?” (Wed 7 Oct, 15:45–16:30). Speaker.",
+    "first_confirmed": "2026-09-23",
+    "last_verified": "2026-09-23",
+    "id": "lucas-martin-calderon-tls",
+    "attendance_status": "side_event_speaker"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "eric-nicomedez",
+    "company_id": "spartan-group",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [
+      "thought-leaders-summit"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-tls-luma",
+    "source_url": "https://luma.com/h0vfc5sy",
+    "source_date": null,
+    "evidence_summary": "Listed on the THOUGHT LEADERS SUMMIT Luma page for the panel “Prediction Markets: Peak Hype or Just Getting Started?” (Wed 7 Oct, 15:45–16:30). Moderator.",
+    "first_confirmed": "2026-09-23",
+    "last_verified": "2026-09-23",
+    "id": "eric-nicomedez-tls",
+    "attendance_status": "side_event_speaker"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "raven",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-06"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [
+      "raven-predictions-over-wine"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-raven-luma",
+    "source_url": "https://luma.com/pwn3k3pw",
+    "source_date": null,
+    "evidence_summary": "Hosts Predictions Over Wine, an invite-only prediction-markets evening (Tue 6 Oct).",
+    "first_confirmed": "2026-09-23",
+    "last_verified": "2026-09-23",
+    "id": "raven-host",
+    "attendance_status": "side_event_host",
+    "company_label": "Raven"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "dexsport",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main days",
+    "dates": [],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [],
+    "event_ids": [],
+    "source_type": "organiser_page",
+    "source_id": "src-token-partners",
+    "source_url": "https://www.token2049.com/singapore/partners",
+    "source_date": null,
+    "evidence_summary": "Listed on the official TOKEN2049 Singapore partners page. Named attendees not recorded.",
+    "first_confirmed": "2026-09-23",
+    "last_verified": "2026-09-23",
+    "id": "dexsport-partner",
+    "attendance_status": "sponsor",
+    "company_label": "Dexsport"
   }
 ]

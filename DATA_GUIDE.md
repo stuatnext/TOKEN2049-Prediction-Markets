@@ -51,6 +51,7 @@ Copy an existing event in `data/events.json` and change the fields. Order in the
   "type": "networking",
   "official": false,
   "relevance": "core",
+  "score": 9,
   "access": "approval",
   "access_note": "Approval required",
   "audiences": ["traders", "market-makers"],
@@ -91,6 +92,7 @@ If the event mentions a person or company that doesn't exist yet, add them to `p
 | `type` | `official` (TOKEN2049 programme session), `side-event`, `forum`, `meetup`, `networking` (party/networking), `closed-door`, `exhibition`, `other` |
 | `official` | `true` for TOKEN2049's own events (sessions, AFTER2049) |
 | `relevance` | `core` = directly about prediction markets · `strong` = not exclusively PM but highly relevant · `adjacent` = useful market-structure context · `wildcard` = strange/experimental |
+| `score` | Relevance score, 1–10, shown as "8/10". It must sit inside its tier: `core` 8–10 (10 = wholly about prediction markets), `strong` 6–7, `adjacent` 3–5, `wildcard` 1–4. The validator rejects anything outside the band |
 | `access` | `open`, `registration`, `approval`, `invite`, `waitlist`, `sold-out`, `badge` (TOKEN2049 pass), `unknown`. Put the organiser's wording in `access_note` |
 | `audiences` | any of `traders`, `market-makers`, `founders`, `builders`, `institutions`, `investors`, `sports`, `media`, `regulators`, `general` |
 | `ecosystems` | any of `kalshi`, `polymarket`, `hyperliquid`, `independent` |
@@ -199,3 +201,20 @@ Edit `open_questions` in `data/site.json`. Each item links to event IDs and sour
 ## Where the data came from
 
 The first version was extracted from *NEXTPredict TOKEN2049 Prediction Markets Master Field Guide 2026* (research cut-off 22 September 2026). Each event keeps its original ID in `legacy_id`. Internal material from that guide was deliberately not carried over: outreach routes, priority tiers, CRM references, story plans and unverified social-media intelligence.
+
+
+## Play-money questions (the Play tab)
+
+`data/markets.json` holds the questions on the **Play** tab. Visitors trade with play credits only; there is no real money, no prizes and no sign-up, and every visitor's balance and prices live only in their own browser.
+
+| Field | What it means |
+| --- | --- |
+| `starting_balance` | Play credits each visitor starts with |
+| `liquidity` | How much a trade moves the price. Higher = prices move less |
+| `question` | Keep it light, factual and checkable. Avoid questions about anyone's wrongdoing, health or private life, and avoid token-price bets |
+| `seed` | Starting Yes probability (0.01–0.99), the curators' estimate |
+| `resolves` | The exact rule and source used to settle it |
+| `event_id` | Optional link to a related event |
+| `status` / `outcome` | `open` + `null` while trading. To settle, set `"status": "resolved"` and `"outcome": "yes"`, `"no"` or `"void"` (void refunds half a credit per share) |
+
+Winning shares pay 1 credit each, automatically, the next time a visitor opens the Play tab.

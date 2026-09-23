@@ -11,6 +11,7 @@ const stack = load("stack.json");
 const sources = load("sources.json");
 const site = load("site.json");
 const attendance = load("attendance.json");
+const markets = load("markets.json");
 
 const ENUMS = {
   type: ["official", "side-event", "forum", "meetup", "networking", "closed-door", "exhibition", "other"],
@@ -56,6 +57,10 @@ for (const e of events) {
   for (const f of ["title", "date", "venue", "type", "relevance", "access", "summary", "why", "status"])
     if (!e[f]) err(`${w}: missing "${f}"`);
   if (!days.has(e.date)) err(`${w}: date ${e.date} is not one of the days in site.json`);
+  // Relevance score 1-10 must sit inside its tier's band so the number never contradicts the label.
+  const BAND = { core: [8, 10], strong: [6, 7], adjacent: [3, 5], wildcard: [1, 4] };
+  if (!Number.isInteger(e.score)) err(`${w}: score must be a whole number from 1 to 10`);
+  else if (BAND[e.relevance] && (e.score < BAND[e.relevance][0] || e.score > BAND[e.relevance][1])) err(`${w}: score ${e.score} is outside the ${e.relevance} band (${BAND[e.relevance].join("-")})`);
   if (e.end_date && !days.has(e.end_date)) err(`${w}: end_date ${e.end_date} is not a listed day`);
   if (e.start && !timeRe.test(e.start)) err(`${w}: start "${e.start}" must be HH:MM or null`);
   if (e.end && !timeRe.test(e.end)) err(`${w}: end "${e.end}" must be HH:MM or null`);
@@ -99,6 +104,21 @@ for (const c of companies) {
 for (const l of stack) {
   for (const c of l.companies || []) if (!C.has(c)) err(`stack "${l.id}": unknown company "${c}"`);
   checkSources(`stack "${l.id}"`, l.sources);
+}
+
+// ---- Play-money markets
+if (!(markets.starting_balance > 0) || !(markets.liquidity > 0)) err("markets.json: starting_balance and liquidity must be positive numbers");
+const mIds = new Set();
+for (const m of markets.markets || []) {
+  const w = `market "${m.id}"`;
+  if (!m.id || mIds.has(m.id)) err(`${w}: missing or duplicate id`); mIds.add(m.id);
+  if (!m.question || !m.resolves) err(`${w}: needs a question and a resolves rule`);
+  if (!(m.seed > 0.01 && m.seed < 0.99)) err(`${w}: seed must be between 0.01 and 0.99`);
+  if (!["open", "resolved"].includes(m.status)) err(`${w}: status must be open or resolved`);
+  if (m.status === "resolved" && !["yes", "no", "void"].includes(m.outcome)) err(`${w}: resolved markets need outcome yes, no or void`);
+  if (m.status === "open" && m.outcome) err(`${w}: open markets must have outcome null`);
+  if (m.event_id && !E.has(m.event_id)) err(`${w}: unknown event "${m.event_id}"`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(m.closes || "")) err(`${w}: closes must be YYYY-MM-DD`);
 }
 
 for (const s of sources) {

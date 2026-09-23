@@ -48,7 +48,8 @@
       "src-token-agenda1",
       "src-poly-kickoff",
       "src-poly-eu",
-      "src-sg-poly-block"
+      "src-sg-poly-block",
+      "src-tls-luma"
     ],
     "note": null,
     "last_updated": "2026-09-23",
@@ -97,7 +98,8 @@
     "sources": [
       "src-token-partners",
       "src-predict-chainlink",
-      "src-predict-block"
+      "src-predict-block",
+      "src-tls-luma"
     ],
     "note": null,
     "last_updated": "2026-09-22",
@@ -118,7 +120,8 @@
       "hyperliquid"
     ],
     "sources": [
-      "src-hl-forum"
+      "src-hl-forum",
+      "src-tls-luma"
     ],
     "note": null,
     "last_updated": "2026-09-22",
@@ -255,7 +258,8 @@
     "sources": [
       "src-dz-block",
       "src-dz-pr",
-      "src-token-agenda2"
+      "src-token-agenda2",
+      "src-frontier-luma"
     ],
     "note": null,
     "last_updated": "2026-09-22",
@@ -538,7 +542,8 @@
     "stack_layers": [],
     "ecosystems": [],
     "sources": [
-      "src-dexpal"
+      "src-dexpal",
+      "src-hft-luma"
     ],
     "note": null,
     "last_updated": "2026-09-22",
@@ -774,7 +779,8 @@
     "stack_layers": [],
     "ecosystems": [],
     "sources": [
-      "src-token-agenda1"
+      "src-token-agenda1",
+      "src-tls-luma"
     ],
     "note": null,
     "last_updated": "2026-09-22",
@@ -880,6 +886,7 @@
     "stack_layers": [],
     "ecosystems": [],
     "sources": [
+      "src-days-singapore",
       "src-cryptonews-hlforum",
       "src-hl-forum"
     ],
@@ -1152,7 +1159,8 @@
       "hyperliquid"
     ],
     "sources": [
-      "src-hlforum-speakers"
+      "src-hlforum-speakers",
+      "src-tls-luma"
     ],
     "note": null,
     "last_updated": "2026-09-23",
@@ -1341,6 +1349,82 @@
     "last_updated": "2026-09-23",
     "types": [
       "other"
+    ]
+  },
+  {
+    "id": "spartan-group",
+    "name": "Spartan Group",
+    "category": "investors",
+    "description": "Crypto investment firm. Co-hosts the THOUGHT LEADERS SUMMIT on Wed 7 Oct, which includes a prediction-markets panel.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-tls-luma"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "types": [
+      "investor"
+    ]
+  },
+  {
+    "id": "kash",
+    "name": "Kash",
+    "category": "platforms",
+    "description": "Social prediction market on X. Its founder speaks on the THOUGHT LEADERS SUMMIT prediction-markets panel (Wed 7 Oct).",
+    "stack_layers": [
+      "venue"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-tls-luma"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "types": [
+      "venue"
+    ]
+  },
+  {
+    "id": "raven",
+    "name": "Raven (Raven Trading)",
+    "category": "trading",
+    "description": "Proprietary HFT and market-making firm that says it provides liquidity on prediction-market venues. Hosts the invite-only Predictions Over Wine evening on Tue 6 Oct.",
+    "stack_layers": [
+      "liquidity"
+    ],
+    "ecosystems": [],
+    "sources": [
+      "src-raven-luma"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "types": [
+      "market-maker",
+      "trading-firm"
+    ]
+  },
+  {
+    "id": "dexsport",
+    "name": "Dexsport",
+    "category": "sports",
+    "description": "Crypto casino, sportsbook and prediction-market platform, listed on the official TOKEN2049 Singapore partners page.",
+    "stack_layers": [
+      "venue"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-token-partners"
+    ],
+    "note": "Partner tier and named attendees not recorded.",
+    "last_updated": "2026-09-23",
+    "types": [
+      "venue",
+      "sports"
     ]
   }
 ]

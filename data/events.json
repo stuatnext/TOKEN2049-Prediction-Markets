@@ -13,6 +13,7 @@
     "type": "side-event",
     "official": false,
     "relevance": "strong",
+    "score": 7,
     "access": "invite",
     "access_note": "Invite-only; reported cap of 200 C-suite and department heads",
     "audiences": [
@@ -53,7 +54,7 @@
       "src-hype-sg"
     ],
     "status": "listed",
-    "status_note": "Date from Hyperliquid’s announcement; time, format and cap as reported by Hype Global. Venue still not published.",
+    "status_note": "Date from Hyperliquid’s announcement; time, format and cap as reported by Hype Global on a page that is now offline. Venue still not published.",
     "clash_note": "Overlaps the start of Haruko x Kalshi (from 17:00) only if the event runs late.",
     "last_updated": "2026-09-23"
   },
@@ -71,6 +72,7 @@
     "type": "networking",
     "official": false,
     "relevance": "core",
+    "score": 8,
     "access": "approval",
     "access_note": "Invite-only; approval required",
     "audiences": [
@@ -135,12 +137,13 @@
       "Kalshi participants"
     ],
     "sources": [
+      "src-haruko-luma",
       "src-haruko-event",
       "src-haruko",
       "src-haruko-kalshi"
     ],
     "status": "listed",
-    "status_note": "Listed on a side-event directory; company pages support the Haruko–Kalshi relationship.",
+    "status_note": "Organiser Luma page; company pages support the Haruko–Kalshi relationship.",
     "clash_note": "May clash with the official Hyperliquid ecosystem event once its time is published.",
     "last_updated": "2026-09-23"
   },
@@ -150,14 +153,15 @@
     "title": "Hyperliquid Forum Singapore",
     "date": "2026-10-06",
     "end_date": null,
-    "start": null,
-    "end": null,
-    "time_note": "Full day",
+    "start": "09:00",
+    "end": "17:00",
+    "time_note": null,
     "venue": "Raffles Hotel, 1 Beach Road",
     "map_query": "Raffles Hotel, 1 Beach Road, Singapore",
     "type": "forum",
     "official": false,
     "relevance": "core",
+    "score": 8,
     "access": "approval",
     "access_note": "Curated; approval required",
     "audiences": [
@@ -332,6 +336,7 @@
     ],
     "sources": [
       "src-hl-forum",
+      "src-hlforum-luma",
       "src-hl-ann",
       "src-sec-hl",
       "src-cryptonews-hlforum",
@@ -339,7 +344,7 @@
       "src-hlforum-speakers"
     ],
     "status": "listed",
-    "status_note": "Organiser page. Hyperliquid's SEC filing and announcements provide HIP-4 context.",
+    "status_note": "Organiser page and Luma registration (09:00–17:00). Hyperliquid's SEC filing and announcements provide HIP-4 context.",
     "clash_note": "Runs alongside the Digital Asset Yield Summit at the same venue.",
     "last_updated": "2026-09-23"
   },
@@ -357,6 +362,7 @@
     "type": "forum",
     "official": false,
     "relevance": "adjacent",
+    "score": 3,
     "access": "approval",
     "access_note": "Curated; approval required",
     "audiences": [
@@ -387,11 +393,12 @@
       "Trading firms"
     ],
     "sources": [
+      "src-days-singapore",
       "src-hl-forum",
       "src-cryptonews-hlforum"
     ],
     "status": "listed",
-    "status_note": "Listed on the Hyperliquid Forum page.",
+    "status_note": "Organiser page (DAYS). Also listed on the Hyperliquid Forum page.",
     "clash_note": null,
     "last_updated": "2026-09-23"
   },
@@ -409,6 +416,7 @@
     "type": "closed-door",
     "official": false,
     "relevance": "strong",
+    "score": 7,
     "access": "invite",
     "access_note": "Invitation only; closed-door",
     "audiences": [
@@ -452,13 +460,14 @@
     ],
     "sources": [
       "src-chainup-ark",
+      "src-ark-luma",
       "src-chainup-token",
       "src-chainup-hermes"
     ],
     "status": "listed",
     "status_note": "Organiser page.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "opening-bell-breakfast",
@@ -467,13 +476,14 @@
     "date": "2026-10-07",
     "end_date": null,
     "start": "09:00",
-    "end": null,
-    "time_note": "End time not published",
+    "end": "12:00",
+    "time_note": null,
     "venue": "Near Marina Bay Sands",
     "map_query": null,
     "type": "closed-door",
     "official": false,
     "relevance": "adjacent",
+    "score": 3,
     "access": "approval",
     "access_note": "Approval required",
     "audiences": [
@@ -510,12 +520,13 @@
     ],
     "also_listed": [],
     "sources": [
+      "src-breakfast-luma",
       "src-breakfast"
     ],
     "status": "listed",
-    "status_note": "Organiser page. End time not published.",
+    "status_note": "Organiser pages. The Luma page gives 09:00–12:00.",
     "clash_note": "Likely overlaps the 09:30 Polymarket fireside on the OKX Main Stage. The breakfast's end time isn't published, so this can't be calculated.",
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "chainup-booth",
@@ -531,6 +542,7 @@
     "type": "exhibition",
     "official": false,
     "relevance": "strong",
+    "score": 7,
     "access": "badge",
     "access_note": "TOKEN2049 pass (expo floor)",
     "audiences": [
@@ -592,6 +604,7 @@
     "type": "exhibition",
     "official": false,
     "relevance": "core",
+    "score": 8,
     "access": "badge",
     "access_note": "TOKEN2049 pass (expo floor)",
     "audiences": [
@@ -662,6 +675,7 @@
     "type": "official",
     "official": true,
     "relevance": "core",
+    "score": 10,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -729,6 +743,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -783,6 +798,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -837,6 +853,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -898,6 +915,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -944,6 +962,7 @@
     "type": "official",
     "official": true,
     "relevance": "strong",
+    "score": 7,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1011,6 +1030,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1058,6 +1078,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1105,6 +1126,7 @@
     "type": "official",
     "official": true,
     "relevance": "core",
+    "score": 8,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1168,6 +1190,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 4,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1227,6 +1250,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1274,6 +1298,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 4,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1340,6 +1365,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1394,6 +1420,7 @@
     "type": "official",
     "official": true,
     "relevance": "strong",
+    "score": 6,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1464,6 +1491,7 @@
     "type": "side-event",
     "official": false,
     "relevance": "adjacent",
+    "score": 3,
     "access": "approval",
     "access_note": "Approval required",
     "audiences": [
@@ -1482,7 +1510,7 @@
       "liquidity",
       "execution"
     ],
-    "summary": "Side event covering perps, RWA, stablecoins, DeFi liquidity, AI and live trading.",
+    "summary": "Side event hosted by lil room covering perps, RWA, stablecoins, DeFi liquidity, AI and live trading.",
     "why": "Focused on perps rather than prediction markets. Relevant mainly as a gathering of market makers and execution specialists whose problems overlap with event contracts.",
     "questions": [
       "Which execution problems in perps reappear in event contracts?"
@@ -1494,12 +1522,70 @@
       "Liquidity providers"
     ],
     "sources": [
-      "src-dexpal"
+      "src-perps-institutional-luma",
+      "src-dexpal-perps-institutional"
     ],
     "status": "listed",
-    "status_note": "Listed on a third-party side-event directory (Dexpal).",
+    "status_note": "Organiser Luma page (host: lil room), which now shows 16:00–20:30, matching Dexpal.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
+  },
+  {
+    "id": "perp-traders-mixer",
+    "legacy_id": "",
+    "title": "Perp Traders Mixer @Token2049 Singapore",
+    "date": "2026-10-08",
+    "end_date": null,
+    "start": "10:00",
+    "end": "14:00",
+    "time_note": null,
+    "venue": "Singapore (venue TBD)",
+    "map_query": null,
+    "type": "networking",
+    "official": false,
+    "relevance": "adjacent",
+    "score": 5,
+    "access": "invite",
+    "access_note": "Invite-only; approval required",
+    "audiences": [
+      "traders",
+      "investors",
+      "builders"
+    ],
+    "ecosystems": [
+      "hyperliquid"
+    ],
+    "topics": [
+      "trading",
+      "ai-agents"
+    ],
+    "stack_layers": [],
+    "summary": "Invite-only morning mixer hosted by HyprEarn for the Hyperliquid and perp-trading community, with panels and fireside chats on perpetuals. Aimed at perp traders, Hyperliquid-native funds, protocol teams, AI trading builders and VCs.",
+    "why": "Not a prediction-market event and the page doesn't mention them. Relevant as a room of Hyperliquid-native traders and funds, the same crowd most likely to trade HIP-4 outcome markets.",
+    "questions": [
+      "Are Hyperliquid perp traders already trading HIP-4 outcome markets, and what would make them size up?"
+    ],
+    "people": [],
+    "companies": [
+      {
+        "id": "lighter",
+        "role": "partner"
+      }
+    ],
+    "also_listed": [
+      "HyprEarn",
+      "DappLooker",
+      "Pacifica",
+      "CryptoMondays",
+      "ELLIPAL"
+    ],
+    "sources": [
+      "src-perp-traders-mixer-luma"
+    ],
+    "status": "listed",
+    "status_note": "Organiser Luma page. Venue not yet announced.",
+    "clash_note": null,
+    "last_updated": "2026-09-23"
   },
   {
     "id": "polymarket-singapore-kickoff",
@@ -1515,6 +1601,7 @@
     "type": "networking",
     "official": false,
     "relevance": "core",
+    "score": 9,
     "access": "waitlist",
     "access_note": "Invitation-only; full with a waitlist at the latest check",
     "audiences": [
@@ -1579,6 +1666,7 @@
     "type": "networking",
     "official": false,
     "relevance": "adjacent",
+    "score": 5,
     "access": "open",
     "access_note": "Open; capacity limited",
     "audiences": [
@@ -1610,10 +1698,10 @@
       "src-zoomex",
       "src-zoomex-pr"
     ],
-    "status": "listed",
-    "status_note": "Organiser event page; corroborated by a Zoomex press release.",
+    "status": "conflict",
+    "status_note": "The Luma page data and TOKEN2049 Week give an 18:00 start; the Luma description says 18:30–22:00. Check on the day.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "ripple-citadel-sundown-mixer",
@@ -1629,6 +1717,7 @@
     "type": "networking",
     "official": false,
     "relevance": "adjacent",
+    "score": 3,
     "access": "invite",
     "access_note": "Invite-only",
     "audiences": [
@@ -1678,6 +1767,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1731,8 +1821,9 @@
     "type": "meetup",
     "official": false,
     "relevance": "strong",
+    "score": 6,
     "access": "approval",
-    "access_note": "Approval only",
+    "access_note": "Approved RSVPs only; no +1s",
     "audiences": [
       "builders",
       "investors",
@@ -1752,7 +1843,7 @@
       "liquidity",
       "oracle"
     ],
-    "summary": "Curated Hyperliquid ecosystem gathering for builders, investors and partners. Listed partners include Hyperliquid Policy Center, Insilico, Nansen, Chainlink, Wintermute, Tread.fi and 21Shares, among others.",
+    "summary": "Curated Hyperliquid ecosystem brunch for builders, KOLs, market makers and top holders, presented with Hyperliquid Strategies, Hyperliquid Policy Center and Insilico Terminal. The page cites a maturing frontend ecosystem under HIP-4. Listed partners include Hyperliquid Policy Center, Insilico, Nansen, Chainlink, Wintermute, Tread.fi and 21Shares, among others.",
     "why": "A dense concentration of Hyperliquid, outcome-market and market-infrastructure companies in one room.",
     "questions": [
       "Which PM/outcome products are actually live on Hyperliquid by this week?",
@@ -1795,13 +1886,14 @@
       "Outcome-market builders"
     ],
     "sources": [
+      "src-hypurrco-luma",
       "src-hypurrco",
       "src-hl-forum"
     ],
     "status": "listed",
-    "status_note": "Organiser channel (Telegram).",
+    "status_note": "Organiser Luma page and Telegram channel. Presented with Hyperliquid Strategies, Hyperliquid Policy Center and Insilico Terminal. Schedule not yet published.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "hft-closed-door-meetup",
@@ -1816,7 +1908,8 @@
     "map_query": null,
     "type": "closed-door",
     "official": false,
-    "relevance": "adjacent",
+    "relevance": "strong",
+    "score": 7,
     "access": "approval",
     "access_note": "Approval required",
     "audiences": [
@@ -1834,9 +1927,10 @@
       "data-transport",
       "liquidity"
     ],
-    "summary": "Closed-door trading, infrastructure and institutional meetup hosted by Quant Ferryman.",
-    "why": "Not prediction-market-specific. Relevant if you care about latency, feed normalisation and inventory problems that also show up in event contracts.",
+    "summary": "Closed-door trading and infrastructure meetup hosted by Quant Ferryman (42 spots). The agenda includes a “Prediction Market Alpha & Capacity” section on price gaps between Polymarket/Kalshi and sportsbooks, and weather markets.",
+    "why": "One of the few rooms explicitly discussing how professional traders find and size prediction-market edges, alongside latency and feed problems.",
     "questions": [
+      "How much capacity do Polymarket/Kalshi versus sportsbook price gaps really have?",
       "Which latency, feed-normalisation and inventory problems are genuinely different in event contracts?"
     ],
     "people": [],
@@ -1852,12 +1946,13 @@
       "Infrastructure firms"
     ],
     "sources": [
+      "src-hft-luma",
       "src-dexpal"
     ],
     "status": "listed",
-    "status_note": "Listed on a third-party side-event directory (Dexpal). Prediction-market participation not confirmed.",
+    "status_note": "Organiser Luma page (Quant Ferryman). The agenda includes a “Prediction Market Alpha & Capacity” section on Polymarket/Kalshi versus sportsbook pricing.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "doublezero-keynote",
@@ -1873,6 +1968,7 @@
     "type": "official",
     "official": true,
     "relevance": "strong",
+    "score": 6,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1934,6 +2030,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -1990,6 +2087,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -2037,6 +2135,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -2096,6 +2195,7 @@
     "type": "official",
     "official": true,
     "relevance": "core",
+    "score": 9,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -2178,6 +2278,7 @@
     "type": "forum",
     "official": false,
     "relevance": "core",
+    "score": 10,
     "access": "registration",
     "access_note": "Registration; approval may apply",
     "audiences": [
@@ -2251,19 +2352,20 @@
   {
     "id": "powerscale-social-prediction-market",
     "legacy_id": "powerscale",
-    "title": "PowerScale: Crypto x Anime x Social Prediction Market",
+    "title": "PowerScale: Crypto × Meme × Anime × Social Opinion Market",
     "date": "2026-10-08",
     "end_date": null,
-    "start": "17:00",
-    "end": "19:30",
+    "start": "18:00",
+    "end": "21:00",
     "time_note": null,
-    "venue": "Singapore (see TOKEN2049 Week listing)",
+    "venue": "Singapore (address not published)",
     "map_query": null,
     "type": "side-event",
     "official": false,
     "relevance": "wildcard",
+    "score": 3,
     "access": "open",
-    "access_note": "Free; networking",
+    "access_note": "Free; register on Luma, no approval needed",
     "audiences": [
       "general",
       "media",
@@ -2277,7 +2379,7 @@
     "stack_layers": [
       "frontend"
     ],
-    "summary": "A consumer and social prediction-market product mixing crypto, anime and social features. It sits at the opposite end of the spectrum from institutional clearing.",
+    "summary": "Crowd-voted anime battles with cosplay creators, with Belief Market showing the results live on screen as the room divides. Hosted by Daniel Im of Belief Market. It sits at the opposite end of the spectrum from institutional clearing.",
     "why": "Worth a short visit to see prediction packaged as fandom or social engagement rather than finance. Look at what users predict, where rewards come from and how resolution works.",
     "questions": [
       "What is the user predicting?",
@@ -2292,14 +2394,17 @@
         "role": "host"
       }
     ],
-    "also_listed": [],
+    "also_listed": [
+      "Belief Market"
+    ],
     "sources": [
+      "src-powerscale-luma",
       "src-token-week"
     ],
     "status": "conflict",
-    "status_note": "Official TOKEN2049 Week lists a 19:30 finish; some mirror listings have shown 20:00.",
+    "status_note": "Times follow the organiser’s Luma page (18:00–21:00). The official TOKEN2049 Week listing, submitted by the same organiser, still shows 17:00–20:00. Check the Luma page on the day.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "moirai-traders-night",
@@ -2315,8 +2420,9 @@
     "type": "networking",
     "official": false,
     "relevance": "core",
+    "score": 9,
     "access": "approval",
-    "access_note": "Approval required",
+    "access_note": "Approval required; 40 spots",
     "audiences": [
       "traders",
       "market-makers"
@@ -2346,12 +2452,13 @@
       "Market makers"
     ],
     "sources": [
+      "src-moirai-luma",
       "src-dexpal"
     ],
     "status": "listed",
-    "status_note": "Listed on a third-party side-event directory (Dexpal). Attendee profile unknown.",
+    "status_note": "Organiser Luma page (Moirai Research). Invite-only evening for people who trade, make markets in, research or build on prediction markets; 40 spots, confirmed individually.",
     "clash_note": null,
-    "last_updated": "2026-09-22"
+    "last_updated": "2026-09-23"
   },
   {
     "id": "kalshi-x-insilico-asia-session",
@@ -2367,6 +2474,7 @@
     "type": "networking",
     "official": false,
     "relevance": "core",
+    "score": 9,
     "access": "invite",
     "access_note": "Approval / invite-only",
     "audiences": [
@@ -2457,6 +2565,7 @@
     "type": "forum",
     "official": false,
     "relevance": "adjacent",
+    "score": 3,
     "access": "approval",
     "access_note": "Curated; approval required",
     "audiences": [
@@ -2525,23 +2634,24 @@
     "title": "AFTER2049",
     "date": "2026-10-09",
     "end_date": null,
-    "start": null,
+    "start": "19:00",
     "end": null,
-    "time_note": "Evening (time not recorded)",
-    "venue": "Marina Bay Sands SkyPark Observation Deck",
+    "time_note": "From 19:00 until late",
+    "venue": "Marina Bay Sands SkyPark Observation Deck, 10 Bayfront Avenue",
     "map_query": "Marina Bay Sands SkyPark, Singapore",
     "type": "networking",
     "official": true,
     "relevance": "adjacent",
-    "access": "badge",
-    "access_note": "TOKEN2049 access rules apply (check the official FAQ)",
+    "score": 3,
+    "access": "registration",
+    "access_note": "Separate ticket on Megatix; 18+ with photo ID; no guaranteed entry after 23:00",
     "audiences": [
       "general"
     ],
     "ecosystems": [],
     "topics": [],
     "stack_layers": [],
-    "summary": "Official closing event of TOKEN2049 week.",
+    "summary": "Official closing party of TOKEN2049 week, headlined by Claptone and Crusy, with ANONM, Leon (FR), Milam and Mo-Shi. Smart casual; no re-entry after midnight.",
     "why": "Not prediction-market-specific: a general networking event for the whole conference.",
     "questions": [
       "Who specifically do I need to see here?"
@@ -2552,11 +2662,12 @@
       "TOKEN2049 attendees"
     ],
     "sources": [
+      "src-after2049-megatix",
       "src-token-home",
       "src-token-faq"
     ],
     "status": "verified",
-    "status_note": "Official TOKEN2049 site.",
+    "status_note": "Official TOKEN2049 site and TOKEN2049’s Megatix ticket page.",
     "clash_note": null,
     "last_updated": "2026-09-23"
   },
@@ -2574,6 +2685,7 @@
     "type": "forum",
     "official": false,
     "relevance": "strong",
+    "score": 6,
     "access": "registration",
     "access_note": "Ticketed (Eventbrite)",
     "audiences": [
@@ -2637,6 +2749,7 @@
     "type": "side-event",
     "official": false,
     "relevance": "core",
+    "score": 8,
     "access": "registration",
     "access_note": "Sui Basecamp registration",
     "audiences": [
@@ -2698,6 +2811,7 @@
     "type": "official",
     "official": true,
     "relevance": "adjacent",
+    "score": 3,
     "access": "badge",
     "access_note": "TOKEN2049 pass",
     "audiences": [
@@ -2740,19 +2854,20 @@
   {
     "id": "reppo-gm-ai",
     "legacy_id": "",
-    "title": "gm AI v2: Open Reinforcement Learning via Prediction Markets (Reppo)",
+    "title": "gm AI v2 by 0xJeff, BlockRun, CodecFlow, Dolphin, Kite, OpenServ, Reppo",
     "date": "2026-10-08",
     "end_date": null,
-    "start": null,
-    "end": null,
-    "time_note": "Time TBC",
-    "venue": "Singapore (venue to confirm)",
+    "start": "13:20",
+    "end": "17:15",
+    "time_note": null,
+    "venue": "Singapore (address shared after registration)",
     "map_query": null,
     "type": "side-event",
     "official": false,
     "relevance": "wildcard",
-    "access": "unknown",
-    "access_note": "Check the organiser listing",
+    "score": 3,
+    "access": "approval",
+    "access_note": "Approval required",
     "audiences": [
       "builders",
       "founders",
@@ -2766,13 +2881,13 @@
     "stack_layers": [
       "oracle"
     ],
-    "summary": "Reppo, which uses prediction markets to curate AI training data, is reported to be presenting “Open Reinforcement Learning via Prediction Markets” at gm AI v2.",
+    "summary": "Agentic-AI afternoon co-hosted by 0xJeff, BlockRun, CodecFlow, Dolphin, Kite, OpenServ and Reppo: an Agentic Economy Outlook 2026 briefing, six AI product showcases and a book launch. Reppo, which uses onchain prediction markets to curate AI training data, presents “Open Reinforcement Learning via Prediction Markets”.",
     "why": "The strange and interesting intersection of prediction markets and AI training.",
     "questions": [],
     "people": [
       {
         "id": "rg-reppo",
-        "role": "listed"
+        "role": "speaker"
       }
     ],
     "companies": [
@@ -2781,12 +2896,20 @@
         "role": "host"
       }
     ],
-    "also_listed": [],
+    "also_listed": [
+      "0xJeff",
+      "BlockRun",
+      "CodecFlow",
+      "Dolphin",
+      "Kite",
+      "OpenServ"
+    ],
     "sources": [
+      "src-gm-ai-luma",
       "src-reppo"
     ],
-    "status": "provisional",
-    "status_note": "Reported in our sweep. The organiser page hasn’t been linked yet, so confirm before going.",
+    "status": "listed",
+    "status_note": "Organiser Luma page.",
     "clash_note": null,
     "last_updated": "2026-09-23"
   },
@@ -2804,8 +2927,9 @@
     "type": "forum",
     "official": false,
     "relevance": "strong",
+    "score": 6,
     "access": "registration",
-    "access_note": "Register on Luma",
+    "access_note": "Registration page offline; check with Hype Global",
     "audiences": [
       "builders",
       "founders",
@@ -2842,12 +2966,261 @@
       "Developers"
     ],
     "sources": [
-      "src-hype-sg",
-      "src-hype-sg-luma"
+      "src-hype-sg"
     ],
-    "status": "listed",
-    "status_note": "Organiser listing. Venue and full programme not yet announced.",
+    "status": "provisional",
+    "status_note": "Hype Global’s event page and Luma registration page were both offline on 23 September. Details below come from those pages before they were removed. Treat as unconfirmed until Hype Global republishes.",
     "clash_note": "Runs alongside the Hyperliquid Forum on Tuesday.",
     "last_updated": "2026-09-23"
+  },
+  {
+    "end_date": null,
+    "time_note": null,
+    "official": false,
+    "questions": [
+      "Is prediction-market volume sticky once the election and sports peaks pass?",
+      "Where does institutional liquidity come from, and what does it need?"
+    ],
+    "also_listed": [],
+    "clash_note": null,
+    "last_updated": "2026-09-23",
+    "stack_layers": [
+      "venue",
+      "liquidity"
+    ],
+    "id": "thought-leaders-summit",
+    "legacy_id": "",
+    "title": "THOUGHT LEADERS SUMMIT (Spartan, Pantera, Maven 11)",
+    "date": "2026-10-07",
+    "start": "14:00",
+    "end": "18:00",
+    "venue": "Marina One West Tower, Level 3, Room 2, 9 Straits View",
+    "map_query": "Marina One West Tower, 9 Straits View, Singapore",
+    "type": "forum",
+    "relevance": "core",
+    "score": 9,
+    "access": "approval",
+    "access_note": "Free; approval required; waitlist on",
+    "audiences": [
+      "investors",
+      "founders",
+      "traders"
+    ],
+    "ecosystems": [
+      "polymarket",
+      "independent"
+    ],
+    "topics": [
+      "category",
+      "liquidity",
+      "trading"
+    ],
+    "summary": "Afternoon of investor-led panels hosted by Spartan Group, Pantera Capital and Maven 11. The panel “Prediction Markets: Peak Hype or Just Getting Started?” (15:45–16:30) brings together Polymarket, Predict.fun, Outcome and Kash.",
+    "why": "One of the few side-event panels dedicated to prediction markets, with speakers from four different venues and investors in the room.",
+    "people": [
+      {
+        "id": "brooke-rizzetto",
+        "role": "speaker"
+      },
+      {
+        "id": "ding-x",
+        "role": "speaker"
+      },
+      {
+        "id": "ahmed-salih",
+        "role": "speaker"
+      },
+      {
+        "id": "lucas-martin-calderon",
+        "role": "speaker"
+      },
+      {
+        "id": "eric-nicomedez",
+        "role": "moderator"
+      },
+      {
+        "id": "kelvin-koh",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "spartan-group",
+        "role": "host"
+      },
+      {
+        "id": "pantera",
+        "role": "host"
+      },
+      {
+        "id": "maven11",
+        "role": "host"
+      },
+      {
+        "id": "polymarket",
+        "role": "speaker-affiliation"
+      },
+      {
+        "id": "predict-fun",
+        "role": "speaker-affiliation"
+      },
+      {
+        "id": "outcome",
+        "role": "speaker-affiliation"
+      },
+      {
+        "id": "kash",
+        "role": "speaker-affiliation"
+      }
+    ],
+    "sources": [
+      "src-tls-luma"
+    ],
+    "status": "listed",
+    "status_note": "Organiser Luma page. Prediction-markets panel 15:45–16:30."
+  },
+  {
+    "end_date": null,
+    "time_note": null,
+    "official": false,
+    "questions": [],
+    "also_listed": [],
+    "clash_note": null,
+    "last_updated": "2026-09-23",
+    "stack_layers": [
+      "liquidity"
+    ],
+    "id": "raven-predictions-over-wine",
+    "legacy_id": "",
+    "title": "Predictions Over Wine: an invite-only prediction-markets evening by Raven",
+    "date": "2026-10-06",
+    "start": "19:00",
+    "end": "22:00",
+    "venue": "Big Wine Freaks (per the TOKEN2049 Week listing)",
+    "map_query": null,
+    "type": "networking",
+    "relevance": "core",
+    "score": 9,
+    "access": "invite",
+    "access_note": "Invite-only; approval required; capacity strictly limited",
+    "audiences": [
+      "traders",
+      "market-makers"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "market-making",
+      "liquidity"
+    ],
+    "summary": "Invite-only evening hosted by Raven, a proprietary HFT and market-making firm that provides liquidity on prediction-market venues.",
+    "why": "A small room of people who make markets on prediction venues. Useful for liquidity, pricing and venue-quality conversations.",
+    "people": [],
+    "companies": [
+      {
+        "id": "raven",
+        "role": "host"
+      }
+    ],
+    "sources": [
+      "src-raven-luma",
+      "src-token-week"
+    ],
+    "status": "listed",
+    "status_note": "Organiser Luma page. The venue name comes from the official TOKEN2049 Week listing; the Luma page only says Singapore."
+  },
+  {
+    "end_date": null,
+    "time_note": null,
+    "official": false,
+    "questions": [],
+    "also_listed": [
+      "Solana Foundation",
+      "World[.xyz]",
+      "Phantom",
+      "Jito",
+      "Phoenix",
+      "Titan"
+    ],
+    "clash_note": null,
+    "last_updated": "2026-09-23",
+    "stack_layers": [],
+    "id": "frontier-traders",
+    "legacy_id": "",
+    "title": "Frontier Traders @ Solana Summit Singapore",
+    "date": "2026-10-06",
+    "start": "11:00",
+    "end": "19:00",
+    "venue": "Singapore (venue not published)",
+    "map_query": null,
+    "type": "side-event",
+    "relevance": "strong",
+    "score": 6,
+    "access": "approval",
+    "access_note": "Free; approval required; waitlist",
+    "audiences": [
+      "traders",
+      "investors"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "trading"
+    ],
+    "summary": "Live trading showdown for traders, prop firms and allocators hosted by the Solana Foundation. Collaborators include World[.xyz] (self-custodial prediction-market trading), DoubleZero, Phantom, Jito, Phoenix and Titan.",
+    "why": "A trading-first crowd with a prediction-market venue among the collaborators. Good for meeting active traders rather than panels.",
+    "people": [],
+    "companies": [
+      {
+        "id": "doublezero",
+        "role": "partner"
+      }
+    ],
+    "sources": [
+      "src-frontier-luma"
+    ],
+    "status": "listed",
+    "status_note": "Organiser Luma page."
+  },
+  {
+    "end_date": null,
+    "time_note": null,
+    "official": false,
+    "questions": [],
+    "also_listed": [
+      "Hoko Agency",
+      "BlockDelta"
+    ],
+    "clash_note": null,
+    "last_updated": "2026-09-23",
+    "stack_layers": [],
+    "id": "digital-capital-conversations",
+    "legacy_id": "",
+    "title": "Digital Capital: Meaningful Conversations",
+    "date": "2026-10-07",
+    "start": "18:00",
+    "end": "20:00",
+    "venue": "National Gallery Singapore",
+    "map_query": "National Gallery Singapore",
+    "type": "networking",
+    "relevance": "adjacent",
+    "score": 4,
+    "access": "approval",
+    "access_note": "Approval required; no +1s",
+    "audiences": [
+      "investors",
+      "founders"
+    ],
+    "ecosystems": [],
+    "topics": [
+      "institutional"
+    ],
+    "summary": "Evening hosted by Hoko Agency and BlockDelta, with prediction markets listed among the conversation topics.",
+    "why": "General networking, but prediction markets are on the stated agenda.",
+    "people": [],
+    "companies": [],
+    "sources": [
+      "src-digital-capital-luma"
+    ],
+    "status": "listed",
+    "status_note": "Organiser Luma page."
   }
 ]

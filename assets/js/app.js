@@ -3,7 +3,8 @@
 import {
   esc, initials, toMin, fmtMin, fmtDuration, eventDays, isTimed, isAllDay, timeLabel, sortKey,
   overlaps, clusters, sgtNow, icsBlocker, buildICS, download, saved, norm, matches,
-} from "./util.js";
+  lmsr,
+} from "./util.js?v=dev";
 
 // ---------------------------------------------------------------- labels
 const REL = {
@@ -16,6 +17,13 @@ const TYPE = {
   official: "TOKEN2049 session", "side-event": "Side event", forum: "Forum / conference", meetup: "Meetup",
   networking: "Party / networking", "closed-door": "Closed-door / institutional", exhibition: "Exhibition / booth", other: "Other",
 };
+/** Top-level kind: every listing is a conference session, an exhibitor booth or a side event. */
+const KIND = { session: "Conference session", booth: "Exhibitor booth", side: "Side event" };
+const KIND_SHORT = { session: "Session", booth: "Booth", side: "Side event" };
+const KIND_ICON = { session: "🎤", booth: "🏢", side: "🥂" };
+const kindOf = (e) => (e.type === "official" ? "session" : e.type === "exhibition" ? "booth" : "side");
+/** Side-event format (Forum, Party…), or null when the kind already says it all. */
+const formatOf = (e) => (kindOf(e) === "side" && e.type !== "side-event" ? TYPE[e.type] : null);
 const ACCESS = {
   open: "Open", registration: "Registration required", approval: "Approval required", invite: "Invite only",
   waitlist: "Waitlist", "sold-out": "Sold out", badge: "TOKEN2049 pass", unknown: "Status unknown",
@@ -54,14 +62,15 @@ const D = {};
 const view = () => document.getElementById("view");
 
 async function loadData() {
-  const names = ["events", "people", "companies", "stack", "sources", "site", "attendance"];
-  const [events, people, companies, stack, sources, site, attendance] = await Promise.all(
+  const names = ["events", "people", "companies", "stack", "sources", "site", "attendance", "markets"];
+  const [events, people, companies, stack, sources, site, attendance, markets] = await Promise.all(
     names.map((n) => fetch(`data/${n}.json`, { cache: "no-cache" }).then((r) => {
       if (!r.ok) throw new Error(`Could not load data/${n}.json (${r.status})`);
       return r.json();
     }))
   );
   D.site = site;
+  D.markets = markets;
   D.days = site.days.map((d) => ({ ...d, slug: d.label.slice(0, 3).toLowerCase() }));
   D.dayBy = new Map(D.days.map((d) => [d.date, d]));
   D.events = events.slice().sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
@@ -89,7 +98,7 @@ async function loadData() {
   }
   for (const e of D.events) {
     e._hay = norm([
-      e.title, e.summary, e.why, e.venue, e.time_note, e.access_note, TYPE[e.type], ACCESS[e.access], REL[e.relevance].label,
+      e.title, e.summary, e.why, e.venue, e.time_note, e.access_note, TYPE[e.type], KIND[kindOf(e)], ACCESS[e.access], REL[e.relevance].label,
       STATUS[e.status].label, ...eventDays(e).map((d) => `${D.dayBy.get(d).long} ${D.dayBy.get(d).label}`),
       ...e.audiences.map((a) => AUD[a]), ...e.ecosystems.map((a) => ECO[a]), ...e.topics.map((t) => TOPIC[t] || t),
       ...e.stack_layers.map((l) => D.layer.get(l)?.name), ...e.also_listed,
@@ -122,8 +131,11 @@ const absUrl = (hash) => `${location.origin}${location.pathname}${hash}`;
 const eventsOn = (iso) => D.events.filter((e) => eventDays(e).includes(iso)).sort((a, b) => sortKey(a, iso).localeCompare(sortKey(b, iso)));
 const fmtDate = (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 const plural = (n, one, many = one + "s") => `${n} ${n === 1 ? one : many}`;
+/** Relevance score out of 10, e.g. "9/10". Bands match the relevance tiers. */
+const scoreChip = (e) => (e.score ? `<span class="chip score-chip s-${e.score >= 8 ? "hi" : e.score >= 6 ? "mid" : "lo"}" title="Relevance score: ${e.score} out of 10"><b>${e.score}</b>/10</span>` : "");
 const relChip = (r) => `<span class="chip rel rel-${r}">${REL[r].label}</span>`;
-const typeChip = (e) => (e.type === "official" ? `<span class="chip chip-official">TOKEN2049 session</span>` : `<span class="chip">${esc(TYPE[e.type])}</span>`);
+const kindChip = (e, short = false) => { const k = kindOf(e); return `<span class="chip chip-kind kind-${k}"><span aria-hidden="true">${KIND_ICON[k]}</span>${esc(short ? KIND_SHORT[k] : KIND[k])}</span>`; };
+const typeChip = (e) => `${kindChip(e)}${formatOf(e) ? `<span class="chip">${esc(formatOf(e))}</span>` : ""}`;
 const accessChip = (e) => `<span class="chip chip-outline chip-access-${e.access}">${esc(ACCESS[e.access])}</span>`;
 const statusChip = (e) =>
   e.status === "verified" ? "" : `<span class="chip ${e.status === "listed" ? "chip-outline" : "chip-warn"}">${esc(STATUS[e.status].label)}</span>`;
@@ -143,14 +155,67 @@ function eventCard(e, o = {}) {
     <div class="body">
       <div class="when"><span class="time">${esc(timeLabel(e))}${esc(multi)}</span>${o.showDay === false ? "" : `<span class="day">${esc(dayOf(e.date).label)}</span>`}</div>
       <h3><a href="${evUrl(e)}">${esc(e.title)}</a></h3>
-      <p class="venue">${esc(e.venue)} · ${esc(TYPE[e.type])}</p>
+      <p class="venue">${esc(e.venue)}${formatOf(e) ? ` · ${esc(formatOf(e))}` : ""}</p>
     </div>
     <div class="side">${saveBtn(e)}</div>
     ${o.compact ? "" : `<p class="blurb">${esc(e.why)}</p>`}
     ${o.reasons?.length ? `<div class="reasons">${o.reasons.map((r) => `<span class="chip">${esc(r)}</span>`).join("")}</div>` : ""}
-    <div class="foot"><div class="chip-row">${relChip(e.relevance)}${accessChip(e)}${e.status === "provisional" || e.status === "conflict" ? statusChip(e) : ""}${updatedBadge(e)}</div></div>
+    <div class="foot"><div class="chip-row">${kindChip(e)}${scoreChip(e)}${relChip(e.relevance)}${accessChip(e)}${e.status === "provisional" || e.status === "conflict" ? statusChip(e) : ""}${updatedBadge(e)}</div></div>
     ${clashSaved.length ? `<p class="clash-line">⚠ Clashes with ${clashSaved.map((x) => `<a href="${evUrl(x)}">${esc(x.title)}</a> (${esc(timeLabel(x))})`).join(", ")}</p>` : ""}
   </article>`;
+}
+
+/** One row of the calendar programme: time column, kind marker on the spine, event card. */
+function progItem(e, o = {}) {
+  const k = kindOf(e), isSaved = saved.has(e.id);
+  const clashSaved = (D.clash.get(e.id) || []).filter((x) => saved.has(x.id));
+  const clash = isSaved && clashSaved.length;
+  const time = e.start
+    ? `<span class="t-start">${esc(e.start)}</span><span class="t-end">${e.end ? `to ${esc(e.end)}` : "end TBC"}</span>`
+    : `<span class="t-note">${esc(isAllDay(e) ? (e.time_note || "All day") : "TBC")}</span>`;
+  return `<article class="prog-item k-${k} r-${e.relevance}${isSaved ? " is-saved" : ""}${clash ? " is-clash" : ""}" data-id="${e.id}">
+    <div class="prog-time">${time}${e.end_date ? `<span class="t-range">${esc(dayRange(e))}</span>` : ""}</div>
+    <div class="prog-spine" aria-hidden="true"><i></i></div>
+    <div class="prog-card">
+      <p class="prog-eyebrow"><span class="prog-kind"><span aria-hidden="true">${KIND_ICON[k]}</span>${esc(KIND[k])}</span>${formatOf(e) ? `<span class="prog-format">${esc(formatOf(e))}</span>` : ""}</p>
+      <h3><a href="${evUrl(e)}">${esc(e.title)}</a></h3>
+      <p class="prog-venue">${esc(e.venue)}</p>
+      <p class="prog-blurb">${esc(e.why)}</p>
+      <div class="chip-row">${scoreChip(e)}${relChip(e.relevance)}${accessChip(e)}${e.status === "provisional" || e.status === "conflict" ? statusChip(e) : ""}${updatedBadge(e)}</div>
+      ${clash ? `<p class="clash-line">⚠ Clashes with ${clashSaved.map((x) => `<a href="${evUrl(x)}">${esc(x.title)}</a> (${esc(timeLabel(x))})`).join(", ")}</p>` : ""}
+      <div class="prog-save">${saveBtn(e)}</div>
+    </div>
+  </article>`;
+}
+
+const DAYPART = [["Morning", 0], ["Afternoon", 12 * 60], ["Evening", 17 * 60]];
+const daypartOf = (min) => DAYPART.filter(([, from]) => min >= from).pop()[0];
+
+/** Calendar agenda laid out like a printed conference programme. */
+function programme(list, day, o = {}) {
+  const allDay = list.filter((e) => isAllDay(e));
+  const unknown = list.filter((e) => !e.start && !isAllDay(e));
+  const groups = clusters(list);
+  const sect = (title, sub, body, cls = "") => `<section class="prog-sect ${cls}"><h3 class="prog-sect-head"><span>${esc(title)}</span>${sub ? `<small>${sub}</small>` : ""}</h3>${body}</section>`;
+  let html = "";
+  if (allDay.length) html += sect("All day", `${plural(allDay.length, "listing")}${allDay.some((e) => e.end_date) ? " · includes expo hours" : ""}`, allDay.map((e) => progItem(e)).join(""), "is-allday");
+  let part = null, buf = "", count = 0, prevEnd = null;
+  const flush = () => { if (part) html += sect(part, plural(count, o.noun || "listing"), buf); buf = ""; count = 0; };
+  for (const g of groups) {
+    const s = Math.min(...g.map((e) => toMin(e.start)));
+    const p = daypartOf(s);
+    if (p !== part) { flush(); part = p; }
+    if (o.gaps && prevEnd != null && s - prevEnd >= 15)
+      buf += `<div class="prog-gap"><span></span><span class="prog-gap-spine" aria-hidden="true"></span><p>Free ${fmtMin(prevEnd)}–${fmtMin(s)} · ${fmtDuration(s - prevEnd)}</p></div>`;
+    count += g.length;
+    const en = Math.max(...g.map((e) => toMin(e.end) ?? toMin(e.start)));
+    prevEnd = Math.max(prevEnd ?? 0, en);
+    if (g.length === 1) { buf += progItem(g[0]); continue; }
+    buf += `<div class="prog-overlap" role="group" aria-label="${g.length} overlapping events"><p class="prog-ov-head"><span>⚠ ${o.clashLabel || `${g.length} at once`}</span> ${fmtMin(s)}–${fmtMin(en)}</p>${g.map((e) => progItem(e)).join("")}</div>`;
+  }
+  flush();
+  if (unknown.length) html += sect("Time not yet published", plural(unknown.length, "listing"), unknown.map((e) => progItem(e)).join(""), "is-unknown");
+  return `<div class="programme">${html}</div>`;
 }
 
 /** Agenda for one day: all-day block, overlap clusters, then unknown-time items. */
@@ -222,7 +287,7 @@ function setQuery(q, { replace = true } = {}) {
   else location.hash = hash;
 }
 
-const ROUTES = { "": home, start, week, calendar, events, going, people, companies, stack, schedule, about };
+const ROUTES = { "": home, start, week, calendar, events, going, people, companies, stack, schedule, about, nextpredict, play };
 
 function render({ keepScroll = false } = {}) {
   const { parts, q } = parseHash();
@@ -305,54 +370,34 @@ function home(_, q) {
     ["💧", "Hyperliquid & outcome markets", "#/events?eco=hyperliquid", cnt((e) => e.ecosystems.includes("hyperliquid"))],
     ["🥂", "Parties & networking", "#/events?type=networking,meetup", cnt((e) => e.type === "networking" || e.type === "meetup")],
   ];
-  const doors = [
-    ["📅", "Calendar", "What’s on, day by day, with clashes marked.", "#/calendar", `${E.length} events · 5 days`],
-    ["👥", "Who’s going", "People and companies with evidence they’ll be in Singapore.", "#/going", `${D.going.length} people & companies`],
-    ["🧭", "New here?", "A two-minute guide and a shortlist built for you.", "#/start", "Start here"],
-  ];
+  const S = homeSections(nu, headline, interests, cnt);
+  // During the week, "what's next" leads; before it, the must-see list does.
+  const order = nu.today ? ["next", "headline", "going", "interests"] : ["headline", "next", "going", "interests"];
+  const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
+  const pmOn = (iso) => eventsOn(iso).filter((e) => e.relevance === "core").length;
+  const maxDay = Math.max(...D.days.map((d) => eventsOn(d.date).length));
   return `
-  <section class="hero">
-    <p class="eyebrow">Singapore · 5–9 October 2026 · Unofficial guide</p>
-    <h1>Where <span class="hl">prediction markets</span> happen at TOKEN2049</h1>
-    <p class="lede">Every prediction-market event, session, company and person across TOKEN2049 week, in one place and sourced.</p>
-    <p class="hero-status"><span class="pulse" aria-hidden="true"></span>${esc(nu.title)} · all times Singapore (SGT)</p>
+  <section class="home-hero">
+    <div class="hh-copy">
+      <p class="hh-eyebrow">Singapore · 5–9 October 2026 · Unofficial guide</p>
+      <h1>Every prediction-market event at TOKEN2049, in one place.</h1>
+      <p class="hh-lede">Conference sessions, side events, expo booths and the people going, each checked against its source.</p>
+      <div class="hh-actions"><a class="hh-btn hh-btn-primary" href="#/calendar">Open the calendar <span aria-hidden="true">→</span></a><a class="hh-btn" href="#/going">See who’s going</a></div>
+      <p class="hh-new">New to prediction markets? <a href="#/start">Take the two-minute guide</a> or <a href="#/play">try the play-money game</a></p>
+    </div>
+    <aside class="hh-week" aria-labelledby="hh-week-title">
+      <div class="hh-week-head"><h2 id="hh-week-title">TOKEN2049 week</h2><span class="hh-live"><span class="pulse" aria-hidden="true"></span>${esc(cap(nu.title.replace(/^TOKEN2049 week /, "")))}</span></div>
+      <ol class="hh-days">${D.days.map((d) => {
+        const n = eventsOn(d.date).length, pm = pmOn(d.date), main = D.site.main_days.includes(d.date);
+        return `<li${nu.today === d.date ? ' class="is-today" aria-current="date"' : ""}><a href="#/calendar/${d.slug}"><span class="hh-date"><small>${esc(d.label.slice(0, 3))}</small><b>${d.label.slice(4, 6).trim()}</b></span><span class="hh-day-text"><strong>${esc(cap(d.note.replace(/^TOKEN2049 /, "")))}</strong><span class="hh-bar" aria-hidden="true"><i style="width:${Math.max(6, (n / maxDay) * 100)}%"></i></span><span class="hh-counts">${plural(n, "listing")}${pm ? ` · <b>${pm} prediction-market</b>` : ""}</span></span>${main ? `<span class="hh-tag">Conference</span>` : `<span></span>`}</a></li>`;
+      }).join("")}</ol>
+      <p class="hh-foot">${E.length} events · ${D.going.length} people & companies · times in SGT</p>
+    </aside>
   </section>
 
-  <nav class="doors" aria-label="Main sections">${doors.map(([i, t, d, h, m]) => `<a class="door" href="${h}"><span class="door-icon" aria-hidden="true">${i}</span><span class="door-text"><strong>${esc(t)}</strong><span>${esc(d)}</span><em>${esc(m)}</em></span><span class="door-arrow" aria-hidden="true">→</span></a>`).join("")}</nav>
+  ${npBanner()}
 
-  <section class="section" aria-labelledby="h-next">
-    <div class="section-head"><h2 id="h-next">${nu.today ? esc(nu.title) : "First up"}</h2><a class="more" href="${nu.today ? `#/calendar/${dayOf(nu.today).slug}` : "#/calendar"}">Full calendar →</a></div>
-    ${nu.list.length ? `<div class="row-list">${nu.list.map((e) => eventRow(e)).join("")}</div>` : `<p class="muted">${esc(nu.sub)}</p>`}
-  </section>
-
-  <section class="section" aria-labelledby="h-week">
-    <div class="section-head"><h2 id="h-week">The week at a glance</h2><a class="more" href="#/week">Day-by-day route →</a></div>
-    <div class="week">${D.days.map((d) => {
-      const list = eventsOn(d.date);
-      const c = (r) => list.filter((e) => e.relevance === r).length;
-      const bar = ["core", "strong", "adjacent", "wildcard"].map((r) => (c(r) ? `<span class="b-${r}" style="flex:${c(r)}"></span>` : "")).join("");
-      return `<a class="day-card" href="#/calendar/${d.slug}"><span class="d">${esc(d.label.slice(0, 3))}</span><span class="big">${d.label.slice(4, 6).trim()}<small> ${d.label.slice(-3)}</small></span>
-        <span class="bars" aria-hidden="true">${bar}</span>
-        <span class="visually-hidden">${list.length} listings: ${c("core")} prediction-market, ${c("strong")} strongly relevant, ${c("adjacent")} adjacent, ${c("wildcard")} wildcard.</span>
-        <span class="counts" aria-hidden="true"><b>${list.length}</b> events</span><span class="note">${esc(d.note)}</span></a>`;
-    }).join("")}</div>
-    <div class="legend">${Object.entries(REL).map(([k, v]) => `<span><i class="rel-dot dot-${k}"></i>${v.label}</span>`).join("")}</div>
-  </section>
-
-  <section class="section" aria-labelledby="h-head">
-    <div class="section-head"><h2 id="h-head">Don’t-miss prediction-market events</h2><a class="more" href="#/events?rel=core">All ${cnt((e) => e.relevance === "core")} →</a></div>
-    <div class="row-list">${headline.map((e) => eventRow(e)).join("")}</div>
-  </section>
-
-  <section class="section" aria-labelledby="h-going">
-    <div class="section-head"><h2 id="h-going">Who’s heading to Singapore</h2><a class="more" href="#/going">See all ${D.going.length} →</a></div>
-    <div class="grid grid-3">${homeGoing().slice(0, 6).map((g) => goingCard(g, { compact: true })).join("")}</div>
-  </section>
-
-  <section class="section" aria-labelledby="h-int">
-    <div class="section-head"><h2 id="h-int">Browse by interest</h2><a class="more" href="#/events">All events →</a></div>
-    <div class="interest-grid">${interests.map(([i, l, h, n]) => `<a class="interest" href="${h}"><span aria-hidden="true">${i}</span><strong>${esc(l)}</strong><em>${n}</em></a>`).join("")}</div>
-  </section>
+  ${order.map((k, i) => S[k](String(i + 1).padStart(2, "0"))).join("")}
 
   <section class="section split" aria-label="About and offer">
     <div class="panel"><h2>About this guide</h2>
@@ -364,13 +409,37 @@ function home(_, q) {
   </section>`;
 }
 
+/** Home section heading: step number, title, one-line explainer and a "more" link. */
+const secHead = (id, n, title, sub, href, more) => `<div class="section-head home-head"><div><h2 id="${id}">${title}</h2>${sub ? `<p class="section-sub">${sub}</p>` : ""}</div>${href ? `<a class="more" href="${href}">${more}</a>` : ""}</div>`;
+
+function homeSections(nu, headline, interests, cnt) {
+  return {
+  next: (n) => `<section class="section" aria-labelledby="h-next">
+    ${secHead("h-next", n, nu.today ? esc(nu.title) : "First up", nu.today ? "What’s on next today, in time order." : "The first listings of the week, in time order.", nu.today ? `#/calendar/${dayOf(nu.today).slug}` : "#/calendar", "Full calendar →")}
+    ${nu.list.length ? `<div class="row-list">${nu.list.map((e) => eventRow(e)).join("")}</div>` : `<p class="muted">${esc(nu.sub)}</p>`}
+  </section>`,
+  headline: (n) => `<section class="section" aria-labelledby="h-head">
+    ${secHead("h-head", n, "Don’t-miss prediction-market events", "If you only go to a handful of things, start with these.", "#/events?rel=core", `All ${cnt((e) => e.relevance === "core")} →`)}
+    <div class="row-list">${headline.map((e) => eventRow(e)).join("")}</div>
+  </section>`,
+  going: (n) => `<section class="section" aria-labelledby="h-going">
+    ${secHead("h-going", n, "Who’s heading to Singapore", "People and companies with public evidence they’ll be there.", "#/going", `See all ${D.going.length} →`)}
+    <div class="grid grid-3">${homeGoing().slice(0, 6).map((g) => goingCard(g, { compact: true })).join("")}</div>
+  </section>`,
+  interests: (n) => `<section class="section" aria-labelledby="h-int">
+    ${secHead("h-int", n, "Browse by interest", "Jump straight to the listings for your corner of the market.", "#/events", "All events →")}
+    <div class="interest-grid">${interests.map(([i, l, h, c]) => `<a class="interest" href="${h}"><span aria-hidden="true">${i}</span><strong>${esc(l)}</strong><em>${c}</em></a>`).join("")}</div>
+  </section>`,
+  };
+}
+
 /** A light, single-line-ish event row for lists (home, related, appearances). */
 function eventRow(e) {
   const on = saved.has(e.id);
   return `<article class="event-row r-${e.relevance}${on ? " is-saved" : ""}" data-id="${e.id}">
     <div class="er-when"><span class="er-day">${esc(e.end_date ? dayRange(e) : dayOf(e.date).label.slice(0, 3) + " " + dayOf(e.date).label.slice(4, 6).trim())}</span><span class="er-time${e.start ? "" : " soft"}">${esc(e.start ? e.start : isAllDay(e) ? "All day" : "TBC")}</span></div>
     <div class="er-main"><h3><a href="${evUrl(e)}">${esc(e.title)}</a></h3>
-      <p><i class="rel-dot dot-${e.relevance}" aria-hidden="true"></i><span class="visually-hidden">${esc(REL[e.relevance].label)}.</span> ${esc(e.venue)} · ${esc(ACCESS[e.access])}${e.status === "provisional" || e.status === "conflict" ? ` · <span class="warn-text">${esc(STATUS[e.status].label)}</span>` : ""}</p></div>
+      <p>${kindChip(e, true)} ${scoreChip(e)} <i class="rel-dot dot-${e.relevance}" aria-hidden="true"></i><span class="visually-hidden">${esc(REL[e.relevance].label)}.</span> ${esc(e.venue)} · ${esc(ACCESS[e.access])}${e.status === "provisional" || e.status === "conflict" ? ` · <span class="warn-text">${esc(STATUS[e.status].label)}</span>` : ""}</p></div>
     <div class="er-side">${saveBtn(e)}</div>
   </article>`;
 }
@@ -481,12 +550,14 @@ function start(_, q) {
     ["Clearing & settlement", "The back-office process that confirms trades, holds collateral and pays out. It is familiar from futures markets."],
     ["Margin vs full collateral", "Most prediction markets require you to post your maximum possible loss up front. Margin would let institutions use less capital, which is a live regulatory question."],
     ["White-label", "Software another business can rebrand and run as its own prediction market."],
+    ["Conference session", "A talk, panel or keynote on the official TOKEN2049 programme, on a stage at Marina Bay Sands. Needs a TOKEN2049 pass."],
+    ["Exhibitor booth", "A company’s stand on the TOKEN2049 expo floor during the main conference days. Needs a TOKEN2049 pass."],
     ["Side event", "Anything around TOKEN2049 that isn’t on the official programme: parties, forums, breakfasts, meetups. Many need approval."],
   ];
   const places = [
-    ["🎤", "Official sessions", "Wed–Thu on the TOKEN2049 stages at Marina Bay Sands. Needs a TOKEN2049 pass.", "#/events?type=official", n((e) => e.type === "official")],
-    ["🏢", "The expo floor", "Prediction-market sponsors with booths during the main conference days.", "#/events?type=exhibition", n((e) => e.type === "exhibition")],
-    ["🥂", "Side events", "Forums, parties and closed-door rooms all week. Many need approval.", "#/events?type=side-event,forum,meetup,networking,closed-door", n((e) => e.type !== "official" && e.type !== "exhibition")],
+    ["🎤", "Official sessions", "Wed–Thu on the TOKEN2049 stages at Marina Bay Sands. Needs a TOKEN2049 pass.", "#/events?kind=session", n((e) => kindOf(e) === "session")],
+    ["🏢", "The expo floor", "Prediction-market sponsors with booths during the main conference days.", "#/events?kind=booth", n((e) => kindOf(e) === "booth")],
+    ["🥂", "Side events", "Forums, parties and closed-door rooms all week. Many need approval.", "#/events?kind=side", n((e) => kindOf(e) === "side")],
     ["🧱", "The stack", "Data, clearing, risk and market-making firms that make the markets work.", "#/stack", D.stack.length + " layers"],
   ];
   const ecos = [
@@ -499,11 +570,24 @@ function start(_, q) {
   <section class="hero hero-sm">
     <p class="eyebrow">Guide</p>
     <h1>New to prediction markets at TOKEN2049?</h1>
-    <p class="lede">Three steps: pick how you’re attending, get a shortlist, then save what you like to your schedule.</p>
+    <p class="lede">Three steps, about two minutes. See where prediction markets show up, pick how you’re attending, then get a shortlist to save.</p>
+    <ol class="step-rail">
+      <li><a href="#/start?at=g-where"><span class="step">1</span>Know where to look</a></li>
+      <li><a href="#/start?at=g-route"><span class="step">2</span>Pick your route</a></li>
+      <li><a href="#/start?at=finder"><span class="step">3</span>Get your shortlist</a></li>
+    </ol>
   </section>
 
-  <section class="section" aria-labelledby="h-s1">
-    <div class="section-head"><h2 id="h-s1"><span class="step">1</span> Pick your route</h2></div>
+  <section class="section" id="g-where" aria-labelledby="h-s3">
+    <div class="section-head"><h2 id="h-s3"><span class="step">1</span> Know where to look</h2></div>
+    <p class="muted">Prediction markets don’t have one home at TOKEN2049. They show up in four places:</p>
+    <div class="interest-grid">${places.map(([i, t, d, h, c]) => `<a class="interest interest-lg" href="${h}"><span aria-hidden="true">${i}</span><strong>${esc(t)}</strong><small>${esc(d)}</small><em>${typeof c === "number" ? plural(c, "listing") : c}</em></a>`).join("")}</div>
+    <h3 class="subhead">The main ecosystems</h3>
+    <div class="interest-grid">${ecos.map(([t, d, eco, cid]) => `<a class="interest" href="#/events?eco=${eco}"><strong>${esc(t)}</strong><small>${esc(d)}</small><em>${plural(n((e) => e.ecosystems.includes(eco)), "event")} · <span class="link-like" data-href="#/companies/${cid}">profile</span></em></a>`).join("")}</div>
+  </section>
+
+  <section class="section" id="g-route" aria-labelledby="h-s1">
+    <div class="section-head"><h2 id="h-s1"><span class="step">2</span> Pick your route</h2></div>
     <div class="doors doors-plain">
       <div class="door door-static"><span class="door-icon" aria-hidden="true">☀️</span><span class="door-text"><strong>I only have one day</strong><span>The prediction-market highlights for a single day.</span>
         <span class="day-pills">${D.days.map((d) => `<a href="#/calendar/${d.slug}?show=pm&view=agenda">${esc(d.label.slice(0, 3))}</a>`).join("")}</span></span></div>
@@ -514,28 +598,20 @@ function start(_, q) {
   </section>
 
   <section class="section" id="finder" aria-labelledby="h-finder">
-    <div class="section-head"><h2 id="h-finder"><span class="step">2</span> Get your shortlist</h2></div>
+    <div class="section-head"><h2 id="h-finder"><span class="step">3</span> Get your shortlist</h2></div>
     <div class="panel"><p class="muted" style="margin-top:0">Answer three quick questions. Nothing is sent anywhere.</p>
     <div id="finder-root">${finderForm(q)}</div></div>
-  </section>
-
-  <section class="section" aria-labelledby="h-s3">
-    <div class="section-head"><h2 id="h-s3"><span class="step">3</span> Know where to look</h2></div>
-    <p class="muted">Prediction markets don’t have one home at TOKEN2049. They show up in four places:</p>
-    <div class="interest-grid">${places.map(([i, t, d, h, c]) => `<a class="interest interest-lg" href="${h}"><span aria-hidden="true">${i}</span><strong>${esc(t)}</strong><small>${esc(d)}</small><em>${c}</em></a>`).join("")}</div>
-    <h3 class="subhead">The main ecosystems</h3>
-    <div class="interest-grid">${ecos.map(([t, d, eco, cid]) => `<a class="interest" href="#/events?eco=${eco}"><strong>${esc(t)}</strong><small>${esc(d)}</small><em>${n((e) => e.ecosystems.includes(eco))} events · <span class="link-like" data-href="#/companies/${cid}">profile</span></em></a>`).join("")}</div>
   </section>
 
   <section class="section" aria-labelledby="h-ref">
     <div class="section-head"><h2 id="h-ref">Handy reference</h2></div>
     <details class="fold fold-card"><summary>What the labels mean</summary>
       <div class="grid grid-3" style="margin-top:12px">
-        <div><h3>Relevance</h3>${Object.entries(REL).map(([k, v]) => `<p>${relChip(k)}<span class="def">${esc(v.desc)}</span></p>`).join("")}</div>
+        <div><h3>Relevance</h3>${Object.entries(REL).map(([k, v]) => `<p>${relChip(k)}<span class="def">${esc(v.desc)}</span></p>`).join("")}<p class="def">The score out of 10 ranks listings within these bands: 8–10, 6–7, 3–5 and 1–4.</p></div>
         <div><h3>Access</h3>${["badge", "open", "registration", "approval", "invite", "waitlist"].map((k) => `<p style="margin:0 0 6px"><span class="chip chip-outline chip-access-${k}">${ACCESS[k]}</span></p>`).join("")}</div>
         <div><h3>Verification</h3>${Object.entries(STATUS).map(([k, v]) => `<p><strong>${esc(v.label)}</strong><span class="def">${esc(v.desc)}</span></p>`).join("")}</div>
       </div></details>
-    <details class="fold fold-card"><summary>Ten terms you’ll hear</summary>
+    <details class="fold fold-card"><summary>${glossary.length} terms you’ll hear</summary>
       <dl class="glossary" style="margin-top:12px">${glossary.map(([t, d]) => `<div><dt>${esc(t)}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl></details>
   </section>`;
 }
@@ -587,14 +663,33 @@ function calendar(parts, q) {
   const viewMode = q.get("view") || calPref.get() || (window.innerWidth < 700 ? "agenda" : "timeline");
   const show = q.get("show") || "all";
   setMeta(`Calendar: ${d.long}`, `Prediction-market events and sessions on ${d.long} during TOKEN2049 Singapore week.`);
-  const filt = (e) => (show === "pm" ? e.relevance !== "adjacent" : show === "saved" ? saved.has(e.id) : true);
+  const sel = selected(q);
+  const nActive = CAL_FILTERS.reduce((n, f) => n + sel[f.key].length, 0);
+  const showOk = (e) => (show === "pm" ? e.relevance !== "adjacent" : show === "saved" ? saved.has(e.id) : true);
+  const passExcept = (e, skip) => showOk(e) && CAL_FILTERS.every((f) => f === skip || !sel[f.key].length || f.get(e).some((v) => sel[f.key].includes(v)));
+  const filt = (e) => passExcept(e, null);
   const list = eventsOn(d.date).filter(filt);
-  const qs = (over) => { const x = new URLSearchParams(q); for (const [k, v] of Object.entries(over)) x.set(k, v); x.delete("at"); return x.toString(); };
+  const qs = (over) => { const x = new URLSearchParams(q); for (const [k, v] of Object.entries(over)) v === null ? x.delete(k) : x.set(k, v); x.delete("at"); return x.toString(); };
+  const toggleHref = (f, k) => {
+    const cur = sel[f.key], next = cur.includes(k) ? cur.filter((v) => v !== k) : [...cur, k];
+    return `#/calendar/${d.slug}?${qs({ [f.key]: next.length ? next.join(",") : null })}`;
+  };
+  const clearHref = `#/calendar/${d.slug}?${qs(Object.fromEntries(CAL_FILTERS.map((f) => [f.key, null])))}`;
+  const chips = (f, all = false) => Object.keys(filterOpts(f)).map((k) => {
+    const n = eventsOn(d.date).filter((e) => passExcept(e, f) && f.get(e).includes(k)).length;
+    const on = sel[f.key].includes(k);
+    if (!all && !n && !on) return "";
+    const pre = f.key === "kind" ? `<span aria-hidden="true">${KIND_ICON[k]}</span>` : f.key === "rel" ? `<i class="rel-dot dot-${k}"></i>` : "";
+    return `<a class="toggle" href="${toggleHref(f, k)}" data-calfilter data-f="${f.key}" data-v="${k}" aria-pressed="${on}">${pre}${esc(optLabel(f, k))} <span class="n">${n}</span></a>`;
+  }).join("");
+  const kindF = CAL_FILTERS[0], moreF = CAL_FILTERS.slice(1);
+  const nMore = moreF.reduce((n, f) => n + sel[f.key].length, 0);
   return `
   <h1 class="page-title-sm">Calendar</h1>
   <nav class="day-tabs" aria-label="Choose a day">${D.days.map((x) => {
     const c = eventsOn(x.date).filter(filt).length;
-    return `<a class="day-tab" href="#/calendar/${x.slug}?${qs({})}" ${x.date === d.date ? 'aria-current="page"' : ""}><span>${esc(x.label.slice(0, 3))}</span><b>${x.label.slice(4, 6).trim()}</b><span class="n">${c}</span></a>`;
+    const main = D.site.main_days.includes(x.date);
+    return `<a class="day-tab${main ? " is-main" : ""}" href="#/calendar/${x.slug}?${qs({})}" ${x.date === d.date ? 'aria-current="page"' : ""}><span class="dt-wd">${esc(x.label.slice(0, 3))}</span><b>${x.label.slice(4, 6).trim()}</b><span class="n">${c}<span class="n-word"> ${c === 1 ? "listing" : "listings"}</span></span>${main ? `<span class="dt-main">Conference</span>` : ""}</a>`;
   }).join("")}</nav>
   <div class="cal-toolbar">
     <div class="segmented" role="group" aria-label="Layout">
@@ -607,13 +702,36 @@ function calendar(parts, q) {
       <a href="#/calendar/${d.slug}?${qs({ show: "saved" })}" aria-pressed="${show === "saved"}">★ Saved</a>
     </div>
   </div>
-  <h2 class="visually-hidden">${esc(d.long)}</h2>
-  <p class="day-intro"><strong>${esc(d.long)}</strong> · ${esc(d.note)} · ${plural(list.length, "listing")}${show === "pm" ? " (adjacent hidden)" : ""} · times in SGT</p>
-  ${!list.length ? `<p class="empty">${show === "saved" ? "You haven’t saved anything on this day yet." : "Nothing listed for this day."}</p>` : viewMode === "timeline" ? timeline(list, d.date, now) : agenda(list, d.date, { clashSaved: true })}
+  <section class="cal-filters" aria-label="Choose what to show">
+    <div class="cal-kinds" role="group" aria-label="Kind">${chips(kindF, true)}</div>
+    <details class="cal-more"${calMoreOpen || nMore ? " open" : ""} data-calmore>
+      <summary>More filters${nMore ? ` <span class="count">${nMore}</span>` : ""}</summary>
+      <div class="cal-more-body">${moreF.map((f) => { const c = chips(f); return c ? `<fieldset class="filter-group"><legend>${esc(f.label)}</legend><div class="opts">${c}</div></fieldset>` : ""; }).join("")}</div>
+    </details>
+    ${nActive ? `<a class="cal-clear" href="${clearHref}" data-calfilter>Clear ${plural(nActive, "filter")}</a>` : ""}
+  </section>
+  <header class="day-hero">
+    <div class="day-leaf" aria-hidden="true"><span class="dl-month">Oct</span><span class="dl-num">${d.label.slice(4, 6).trim()}</span><span class="dl-wd">${esc(d.label.slice(0, 3))}</span></div>
+    <div class="day-hero-text">
+      <h2>${esc(d.long)}</h2>
+      <p class="day-note">${esc(d.note)}</p>
+      <p class="day-stats"><span>${plural(list.length, "listing")}</span>${Object.keys(KIND).map((k) => { const n = list.filter((e) => kindOf(e) === k).length; return n ? `<span class="ds-k k-${k}"><i aria-hidden="true"></i>${n} ${esc(n === 1 ? KIND_SHORT[k].toLowerCase() : KIND_SHORT[k].toLowerCase() + "s")}</span>` : ""; }).join("")}${show === "pm" ? "<span>adjacent hidden</span>" : ""}${nActive ? `<span>${plural(nActive, "filter")} on</span>` : ""}<span>times in SGT</span></p>
+    </div>
+  </header>
+  ${!list.length ? `<p class="empty">${show === "saved" && !nActive ? "You haven’t saved anything on this day yet." : nActive ? `Nothing on this day matches these filters. <a href="${clearHref}" data-calfilter>Clear filters</a>` : "Nothing listed for this day."}</p>` : viewMode === "timeline" ? timeline(list, d.date, now) : programme(list, d.date)}
   <div class="legend" style="margin-top:14px">${Object.entries(REL).map(([k, v]) => `<span><i class="rel-dot dot-${k}"></i>${v.label}</span>`).join("")}<span>★ saved</span><span style="color:var(--clash)">▌ clash between saved</span></div>`;
 }
 afterRender.calendar = () => {
   document.querySelectorAll("[data-calview]").forEach((a) => a.addEventListener("click", () => calPref.set(a.dataset.calview)));
+  // Filter chips update the page in place, keeping the scroll position and focus.
+  document.querySelectorAll("[data-calfilter]").forEach((a) => a.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    history.replaceState(null, "", a.getAttribute("href"));
+    const { f, v } = a.dataset;
+    render({ keepScroll: true });
+    (f ? document.querySelector(`[data-f="${f}"][data-v="${v}"]`) : document.querySelector(".cal-kinds .toggle"))?.focus({ preventScroll: true });
+  }));
+  document.querySelector("[data-calmore]")?.addEventListener("toggle", (ev) => (calMoreOpen = ev.target.open));
   const sc = document.querySelector(".timeline-scroll");
   const first = sc?.querySelector(".tl-now") || sc?.querySelector(".tl-block");
   if (sc && first) sc.scrollLeft = Math.max(0, first.offsetLeft - 40);
@@ -668,15 +786,19 @@ function timeline(list, day, now) {
 const FILTERS = [
   { key: "rel", label: "Relevance", opts: REL, get: (e) => [e.relevance], lab: (v) => v.label },
   { key: "day", label: "Day", opts: null, get: (e) => eventDays(e) },
-  { key: "type", label: "Event type", opts: TYPE, get: (e) => [e.type] },
+  { key: "kind", label: "Kind", opts: KIND, get: (e) => [kindOf(e)] },
+  { key: "type", label: "Side-event format", opts: Object.fromEntries(Object.entries(TYPE).filter(([k]) => !["official", "exhibition", "side-event"].includes(k))), get: (e) => [e.type] },
   { key: "aud", label: "Audience", opts: AUD, get: (e) => e.audiences },
   { key: "eco", label: "Ecosystem", opts: ECO, get: (e) => e.ecosystems },
   { key: "acc", label: "Access", opts: ACCESS, get: (e) => [e.access] },
   { key: "status", label: "Verification", opts: STATUS, get: (e) => [e.status], lab: (v) => v.label },
   { key: "topic", label: "Topic", opts: TOPIC, get: (e) => e.topics, hidden: true },
 ];
+/** Filters offered on the calendar (the day is already chosen; Kind comes first and is always shown). */
+const CAL_FILTERS = ["kind", "rel", "acc", "eco", "aud", "type"].map((k) => FILTERS.find((f) => f.key === k));
+let calMoreOpen = false;
 const filterOpts = (f) => (f.key === "day" ? Object.fromEntries(D.days.map((d) => [d.date, d.label])) : f.opts);
-const optLabel = (f, k) => { const v = filterOpts(f)[k]; return f.lab ? f.lab(v) : v; };
+const optLabel = (f, k) => { const v = filterOpts(f)[k] ?? (f.key === "type" ? TYPE[k] : k); return f.lab ? f.lab(v) : v; };
 const selected = (q) => Object.fromEntries(FILTERS.map((f) => [f.key, (q.get(f.key) || "").split(",").filter(Boolean)]));
 
 function applyFilters(q) {
@@ -730,7 +852,7 @@ function eventResults(q) {
   for (const d of D.days) {
     const day = list.filter((e) => e.date === d.date);
     if (!day.length) continue;
-    html += `<section class="day-group"><h2 class="day-heading">${esc(d.long)} <span class="n">${day.length}</span></h2><div class="event-list">${day.map((e) => eventCard(e, { showDay: false })).join("")}</div></section>`;
+    html += `<section class="day-group prog-sect"><h2 class="prog-sect-head"><span>${esc(d.long)}</span><small>${plural(day.length, "listing")} · ${esc(d.note)}</small></h2><div class="programme-list">${day.map((e) => progItem(e)).join("")}</div></section>`;
   }
   return html;
 }
@@ -811,6 +933,10 @@ function eventDetail(id) {
   const block = icsBlocker(e);
   const map = e.map_query ? encodeURIComponent(e.map_query) : null;
   const related = relatedEvents(e);
+  const primaryLabel = e.type === "official" ? "Official agenda" : kindOf(e) === "booth" ? "Exhibitor page" : "Registration page";
+  const acts = `${srcs[0] ? `<a class="pa-primary" href="${esc(srcs[0].url)}" rel="noopener" target="_blank">${primaryLabel} <span aria-hidden="true">↗</span></a>` : ""}
+    ${saveBtn(e, true)}
+    <div class="pa-row">${block ? `<button type="button" class="pa-btn" aria-disabled="true" data-ics-blocked="${esc(block)}" title="${esc(block)}">Add to calendar</button>` : `<button type="button" class="pa-btn" data-ics="${e.id}">Add to calendar</button>`}<button type="button" class="pa-btn" data-share="${e.id}">Share link</button></div>`;
   if (!e.status.match(/provisional/) && e.start) {
     const off = (t) => `${e.date}T${t}:00+08:00`;
     setLD({
@@ -821,16 +947,25 @@ function eventDetail(id) {
     });
   }
   return `<a class="back-link" href="#/events" data-back>← Back</a>
-  <div class="detail">
+  <div class="detail detail-calm">
     <article>
-      <div class="chip-row">${relChip(e.relevance)}${typeChip(e)}${e.official && e.type !== "official" ? `<span class="chip chip-official">TOKEN2049 official</span>` : ""}${statusChip(e)}${updatedBadge(e)}</div>
+      <div class="chip-row">${kindChip(e)}${scoreChip(e)}${relChip(e.relevance)}${e.official && e.type !== "official" ? `<span class="chip chip-official">TOKEN2049 official</span>` : ""}${updatedBadge(e)}</div>
       <h1>${esc(e.title)}</h1>
-      <p class="detail-when">${esc(e.end_date ? `${d.label.slice(0, 3)}–${dayOf(e.end_date).label}` : d.long)} · ${esc(timeLabel(e))} <span class="muted small">SGT</span></p>
-      <p class="muted" style="margin:0">${esc(e.venue)}</p>
-      <div class="quick-actions">${saveBtn(e, true)}${srcs[0] ? `<a class="btn btn-primary" href="${esc(srcs[0].url)}" rel="noopener" target="_blank">${e.type === "official" ? "Agenda" : "Organiser"} ↗</a>` : ""}<span class="qa-access">${esc(ACCESS[e.access])}</span></div>
-      ${e.status !== "verified" ? `<p class="notice${e.status === "listed" ? " info" : ""}" style="margin-top:14px"><strong>${esc(STATUS[e.status].label)}.</strong> ${esc(e.status_note || STATUS[e.status].desc)}</p>` : ""}
+      <p class="standfirst">${esc(e.why)}</p>
+      <dl class="fact-strip">
+        <div><dt>When</dt><dd><b>${esc(e.end_date ? dayRange(e) : d.long)}</b><span class="mono">${esc(timeLabel(e))} SGT</span></dd></div>
+        <div><dt>Where</dt><dd><b>${esc(e.venue)}</b>${map ? `<span><a href="https://www.google.com/maps/search/?api=1&query=${map}" rel="noopener" target="_blank">Google Maps</a> · <a href="https://maps.apple.com/?q=${map}" rel="noopener" target="_blank">Apple Maps</a></span>` : ""}</dd></div>
+        <div><dt>Getting in</dt><dd><b>${esc(ACCESS[e.access])}</b>${accessExtra(e) ? `<span>${esc(accessExtra(e))}</span>` : ""}</dd></div>
+        <div><dt>Format</dt><dd><b>${esc(formatOf(e) || KIND[kindOf(e)])}</b></dd></div>
+      </dl>
+      <div class="plan-actions plan-actions-inline">${acts}</div>
+      ${e.status === "provisional" || e.status === "conflict"
+        ? `<p class="notice" style="margin-top:16px"><strong>${esc(STATUS[e.status].label)}.</strong> ${esc(e.status_note || STATUS[e.status].desc)}</p>`
+        : `<p class="verify-line verify-inline"><span class="verify-dot" aria-hidden="true"></span><strong>${esc(STATUS[e.status].label)}.</strong> ${esc(e.status_note || STATUS[e.status].desc)}</p>`}
 
-      <section><h2>Why it’s relevant</h2><p>${esc(e.why)}</p><p class="muted">${esc(e.summary)}</p></section>
+      <section><h2>What it is</h2><p>${esc(e.summary)}</p></section>
+
+      ${e.questions?.length ? `<section><h2>Questions worth asking</h2><ul class="questions">${e.questions.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></section>` : ""}
 
       ${clashes.length || e.clash_note ? `<section><h2>Clashes</h2>
         ${e.clash_note ? `<p class="notice">${esc(e.clash_note)}</p>` : ""}
@@ -842,40 +977,43 @@ function eventDetail(id) {
 
       ${e.companies.length ? `<section><h2>Companies</h2><div class="co-list">${e.companies.map((x) => companyMini(D.companies.get(x.id), CROLE[x.role])).join("")}</div></section>` : ""}
 
-      ${e.questions?.length ? `<section><h2>Questions worth asking</h2><ul class="questions">${e.questions.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></section>` : ""}
-
-      <section><h2>Topics</h2><div class="chip-row">
+      <section class="more-detail"><h2>More detail</h2>
+      <details class="fold"><summary>Topics and audiences</summary><div class="chip-row" style="margin-top:10px">
         ${e.ecosystems.map((x) => `<a class="chip chip-outline" href="#/events?eco=${x}">${esc(ECO[x])}</a>`).join("")}
         ${e.audiences.map((x) => `<a class="chip" href="#/events?aud=${x}">${esc(AUD[x])}</a>`).join("")}
         ${e.topics.map((x) => `<a class="chip" href="#/events?topic=${x}">${esc(TOPIC[x])}</a>`).join("")}
         ${e.stack_layers.map((x) => `<a class="chip chip-outline" href="#/stack/${x}">Stack: ${esc(D.layer.get(x).name)}</a>`).join("")}
-      </div></section>
-
-      <section><h2>Sources</h2>${srcs.length ? `<ul class="source-list">${srcs.map(sourceItem).join("")}</ul>` : `<p class="notice">No first-party source has been found for this listing.</p>`}
+      </div></details>
+      ${srcs.length ? `<details class="fold"><summary>Sources (${srcs.length})</summary><ul class="source-list" style="margin-top:10px">${srcs.map(sourceItem).join("")}</ul></details>` : `<p class="notice">No first-party source has been found for this listing.</p>`}
         <p class="small muted" style="margin-top:10px">Last checked ${esc(fmtDate(e.last_updated))}. <a href="${issueUrl("correction.yml", { title: `Correction: ${e.title}`, record: `events/${e.id}` })}" rel="noopener">Report a correction</a></p></section>
 
       ${related.length ? `<section><h2>Related events</h2><div class="event-list">${related.map((o) => eventCard(o, { compact: true })).join("")}</div></section>` : ""}
     </article>
 
-    <aside aria-label="Key facts">
-      <div class="facts">
-        <dl class="kv">
-          <dt>When</dt><dd>${esc(e.end_date ? dayRange(e) : d.label)}<br><span class="mono">${esc(timeLabel(e))}</span> SGT</dd>
-          <dt>Where</dt><dd>${esc(e.venue)}${map ? `<br><a href="https://www.google.com/maps/search/?api=1&query=${map}" rel="noopener" target="_blank">Google Maps</a> · <a href="https://maps.apple.com/?q=${map}" rel="noopener" target="_blank">Apple Maps</a>` : ""}</dd>
-          <dt>Access</dt><dd>${esc(ACCESS[e.access])}<span class="def">${esc(e.access_note || "")}</span></dd>
-          <dt>Type</dt><dd>${esc(TYPE[e.type])}</dd>
-          <dt>Relevance</dt><dd>${esc(REL[e.relevance].label)}<span class="def">${esc(REL[e.relevance].desc)}</span></dd>
-          <dt>Verification</dt><dd>${esc(STATUS[e.status].label)}<span class="def">${esc(e.status_note || STATUS[e.status].desc)}</span></dd>
+    <aside class="plan" aria-label="Plan it">
+      <div class="plan-card">
+        <p class="plan-title">Plan it</p>
+        <p class="plan-when"><b>${esc(e.end_date ? dayRange(e) : d.long)}</b><span class="mono">${esc(timeLabel(e))} SGT</span></p>
+        <p class="plan-where">${esc(e.venue)}</p>
+        <div class="plan-actions">${acts}</div>
+        <dl class="plan-facts">
+          <div><dt>Relevance</dt><dd><span class="score-line"><b class="score-big">${e.score}<small>/10</small></b><span class="score-meter" aria-hidden="true">${Array.from({ length: 10 }, (_, i) => `<i class="${i < e.score ? "on" : ""}"></i>`).join("")}</span></span><b>${esc(REL[e.relevance].label)}</b><span>${esc(REL[e.relevance].desc)}</span></dd></div>
+          <div><dt>Verification</dt><dd><b>${esc(STATUS[e.status].label)}</b><span>${esc(e.status_note || STATUS[e.status].desc)}</span></dd></div>
+          ${clashes.length ? `<div><dt>Clashes</dt><dd><b>${plural(clashes.length, "overlapping listing")}</b><span>See Clashes below.</span></dd></div>` : ""}
+          ${e.people.length ? `<div><dt>People</dt><dd><b>${plural(e.people.length, "person", "people")} named</b><span>See who you can expect there below.</span></dd></div>` : ""}
         </dl>
-        <div class="actions">
-          ${saveBtn(e, true)}
-          ${srcs[0] ? `<a class="btn btn-primary" href="${esc(srcs[0].url)}" rel="noopener" target="_blank">${e.type === "official" ? "Official agenda" : "Organiser / registration"} ↗</a>` : ""}
-          ${block ? `<button type="button" class="btn" aria-disabled="true" data-ics-blocked="${esc(block)}">Add to calendar</button><span class="def">${esc(block)}</span>` : `<button type="button" class="btn" data-ics="${e.id}">Add to calendar (.ics)</button>`}
-          <button type="button" class="btn" data-share="${e.id}">Share link</button>
-        </div>
       </div>
     </aside>
   </div>`;
+}
+/** The access note minus any words that just repeat the access label ("Invite-only; cap of 200" → "Cap of 200"). */
+function accessExtra(e) {
+  const note = (e.access_note || "").trim(), label = ACCESS[e.access] || "";
+  const squash = (t) => t.toLowerCase().replace(/[^a-z]/g, "");
+  if (!note || squash(note) === squash(label)) return "";
+  const parts = note.split(/;\s*/).filter((p) => squash(p) && squash(p) !== squash(label) && !squash(label).startsWith(squash(p)));
+  const rest = parts.join("; ");
+  return rest ? rest.charAt(0).toUpperCase() + rest.slice(1) : "";
 }
 /** "People you can expect there": named hosts/speakers or people with evidence for this specific event. */
 function expectThere(e) {
@@ -1183,25 +1321,19 @@ function going(parts, q) {
   setMeta("Who’s going?", "Prediction-market people, companies and adjacent organisations with public evidence they’ll be in Singapore for TOKEN2049 week.");
   const G = D.going;
   const n = (fn) => G.filter(fn).length;
-  const stats = [
-    [n((g) => g.person), "people"], [n((g) => !g.person), "companies"],
-    [n((g) => g.roles.some((r) => r === "trader" || r === "market-maker")), "traders & MMs"],
-    [n((g) => g.ctypes.includes("venue")), "PM platforms"],
-    [n((g) => g.roles.includes("infrastructure")), "infra & data"],
-  ];
+  const nUnv = n((g) => g.unverified);
   return `<p class="eyebrow">Who’s going?</p>
   <h1>Who’s going to TOKEN2049?</h1>
-  <p class="lede">The prediction-market people and companies you can find in Singapore during TOKEN2049 week.</p>
-  <p class="notice info small">Not TOKEN2049’s official attendee list. Built from public announcements, the official programme, sponsor lists and event pages; every confirmed entry links to its source. <strong>Unverified</strong> means we haven’t found a source yet. <a href="#/going?ver=confirmed">Show confirmed only</a>.</p>
-  <div class="stat-row">${stats.map(([v, l]) => `<div class="stat"><b>${v}</b><span>${esc(l)}</span></div>`).join("")}</div>
-  <p class="small muted">Counts come straight from the ${D.att.length} public records (${D.going.filter((g) => g.unverified).length} unverified). Last verified ${esc(fmtDate(D.site.last_updated))}.</p>
-  <div class="chip-row chip-scroll" role="group" aria-label="Discover" style="margin:18px 0 6px">
+  <p class="lede"><b>${n((g) => g.person)} people</b> and <b>${n((g) => !g.person)} companies</b> in prediction markets with public evidence they’ll be in Singapore, including ${n((g) => g.roles.some((r) => r === "trader" || r === "market-maker"))} traders and market makers and ${n((g) => g.ctypes.includes("venue"))} prediction-market platforms.</p>
+  <p class="trust-line">Not TOKEN2049’s attendee list. Every confirmed entry links to its source${nUnv ? `; ${nUnv} marked Unverified don’t have one yet (<a href="#/going?ver=confirmed">hide them</a>)` : ""}. <a href="#/going?at=evidence">How we check</a> · checked ${esc(fmtDate(D.site.last_updated))}</p>
+  <div class="search-box search-lg" style="margin-top:18px">${SEARCH_ICON}<label class="visually-hidden" for="g-search">Search who’s going</label>
+    <input id="g-search" type="search" placeholder="Search a name, company or interest, e.g. Kalshi, market maker…" value="${esc(q.get("q") || "")}" autocomplete="off"></div>
+  <p class="browse-label">Or browse</p>
+  <div class="chip-row chip-scroll" role="group" aria-label="Browse by group" style="margin:0 0 6px">
     <a class="toggle" href="#/going" aria-pressed="${!q.get("g") && q.get("recent") !== "1"}">Everyone</a>
     <a class="toggle" href="#/going?recent=1" aria-pressed="${q.get("recent") === "1"}">✦ Recently confirmed <span class="n">${n((g) => g.isNew)}</span></a>
     ${DISCOVER.map(([k, l, fn]) => `<a class="toggle" href="#/going?g=${k}" aria-pressed="${q.get("g") === k}">${esc(l)} <span class="n">${n(fn)}</span></a>`).join("")}
   </div>
-  <div class="search-box" style="margin-top:12px">${SEARCH_ICON}<label class="visually-hidden" for="g-search">Search who’s going</label>
-    <input id="g-search" type="search" placeholder="Search names, companies, interests…" value="${esc(q.get("q") || "")}" autocomplete="off"></div>
   <div class="filter-bar"><button type="button" class="btn btn-small filter-open-btn" data-open-filters>Filters <span data-filter-count></span></button><div class="active-filters" data-active></div></div>
   <div class="dir-layout">
     <aside class="filter-panel" aria-label="Filters" data-filters>${goingFilterGroups(q)}</aside>
@@ -1212,7 +1344,7 @@ function going(parts, q) {
     <div class="sheet-body" data-filters>${goingFilterGroups(q)}</div>
     <div class="sheet-foot"><button type="button" class="btn" data-clear>Clear all</button><button type="button" class="btn btn-primary" data-close style="flex:1" data-show-count>Show results</button></div>
   </dialog>
-  <section class="section panel"><h2>Evidence types</h2><p class="small muted">These are different kinds of evidence, and they aren’t equivalent.</p>
+  <section class="section panel" id="evidence"><h2>How we check: evidence types</h2><p class="small muted">These are different kinds of evidence, and they aren’t equivalent.</p>
     <dl class="kv">${Object.entries(AST).map(([k, v]) => `<dt>${evidenceChip(k)}</dt><dd class="small">${esc(v.desc)}</dd>`).join("")}</dl>
     ${promoCard(true)}
     <p class="small" style="margin-top:14px">Announced you’re going? <a href="${issueUrl("attendance.yml")}" rel="noopener">Add yourself with a link to your public post</a>.</p></section>`;
@@ -1300,14 +1432,193 @@ function whereToFind(recs, entityName) {
     <p>${a.source_url ? `<a href="${esc(a.source_url)}" target="_blank" rel="noopener">Proof / source ↗</a> · ` : ""}Last verified ${esc(fmtDate(a.last_verified))}</p></li>`).join("")}</ul></section>`;
 }
 
+// ---------------------------------------------------------------- PLAY (play-money prediction market)
+// Every visitor gets their own sandbox: balances, positions and prices live only in their browser.
+const PLAY_KEY = "tpm2049:play:v1";
+const play$ = {
+  read() {
+    const M = D.markets;
+    let st = null;
+    try { st = JSON.parse(localStorage.getItem(PLAY_KEY) || "null"); } catch { st = null; }
+    if (!st || typeof st.balance !== "number") st = { balance: M.starting_balance, m: {}, settled: {} };
+    for (const mk of M.markets) if (!st.m[mk.id]) st.m[mk.id] = { q: lmsr.seed(mk.seed, M.liquidity), yes: 0, no: 0 };
+    // Pay out any market the curators have resolved since the last visit.
+    for (const mk of M.markets) {
+      if (mk.status === "resolved" && mk.outcome && !st.settled[mk.id]) {
+        const pos = st.m[mk.id];
+        st.balance += mk.outcome === "yes" ? pos.yes : mk.outcome === "no" ? pos.no : (pos.yes + pos.no) * 0.5;
+        st.settled[mk.id] = true;
+      }
+    }
+    return st;
+  },
+  write(st) { try { localStorage.setItem(PLAY_KEY, JSON.stringify(st)); } catch { /* private mode: this session only */ } },
+};
+let playState = null;
+const credits = (n) => `${Math.round(n).toLocaleString("en-GB")}`;
+const pct = (p) => `${Math.round(p * 100)}%`;
+
+function playMarket(mk, st) {
+  const b = D.markets.liquidity, pos = st.m[mk.id], p = lmsr.price(pos.q, b);
+  const open = mk.status === "open";
+  const value = pos.yes * p + pos.no * (1 - p);
+  const ev = mk.event_id && D.ev.get(mk.event_id);
+  return `<article class="pm-card${open ? "" : " is-resolved"}" data-market="${mk.id}">
+    <div class="pm-top"><span class="pm-cat">${esc(mk.category)}</span><span class="pm-close">${open ? `Closes ${esc(fmtDate(mk.closes))}` : `Resolved: <b>${esc(mk.outcome.toUpperCase())}</b>`}</span></div>
+    <h3>${esc(mk.question)}</h3>
+    ${ev ? `<p class="pm-ev">Related: <a href="${evUrl(ev)}">${esc(ev.title)}</a></p>` : ""}
+    <div class="pm-odds" role="img" aria-label="Yes ${pct(p)}, No ${pct(1 - p)}">
+      <div class="pm-bar"><i style="width:${(p * 100).toFixed(1)}%"></i></div>
+      <div class="pm-odds-row"><span><b>${pct(p)}</b> Yes</span><span>No <b>${pct(1 - p)}</b></span></div>
+    </div>
+    ${open ? `<div class="pm-trade">
+      <div class="pm-amounts" role="group" aria-label="Amount">${[10, 50, 100].map((a, i) => `<button type="button" class="pm-amt" data-amt="${a}" aria-pressed="${i === 1}">${a}</button>`).join("")}<label class="visually-hidden" for="amt-${mk.id}">Custom amount</label><input class="pm-amt-input" id="amt-${mk.id}" type="number" min="1" step="1" inputmode="numeric" placeholder="Other"></div>
+      <div class="pm-buttons"><button type="button" class="pm-buy pm-yes" data-side="yes">Buy Yes <span>${pct(p)}</span></button><button type="button" class="pm-buy pm-no" data-side="no">Buy No <span>${pct(1 - p)}</span></button></div>
+      <p class="pm-preview" aria-live="polite"></p>
+    </div>` : ""}
+    ${pos.yes > 0.01 || pos.no > 0.01 ? `<div class="pm-pos"><span>Your position: ${pos.yes > 0.01 ? `<b>${pos.yes.toFixed(1)}</b> Yes` : ""}${pos.yes > 0.01 && pos.no > 0.01 ? " · " : ""}${pos.no > 0.01 ? `<b>${pos.no.toFixed(1)}</b> No` : ""} · worth ${credits(value)} now</span>${open ? `<button type="button" class="pm-sell" data-sell="1">Sell all</button>` : ""}</div>` : ""}
+    <details class="pm-rules"><summary>How it resolves</summary><p>${esc(mk.resolves)}</p></details>
+  </article>`;
+}
+
+function play() {
+  setMeta("Play: prediction-market game", "A just-for-fun play-money prediction market on TOKEN2049 week. No real money, no prizes.");
+  const M = D.markets, st = (playState = play$.read()), b = M.liquidity;
+  const holdings = M.markets.reduce((t, mk) => { const pos = st.m[mk.id], p = lmsr.price(pos.q, b); return mk.status === "open" ? t + pos.yes * p + pos.no * (1 - p) : t; }, 0);
+  const worth = st.balance + holdings, change = worth / M.starting_balance - 1;
+  return `
+  <section class="pm-hero">
+    <div>
+      <p class="hh-eyebrow">Just for fun · play money</p>
+      <h1>Call TOKEN2049 week before it happens</h1>
+      <p class="hh-lede">You start with ${credits(M.starting_balance)} play credits. Buy <b>Yes</b> or <b>No</b> on each question. Prices move with every trade, like a real prediction market, and each winning share pays 1 credit when the question resolves.</p>
+    </div>
+    <div class="pm-wallet" aria-live="polite">
+      <p class="plan-title">Your play wallet</p>
+      <p class="pm-worth"><b>${credits(worth)}</b> credits<span class="${change >= 0 ? "up" : "down"}">${change >= 0 ? "+" : ""}${(change * 100).toFixed(1)}%</span></p>
+      <dl><div><dt>Cash</dt><dd>${credits(st.balance)}</dd></div><div><dt>In positions</dt><dd>${credits(holdings)}</dd></div></dl>
+      <button type="button" class="pa-btn pm-reset" data-reset>Start again</button>
+    </div>
+  </section>
+  <p class="pm-disclaimer"><strong>Play money only.</strong> No real money, deposits, withdrawals or prizes, and nothing to sign up for. Your credits and prices live only in this browser, so each visitor has their own market. Not financial advice.</p>
+  <div class="pm-grid">${M.markets.map((mk) => playMarket(mk, st)).join("")}</div>
+  ${npBanner()}`;
+}
+afterRender.play = () => {
+  const b = D.markets.liquidity;
+  const rerender = () => render({ keepScroll: true });
+  PAGE.querySelectorAll(".pm-card").forEach((card) => {
+    const mk = D.markets.markets.find((m) => m.id === card.dataset.market);
+    if (!mk || mk.status !== "open") return;
+    const pos = playState.m[mk.id];
+    const amountOf = () => { const custom = +card.querySelector(".pm-amt-input").value; return custom > 0 ? custom : +(card.querySelector('.pm-amt[aria-pressed="true"]')?.dataset.amt || 0); };
+    const preview = () => {
+      const a = amountOf(), el = card.querySelector(".pm-preview");
+      if (!a) { el.textContent = ""; return; }
+      if (a > playState.balance) { el.textContent = `You only have ${credits(playState.balance)} credits.`; return; }
+      const y = lmsr.sharesFor(pos.q, b, "yes", a), n = lmsr.sharesFor(pos.q, b, "no", a);
+      el.textContent = `${a} credits buys ${y.toFixed(1)} Yes (pays ${credits(y)} if Yes) or ${n.toFixed(1)} No (pays ${credits(n)} if No).`;
+    };
+    card.querySelectorAll(".pm-amt").forEach((btn) => btn.addEventListener("click", () => {
+      card.querySelectorAll(".pm-amt").forEach((x) => x.setAttribute("aria-pressed", String(x === btn)));
+      card.querySelector(".pm-amt-input").value = ""; preview();
+    }));
+    card.querySelector(".pm-amt-input").addEventListener("input", preview);
+    card.querySelectorAll(".pm-buy").forEach((btn) => btn.addEventListener("click", () => {
+      const a = amountOf(), side = btn.dataset.side;
+      if (!a || a > playState.balance) { preview(); return; }
+      const sh = lmsr.sharesFor(pos.q, b, side, a);
+      pos.q[side] += sh; pos[side] += sh; playState.balance -= a;
+      play$.write(playState); rerender();
+      toast(`Bought ${sh.toFixed(1)} ${side === "yes" ? "Yes" : "No"} for ${credits(a)} credits`);
+    }));
+    card.querySelector("[data-sell]")?.addEventListener("click", () => {
+      let got = 0;
+      for (const side of ["yes", "no"]) if (pos[side] > 0) { got += lmsr.proceeds(pos.q, b, side, pos[side]); pos.q[side] -= pos[side]; pos[side] = 0; }
+      playState.balance += got; play$.write(playState); rerender();
+      toast(`Sold for ${credits(got)} credits`);
+    });
+    preview();
+  });
+  PAGE.querySelector("[data-reset]")?.addEventListener("click", () => {
+    if (!confirm("Reset your play wallet and all positions?")) return;
+    try { localStorage.removeItem(PLAY_KEY); } catch { /* ignore */ }
+    rerender(); toast("Fresh start: 1,000 play credits");
+  });
+};
+
 // ---------------------------------------------------------------- PROMO
 function maybeUnlockPromo() {}
+/** Simple monochrome channel icons (drawn for this site, in currentColor). */
+const COMMUNITY_MARK = {
+  whatsapp: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.2A8.5 8.5 0 1 0 12 3.5z"/><path fill="currentColor" d="M9.1 7.9c.3 0 .5.1.6.4l.7 1.6c.1.3 0 .5-.1.7l-.5.6c.6 1.2 1.6 2.2 2.8 2.8l.6-.5c.2-.2.5-.2.7-.1l1.6.7c.3.1.4.4.4.6-.1 1.1-1 1.9-2.1 1.8-3.3-.4-5.9-3-6.3-6.3-.1-1.1.7-2.1 1.6-2.3z"/></svg>`,
+  telegram: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.7 4.2 2.9 11.1c-.9.4-.9 1.6.1 1.9l4.4 1.4 1.7 5.2c.3.8 1.3 1 1.9.4l2.5-2.4 4.5 3.3c.7.5 1.6.1 1.8-.7l3-13.6c.2-1-.8-1.8-1.7-1.4zM9.8 14.3l-.5 3.6-1.3-4.1 9.6-6.3-7.8 6.8z"/></svg>`,
+  linkedin: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.5 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM3 9h3v11.5H3zM9 9h2.9v1.6h.1c.4-.8 1.4-1.8 3-1.8 3.2 0 3.8 2.1 3.8 4.8v6.9h-3v-6.1c0-1.5 0-3.3-2-3.3s-2.3 1.6-2.3 3.2v6.2H9z"/></svg>`,
+  x: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.8 8 10.2h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.9 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg>`,
+};
+const communityLinks = () => {
+  const M = D.site.curator.community;
+  return M ? `<div class="np-community">${M.links.map((l) => `<a class="np-comm np-${l.id}" href="${esc(l.url)}" target="_blank" rel="noopener"><span class="np-mark" aria-hidden="true">${COMMUNITY_MARK[l.id] || "↗"}</span><span>${esc(l.label)}</span></a>`).join("")}</div>` : "";
+};
+/** Slim NEXTPredict strip at the very top of the home page. */
+/** Straight after the TOKEN2049 hero: carry the conversation on to NEXTPredict NYC. */
+function npBanner() {
+  const P = D.site.promo, C = D.site.curator;
+  if (!P) return "";
+  return `<aside class="np-continue" aria-label="From the curators: NEXTPredict NYC">
+    <div class="np-continue-date" aria-hidden="true"><span>Oct</span><b>22–23</b><span>New York</span></div>
+    <div class="np-continue-text">
+      <p class="np-continue-kicker">After Singapore · from the curators of this guide</p>
+      <h2>Continue the conversation in New York</h2>
+      <p>The prediction-markets crowd you meet at TOKEN2049 reconvenes at <strong>${esc(C.summit.name)}</strong>, ${esc(C.summit.dates)} at ${esc(C.summit.place)}, two weeks before the US midterms.</p>
+    </div>
+    <div class="np-continue-actions"><a class="pa-primary" href="${esc(P.url)}" target="_blank" rel="noopener">Get tickets <span aria-hidden="true">↗</span></a><a class="np-continue-link" href="#/nextpredict">Join the community →</a></div>
+  </aside>`;
+}
+function nextpredict() {
+  const P = D.site.promo, C = D.site.curator, M = C.community;
+  setMeta("NEXTPredict", `${C.summit.name}, ${C.summit.dates}, and the NEXTPredict prediction-market community on WhatsApp, Telegram, LinkedIn and X.`);
+  return `
+  <section class="npx-hero">
+    <div class="npx-hero-copy">
+      <p class="npx-kicker"><span class="np-logo">NEXT<b>Predict</b></span> · from the curators of this guide</p>
+      <h1>The prediction-markets crowd doesn’t stop at TOKEN2049.</h1>
+      <p class="npx-lede">NEXTPredict brings together the people building, trading and regulating prediction markets. We made this guide, and we run ${esc(C.summit.name)}.</p>
+      <div class="npx-hero-actions"><a class="npx-btn npx-btn-primary" href="${esc(P.url)}" target="_blank" rel="noopener">Get your ticket ↗</a><a class="npx-btn npx-btn-ghost" href="#/nextpredict?at=community">Join the community ↓</a></div>
+    </div>
+    <a class="npx-ticket" href="${esc(P.url)}" target="_blank" rel="noopener" aria-label="${esc(C.summit.name)} tickets with code ${esc(P.code)}">
+      <div class="npx-ticket-main">
+        <p class="npx-ticket-label">Admit one · summit</p>
+        <p class="npx-ticket-name">${esc(C.summit.name)}</p>
+        <dl class="npx-ticket-grid">
+          <div><dt>Dates</dt><dd>${esc(C.summit.dates.replace(/ 2026$/, ""))}</dd></div>
+          <div><dt>Where</dt><dd>${esc(C.summit.place)}</dd></div>
+          <div><dt>Why now</dt><dd>Two weeks before the US midterms</dd></div>
+        </dl>
+      </div>
+      <div class="npx-ticket-stub">
+        <span>Your code</span>
+        <b class="mono">${esc(P.code)}</b>
+        <em>Applied automatically ↗</em>
+      </div>
+    </a>
+  </section>
+
+  ${M ? `<section class="section" id="community" aria-labelledby="h-comm">
+    <div class="section-head home-head"><div><p class="sec-num">Community</p><h2 id="h-comm">Join the conversation</h2><p class="section-sub">${esc(M.blurb)} Pick the channel you already use.</p></div><a class="more" href="${esc(M.url)}" target="_blank" rel="noopener">All communities ↗</a></div>
+    <div class="npx-channels">${M.links.map((l) => `<a class="npx-channel npx-${l.id}" href="${esc(l.url)}" target="_blank" rel="noopener"><span class="npx-icon">${COMMUNITY_MARK[l.id] || ""}</span><span class="npx-channel-text"><strong>${esc(l.label)}</strong><span>${esc(l.cta)}</span></span><span class="npx-arrow" aria-hidden="true">↗</span></a>`).join("")}</div>
+  </section>` : ""}
+
+  <section class="section">${curatorPanel()}</section>
+  <p class="small muted">${esc(P.disclosure)}</p>`;
+}
 function promoCard(compact = false) {
   const P = D.site.promo, C = D.site.curator;
   if (!P) return "";
   return `<div class="promo" id="promo"><p class="eyebrow">🎁 NEXTPredict offer</p><h3>${esc(C.summit.name)}: ${esc(C.summit.dates)}, ${esc(C.summit.place)}</h3>
     ${compact ? "" : `<p>Prediction markets’ own summit, two weeks before the US midterms. Use code <span class="mono">${esc(P.code)}</span> at checkout.</p>`}
-    <div class="btn-row"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Get your NEXTPredict NYC discount ↗</a>${compact ? "" : `<button type="button" class="btn" data-copy="${esc(P.code)}">Copy code ${esc(P.code)}</button><a class="btn" href="${esc(C.summit.url)}" target="_blank" rel="noopener">About the summit</a>`}</div>
+    <div class="btn-row"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Get your NEXTPredict NYC discount ↗</a>${compact ? "" : `<a class="btn" href="${esc(C.summit.url)}" target="_blank" rel="noopener">About the summit</a>`}</div>
+    ${compact ? "" : `<p class="np-comm-label">Join the NEXTPredict community</p>${communityLinks()}`}
     <p class="small muted" style="margin:10px 0 0">${esc(P.disclosure)}</p></div>`;
 }
 function curatorPanel() {
@@ -1330,12 +1641,12 @@ function schedule(_, q) {
   }
   const ids = saved.all().filter((id) => D.ev.has(id));
   const list = ids.map((id) => D.ev.get(id));
-  const clashPairs = list.flatMap((a) => list.filter((b) => a.id < b.id && overlaps(a, b)).map((b) => [a, b]));
+  // Count clashes the same way the day timelines show them: one per group of overlapping events.
+  const clashPairs = D.days.flatMap((d) => clusters(list.filter((e) => eventDays(e).includes(d.date))).filter((g) => g.length > 1));
   const exportable = list.filter((e) => !icsBlocker(e));
   return `<h1>My TOKEN PM schedule</h1>
   <p class="lede">Star events anywhere in the directory and they appear here in time order, with clashes and free time shown.</p>
   <p class="small muted">Saved in this browser only. There’s no account, and nothing is sent anywhere. To move your schedule to another device, use the share link or calendar export.</p>
-  ${promoCard()}
   ${list.length ? `
   <div class="panel" style="margin:16px 0">
     <p style="margin:0 0 10px"><strong>${plural(list.length, "event")} saved</strong>${clashPairs.length ? ` · <span style="color:var(--clash)">⚠ ${plural(clashPairs.length, "clash", "clashes")}</span>` : " · no clashes"}</p>
@@ -1346,13 +1657,18 @@ function schedule(_, q) {
     </div>
     ${exportable.length < list.length ? `<p class="small muted" style="margin:8px 0 0">${plural(list.length - exportable.length, "event")} can’t be exported yet because the time isn’t published or the listing is provisional.</p>` : ""}
   </div>
-  ${scheduleDays(list, true)}` : `<div class="empty"><p>Nothing saved yet.</p><p>Tap ★ on any event to add it here.</p><div class="btn-row" style="justify-content:center"><a class="btn btn-primary" href="#/start?at=finder">Build a shortlist</a><a class="btn" href="#/calendar">Browse the calendar</a></div></div>`}`;
+  ${scheduleDays(list, true)}` : `<div class="empty"><p>Nothing saved yet.</p><p>Tap ★ on any event to add it here.</p><div class="btn-row" style="justify-content:center"><a class="btn btn-primary" href="#/start?at=finder">Build a shortlist</a><a class="btn" href="#/calendar">Browse the calendar</a></div></div>`}
+  ${promoCard()}`;
 }
 function scheduleDays(list, mine) {
   return D.days.map((d) => {
     const day = list.filter((e) => eventDays(e).includes(d.date)).sort((a, b) => sortKey(a, d.date).localeCompare(sortKey(b, d.date)));
     if (!day.length) return "";
-    return `<section class="sched-day"><h2 class="day-heading">${esc(d.long)} <span class="n">${day.length}</span></h2>${agenda(day, d.date, { gaps: true, clashLabel: mine ? "Clash: you’ll need to choose" : "Overlap" })}</section>`;
+    const clashes = clusters(day).filter((g) => g.length > 1).length;
+    return `<section class="sched-day">
+      <header class="sched-head"><div class="day-leaf day-leaf-sm" aria-hidden="true"><span class="dl-month">Oct</span><span class="dl-num">${d.label.slice(4, 6).trim()}</span><span class="dl-wd">${esc(d.label.slice(0, 3))}</span></div>
+        <div><h2>${esc(d.long)}</h2><p class="day-stats"><span>${plural(day.length, "event")}</span>${clashes ? `<span class="sched-clash">⚠ ${plural(clashes, "clash", "clashes")}</span>` : "<span>no clashes</span>"}<span>${esc(d.note)}</span></p></div></header>
+      ${programme(day, d.date, { gaps: true, noun: "event", clashLabel: mine ? "Clash: choose one" : "Overlap" })}</section>`;
   }).join("");
 }
 
@@ -1377,7 +1693,7 @@ function about() {
 
   <section class="section"><h2>How we label things</h2>
     <div class="grid grid-2">
-      <div class="panel"><h3>Relevance</h3>${Object.entries(REL).map(([k, v]) => `<p>${relChip(k)}<span class="def">${esc(v.desc)}</span></p>`).join("")}<p class="def">These labels describe how directly an event relates to prediction markets. They are not a ranking of quality.</p></div>
+      <div class="panel"><h3>Relevance</h3>${Object.entries(REL).map(([k, v]) => `<p>${relChip(k)}<span class="def">${esc(v.desc)}</span></p>`).join("")}<p class="def">These labels describe how directly an event relates to prediction markets. They are not a ranking of quality. Each listing also has a score out of 10: prediction-market events score 8–10, strongly relevant 6–7, adjacent 3–5 and wildcards 1–4.</p></div>
       <div class="panel"><h3>Verification</h3>${Object.entries(STATUS).map(([k, v]) => `<p><strong>${esc(v.label)}</strong> (${D.events.filter((e) => e.status === k).length})<span class="def">${esc(v.desc)}</span></p>`).join("")}</div>
     </div>
   </section>
@@ -1551,7 +1867,7 @@ if ("serviceWorker" in navigator && location.protocol === "https:") navigator.se
     return;
   }
   document.querySelector("[data-footer-meta]").innerHTML =
-    `Last updated ${esc(fmtDate(D.site.last_updated))} · Times in ${esc(D.site.timezone)} · Curated by <a href="${esc(D.site.curator.linkedin)}" rel="noopener" target="_blank">${esc(D.site.curator.person)}</a>, ${curator()} · <a href="${esc(D.site.curator.summit.url)}" rel="noopener" target="_blank">${esc(D.site.curator.summit.name)}</a> · <a href="#/about">How this is compiled</a> · <a href="${issueUrl("missing-event.yml")}" rel="noopener">Submit something we missed</a>`;
+    `Last updated ${esc(fmtDate(D.site.last_updated))} · Times in ${esc(D.site.timezone)} · Curated by <a href="${esc(D.site.curator.linkedin)}" rel="noopener" target="_blank">${esc(D.site.curator.person)}</a>, ${curator()} · <a href="${esc(D.site.curator.summit.url)}" rel="noopener" target="_blank">${esc(D.site.curator.summit.name)}</a> · <a href="#/nextpredict">Join the NEXTPredict community</a> · <a href="#/about">How this is compiled</a> · <a href="${issueUrl("missing-event.yml")}" rel="noopener">Submit something we missed</a>`;
   render();
   setTimeout(() => a2hs.show(), 6000);
 })();

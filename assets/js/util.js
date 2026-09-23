@@ -194,3 +194,24 @@ export const matches = (hay, q) => {
   const words = norm(q).split(" ").filter(Boolean);
   return words.every((w) => hay.includes(w) || (w.endsWith("s") && hay.includes(w.slice(0, -1))));
 };
+
+// ---------------------------------------------------------------- Play-money market maker
+// Logarithmic market scoring rule (LMSR) for a YES/NO market with liquidity b.
+// q = { yes, no } outstanding shares. Prices always sum to 1.
+export const lmsr = {
+  /** Starting share balance that makes the YES price equal `p`. */
+  seed: (p, b) => ({ yes: b * Math.log(p / (1 - p)), no: 0 }),
+  price: (q, b) => 1 / (1 + Math.exp((q.no - q.yes) / b)),
+  cost: (q, b) => { const m = Math.max(q.yes, q.no); return m + b * Math.log(Math.exp((q.yes - m) / b) + Math.exp((q.no - m) / b)); },
+  /** Shares received for spending `amount` credits on `side`. */
+  sharesFor(q, b, side, amount) {
+    const other = side === "yes" ? q.no : q.yes, mine = side === "yes" ? q.yes : q.no;
+    const target = lmsr.cost(q, b) + amount;
+    return b * Math.log(Math.exp((target - other) / b) - 1) + other - mine;
+  },
+  /** Credits returned for selling `shares` of `side`. */
+  proceeds(q, b, side, shares) {
+    const after = { ...q, [side]: q[side] - shares };
+    return lmsr.cost(q, b) - lmsr.cost(after, b);
+  },
+};

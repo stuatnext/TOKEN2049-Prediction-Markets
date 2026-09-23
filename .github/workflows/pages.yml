@@ -29,6 +29,11 @@ jobs:
           node-version: 20
       - name: Check the data files
         run: node scripts/validate-data.mjs
+      - name: Stamp asset URLs with this commit so browsers load the new version
+        run: |
+          v="${GITHUB_SHA::7}"
+          sed -i "s/?v=dev/?v=$v/g" index.html assets/js/app.js
+          grep -q "?v=$v" index.html && grep -q "?v=$v" assets/js/app.js
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

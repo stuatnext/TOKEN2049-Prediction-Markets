@@ -1,0 +1,117 @@
+{
+  "starting_balance": 1000,
+  "liquidity": 100,
+  "note": "Play money only. Prices start at the curators' estimate and move with each visitor's own trades in their browser.",
+  "markets": [
+    {
+      "id": "hype-singapore-happens",
+      "question": "Will HYPE Singapore go ahead on 6–7 October?",
+      "category": "This guide",
+      "event_id": "hype-singapore",
+      "closes": "2026-10-06",
+      "seed": 0.55,
+      "resolves": "YES if Hype Global republishes an event page or the hackathon and conference take place in Singapore on 6–7 October. NO if it is cancelled or moved.",
+      "status": "open",
+      "outcome": null
+    },
+    {
+      "id": "coplan-midterms",
+      "question": "Will Shayne Coplan mention the US midterms in his TOKEN2049 fireside?",
+      "category": "On stage",
+      "event_id": "polymarket-coplan-fireside",
+      "closes": "2026-10-07",
+      "seed": 0.7,
+      "resolves": "YES if the words “midterms” or “midterm elections” are said during the Polymarket fireside on Wed 7 October, per the official recording.",
+      "status": "open",
+      "outcome": null
+    },
+    {
+      "id": "rain-marina-bay-wed",
+      "question": "Will it rain at Marina Bay during the day on Wednesday 7 October?",
+      "category": "Weather",
+      "event_id": null,
+      "closes": "2026-10-07",
+      "seed": 0.6,
+      "resolves": "YES if Singapore’s Meteorological Service records any rainfall at the Marina Barrage station between 08:00 and 20:00 SGT on Wed 7 October.",
+      "status": "open",
+      "outcome": null
+    },
+    {
+      "id": "token2049-25k",
+      "question": "Will TOKEN2049 Singapore report more than 25,000 attendees?",
+      "category": "TOKEN2049",
+      "event_id": null,
+      "closes": "2026-10-09",
+      "seed": 0.72,
+      "resolves": "YES if TOKEN2049’s own post-event figure for Singapore 2026 is above 25,000 attendees.",
+      "status": "open",
+      "outcome": null
+    },
+    {
+      "id": "guide-60-events",
+      "question": "Will this guide list 60 or more events by Monday 5 October?",
+      "category": "This guide",
+      "event_id": null,
+      "closes": "2026-10-05",
+      "seed": 0.4,
+      "resolves": "YES if the Events directory on this site shows 60 or more events at 09:00 SGT on Mon 5 October.",
+      "status": "open",
+      "outcome": null
+    },
+    {
+      "id": "hip4-new-market",
+      "question": "Will Hyperliquid announce a new HIP-4 outcome-market deployment during TOKEN2049 week?",
+      "category": "Announcements",
+      "event_id": "hyperliquid-forum",
+      "closes": "2026-10-09",
+      "seed": 0.45,
+      "resolves": "YES if Hyperliquid’s official channels announce a new HIP-4 outcome market or deployment between Mon 5 and Fri 9 October (SGT).",
+      "status": "open",
+      "outcome": null
+    },
+    {
+      "id": "predictfun-partnership",
+      "question": "Will Predict.fun announce a new partnership during TOKEN2049 week?",
+      "category": "Announcements",
+      "event_id": "predict-fun-expo",
+      "closes": "2026-10-09",
+      "seed": 0.5,
+      "resolves": "YES if Predict.fun’s official X account or blog announces a new named partner between Mon 5 and Fri 9 October (SGT).",
+      "status": "open",
+      "outcome": null
+    },
+    {
+      "id": "heat-33-thursday",
+      "question": "Will Singapore hit 33°C on Thursday 8 October?",
+      "category": "Weather",
+      "event_id": null,
+      "closes": "2026-10-08",
+      "seed": 0.55,
+      "resolves": "YES if Singapore’s Meteorological Service records a maximum of 33.0°C or higher at Changi on Thu 8 October.",
+      "status": "open",
+      "outcome": null
+    },
+    {
+      "id": "after2049-sellout",
+      "question": "Will AFTER2049 tickets sell out before Friday 9 October?",
+      "category": "Parties",
+      "event_id": "after2049",
+      "closes": "2026-10-09",
+      "seed": 0.6,
+      "resolves": "YES if the official Megatix page shows AFTER2049 as sold out before 00:00 SGT on Fri 9 October.",
+      "status": "open",
+      "outcome": null
+    },
+    {
+      "id": "going-150",
+      "question": "Will Who’s going list 150 or more people and companies by Monday 5 October?",
+      "category": "This guide",
+      "event_id": null,
+      "closes": "2026-10-05",
+      "seed": 0.35,
+      "resolves": "YES if the Who’s going page on this site shows 150 or more people and companies at 09:00 SGT on Mon 5 October.",
+      "status": "open",
+      "outcome": null
+    }
+  ]
+}
