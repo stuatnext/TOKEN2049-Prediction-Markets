@@ -192,23 +192,26 @@ const DAYPART = [["Morning", 0], ["Afternoon", 12 * 60], ["Evening", 17 * 60]];
 const daypartOf = (min) => DAYPART.filter(([, from]) => min >= from).pop()[0];
 
 /** Calendar agenda laid out like a printed conference programme. */
-function programme(list, day) {
+function programme(list, day, o = {}) {
   const allDay = list.filter((e) => isAllDay(e));
   const unknown = list.filter((e) => !e.start && !isAllDay(e));
   const groups = clusters(list);
   const sect = (title, sub, body, cls = "") => `<section class="prog-sect ${cls}"><h3 class="prog-sect-head"><span>${esc(title)}</span>${sub ? `<small>${sub}</small>` : ""}</h3>${body}</section>`;
   let html = "";
   if (allDay.length) html += sect("All day", `${plural(allDay.length, "listing")}${allDay.some((e) => e.end_date) ? " · includes expo hours" : ""}`, allDay.map((e) => progItem(e)).join(""), "is-allday");
-  let part = null, buf = "", count = 0;
-  const flush = () => { if (part) html += sect(part, plural(count, "listing"), buf); buf = ""; count = 0; };
+  let part = null, buf = "", count = 0, prevEnd = null;
+  const flush = () => { if (part) html += sect(part, plural(count, o.noun || "listing"), buf); buf = ""; count = 0; };
   for (const g of groups) {
     const s = Math.min(...g.map((e) => toMin(e.start)));
     const p = daypartOf(s);
     if (p !== part) { flush(); part = p; }
+    if (o.gaps && prevEnd != null && s - prevEnd >= 15)
+      buf += `<div class="prog-gap"><span></span><span class="prog-gap-spine" aria-hidden="true"></span><p>Free ${fmtMin(prevEnd)}–${fmtMin(s)} · ${fmtDuration(s - prevEnd)}</p></div>`;
     count += g.length;
-    if (g.length === 1) { buf += progItem(g[0]); continue; }
     const en = Math.max(...g.map((e) => toMin(e.end) ?? toMin(e.start)));
-    buf += `<div class="prog-overlap" role="group" aria-label="${g.length} overlapping events"><p class="prog-ov-head"><span>⚠ ${g.length} at once</span> ${fmtMin(s)}–${fmtMin(en)}</p>${g.map((e) => progItem(e)).join("")}</div>`;
+    prevEnd = Math.max(prevEnd ?? 0, en);
+    if (g.length === 1) { buf += progItem(g[0]); continue; }
+    buf += `<div class="prog-overlap" role="group" aria-label="${g.length} overlapping events"><p class="prog-ov-head"><span>⚠ ${o.clashLabel || `${g.length} at once`}</span> ${fmtMin(s)}–${fmtMin(en)}</p>${g.map((e) => progItem(e)).join("")}</div>`;
   }
   flush();
   if (unknown.length) html += sect("Time not yet published", plural(unknown.length, "listing"), unknown.map((e) => progItem(e)).join(""), "is-unknown");
@@ -1638,12 +1641,12 @@ function schedule(_, q) {
   }
   const ids = saved.all().filter((id) => D.ev.has(id));
   const list = ids.map((id) => D.ev.get(id));
-  const clashPairs = list.flatMap((a) => list.filter((b) => a.id < b.id && overlaps(a, b)).map((b) => [a, b]));
+  // Count clashes the same way the day timelines show them: one per group of overlapping events.
+  const clashPairs = D.days.flatMap((d) => clusters(list.filter((e) => eventDays(e).includes(d.date))).filter((g) => g.length > 1));
   const exportable = list.filter((e) => !icsBlocker(e));
   return `<h1>My TOKEN PM schedule</h1>
   <p class="lede">Star events anywhere in the directory and they appear here in time order, with clashes and free time shown.</p>
   <p class="small muted">Saved in this browser only. There’s no account, and nothing is sent anywhere. To move your schedule to another device, use the share link or calendar export.</p>
-  ${promoCard()}
   ${list.length ? `
   <div class="panel" style="margin:16px 0">
     <p style="margin:0 0 10px"><strong>${plural(list.length, "event")} saved</strong>${clashPairs.length ? ` · <span style="color:var(--clash)">⚠ ${plural(clashPairs.length, "clash", "clashes")}</span>` : " · no clashes"}</p>
@@ -1654,13 +1657,18 @@ function schedule(_, q) {
     </div>
     ${exportable.length < list.length ? `<p class="small muted" style="margin:8px 0 0">${plural(list.length - exportable.length, "event")} can’t be exported yet because the time isn’t published or the listing is provisional.</p>` : ""}
   </div>
-  ${scheduleDays(list, true)}` : `<div class="empty"><p>Nothing saved yet.</p><p>Tap ★ on any event to add it here.</p><div class="btn-row" style="justify-content:center"><a class="btn btn-primary" href="#/start?at=finder">Build a shortlist</a><a class="btn" href="#/calendar">Browse the calendar</a></div></div>`}`;
+  ${scheduleDays(list, true)}` : `<div class="empty"><p>Nothing saved yet.</p><p>Tap ★ on any event to add it here.</p><div class="btn-row" style="justify-content:center"><a class="btn btn-primary" href="#/start?at=finder">Build a shortlist</a><a class="btn" href="#/calendar">Browse the calendar</a></div></div>`}
+  ${promoCard()}`;
 }
 function scheduleDays(list, mine) {
   return D.days.map((d) => {
     const day = list.filter((e) => eventDays(e).includes(d.date)).sort((a, b) => sortKey(a, d.date).localeCompare(sortKey(b, d.date)));
     if (!day.length) return "";
-    return `<section class="sched-day"><h2 class="day-heading">${esc(d.long)} <span class="n">${day.length}</span></h2>${agenda(day, d.date, { gaps: true, clashLabel: mine ? "Clash: you’ll need to choose" : "Overlap" })}</section>`;
+    const clashes = clusters(day).filter((g) => g.length > 1).length;
+    return `<section class="sched-day">
+      <header class="sched-head"><div class="day-leaf day-leaf-sm" aria-hidden="true"><span class="dl-month">Oct</span><span class="dl-num">${d.label.slice(4, 6).trim()}</span><span class="dl-wd">${esc(d.label.slice(0, 3))}</span></div>
+        <div><h2>${esc(d.long)}</h2><p class="day-stats"><span>${plural(day.length, "event")}</span>${clashes ? `<span class="sched-clash">⚠ ${plural(clashes, "clash", "clashes")}</span>` : "<span>no clashes</span>"}<span>${esc(d.note)}</span></p></div></header>
+      ${programme(day, d.date, { gaps: true, noun: "event", clashLabel: mine ? "Clash: choose one" : "Overlap" })}</section>`;
   }).join("");
 }
 
