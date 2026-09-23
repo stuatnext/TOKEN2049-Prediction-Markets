@@ -3,6 +3,7 @@
 import {
   esc, initials, toMin, fmtMin, fmtDuration, eventDays, isTimed, isAllDay, timeLabel, sortKey,
   overlaps, clusters, sgtNow, icsBlocker, buildICS, download, saved, norm, matches,
+  lmsr,
 } from "./util.js?v=dev";
 
 // ---------------------------------------------------------------- labels
@@ -61,14 +62,15 @@ const D = {};
 const view = () => document.getElementById("view");
 
 async function loadData() {
-  const names = ["events", "people", "companies", "stack", "sources", "site", "attendance"];
-  const [events, people, companies, stack, sources, site, attendance] = await Promise.all(
+  const names = ["events", "people", "companies", "stack", "sources", "site", "attendance", "markets"];
+  const [events, people, companies, stack, sources, site, attendance, markets] = await Promise.all(
     names.map((n) => fetch(`data/${n}.json`, { cache: "no-cache" }).then((r) => {
       if (!r.ok) throw new Error(`Could not load data/${n}.json (${r.status})`);
       return r.json();
     }))
   );
   D.site = site;
+  D.markets = markets;
   D.days = site.days.map((d) => ({ ...d, slug: d.label.slice(0, 3).toLowerCase() }));
   D.dayBy = new Map(D.days.map((d) => [d.date, d]));
   D.events = events.slice().sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
@@ -282,7 +284,7 @@ function setQuery(q, { replace = true } = {}) {
   else location.hash = hash;
 }
 
-const ROUTES = { "": home, start, week, calendar, events, going, people, companies, stack, schedule, about, nextpredict };
+const ROUTES = { "": home, start, week, calendar, events, going, people, companies, stack, schedule, about, nextpredict, play };
 
 function render({ keepScroll = false } = {}) {
   const { parts, q } = parseHash();
@@ -378,7 +380,7 @@ function home(_, q) {
       <h1>Every prediction-market event at TOKEN2049, in one place.</h1>
       <p class="hh-lede">Conference sessions, side events, expo booths and the people going, each checked against its source.</p>
       <div class="hh-actions"><a class="hh-btn hh-btn-primary" href="#/calendar">Open the calendar <span aria-hidden="true">→</span></a><a class="hh-btn" href="#/going">See who’s going</a></div>
-      <p class="hh-new">New to prediction markets? <a href="#/start">Take the two-minute guide</a></p>
+      <p class="hh-new">New to prediction markets? <a href="#/start">Take the two-minute guide</a> or <a href="#/play">try the play-money game</a></p>
     </div>
     <aside class="hh-week" aria-labelledby="hh-week-title">
       <div class="hh-week-head"><h2 id="hh-week-title">TOKEN2049 week</h2><span class="hh-live"><span class="pulse" aria-hidden="true"></span>${esc(cap(nu.title.replace(/^TOKEN2049 week /, "")))}</span></div>
@@ -1426,6 +1428,121 @@ function whereToFind(recs, entityName) {
     ${a.event_ids.length ? `<p>${a.event_ids.map((id) => D.ev.get(id)).map((e) => `<a href="${evUrl(e)}">${esc(e.title)}</a> <span class="muted">(${esc(dayRange(e))}, ${esc(timeLabel(e))})</span>`).join("<br>")}</p>` : ""}
     <p>${a.source_url ? `<a href="${esc(a.source_url)}" target="_blank" rel="noopener">Proof / source ↗</a> · ` : ""}Last verified ${esc(fmtDate(a.last_verified))}</p></li>`).join("")}</ul></section>`;
 }
+
+// ---------------------------------------------------------------- PLAY (play-money prediction market)
+// Every visitor gets their own sandbox: balances, positions and prices live only in their browser.
+const PLAY_KEY = "tpm2049:play:v1";
+const play$ = {
+  read() {
+    const M = D.markets;
+    let st = null;
+    try { st = JSON.parse(localStorage.getItem(PLAY_KEY) || "null"); } catch { st = null; }
+    if (!st || typeof st.balance !== "number") st = { balance: M.starting_balance, m: {}, settled: {} };
+    for (const mk of M.markets) if (!st.m[mk.id]) st.m[mk.id] = { q: lmsr.seed(mk.seed, M.liquidity), yes: 0, no: 0 };
+    // Pay out any market the curators have resolved since the last visit.
+    for (const mk of M.markets) {
+      if (mk.status === "resolved" && mk.outcome && !st.settled[mk.id]) {
+        const pos = st.m[mk.id];
+        st.balance += mk.outcome === "yes" ? pos.yes : mk.outcome === "no" ? pos.no : (pos.yes + pos.no) * 0.5;
+        st.settled[mk.id] = true;
+      }
+    }
+    return st;
+  },
+  write(st) { try { localStorage.setItem(PLAY_KEY, JSON.stringify(st)); } catch { /* private mode: this session only */ } },
+};
+let playState = null;
+const credits = (n) => `${Math.round(n).toLocaleString("en-GB")}`;
+const pct = (p) => `${Math.round(p * 100)}%`;
+
+function playMarket(mk, st) {
+  const b = D.markets.liquidity, pos = st.m[mk.id], p = lmsr.price(pos.q, b);
+  const open = mk.status === "open";
+  const value = pos.yes * p + pos.no * (1 - p);
+  const ev = mk.event_id && D.ev.get(mk.event_id);
+  return `<article class="pm-card${open ? "" : " is-resolved"}" data-market="${mk.id}">
+    <div class="pm-top"><span class="pm-cat">${esc(mk.category)}</span><span class="pm-close">${open ? `Closes ${esc(fmtDate(mk.closes))}` : `Resolved: <b>${esc(mk.outcome.toUpperCase())}</b>`}</span></div>
+    <h3>${esc(mk.question)}</h3>
+    ${ev ? `<p class="pm-ev">Related: <a href="${evUrl(ev)}">${esc(ev.title)}</a></p>` : ""}
+    <div class="pm-odds" role="img" aria-label="Yes ${pct(p)}, No ${pct(1 - p)}">
+      <div class="pm-bar"><i style="width:${(p * 100).toFixed(1)}%"></i></div>
+      <div class="pm-odds-row"><span><b>${pct(p)}</b> Yes</span><span>No <b>${pct(1 - p)}</b></span></div>
+    </div>
+    ${open ? `<div class="pm-trade">
+      <div class="pm-amounts" role="group" aria-label="Amount">${[10, 50, 100].map((a, i) => `<button type="button" class="pm-amt" data-amt="${a}" aria-pressed="${i === 1}">${a}</button>`).join("")}<label class="visually-hidden" for="amt-${mk.id}">Custom amount</label><input class="pm-amt-input" id="amt-${mk.id}" type="number" min="1" step="1" inputmode="numeric" placeholder="Other"></div>
+      <div class="pm-buttons"><button type="button" class="pm-buy pm-yes" data-side="yes">Buy Yes <span>${pct(p)}</span></button><button type="button" class="pm-buy pm-no" data-side="no">Buy No <span>${pct(1 - p)}</span></button></div>
+      <p class="pm-preview" aria-live="polite"></p>
+    </div>` : ""}
+    ${pos.yes > 0.01 || pos.no > 0.01 ? `<div class="pm-pos"><span>Your position: ${pos.yes > 0.01 ? `<b>${pos.yes.toFixed(1)}</b> Yes` : ""}${pos.yes > 0.01 && pos.no > 0.01 ? " · " : ""}${pos.no > 0.01 ? `<b>${pos.no.toFixed(1)}</b> No` : ""} · worth ${credits(value)} now</span>${open ? `<button type="button" class="pm-sell" data-sell="1">Sell all</button>` : ""}</div>` : ""}
+    <details class="pm-rules"><summary>How it resolves</summary><p>${esc(mk.resolves)}</p></details>
+  </article>`;
+}
+
+function play() {
+  setMeta("Play: prediction-market game", "A just-for-fun play-money prediction market on TOKEN2049 week. No real money, no prizes.");
+  const M = D.markets, st = (playState = play$.read()), b = M.liquidity;
+  const holdings = M.markets.reduce((t, mk) => { const pos = st.m[mk.id], p = lmsr.price(pos.q, b); return mk.status === "open" ? t + pos.yes * p + pos.no * (1 - p) : t; }, 0);
+  const worth = st.balance + holdings, change = worth / M.starting_balance - 1;
+  return `
+  <section class="pm-hero">
+    <div>
+      <p class="hh-eyebrow">Just for fun · play money</p>
+      <h1>Call TOKEN2049 week before it happens</h1>
+      <p class="hh-lede">You start with ${credits(M.starting_balance)} play credits. Buy <b>Yes</b> or <b>No</b> on each question. Prices move with every trade, like a real prediction market, and each winning share pays 1 credit when the question resolves.</p>
+    </div>
+    <div class="pm-wallet" aria-live="polite">
+      <p class="plan-title">Your play wallet</p>
+      <p class="pm-worth"><b>${credits(worth)}</b> credits<span class="${change >= 0 ? "up" : "down"}">${change >= 0 ? "+" : ""}${(change * 100).toFixed(1)}%</span></p>
+      <dl><div><dt>Cash</dt><dd>${credits(st.balance)}</dd></div><div><dt>In positions</dt><dd>${credits(holdings)}</dd></div></dl>
+      <button type="button" class="pa-btn pm-reset" data-reset>Start again</button>
+    </div>
+  </section>
+  <p class="pm-disclaimer"><strong>Play money only.</strong> No real money, deposits, withdrawals or prizes, and nothing to sign up for. Your credits and prices live only in this browser, so each visitor has their own market. Not financial advice.</p>
+  <div class="pm-grid">${M.markets.map((mk) => playMarket(mk, st)).join("")}</div>
+  ${npBanner()}`;
+}
+afterRender.play = () => {
+  const b = D.markets.liquidity;
+  const rerender = () => render({ keepScroll: true });
+  PAGE.querySelectorAll(".pm-card").forEach((card) => {
+    const mk = D.markets.markets.find((m) => m.id === card.dataset.market);
+    if (!mk || mk.status !== "open") return;
+    const pos = playState.m[mk.id];
+    const amountOf = () => { const custom = +card.querySelector(".pm-amt-input").value; return custom > 0 ? custom : +(card.querySelector('.pm-amt[aria-pressed="true"]')?.dataset.amt || 0); };
+    const preview = () => {
+      const a = amountOf(), el = card.querySelector(".pm-preview");
+      if (!a) { el.textContent = ""; return; }
+      if (a > playState.balance) { el.textContent = `You only have ${credits(playState.balance)} credits.`; return; }
+      const y = lmsr.sharesFor(pos.q, b, "yes", a), n = lmsr.sharesFor(pos.q, b, "no", a);
+      el.textContent = `${a} credits buys ${y.toFixed(1)} Yes (pays ${credits(y)} if Yes) or ${n.toFixed(1)} No (pays ${credits(n)} if No).`;
+    };
+    card.querySelectorAll(".pm-amt").forEach((btn) => btn.addEventListener("click", () => {
+      card.querySelectorAll(".pm-amt").forEach((x) => x.setAttribute("aria-pressed", String(x === btn)));
+      card.querySelector(".pm-amt-input").value = ""; preview();
+    }));
+    card.querySelector(".pm-amt-input").addEventListener("input", preview);
+    card.querySelectorAll(".pm-buy").forEach((btn) => btn.addEventListener("click", () => {
+      const a = amountOf(), side = btn.dataset.side;
+      if (!a || a > playState.balance) { preview(); return; }
+      const sh = lmsr.sharesFor(pos.q, b, side, a);
+      pos.q[side] += sh; pos[side] += sh; playState.balance -= a;
+      play$.write(playState); rerender();
+      toast(`Bought ${sh.toFixed(1)} ${side === "yes" ? "Yes" : "No"} for ${credits(a)} credits`);
+    }));
+    card.querySelector("[data-sell]")?.addEventListener("click", () => {
+      let got = 0;
+      for (const side of ["yes", "no"]) if (pos[side] > 0) { got += lmsr.proceeds(pos.q, b, side, pos[side]); pos.q[side] -= pos[side]; pos[side] = 0; }
+      playState.balance += got; play$.write(playState); rerender();
+      toast(`Sold for ${credits(got)} credits`);
+    });
+    preview();
+  });
+  PAGE.querySelector("[data-reset]")?.addEventListener("click", () => {
+    if (!confirm("Reset your play wallet and all positions?")) return;
+    try { localStorage.removeItem(PLAY_KEY); } catch { /* ignore */ }
+    rerender(); toast("Fresh start: 1,000 play credits");
+  });
+};
 
 // ---------------------------------------------------------------- PROMO
 function maybeUnlockPromo() {}
