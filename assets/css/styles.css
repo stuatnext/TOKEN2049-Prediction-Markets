@@ -1308,3 +1308,9 @@ h1 { font-weight: 700; }
 .pm-pos { padding: 12px 14px; }
 .pm-rules { padding-top: 12px; border-top: 1px solid var(--line); margin-top: auto; }
 .pm-disclaimer { margin: 20px 0 28px; }
+
+/* Header: never truncate the site name mid-word */
+.brand { flex: none; }
+.brand-text { overflow: visible; text-overflow: clip; }
+@media (min-width: 900px) and (max-width: 1439px) { .brand-text span { display: none !important; } }
+@media (min-width: 900px) and (max-width: 1099px) { .main-nav a, .nav-more summary { padding: 8px 5px; font-size: .84rem; } .nav-new { display: none; } }
