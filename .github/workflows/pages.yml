@@ -29,6 +29,8 @@ jobs:
           node-version: 20
       - name: Check the data files
         run: node scripts/validate-data.mjs
+      - name: Build link-preview pages for each event
+        run: node scripts/build-share-pages.mjs
       - name: Stamp asset URLs with this commit so browsers load the new version
         run: |
           v="${GITHUB_SHA::7}"

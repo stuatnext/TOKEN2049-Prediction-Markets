@@ -5,6 +5,9 @@ import {
   overlaps, clusters, sgtNow, icsBlocker, buildICS, download, saved, norm, matches,
   lmsr,
 } from "./util.js?v=dev";
+import { installFeatures } from "./features.js?v=dev";
+
+let HOOKS = {}; // filled by features.js at start-up
 
 // ---------------------------------------------------------------- labels
 const REL = {
@@ -305,7 +308,7 @@ function render({ keepScroll = false } = {}) {
     const match = a.dataset.nav === navKey;
     match ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current");
   });
-  const moreKeys = ["people", "companies", "stack", "week", "about"];
+  const moreKeys = ["people", "companies", "stack", "week", "about", "now", "plan", "briefing"];
   document.querySelector("[data-nav-more]")?.classList.toggle("current", moreKeys.includes(navKey));
   document.querySelector(".nav-more")?.removeAttribute("open");
   updateCounts();
@@ -395,6 +398,8 @@ function home(_, q) {
     </aside>
   </section>
 
+  ${HOOKS.homeTop?.(q) || ""}
+
   ${npBanner()}
 
   ${order.map((k, i) => S[k](String(i + 1).padStart(2, "0"))).join("")}
@@ -439,7 +444,7 @@ function eventRow(e) {
   return `<article class="event-row r-${e.relevance}${on ? " is-saved" : ""}" data-id="${e.id}">
     <div class="er-when"><span class="er-day">${esc(e.end_date ? dayRange(e) : dayOf(e.date).label.slice(0, 3) + " " + dayOf(e.date).label.slice(4, 6).trim())}</span><span class="er-time${e.start ? "" : " soft"}">${esc(e.start ? e.start : isAllDay(e) ? "All day" : "TBC")}</span></div>
     <div class="er-main"><h3><a href="${evUrl(e)}">${esc(e.title)}</a></h3>
-      <p>${kindChip(e, true)} ${scoreChip(e)} <i class="rel-dot dot-${e.relevance}" aria-hidden="true"></i><span class="visually-hidden">${esc(REL[e.relevance].label)}.</span> ${esc(e.venue)} · ${esc(ACCESS[e.access])}${e.status === "provisional" || e.status === "conflict" ? ` · <span class="warn-text">${esc(STATUS[e.status].label)}</span>` : ""}</p></div>
+      <p>${kindChip(e, true)} ${scoreChip(e)} <i class="rel-dot dot-${e.relevance}" aria-hidden="true"></i><span class="visually-hidden">${esc(REL[e.relevance].label)}.</span> ${esc(e.venue)} · ${esc(ACCESS[e.access])}${e.status === "provisional" || e.status === "conflict" ? ` · <span class="warn-text">${esc(STATUS[e.status].label)}</span>` : ""}${HOOKS.rowBadge?.(e) || ""}</p></div>
     <div class="er-side">${saveBtn(e)}</div>
   </article>`;
 }
@@ -936,7 +941,8 @@ function eventDetail(id) {
   const primaryLabel = e.type === "official" ? "Official agenda" : kindOf(e) === "booth" ? "Exhibitor page" : "Registration page";
   const acts = `${srcs[0] ? `<a class="pa-primary" href="${esc(srcs[0].url)}" rel="noopener" target="_blank">${primaryLabel} <span aria-hidden="true">↗</span></a>` : ""}
     ${saveBtn(e, true)}
-    <div class="pa-row">${block ? `<button type="button" class="pa-btn" aria-disabled="true" data-ics-blocked="${esc(block)}" title="${esc(block)}">Add to calendar</button>` : `<button type="button" class="pa-btn" data-ics="${e.id}">Add to calendar</button>`}<button type="button" class="pa-btn" data-share="${e.id}">Share link</button></div>`;
+    <div class="pa-row">${block ? `<button type="button" class="pa-btn" aria-disabled="true" data-ics-blocked="${esc(block)}" title="${esc(block)}">Add to calendar</button>` : `<button type="button" class="pa-btn" data-ics="${e.id}">Add to calendar</button>`}<button type="button" class="pa-btn" data-share="${e.id}">Share link</button></div>
+    ${HOOKS.eventActions?.(e) || ""}`;
   if (!e.status.match(/provisional/) && e.start) {
     const off = (t) => `${e.date}T${t}:00+08:00`;
     setLD({
@@ -959,6 +965,7 @@ function eventDetail(id) {
         <div><dt>Format</dt><dd><b>${esc(formatOf(e) || KIND[kindOf(e)])}</b></dd></div>
       </dl>
       <div class="plan-actions plan-actions-inline">${acts}</div>
+      ${HOOKS.eventExtras?.(e) || ""}
       ${e.status === "provisional" || e.status === "conflict"
         ? `<p class="notice" style="margin-top:16px"><strong>${esc(STATUS[e.status].label)}.</strong> ${esc(e.status_note || STATUS[e.status].desc)}</p>`
         : `<p class="verify-line verify-inline"><span class="verify-dot" aria-hidden="true"></span><strong>${esc(STATUS[e.status].label)}.</strong> ${esc(e.status_note || STATUS[e.status].desc)}</p>`}
@@ -1093,6 +1100,7 @@ function personDetail(id) {
     <div class="chip-row"><span class="chip">${esc(GROUP[p.group])}</span></div>
     <h1>${esc(p.name)}</h1>
     <p class="lede" style="margin:0">${esc(p.role || "")}${p.role && (org || p.org_label) ? " · " : ""}${org ? `<a href="#/companies/${org.id}">${esc(org.name)}</a>` : esc(p.org_label || "")}</p>
+    <div class="btn-row" style="margin-top:12px">${HOOKS.personActions?.(p) || ""}</div>
     ${p.note ? `<p class="notice" style="margin-top:14px">${esc(p.note)}</p>` : ""}
     ${p.links?.length ? `<div class="btn-row" style="margin-top:14px">${p.links.map((l) => `<a class="btn btn-small" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("")}</div>` : ""}
     ${(D.attByPerson.get(p.id) || []).length ? `<div class="chip-row" style="margin-top:12px">${[...new Set(D.attByPerson.get(p.id).map((a) => a.attendance_status))].map(evidenceChip).join("")}</div>` : ""}
@@ -1637,6 +1645,7 @@ function schedule(_, q) {
     return `<h1>Shared schedule</h1>
     <p class="lede">Someone shared ${plural(list.length, "event")} with you. Nothing is saved until you choose to.</p>
     <div class="btn-row" style="margin:14px 0"><button class="btn btn-accent" type="button" data-save-all="${share.join(",")}">★ Add all to my schedule</button><a class="btn" href="#/schedule">Open my schedule</a></div>
+    ${HOOKS.shareCompare?.(share) || ""}
     ${scheduleDays(list, false)}`;
   }
   const ids = saved.all().filter((id) => D.ev.has(id));
@@ -1657,6 +1666,7 @@ function schedule(_, q) {
     </div>
     ${exportable.length < list.length ? `<p class="small muted" style="margin:8px 0 0">${plural(list.length - exportable.length, "event")} can’t be exported yet because the time isn’t published or the listing is provisional.</p>` : ""}
   </div>
+  ${HOOKS.scheduleExtras?.(list) || ""}
   ${scheduleDays(list, true)}` : `<div class="empty"><p>Nothing saved yet.</p><p>Tap ★ on any event to add it here.</p><div class="btn-row" style="justify-content:center"><a class="btn btn-primary" href="#/start?at=finder">Build a shortlist</a><a class="btn" href="#/calendar">Browse the calendar</a></div></div>`}
   ${promoCard()}`;
 }
@@ -1671,6 +1681,8 @@ function scheduleDays(list, mine) {
       ${programme(day, d.date, { gaps: true, noun: "event", clashLabel: mine ? "Clash: choose one" : "Overlap" })}</section>`;
   }).join("");
 }
+
+afterRender.schedule = () => HOOKS.decorateSchedule?.(PAGE);
 
 // ---------------------------------------------------------------- ABOUT
 function about() {
@@ -1794,7 +1806,7 @@ document.addEventListener("click", (ev) => {
   const cp = t.closest("[data-copy]");
   if (cp) { navigator.clipboard?.writeText(cp.dataset.copy).then(() => toast("Code copied"), () => prompt("Copy this code:", cp.dataset.copy)); return; }
   const sh = t.closest("[data-share]");
-  if (sh) { const e = D.ev.get(sh.dataset.share); share(absUrl(evUrl(e)), e.title); return; }
+  if (sh) { const e = D.ev.get(sh.dataset.share); share(HOOKS.shareUrl ? HOOKS.shareUrl(e) : absUrl(evUrl(e)), e.title); return; }
   if (t.closest("[data-share-schedule]")) { share(absUrl(`#/schedule?share=${saved.all().filter((id) => D.ev.has(id)).join(",")}`), "My TOKEN2049 prediction-market schedule"); return; }
   if (t.closest("[data-clear-saved]")) {
     const before = saved.all();
@@ -1866,6 +1878,13 @@ if ("serviceWorker" in navigator && location.protocol === "https:") navigator.se
     view().innerHTML = `<h1>Couldn’t load the directory</h1><p>${esc(err.message)}</p><p class="muted">If you opened this file directly from your computer, run a local web server instead (see README).</p>`;
     return;
   }
+  try {
+    HOOKS = await installFeatures({
+      D, ROUTES, afterRender, PAGE: () => PAGE, esc, plural, dayOf, eventsOn, sortKey, toMin, fmtMin, fmtDuration, isAllDay, timeLabel, sgtNow,
+      saved, toast, setMeta, parseHash, setQuery, render, eventRow, saveBtn, evUrl, absUrl, download, icsBlocker,
+      REL, ACCESS, INTERESTS, ROLES, fmtDate, issueUrl, norm, matches, eventDays,
+    });
+  } catch (err) { console.warn("Extra features unavailable", err); }
   document.querySelector("[data-footer-meta]").innerHTML =
     `Last updated ${esc(fmtDate(D.site.last_updated))} · Times in ${esc(D.site.timezone)} · Curated by <a href="${esc(D.site.curator.linkedin)}" rel="noopener" target="_blank">${esc(D.site.curator.person)}</a>, ${curator()} · <a href="${esc(D.site.curator.summit.url)}" rel="noopener" target="_blank">${esc(D.site.curator.summit.name)}</a> · <a href="#/nextpredict">Join the NEXTPredict community</a> · <a href="#/about">How this is compiled</a> · <a href="${issueUrl("missing-event.yml")}" rel="noopener">Submit something we missed</a>`;
   render();

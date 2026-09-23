@@ -218,3 +218,18 @@ The first version was extracted from *NEXTPredict TOKEN2049 Prediction Markets M
 | `status` / `outcome` | `open` + `null` while trading. To settle, set `"status": "resolved"` and `"outcome": "yes"`, `"no"` or `"void"` (void refunds half a credit per share) |
 
 Winning shares pay 1 credit each, automatically, the next time a visitor opens the Play tab.
+
+## Venues and travel times (`data/venues.json`)
+
+"Plan my day" and the travel check work out walking times between venues from this file. Each venue has:
+
+- `match`: lowercase words that link an event's `venue` text to this venue.
+- `lat` and `lng`: the venue's coordinates.
+- `mrt`: the nearest station.
+- `approx`: set to `true` when only the area is known.
+
+An event whose venue doesn't match anything simply gets no travel estimate.
+
+## Link previews (`share/`)
+
+`scripts/build-share-pages.mjs` builds one small page per event so links shared in chat apps show the event title. The deploy workflow runs it automatically, and you can also run it locally after editing `data/events.json`.
