@@ -880,6 +880,7 @@
     "stack_layers": [],
     "ecosystems": [],
     "sources": [
+      "src-days-singapore",
       "src-cryptonews-hlforum",
       "src-hl-forum"
     ],

@@ -387,11 +387,12 @@
       "Trading firms"
     ],
     "sources": [
+      "src-days-singapore",
       "src-hl-forum",
       "src-cryptonews-hlforum"
     ],
     "status": "listed",
-    "status_note": "Listed on the Hyperliquid Forum page.",
+    "status_note": "Organiser page (DAYS). Also listed on the Hyperliquid Forum page.",
     "clash_note": null,
     "last_updated": "2026-09-23"
   },
