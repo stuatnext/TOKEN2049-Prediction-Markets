@@ -855,8 +855,6 @@ a:hover { text-decoration-color: var(--ink); }
 .prog-overlap .prog-card { margin-bottom: 8px; }
 
 /* All-day strip reads like a calendar banner */
-.is-allday .prog-card { background: repeating-linear-gradient(135deg, var(--surface) 0 12px, color-mix(in srgb, var(--surface-2) 70%, var(--surface)) 12px 13px); }
-.is-allday .r-core > .prog-card { background: linear-gradient(90deg, color-mix(in srgb, var(--brand) 9%, var(--surface)), var(--surface) 55%); }
 .is-unknown .prog-time .t-note { color: var(--ink-3); }
 
 @media (max-width: 699px) {
