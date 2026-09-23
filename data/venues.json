@@ -1,0 +1,92 @@
+[
+  {
+    "id": "mbs",
+    "name": "Marina Bay Sands",
+    "match": ["marina bay sands", "sui basecamp", "okx main stage", "mexc stage", "bingx stage", "bit digital stage"],
+    "lat": 1.2834,
+    "lng": 103.8591,
+    "mrt": "Bayfront (Circle / Downtown lines)",
+    "approx": false
+  },
+  {
+    "id": "raffles-hotel",
+    "name": "Raffles Hotel",
+    "match": ["raffles hotel", "1 beach road"],
+    "lat": 1.2948,
+    "lng": 103.8544,
+    "mrt": "City Hall (North-South / East-West lines) or Esplanade",
+    "approx": false
+  },
+  {
+    "id": "suntec",
+    "name": "Suntec City",
+    "match": ["suntec"],
+    "lat": 1.2937,
+    "lng": 103.8573,
+    "mrt": "Esplanade or Promenade (Circle line)",
+    "approx": false
+  },
+  {
+    "id": "raffles-place",
+    "name": "Raffles Place",
+    "match": ["high house", "raffles place"],
+    "lat": 1.2841,
+    "lng": 103.8513,
+    "mrt": "Raffles Place (North-South / East-West lines)",
+    "approx": false
+  },
+  {
+    "id": "one-pavilion",
+    "name": "1-Pavilion, Collyer Quay",
+    "match": ["1-pavilion", "monti"],
+    "lat": 1.2855,
+    "lng": 103.8537,
+    "mrt": "Raffles Place or Downtown",
+    "approx": false
+  },
+  {
+    "id": "hill-street",
+    "name": "Pullman Singapore Hill Street",
+    "match": ["hill street"],
+    "lat": 1.2916,
+    "lng": 103.8488,
+    "mrt": "Clarke Quay or Fort Canning",
+    "approx": false
+  },
+  {
+    "id": "marina-one",
+    "name": "Marina One",
+    "match": ["marina one", "straits view"],
+    "lat": 1.2767,
+    "lng": 103.8534,
+    "mrt": "Marina Bay or Downtown",
+    "approx": false
+  },
+  {
+    "id": "national-gallery",
+    "name": "National Gallery Singapore",
+    "match": ["national gallery"],
+    "lat": 1.2903,
+    "lng": 103.8515,
+    "mrt": "City Hall",
+    "approx": false
+  },
+  {
+    "id": "bugis",
+    "name": "Bugis area",
+    "match": ["bugis"],
+    "lat": 1.3006,
+    "lng": 103.8559,
+    "mrt": "Bugis (East-West / Downtown lines)",
+    "approx": true
+  },
+  {
+    "id": "downtown-core",
+    "name": "Downtown Core",
+    "match": ["downtown core"],
+    "lat": 1.2805,
+    "lng": 103.8505,
+    "mrt": "Downtown, Telok Ayer or Raffles Place",
+    "approx": true
+  }
+]

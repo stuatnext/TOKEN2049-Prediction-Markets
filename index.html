@@ -51,6 +51,10 @@
         <details class="nav-more">
           <summary data-nav-more>More</summary>
           <div class="nav-menu">
+            <a href="#/now" data-nav="now">⚡ Now &amp; next</a>
+            <a href="#/plan" data-nav="plan">🗺️ Plan my day</a>
+            <a href="#/briefing" data-nav="briefing">📰 Daily briefing</a>
+            <hr>
             <a href="#/people" data-nav="people">People</a>
             <a href="#/companies" data-nav="companies">Companies</a>
             <a href="#/stack" data-nav="stack">The prediction-market stack</a>
@@ -60,6 +64,7 @@
         </details>
       </nav>
       <a class="np-pill" href="#/nextpredict" data-nav="nextpredict" aria-label="NEXTPredict: summit and community">NEXT<b>Predict</b></a>
+      <button type="button" class="search-btn" data-open-search aria-label="Search people, events and companies (press /)"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
       <a class="saved-link" href="#/schedule" data-nav="schedule">
         <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z" fill="currentColor"/></svg>
         <span class="saved-label">My schedule</span>
@@ -85,21 +90,38 @@
 
   <dialog class="sheet" id="more-sheet" aria-label="More pages">
     <div class="sheet-head"><strong>Explore</strong><button type="button" class="icon-btn" data-close aria-label="Close menu">✕</button></div>
-    <nav class="sheet-nav" aria-label="All pages">
-      <a class="sheet-np" href="#/nextpredict">NEXT<b>Predict</b>: summit &amp; community</a>
-      <a href="#/">Home</a>
-      <a href="#/play">Play: prediction game (play money)</a>
-      <a href="#/start">Start here</a>
-      <a href="#/calendar">Calendar</a>
-      <a href="#/going">Who’s going?</a>
+    <button type="button" class="sheet-search" data-open-search><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Find a person, event or company</button>
+    <nav class="sheet-nav sheet-groups" aria-label="All pages">
+      <p class="sheet-label">Plan</p>
+      <a href="#/now">⚡ Now &amp; next</a>
+      <a href="#/plan">🗺️ Plan my day</a>
+      <a href="#/schedule">★ My schedule</a>
+      <a href="#/calendar">📅 Calendar</a>
+      <p class="sheet-label">Explore</p>
       <a href="#/events">Events directory</a>
+      <a href="#/going">Who’s going</a>
       <a href="#/people">People</a>
       <a href="#/companies">Companies</a>
       <a href="#/stack">The prediction-market stack</a>
-      <a href="#/schedule">My schedule</a>
+      <p class="sheet-label">Learn &amp; share</p>
+      <a href="#/start">Guide for newcomers</a>
+      <a href="#/play">Play: prediction game (play money)</a>
+      <a href="#/briefing">📰 Daily briefing to share</a>
+      <a class="sheet-np" href="#/nextpredict">NEXT<b>Predict</b>: summit &amp; community</a>
       <a href="#/about">About &amp; sources</a>
+      <p class="sheet-label">Settings</p>
+      <button type="button" class="sheet-link" data-readable-toggle aria-pressed="false">🔠 Larger text &amp; high contrast</button>
       <button type="button" class="sheet-link" data-a2hs-open>📲 Add to home screen</button>
+      <p class="sheet-status" data-offline-status></p>
     </nav>
+  </dialog>
+
+  <dialog class="sheet search-sheet" id="search-sheet" aria-label="Search">
+    <div class="sheet-head"><label for="global-search"><strong>Search</strong></label><button type="button" class="icon-btn" data-close aria-label="Close search">✕</button></div>
+    <div class="sheet-body">
+      <input id="global-search" class="text-input" type="search" placeholder="Name, company, event, venue…" autocomplete="off" enterkeyhint="search">
+      <div class="search-results" data-search-results aria-live="polite"></div>
+    </div>
   </dialog>
 
   <div class="toast" role="status" aria-live="polite" id="toast" hidden></div>

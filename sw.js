@@ -1,12 +1,12 @@
 // Offline helper. Always tries the network first, so visitors get the latest
 // listings; falls back to the last saved copy when there is no connection.
-const CACHE = "tpm2049-v1";
+const CACHE = "tpm2049-v2";
 const CORE = [
   "./", "index.html", "manifest.webmanifest",
-  "assets/css/styles.css", "assets/js/app.js", "assets/js/util.js",
+  "assets/css/styles.css", "assets/js/app.js", "assets/js/util.js", "assets/js/features.js",
   "assets/favicon.svg", "assets/icons/icon-192.png",
   "data/events.json", "data/people.json", "data/companies.json", "data/stack.json",
-  "data/sources.json", "data/site.json", "data/attendance.json",
+  "data/sources.json", "data/site.json", "data/attendance.json", "data/markets.json", "data/venues.json",
 ];
 
 self.addEventListener("install", (e) => {
