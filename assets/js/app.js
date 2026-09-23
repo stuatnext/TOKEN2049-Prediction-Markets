@@ -598,9 +598,27 @@ function calendar(parts, q) {
   const viewMode = q.get("view") || calPref.get() || (window.innerWidth < 700 ? "agenda" : "timeline");
   const show = q.get("show") || "all";
   setMeta(`Calendar: ${d.long}`, `Prediction-market events and sessions on ${d.long} during TOKEN2049 Singapore week.`);
-  const filt = (e) => (show === "pm" ? e.relevance !== "adjacent" : show === "saved" ? saved.has(e.id) : true);
+  const sel = selected(q);
+  const nActive = CAL_FILTERS.reduce((n, f) => n + sel[f.key].length, 0);
+  const showOk = (e) => (show === "pm" ? e.relevance !== "adjacent" : show === "saved" ? saved.has(e.id) : true);
+  const passExcept = (e, skip) => showOk(e) && CAL_FILTERS.every((f) => f === skip || !sel[f.key].length || f.get(e).some((v) => sel[f.key].includes(v)));
+  const filt = (e) => passExcept(e, null);
   const list = eventsOn(d.date).filter(filt);
-  const qs = (over) => { const x = new URLSearchParams(q); for (const [k, v] of Object.entries(over)) x.set(k, v); x.delete("at"); return x.toString(); };
+  const qs = (over) => { const x = new URLSearchParams(q); for (const [k, v] of Object.entries(over)) v === null ? x.delete(k) : x.set(k, v); x.delete("at"); return x.toString(); };
+  const toggleHref = (f, k) => {
+    const cur = sel[f.key], next = cur.includes(k) ? cur.filter((v) => v !== k) : [...cur, k];
+    return `#/calendar/${d.slug}?${qs({ [f.key]: next.length ? next.join(",") : null })}`;
+  };
+  const clearHref = `#/calendar/${d.slug}?${qs(Object.fromEntries(CAL_FILTERS.map((f) => [f.key, null])))}`;
+  const chips = (f, all = false) => Object.keys(filterOpts(f)).map((k) => {
+    const n = eventsOn(d.date).filter((e) => passExcept(e, f) && f.get(e).includes(k)).length;
+    const on = sel[f.key].includes(k);
+    if (!all && !n && !on) return "";
+    const pre = f.key === "kind" ? `<span aria-hidden="true">${KIND_ICON[k]}</span>` : f.key === "rel" ? `<i class="rel-dot dot-${k}"></i>` : "";
+    return `<a class="toggle" href="${toggleHref(f, k)}" data-calfilter data-f="${f.key}" data-v="${k}" aria-pressed="${on}">${pre}${esc(optLabel(f, k))} <span class="n">${n}</span></a>`;
+  }).join("");
+  const kindF = CAL_FILTERS[0], moreF = CAL_FILTERS.slice(1);
+  const nMore = moreF.reduce((n, f) => n + sel[f.key].length, 0);
   return `
   <h1 class="page-title-sm">Calendar</h1>
   <nav class="day-tabs" aria-label="Choose a day">${D.days.map((x) => {
@@ -618,13 +636,30 @@ function calendar(parts, q) {
       <a href="#/calendar/${d.slug}?${qs({ show: "saved" })}" aria-pressed="${show === "saved"}">★ Saved</a>
     </div>
   </div>
+  <section class="cal-filters" aria-label="Choose what to show">
+    <div class="cal-kinds" role="group" aria-label="Kind">${chips(kindF, true)}</div>
+    <details class="cal-more"${calMoreOpen || nMore ? " open" : ""} data-calmore>
+      <summary>More filters${nMore ? ` <span class="count">${nMore}</span>` : ""}</summary>
+      <div class="cal-more-body">${moreF.map((f) => { const c = chips(f); return c ? `<fieldset class="filter-group"><legend>${esc(f.label)}</legend><div class="opts">${c}</div></fieldset>` : ""; }).join("")}</div>
+    </details>
+    ${nActive ? `<a class="cal-clear" href="${clearHref}" data-calfilter>Clear ${plural(nActive, "filter")}</a>` : ""}
+  </section>
   <h2 class="visually-hidden">${esc(d.long)}</h2>
-  <p class="day-intro"><strong>${esc(d.long)}</strong> · ${esc(d.note)} · ${plural(list.length, "listing")}${show === "pm" ? " (adjacent hidden)" : ""} · times in SGT</p>
-  ${!list.length ? `<p class="empty">${show === "saved" ? "You haven’t saved anything on this day yet." : "Nothing listed for this day."}</p>` : viewMode === "timeline" ? timeline(list, d.date, now) : agenda(list, d.date, { clashSaved: true })}
+  <p class="day-intro"><strong>${esc(d.long)}</strong> · ${esc(d.note)} · ${plural(list.length, "listing")}${show === "pm" ? " (adjacent hidden)" : ""}${nActive ? ` · ${plural(nActive, "filter")} on` : ""} · times in SGT</p>
+  ${!list.length ? `<p class="empty">${show === "saved" && !nActive ? "You haven’t saved anything on this day yet." : nActive ? `Nothing on this day matches these filters. <a href="${clearHref}" data-calfilter>Clear filters</a>` : "Nothing listed for this day."}</p>` : viewMode === "timeline" ? timeline(list, d.date, now) : agenda(list, d.date, { clashSaved: true })}
   <div class="legend" style="margin-top:14px">${Object.entries(REL).map(([k, v]) => `<span><i class="rel-dot dot-${k}"></i>${v.label}</span>`).join("")}<span>★ saved</span><span style="color:var(--clash)">▌ clash between saved</span></div>`;
 }
 afterRender.calendar = () => {
   document.querySelectorAll("[data-calview]").forEach((a) => a.addEventListener("click", () => calPref.set(a.dataset.calview)));
+  // Filter chips update the page in place, keeping the scroll position and focus.
+  document.querySelectorAll("[data-calfilter]").forEach((a) => a.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    history.replaceState(null, "", a.getAttribute("href"));
+    const { f, v } = a.dataset;
+    render({ keepScroll: true });
+    (f ? document.querySelector(`[data-f="${f}"][data-v="${v}"]`) : document.querySelector(".cal-kinds .toggle"))?.focus({ preventScroll: true });
+  }));
+  document.querySelector("[data-calmore]")?.addEventListener("toggle", (ev) => (calMoreOpen = ev.target.open));
   const sc = document.querySelector(".timeline-scroll");
   const first = sc?.querySelector(".tl-now") || sc?.querySelector(".tl-block");
   if (sc && first) sc.scrollLeft = Math.max(0, first.offsetLeft - 40);
@@ -687,6 +722,9 @@ const FILTERS = [
   { key: "status", label: "Verification", opts: STATUS, get: (e) => [e.status], lab: (v) => v.label },
   { key: "topic", label: "Topic", opts: TOPIC, get: (e) => e.topics, hidden: true },
 ];
+/** Filters offered on the calendar (the day is already chosen; Kind comes first and is always shown). */
+const CAL_FILTERS = ["kind", "rel", "acc", "eco", "aud", "type"].map((k) => FILTERS.find((f) => f.key === k));
+let calMoreOpen = false;
 const filterOpts = (f) => (f.key === "day" ? Object.fromEntries(D.days.map((d) => [d.date, d.label])) : f.opts);
 const optLabel = (f, k) => { const v = filterOpts(f)[k] ?? (f.key === "type" ? TYPE[k] : k); return f.lab ? f.lab(v) : v; };
 const selected = (q) => Object.fromEntries(FILTERS.map((f) => [f.key, (q.get(f.key) || "").split(",").filter(Boolean)]));
