@@ -23,7 +23,6 @@ const KIND_ICON = { session: "🎤", booth: "🏢", side: "🥂" };
 const kindOf = (e) => (e.type === "official" ? "session" : e.type === "exhibition" ? "booth" : "side");
 /** Side-event format (Forum, Party…), or null when the kind already says it all. */
 const formatOf = (e) => (kindOf(e) === "side" && e.type !== "side-event" ? TYPE[e.type] : null);
-const kindLine = (e) => [KIND[kindOf(e)], formatOf(e)].filter(Boolean).join(" · ");
 const ACCESS = {
   open: "Open", registration: "Registration required", approval: "Approval required", invite: "Invite only",
   waitlist: "Waitlist", "sold-out": "Sold out", badge: "TOKEN2049 pass", unknown: "Status unknown",
@@ -364,6 +363,9 @@ function home(_, q) {
     ["💧", "Hyperliquid & outcome markets", "#/events?eco=hyperliquid", cnt((e) => e.ecosystems.includes("hyperliquid"))],
     ["🥂", "Parties & networking", "#/events?type=networking,meetup", cnt((e) => e.type === "networking" || e.type === "meetup")],
   ];
+  const S = homeSections(nu, headline, interests, cnt);
+  // During the week, "what's next" leads; before it, the must-see list does.
+  const order = nu.today ? ["next", "headline", "week", "going", "interests"] : ["headline", "week", "next", "going", "interests"];
   const doors = [
     ["📅", "Calendar", "What’s on, day by day, with clashes marked.", "#/calendar", `${E.length} events · 5 days`],
     ["👥", "Who’s going", "People and companies with evidence they’ll be in Singapore.", "#/going", `${D.going.length} people & companies`],
@@ -380,13 +382,29 @@ function home(_, q) {
 
   <nav class="doors" aria-label="Main sections">${doors.map(([i, t, d, h, m]) => `<a class="door" href="${h}"><span class="door-icon" aria-hidden="true">${i}</span><span class="door-text"><strong>${esc(t)}</strong><span>${esc(d)}</span><em>${esc(m)}</em></span><span class="door-arrow" aria-hidden="true">→</span></a>`).join("")}</nav>
 
-  <section class="section" aria-labelledby="h-next">
-    <div class="section-head"><h2 id="h-next">${nu.today ? esc(nu.title) : "First up"}</h2><a class="more" href="${nu.today ? `#/calendar/${dayOf(nu.today).slug}` : "#/calendar"}">Full calendar →</a></div>
-    ${nu.list.length ? `<div class="row-list">${nu.list.map((e) => eventRow(e)).join("")}</div>` : `<p class="muted">${esc(nu.sub)}</p>`}
-  </section>
+  ${order.map((k, i) => S[k](String(i + 1).padStart(2, "0"))).join("")}
 
-  <section class="section" aria-labelledby="h-week">
-    <div class="section-head"><h2 id="h-week">The week at a glance</h2><a class="more" href="#/week">Day-by-day route →</a></div>
+  <section class="section split" aria-label="About and offer">
+    <div class="panel"><h2>About this guide</h2>
+      <p>An independent, curated guide to where prediction markets show up across TOKEN2049 week. Every listing links back to its source.</p>
+      <p class="small muted">Updated ${esc(fmtDate(D.site.last_updated))}. Schedules change, so check the organiser link before you travel.</p>
+      ${curatorPanel()}
+      <p class="small" style="margin:12px 0 0"><a href="#/about">How it’s compiled →</a></p></div>
+    ${promoCard()}
+  </section>`;
+}
+
+/** Home section heading: step number, title, one-line explainer and a "more" link. */
+const secHead = (id, n, title, sub, href, more) => `<div class="section-head home-head"><div><p class="sec-num">${n}</p><h2 id="${id}">${title}</h2>${sub ? `<p class="section-sub">${sub}</p>` : ""}</div>${href ? `<a class="more" href="${href}">${more}</a>` : ""}</div>`;
+
+function homeSections(nu, headline, interests, cnt) {
+  return {
+  next: (n) => `<section class="section" aria-labelledby="h-next">
+    ${secHead("h-next", n, nu.today ? esc(nu.title) : "First up", nu.today ? "What’s on next today, in time order." : "The first listings of the week, in time order.", nu.today ? `#/calendar/${dayOf(nu.today).slug}` : "#/calendar", "Full calendar →")}
+    ${nu.list.length ? `<div class="row-list">${nu.list.map((e) => eventRow(e)).join("")}</div>` : `<p class="muted">${esc(nu.sub)}</p>`}
+  </section>`,
+  week: (n) => `<section class="section" aria-labelledby="h-week">
+    ${secHead("h-week", n, "The week at a glance", "How busy each day is, and how much of it is about prediction markets.", "#/week", "Day-by-day route →")}
     <div class="week">${D.days.map((d) => {
       const list = eventsOn(d.date);
       const c = (r) => list.filter((e) => e.relevance === r).length;
@@ -397,31 +415,20 @@ function home(_, q) {
         <span class="counts" aria-hidden="true"><b>${list.length}</b> events</span><span class="note">${esc(d.note)}</span></a>`;
     }).join("")}</div>
     <div class="legend">${Object.entries(REL).map(([k, v]) => `<span><i class="rel-dot dot-${k}"></i>${v.label}</span>`).join("")}</div>
-  </section>
-
-  <section class="section" aria-labelledby="h-head">
-    <div class="section-head"><h2 id="h-head">Don’t-miss prediction-market events</h2><a class="more" href="#/events?rel=core">All ${cnt((e) => e.relevance === "core")} →</a></div>
+  </section>`,
+  headline: (n) => `<section class="section" aria-labelledby="h-head">
+    ${secHead("h-head", n, "Don’t-miss prediction-market events", "If you only go to a handful of things, start with these.", "#/events?rel=core", `All ${cnt((e) => e.relevance === "core")} →`)}
     <div class="row-list">${headline.map((e) => eventRow(e)).join("")}</div>
-  </section>
-
-  <section class="section" aria-labelledby="h-going">
-    <div class="section-head"><h2 id="h-going">Who’s heading to Singapore</h2><a class="more" href="#/going">See all ${D.going.length} →</a></div>
+  </section>`,
+  going: (n) => `<section class="section" aria-labelledby="h-going">
+    ${secHead("h-going", n, "Who’s heading to Singapore", "People and companies with public evidence they’ll be there.", "#/going", `See all ${D.going.length} →`)}
     <div class="grid grid-3">${homeGoing().slice(0, 6).map((g) => goingCard(g, { compact: true })).join("")}</div>
-  </section>
-
-  <section class="section" aria-labelledby="h-int">
-    <div class="section-head"><h2 id="h-int">Browse by interest</h2><a class="more" href="#/events">All events →</a></div>
-    <div class="interest-grid">${interests.map(([i, l, h, n]) => `<a class="interest" href="${h}"><span aria-hidden="true">${i}</span><strong>${esc(l)}</strong><em>${n}</em></a>`).join("")}</div>
-  </section>
-
-  <section class="section split" aria-label="About and offer">
-    <div class="panel"><h2>About this guide</h2>
-      <p>An independent, curated guide to where prediction markets show up across TOKEN2049 week. Every listing links back to its source.</p>
-      <p class="small muted">Updated ${esc(fmtDate(D.site.last_updated))}. Schedules change, so check the organiser link before you travel.</p>
-      ${curatorPanel()}
-      <p class="small" style="margin:12px 0 0"><a href="#/about">How it’s compiled →</a></p></div>
-    ${promoCard()}
-  </section>`;
+  </section>`,
+  interests: (n) => `<section class="section" aria-labelledby="h-int">
+    ${secHead("h-int", n, "Browse by interest", "Jump straight to the listings for your corner of the market.", "#/events", "All events →")}
+    <div class="interest-grid">${interests.map(([i, l, h, c]) => `<a class="interest" href="${h}"><span aria-hidden="true">${i}</span><strong>${esc(l)}</strong><em>${c}</em></a>`).join("")}</div>
+  </section>`,
+  };
 }
 
 /** A light, single-line-ish event row for lists (home, related, appearances). */
@@ -838,7 +845,7 @@ function eventResults(q) {
   for (const d of D.days) {
     const day = list.filter((e) => e.date === d.date);
     if (!day.length) continue;
-    html += `<section class="day-group"><h2 class="day-heading">${esc(d.long)} <span class="n">${day.length}</span></h2><div class="event-list">${day.map((e) => eventCard(e, { showDay: false })).join("")}</div></section>`;
+    html += `<section class="day-group prog-sect"><h2 class="prog-sect-head"><span>${esc(d.long)}</span><small>${plural(day.length, "listing")} · ${esc(d.note)}</small></h2><div class="programme-list">${day.map((e) => progItem(e)).join("")}</div></section>`;
   }
   return html;
 }
@@ -933,12 +940,19 @@ function eventDetail(id) {
     <article>
       <div class="chip-row">${typeChip(e)}${relChip(e.relevance)}${e.official && e.type !== "official" ? `<span class="chip chip-official">TOKEN2049 official</span>` : ""}${statusChip(e)}${updatedBadge(e)}</div>
       <h1>${esc(e.title)}</h1>
-      <p class="detail-when">${esc(e.end_date ? `${d.label.slice(0, 3)}–${dayOf(e.end_date).label}` : d.long)} · ${esc(timeLabel(e))} <span class="muted small">SGT</span></p>
-      <p class="muted" style="margin:0">${esc(e.venue)}</p>
-      <div class="quick-actions">${saveBtn(e, true)}${srcs[0] ? `<a class="btn btn-primary" href="${esc(srcs[0].url)}" rel="noopener" target="_blank">${e.type === "official" ? "Agenda" : "Organiser"} ↗</a>` : ""}<span class="qa-access">${esc(ACCESS[e.access])}</span></div>
+      <p class="standfirst">${esc(e.why)}</p>
+      <dl class="fact-strip">
+        <div><dt>When</dt><dd><b>${esc(e.end_date ? dayRange(e) : d.long)}</b><span class="mono">${esc(timeLabel(e))} SGT</span></dd></div>
+        <div><dt>Where</dt><dd><b>${esc(e.venue)}</b>${map ? `<span><a href="https://www.google.com/maps/search/?api=1&query=${map}" rel="noopener" target="_blank">Google Maps</a> · <a href="https://maps.apple.com/?q=${map}" rel="noopener" target="_blank">Apple Maps</a></span>` : ""}</dd></div>
+        <div><dt>Getting in</dt><dd><b>${esc(ACCESS[e.access])}</b>${e.access_note && e.access_note !== ACCESS[e.access] ? `<span>${esc(e.access_note)}</span>` : ""}</dd></div>
+        <div><dt>Kind</dt><dd><b>${KIND_ICON[kindOf(e)]} ${esc(KIND[kindOf(e)])}</b>${formatOf(e) ? `<span>${esc(formatOf(e))}</span>` : ""}</dd></div>
+      </dl>
+      <div class="detail-cta">${srcs[0] ? `<a class="btn btn-primary btn-lg" href="${esc(srcs[0].url)}" rel="noopener" target="_blank">${e.type === "official" ? "Official agenda" : "Organiser / registration"} ↗</a>` : ""}${saveBtn(e, true)}</div>
       ${e.status !== "verified" ? `<p class="notice${e.status === "listed" ? " info" : ""}" style="margin-top:14px"><strong>${esc(STATUS[e.status].label)}.</strong> ${esc(e.status_note || STATUS[e.status].desc)}</p>` : ""}
 
-      <section><h2>Why it’s relevant</h2><p>${esc(e.why)}</p><p class="muted">${esc(e.summary)}</p></section>
+      <section><h2>What it is</h2><p>${esc(e.summary)}</p></section>
+
+      ${e.questions?.length ? `<section><h2>Questions worth asking</h2><ul class="questions">${e.questions.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></section>` : ""}
 
       ${clashes.length || e.clash_note ? `<section><h2>Clashes</h2>
         ${e.clash_note ? `<p class="notice">${esc(e.clash_note)}</p>` : ""}
@@ -950,16 +964,14 @@ function eventDetail(id) {
 
       ${e.companies.length ? `<section><h2>Companies</h2><div class="co-list">${e.companies.map((x) => companyMini(D.companies.get(x.id), CROLE[x.role])).join("")}</div></section>` : ""}
 
-      ${e.questions?.length ? `<section><h2>Questions worth asking</h2><ul class="questions">${e.questions.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></section>` : ""}
-
-      <section><h2>Topics</h2><div class="chip-row">
+      <section class="more-detail"><h2>More detail</h2>
+      <details class="fold"><summary>Topics and audiences</summary><div class="chip-row" style="margin-top:10px">
         ${e.ecosystems.map((x) => `<a class="chip chip-outline" href="#/events?eco=${x}">${esc(ECO[x])}</a>`).join("")}
         ${e.audiences.map((x) => `<a class="chip" href="#/events?aud=${x}">${esc(AUD[x])}</a>`).join("")}
         ${e.topics.map((x) => `<a class="chip" href="#/events?topic=${x}">${esc(TOPIC[x])}</a>`).join("")}
         ${e.stack_layers.map((x) => `<a class="chip chip-outline" href="#/stack/${x}">Stack: ${esc(D.layer.get(x).name)}</a>`).join("")}
-      </div></section>
-
-      <section><h2>Sources</h2>${srcs.length ? `<ul class="source-list">${srcs.map(sourceItem).join("")}</ul>` : `<p class="notice">No first-party source has been found for this listing.</p>`}
+      </div></details>
+      ${srcs.length ? `<details class="fold"><summary>Sources (${srcs.length})</summary><ul class="source-list" style="margin-top:10px">${srcs.map(sourceItem).join("")}</ul></details>` : `<p class="notice">No first-party source has been found for this listing.</p>`}
         <p class="small muted" style="margin-top:10px">Last checked ${esc(fmtDate(e.last_updated))}. <a href="${issueUrl("correction.yml", { title: `Correction: ${e.title}`, record: `events/${e.id}` })}" rel="noopener">Report a correction</a></p></section>
 
       ${related.length ? `<section><h2>Related events</h2><div class="event-list">${related.map((o) => eventCard(o, { compact: true })).join("")}</div></section>` : ""}
@@ -967,17 +979,12 @@ function eventDetail(id) {
 
     <aside aria-label="Key facts">
       <div class="facts">
+        <p class="facts-title">Plan it</p>
         <dl class="kv">
-          <dt>When</dt><dd>${esc(e.end_date ? dayRange(e) : d.label)}<br><span class="mono">${esc(timeLabel(e))}</span> SGT</dd>
-          <dt>Where</dt><dd>${esc(e.venue)}${map ? `<br><a href="https://www.google.com/maps/search/?api=1&query=${map}" rel="noopener" target="_blank">Google Maps</a> · <a href="https://maps.apple.com/?q=${map}" rel="noopener" target="_blank">Apple Maps</a>` : ""}</dd>
-          <dt>Access</dt><dd>${esc(ACCESS[e.access])}<span class="def">${esc(e.access_note || "")}</span></dd>
-          <dt>Kind</dt><dd>${esc(kindLine(e))}</dd>
           <dt>Relevance</dt><dd>${esc(REL[e.relevance].label)}<span class="def">${esc(REL[e.relevance].desc)}</span></dd>
           <dt>Verification</dt><dd>${esc(STATUS[e.status].label)}<span class="def">${esc(e.status_note || STATUS[e.status].desc)}</span></dd>
         </dl>
         <div class="actions">
-          ${saveBtn(e, true)}
-          ${srcs[0] ? `<a class="btn btn-primary" href="${esc(srcs[0].url)}" rel="noopener" target="_blank">${e.type === "official" ? "Official agenda" : "Organiser / registration"} ↗</a>` : ""}
           ${block ? `<button type="button" class="btn" aria-disabled="true" data-ics-blocked="${esc(block)}">Add to calendar</button><span class="def">${esc(block)}</span>` : `<button type="button" class="btn" data-ics="${e.id}">Add to calendar (.ics)</button>`}
           <button type="button" class="btn" data-share="${e.id}">Share link</button>
         </div>
@@ -1419,12 +1426,10 @@ const communityLinks = () => {
 function npBanner() {
   const P = D.site.promo, C = D.site.curator;
   if (!P) return "";
-  return `<aside class="np-banner" aria-label="From the curators: NEXTPredict">
-    <div class="np-banner-main">
-      <span class="np-logo">NEXT<b>Predict</b></span>
-      <p><strong>${esc(C.summit.name)}</strong> · ${esc(C.summit.dates)} · ${esc(C.summit.place)}<span class="np-sub">The prediction-markets summit, from the team behind this guide. Use code <span class="mono">${esc(P.code)}</span> at checkout.</span></p>
-    </div>
-    <div class="np-banner-actions"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Get tickets ↗</a><a class="btn" href="#/nextpredict">Join the community</a></div>
+  return `<aside class="np-strip" aria-label="From the curators: NEXTPredict">
+    <span class="np-logo">NEXT<b>Predict</b></span>
+    <p><strong>${esc(C.summit.name)}</strong><span class="np-strip-meta"> · ${esc(C.summit.dates)} · ${esc(C.summit.place)}</span></p>
+    <span class="np-strip-actions"><a class="np-strip-cta" href="${esc(P.url)}" target="_blank" rel="noopener">Get tickets ↗</a><a class="np-strip-link" href="#/nextpredict">Community</a></span>
   </aside>`;
 }
 function nextpredict() {
@@ -1443,7 +1448,7 @@ function nextpredict() {
       <h2>${esc(C.summit.name)}</h2>
       <p class="np-where">${esc(C.summit.dates)} · ${esc(C.summit.place)}</p>
       <p>Prediction markets’ own summit, two weeks before the US midterms. Use code <span class="mono">${esc(P.code)}</span> at checkout.</p>
-      <div class="btn-row"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Get your discounted ticket ↗</a><button type="button" class="btn" data-copy="${esc(P.code)}">Copy code ${esc(P.code)}</button><a class="btn" href="${esc(C.summit.url)}" target="_blank" rel="noopener">About the summit ↗</a></div>
+      <div class="btn-row"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Get your discounted ticket ↗</a><a class="btn" href="${esc(C.summit.url)}" target="_blank" rel="noopener">About the summit ↗</a></div>
     </div>
   </section>
   ${M ? `<section class="section" id="community">
@@ -1460,7 +1465,7 @@ function promoCard(compact = false) {
   if (!P) return "";
   return `<div class="promo" id="promo"><p class="eyebrow">🎁 NEXTPredict offer</p><h3>${esc(C.summit.name)}: ${esc(C.summit.dates)}, ${esc(C.summit.place)}</h3>
     ${compact ? "" : `<p>Prediction markets’ own summit, two weeks before the US midterms. Use code <span class="mono">${esc(P.code)}</span> at checkout.</p>`}
-    <div class="btn-row"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Get your NEXTPredict NYC discount ↗</a>${compact ? "" : `<button type="button" class="btn" data-copy="${esc(P.code)}">Copy code ${esc(P.code)}</button><a class="btn" href="${esc(C.summit.url)}" target="_blank" rel="noopener">About the summit</a>`}</div>
+    <div class="btn-row"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Get your NEXTPredict NYC discount ↗</a>${compact ? "" : `<a class="btn" href="${esc(C.summit.url)}" target="_blank" rel="noopener">About the summit</a>`}</div>
     ${compact ? "" : `<p class="np-comm-label">Join the NEXTPredict community</p>${communityLinks()}`}
     <p class="small muted" style="margin:10px 0 0">${esc(P.disclosure)}</p></div>`;
 }
