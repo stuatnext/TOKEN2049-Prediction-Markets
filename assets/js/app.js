@@ -365,22 +365,29 @@ function home(_, q) {
   ];
   const S = homeSections(nu, headline, interests, cnt);
   // During the week, "what's next" leads; before it, the must-see list does.
-  const order = nu.today ? ["next", "headline", "week", "going", "interests"] : ["headline", "week", "next", "going", "interests"];
-  const doors = [
-    ["📅", "Calendar", "What’s on, day by day, with clashes marked.", "#/calendar", `${E.length} events · 5 days`],
-    ["👥", "Who’s going", "People and companies with evidence they’ll be in Singapore.", "#/going", `${D.going.length} people & companies`],
-    ["🧭", "New here?", "A two-minute guide and a shortlist built for you.", "#/start", "Start here"],
-  ];
+  const order = nu.today ? ["next", "headline", "going", "interests"] : ["headline", "next", "going", "interests"];
+  const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
+  const pmOn = (iso) => eventsOn(iso).filter((e) => e.relevance === "core").length;
+  const maxDay = Math.max(...D.days.map((d) => eventsOn(d.date).length));
   return `
   ${npBanner()}
-  <section class="hero">
-    <p class="eyebrow">Singapore · 5–9 October 2026 · Unofficial guide</p>
-    <h1>Where <span class="hl">prediction markets</span> happen at TOKEN2049</h1>
-    <p class="lede">Every prediction-market event, session, company and person across TOKEN2049 week, in one place and sourced.</p>
-    <p class="hero-status"><span class="pulse" aria-hidden="true"></span>${esc(nu.title)} · all times Singapore (SGT)</p>
+  <section class="home-hero">
+    <div class="hh-copy">
+      <p class="hh-eyebrow">Singapore · 5–9 October 2026 · Unofficial guide</p>
+      <h1>Every prediction-market event at TOKEN2049, in one place.</h1>
+      <p class="hh-lede">Conference sessions, side events, expo booths and the people going, each checked against its source.</p>
+      <div class="hh-actions"><a class="hh-btn hh-btn-primary" href="#/calendar">Open the calendar <span aria-hidden="true">→</span></a><a class="hh-btn" href="#/going">See who’s going</a></div>
+      <p class="hh-new">New to prediction markets? <a href="#/start">Take the two-minute guide</a></p>
+    </div>
+    <aside class="hh-week" aria-labelledby="hh-week-title">
+      <div class="hh-week-head"><h2 id="hh-week-title">TOKEN2049 week</h2><span class="hh-live"><span class="pulse" aria-hidden="true"></span>${esc(cap(nu.title.replace(/^TOKEN2049 week /, "")))}</span></div>
+      <ol class="hh-days">${D.days.map((d) => {
+        const n = eventsOn(d.date).length, pm = pmOn(d.date), main = D.site.main_days.includes(d.date);
+        return `<li${nu.today === d.date ? ' class="is-today" aria-current="date"' : ""}><a href="#/calendar/${d.slug}"><span class="hh-date"><small>${esc(d.label.slice(0, 3))}</small><b>${d.label.slice(4, 6).trim()}</b></span><span class="hh-day-text"><strong>${esc(cap(d.note.replace(/^TOKEN2049 /, "")))}</strong><span class="hh-bar" aria-hidden="true"><i style="width:${Math.max(6, (n / maxDay) * 100)}%"></i></span><span class="hh-counts">${plural(n, "listing")}${pm ? ` · <b>${pm} prediction-market</b>` : ""}</span></span>${main ? `<span class="hh-tag">Conference</span>` : `<span></span>`}</a></li>`;
+      }).join("")}</ol>
+      <p class="hh-foot">${E.length} events · ${D.going.length} people & companies · times in SGT</p>
+    </aside>
   </section>
-
-  <nav class="doors" aria-label="Main sections">${doors.map(([i, t, d, h, m]) => `<a class="door" href="${h}"><span class="door-icon" aria-hidden="true">${i}</span><span class="door-text"><strong>${esc(t)}</strong><span>${esc(d)}</span><em>${esc(m)}</em></span><span class="door-arrow" aria-hidden="true">→</span></a>`).join("")}</nav>
 
   ${order.map((k, i) => S[k](String(i + 1).padStart(2, "0"))).join("")}
 
@@ -395,26 +402,13 @@ function home(_, q) {
 }
 
 /** Home section heading: step number, title, one-line explainer and a "more" link. */
-const secHead = (id, n, title, sub, href, more) => `<div class="section-head home-head"><div><p class="sec-num">${n}</p><h2 id="${id}">${title}</h2>${sub ? `<p class="section-sub">${sub}</p>` : ""}</div>${href ? `<a class="more" href="${href}">${more}</a>` : ""}</div>`;
+const secHead = (id, n, title, sub, href, more) => `<div class="section-head home-head"><div><h2 id="${id}">${title}</h2>${sub ? `<p class="section-sub">${sub}</p>` : ""}</div>${href ? `<a class="more" href="${href}">${more}</a>` : ""}</div>`;
 
 function homeSections(nu, headline, interests, cnt) {
   return {
   next: (n) => `<section class="section" aria-labelledby="h-next">
     ${secHead("h-next", n, nu.today ? esc(nu.title) : "First up", nu.today ? "What’s on next today, in time order." : "The first listings of the week, in time order.", nu.today ? `#/calendar/${dayOf(nu.today).slug}` : "#/calendar", "Full calendar →")}
     ${nu.list.length ? `<div class="row-list">${nu.list.map((e) => eventRow(e)).join("")}</div>` : `<p class="muted">${esc(nu.sub)}</p>`}
-  </section>`,
-  week: (n) => `<section class="section" aria-labelledby="h-week">
-    ${secHead("h-week", n, "The week at a glance", "How busy each day is, and how much of it is about prediction markets.", "#/week", "Day-by-day route →")}
-    <div class="week">${D.days.map((d) => {
-      const list = eventsOn(d.date);
-      const c = (r) => list.filter((e) => e.relevance === r).length;
-      const bar = ["core", "strong", "adjacent", "wildcard"].map((r) => (c(r) ? `<span class="b-${r}" style="flex:${c(r)}"></span>` : "")).join("");
-      return `<a class="day-card" href="#/calendar/${d.slug}"><span class="d">${esc(d.label.slice(0, 3))}</span><span class="big">${d.label.slice(4, 6).trim()}<small> ${d.label.slice(-3)}</small></span>
-        <span class="bars" aria-hidden="true">${bar}</span>
-        <span class="visually-hidden">${list.length} listings: ${c("core")} prediction-market, ${c("strong")} strongly relevant, ${c("adjacent")} adjacent, ${c("wildcard")} wildcard.</span>
-        <span class="counts" aria-hidden="true"><b>${list.length}</b> events</span><span class="note">${esc(d.note)}</span></a>`;
-    }).join("")}</div>
-    <div class="legend">${Object.entries(REL).map(([k, v]) => `<span><i class="rel-dot dot-${k}"></i>${v.label}</span>`).join("")}</div>
   </section>`,
   headline: (n) => `<section class="section" aria-labelledby="h-head">
     ${secHead("h-head", n, "Don’t-miss prediction-market events", "If you only go to a handful of things, start with these.", "#/events?rel=core", `All ${cnt((e) => e.relevance === "core")} →`)}
@@ -1431,10 +1425,9 @@ const communityLinks = () => {
 function npBanner() {
   const P = D.site.promo, C = D.site.curator;
   if (!P) return "";
-  return `<aside class="np-strip" aria-label="From the curators: NEXTPredict">
-    <span class="np-logo">NEXT<b>Predict</b></span>
-    <p><strong>${esc(C.summit.name)}</strong><span class="np-strip-meta"> · ${esc(C.summit.dates)} · ${esc(C.summit.place)}</span></p>
-    <span class="np-strip-actions"><a class="np-strip-cta" href="${esc(P.url)}" target="_blank" rel="noopener">Get tickets ↗</a><a class="np-strip-link" href="#/nextpredict">Community</a></span>
+  return `<aside class="np-announce" aria-label="From the curators: NEXTPredict">
+    <p><span class="np-announce-tag">From the curators</span> <strong>${esc(C.summit.name)}</strong> · ${esc(C.summit.dates)} · ${esc(C.summit.place)}</p>
+    <span class="np-announce-links"><a href="${esc(P.url)}" target="_blank" rel="noopener">Get tickets ↗</a><a href="#/nextpredict">Join the community</a></span>
   </aside>`;
 }
 function nextpredict() {
