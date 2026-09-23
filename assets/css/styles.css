@@ -958,3 +958,62 @@ a:hover { text-decoration-color: var(--ink); }
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .np-banner { background: #141414; border: 1px solid #2c2c2c; } }
 :root[data-theme="dark"] .np-banner { background: #141414; border: 1px solid #2c2c2c; }
+
+/* ------------------------------------------------------------------ Reading order and hierarchy */
+/* Slim NEXTPredict strip: present, but quieter than the page headline */
+.np-strip { display: flex; align-items: center; gap: 10px 14px; flex-wrap: wrap; margin: 2px 0 18px; padding: 8px 8px 8px 12px; border-radius: 999px; background: #0b0b0b; color: #e9e9e3; font-size: .9rem; }
+.np-strip .np-logo { font-size: .88rem; color: #fff; }
+.np-strip p { margin: 0; flex: 1 1 auto; min-width: 0; }
+.np-strip strong { color: var(--brand); font-weight: 600; }
+.np-strip-meta { color: #b9b9b1; }
+.np-strip-actions { display: inline-flex; gap: 6px; }
+.np-strip-cta, .np-strip-link { display: inline-flex; align-items: center; min-height: 34px; padding: 4px 14px; border-radius: 999px; font-weight: 600; font-size: .85rem; text-decoration: none; white-space: nowrap; }
+.np-strip-cta { background: var(--brand); color: #0b0b0b; }
+.np-strip-cta:hover { filter: brightness(.95); }
+.np-strip-link { color: #fff; box-shadow: inset 0 0 0 1px #555; }
+.np-strip-link:hover { box-shadow: inset 0 0 0 1px var(--brand); color: var(--brand); }
+@media (max-width: 699px) {
+  .np-strip { border-radius: 14px; padding: 10px 12px; }
+  .np-strip-meta { display: block; font-size: .8rem; }
+  .np-strip-actions { width: 100%; } .np-strip-actions a { flex: 1; justify-content: center; }
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .np-strip { background: #161616; box-shadow: inset 0 0 0 1px #2c2c2c; } }
+:root[data-theme="dark"] .np-strip { background: #161616; box-shadow: inset 0 0 0 1px #2c2c2c; }
+
+/* Numbered home sections: a clear order to read in */
+.home-head { align-items: flex-end; }
+.sec-num { margin: 0 0 4px; font: 600 .78rem var(--mono); letter-spacing: .08em; color: var(--ink-3); }
+.sec-num::before { content: "§ "; color: var(--brand); -webkit-text-stroke: .4px #0b0b0b; }
+.section-sub { margin: 4px 0 0; font-size: .95rem; color: var(--ink-2); max-width: 60ch; }
+.home-head .more { white-space: nowrap; }
+.section-head.home-head h2::before { display: none; }
+.home-head h2 { font-size: clamp(1.35rem, 1.1rem + 1vw, 1.75rem); }
+
+/* Event page: answer "why, when, where, can I get in" before anything else */
+.standfirst { margin: 10px 0 18px; font: 400 1.18rem/1.5 var(--serif); color: var(--ink); max-width: 62ch; }
+.fact-strip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; margin: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); overflow: hidden; }
+.fact-strip > div { padding: 12px 14px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); margin: -1px 0 0 -1px; min-width: 0; }
+.fact-strip dt { font: 600 .68rem var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px; }
+.fact-strip dd { margin: 0; display: grid; gap: 2px; }
+.fact-strip dd b { font-weight: 600; font-size: .98rem; line-height: 1.3; }
+.fact-strip dd span { font-size: .84rem; color: var(--ink-2); line-height: 1.35; }
+.fact-strip dd .mono { font-size: .86rem; color: var(--ink); }
+@media (min-width: 760px) { .fact-strip { grid-template-columns: 1.1fr 1.3fr 1fr 1fr; } }
+.detail-cta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.detail-cta .btn-lg { min-height: 46px; padding: 10px 20px; font-size: 1rem; }
+.detail-cta .save-btn.wide { min-height: 46px; }
+.detail .quick-actions { display: none; }
+.facts-title { margin: 0 0 10px; font: 600 .72rem var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.more-detail .fold { margin-top: 8px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; background: var(--surface); }
+.more-detail .fold summary { cursor: pointer; font-weight: 600; font-size: .95rem; }
+.more-detail .fold[open] summary { margin-bottom: 4px; }
+.programme-list { display: block; }
+.day-group.prog-sect { margin-bottom: 26px; }
+.day-group .prog-sect-head { font-size: .82rem; }
+@media (max-width: 699px) {
+  .prog-sect-head { flex-wrap: wrap; row-gap: 2px; }
+  .prog-sect-head small { order: 4; flex-basis: 100%; }
+  .prog-sect-head::after { display: none; }
+  .prog-eyebrow { flex-direction: column; align-items: flex-start; gap: 1px; }
+  .prog-format::before { display: none; }
+}
