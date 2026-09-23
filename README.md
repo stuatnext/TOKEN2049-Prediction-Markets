@@ -43,11 +43,10 @@ node scripts/validate-data.mjs
 
 ## Publish on GitHub Pages
 
-1. Push this branch and merge it into `main`.
-2. On GitHub, go to the repository's **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
-4. Choose branch **`main`** and folder **`/ (root)`**, then **Save**.
-5. After a minute or two the site is live at `https://stuatnext.github.io/TOKEN2049-Prediction-Markets/`.
+1. On GitHub, go to the repository's **Settings → Pages**.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**. That's the only setting needed.
+3. Every push to `main` then runs `.github/workflows/pages.yml`, which checks the data and publishes the site. You can also run it by hand from the **Actions** tab ("Deploy site to GitHub Pages" → "Run workflow").
+4. The site is live at `https://stuatnext.github.io/TOKEN2049-Prediction-Markets/`.
 
 Notes:
 - GitHub Pages on a **private** repository needs a paid GitHub plan. On a free plan, make the repository public.
