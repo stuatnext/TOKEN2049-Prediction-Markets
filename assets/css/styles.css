@@ -1017,3 +1017,17 @@ a:hover { text-decoration-color: var(--ink); }
   .prog-eyebrow { flex-direction: column; align-items: flex-start; gap: 1px; }
   .prog-format::before { display: none; }
 }
+
+/* Who's going: one-line intro, search first */
+.trust-line { margin: 6px 0 0; font-size: .86rem; color: var(--ink-3); max-width: 75ch; }
+.lede b { color: var(--ink); font-weight: 600; }
+.search-lg input { min-height: 52px; font-size: 1.02rem; }
+.browse-label { margin: 16px 0 8px; font: 600 .72rem var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+
+/* Guide: step rail under the headline */
+.step-rail { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 18px 0 0; counter-reset: none; }
+.step-rail li { flex: 1 1 200px; }
+.step-rail a { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); text-decoration: none; font-weight: 600; transition: border-color .15s ease, transform .15s ease; }
+.step-rail a:hover { border-color: #0b0b0b; transform: translateY(-1px); }
+.step-rail .step { margin: 0; }
+.interest .link-like { font: inherit; }
