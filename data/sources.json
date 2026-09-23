@@ -523,5 +523,68 @@
     "type": "Reported",
     "url": "https://www.pymnts.com/partnerships/2026/kalshi-begins-global-expansion-with-xp-deal-brazil/",
     "note": "Kalshi’s first expansion outside the US (March 2026)."
+  },
+  {
+    "id": "src-tls-luma",
+    "name": "THOUGHT LEADERS SUMMIT (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/h0vfc5sy",
+    "note": "Hosted by Spartan Group, Pantera Capital and Maven 11. Wed 7 Oct, 14:00–18:00, Marina One West Tower, Level 3, Room 2. Includes the panel “Prediction Markets: Peak Hype or Just Getting Started?” with Polymarket, Predict.fun, Outcome and Kash. Free; approval required."
+  },
+  {
+    "id": "src-raven-luma",
+    "name": "Predictions Over Wine by Raven (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/pwn3k3pw",
+    "note": "Invite-only prediction-markets evening by Raven, a proprietary HFT and market-making firm that provides liquidity on prediction-market venues. Tue 6 Oct, 19:00–22:00. Approval required; capacity strictly limited."
+  },
+  {
+    "id": "src-frontier-luma",
+    "name": "Frontier Traders @ Solana Summit Singapore (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/frontier-traders-sg-2026",
+    "note": "Live trading showdown for traders, prop firms and allocators. Tue 6 Oct, 11:00–19:00. Collaborators include World[.xyz] (self-custodial prediction-market trading), DoubleZero and Phantom. Free; approval required."
+  },
+  {
+    "id": "src-digital-capital-luma",
+    "name": "Digital Capital: Meaningful Conversations (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/iscvsjl9",
+    "note": "Hoko Agency and BlockDelta. Wed 7 Oct, 18:00–20:00, National Gallery Singapore. Prediction markets listed among the topics. Approval required; no +1s."
+  },
+  {
+    "id": "src-hft-luma",
+    "name": "HFT Closed-Door Meetup (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/2sin1muv",
+    "note": "Hosted by Quant Ferryman. Thu 8 Oct, 11:00–14:00, Singapore CBD (address after approval). Agenda includes a “Prediction Market Alpha & Capacity” section on Polymarket/Kalshi versus sportsbook pricing."
+  },
+  {
+    "id": "src-haruko-luma",
+    "name": "More than a million, Haruko x Kalshi (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/zsgdwcee",
+    "note": "Organiser registration page. Mon 5 Oct, 17:00–21:30. Approval required."
+  },
+  {
+    "id": "src-breakfast-luma",
+    "name": "Opening Bell: Zenith, Kaiko & T-REX (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/ht5jyi8k",
+    "note": "Organiser registration page. Wed 7 Oct, 09:00–12:00. Approval required."
+  },
+  {
+    "id": "src-hlforum-luma",
+    "name": "Hyperliquid Forum (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/hyperliquid-forum",
+    "note": "Registration page. Tue 6 Oct, 09:00–17:00. Approval required."
+  },
+  {
+    "id": "src-ark-luma",
+    "name": "The Institutional Ark by ChainUp (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/xn1chytf",
+    "note": "Registration page. Tue 6 Oct, 20:00–23:00, Monti, 82 Collyer Quay. Approval required."
   }
 ]

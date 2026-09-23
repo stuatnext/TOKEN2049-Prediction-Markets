@@ -195,10 +195,11 @@
     "org_label": "Outcome Labs",
     "role": "Co-Founder, Outcome Labs",
     "group": "builders",
-    "why": "Listed for the Hyperliquid Forum. Relevant to what is live under HIP-4 and where liquidity and settlement responsibilities sit.",
+    "why": "Listed for the Hyperliquid Forum. Relevant to what is live under HIP-4 and where liquidity and settlement responsibilities sit. Also speaks on the THOUGHT LEADERS SUMMIT prediction-markets panel (Wed 7 Oct).",
     "sources": [
       "src-hl-forum",
-      "src-hlforum-speakers"
+      "src-hlforum-speakers",
+      "src-tls-luma"
     ],
     "note": null,
     "last_updated": "2026-09-23",
@@ -613,7 +614,8 @@
     "group": "speakers",
     "why": null,
     "sources": [
-      "src-token-agenda1"
+      "src-token-agenda1",
+      "src-tls-luma"
     ],
     "note": null,
     "last_updated": "2026-09-22",
@@ -1365,6 +1367,75 @@
     "last_updated": "2026-09-23",
     "roles": [
       "builder"
+    ]
+  },
+  {
+    "id": "brooke-rizzetto",
+    "name": "Brooke Rizzetto",
+    "org": "polymarket",
+    "org_label": "Polymarket",
+    "role": "Head of Institutional Liquidity, Polymarket",
+    "group": "platforms",
+    "why": "Speaker on the THOUGHT LEADERS SUMMIT panel “Prediction Markets: Peak Hype or Just Getting Started?” (Wed 7 Oct). Polymarket’s institutional liquidity lead.",
+    "sources": [
+      "src-tls-luma"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "institutional",
+      "market-maker"
+    ]
+  },
+  {
+    "id": "ding-x",
+    "name": "Ding X",
+    "org": "predict-fun",
+    "org_label": "Predict.fun",
+    "role": "Founder, Predict.fun",
+    "group": "platforms",
+    "why": "Speaker on the THOUGHT LEADERS SUMMIT prediction-markets panel (Wed 7 Oct).",
+    "sources": [
+      "src-tls-luma"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "founder"
+    ]
+  },
+  {
+    "id": "lucas-martin-calderon",
+    "name": "Lucas Martin Calderon",
+    "org": "kash",
+    "org_label": "Kash",
+    "role": "Founder & CEO, Kash",
+    "group": "platforms",
+    "why": "Speaker on the THOUGHT LEADERS SUMMIT prediction-markets panel (Wed 7 Oct). Kash is a social prediction market on X.",
+    "sources": [
+      "src-tls-luma"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "founder"
+    ]
+  },
+  {
+    "id": "eric-nicomedez",
+    "name": "Eric Nicomedez",
+    "org": "spartan-group",
+    "org_label": "Spartan Group",
+    "role": "Investment Associate, Spartan",
+    "group": "investors",
+    "why": "Moderates the THOUGHT LEADERS SUMMIT prediction-markets panel (Wed 7 Oct).",
+    "sources": [
+      "src-tls-luma"
+    ],
+    "note": null,
+    "last_updated": "2026-09-23",
+    "roles": [
+      "investor"
     ]
   }
 ]
