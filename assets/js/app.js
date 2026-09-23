@@ -313,7 +313,7 @@ function home(_, q) {
   return `
   <section class="hero">
     <p class="eyebrow">Singapore · 5–9 October 2026 · Unofficial guide</p>
-    <h1>Where prediction markets happen at TOKEN2049</h1>
+    <h1>Where <span class="hl">prediction markets</span> happen at TOKEN2049</h1>
     <p class="lede">Every prediction-market event, session, company and person across TOKEN2049 week, in one place and sourced.</p>
     <p class="hero-status"><span class="pulse" aria-hidden="true"></span>${esc(nu.title)} · all times Singapore (SGT)</p>
   </section>
@@ -483,61 +483,60 @@ function start(_, q) {
     ["White-label", "Software another business can rebrand and run as its own prediction market."],
     ["Side event", "Anything around TOKEN2049 that isn’t on the official programme: parties, forums, breakfasts, meetups. Many need approval."],
   ];
+  const places = [
+    ["🎤", "Official sessions", "Wed–Thu on the TOKEN2049 stages at Marina Bay Sands. Needs a TOKEN2049 pass.", "#/events?type=official", n((e) => e.type === "official")],
+    ["🏢", "The expo floor", "Prediction-market sponsors with booths during the main conference days.", "#/events?type=exhibition", n((e) => e.type === "exhibition")],
+    ["🥂", "Side events", "Forums, parties and closed-door rooms all week. Many need approval.", "#/events?type=side-event,forum,meetup,networking,closed-door", n((e) => e.type !== "official" && e.type !== "exhibition")],
+    ["🧱", "The stack", "Data, clearing, risk and market-making firms that make the markets work.", "#/stack", D.stack.length + " layers"],
+  ];
+  const ecos = [
+    ["Kalshi", "US-regulated event-contract exchange.", "kalshi", "kalshi"],
+    ["Polymarket", "The biggest crypto-native prediction market.", "polymarket", "polymarket"],
+    ["Hyperliquid", "Lets anyone deploy outcome markets (HIP-4).", "hyperliquid", "hyperliquid"],
+    ["Independents", "Predict.fun, PredictBay, Predict365 and more.", "independent", "predict-fun"],
+  ];
   return `
-  <p class="eyebrow">Start here</p>
-  <h1>New to prediction markets at TOKEN2049?</h1>
-  <p class="lede">Prediction markets don’t have one home at TOKEN2049. They show up in four places, and this directory pulls them together.</p>
-  <div class="grid grid-2" style="margin-top:16px">
-    <a class="path" href="#/events?type=official" style="text-decoration:none;color:inherit"><h3>1 · Official TOKEN2049 sessions</h3><p>${n((e) => e.type === "official")} sessions on the Wed–Thu programme at Marina Bay Sands, from Polymarket and Kalshi to adjacent trading and institutional panels. Needs a TOKEN2049 pass.</p></a>
-    <a class="path" href="#/events?type=exhibition" style="text-decoration:none;color:inherit"><h3>2 · The expo floor</h3><p>${n((e) => e.type === "exhibition")} prediction-market-relevant sponsors with a floor presence during the main conference days.</p></a>
-    <a class="path" href="#/events?type=side-event,forum,meetup,networking,closed-door" style="text-decoration:none;color:inherit"><h3>3 · Side events all week</h3><p>${n((e) => e.type !== "official" && e.type !== "exhibition")} forums, parties and closed-door rooms from Monday to Friday. Many need approval or an invitation.</p></a>
-    <a class="path" href="#/stack" style="text-decoration:none;color:inherit"><h3>4 · The stack around them</h3><p>Data, clearing, risk and market-making companies that make prediction markets work, even when their events aren’t labelled “prediction markets”.</p></a>
-  </div>
+  <section class="hero hero-sm">
+    <p class="eyebrow">Guide</p>
+    <h1>New to prediction markets at TOKEN2049?</h1>
+    <p class="lede">Three steps: pick how you’re attending, get a shortlist, then save what you like to your schedule.</p>
+  </section>
 
-  <section class="section" aria-labelledby="h-labels">
-    <h2 id="h-labels">How to read the labels</h2>
-    <div class="grid grid-3">
-      <div class="panel"><h3>Relevance</h3>${Object.entries(REL).map(([k, v]) => `<p>${relChip(k)}<span class="def">${esc(v.desc)}</span></p>`).join("")}</div>
-      <div class="panel"><h3>Access</h3>${["badge", "open", "registration", "approval", "invite", "waitlist"].map((k) => `<p style="margin:0 0 6px"><span class="chip chip-outline chip-access-${k}">${ACCESS[k]}</span></p>`).join("")}<p class="def">Access is shown separately from relevance. A great event you can’t get into is still worth knowing about.</p></div>
-      <div class="panel"><h3>Verification</h3>${Object.entries(STATUS).map(([k, v]) => `<p><strong>${esc(v.label)}</strong><span class="def">${esc(v.desc)}</span></p>`).join("")}</div>
+  <section class="section" aria-labelledby="h-s1">
+    <div class="section-head"><h2 id="h-s1"><span class="step">1</span> Pick your route</h2></div>
+    <div class="doors doors-plain">
+      <div class="door door-static"><span class="door-icon" aria-hidden="true">☀️</span><span class="door-text"><strong>I only have one day</strong><span>The prediction-market highlights for a single day.</span>
+        <span class="day-pills">${D.days.map((d) => `<a href="#/calendar/${d.slug}?show=pm&view=agenda">${esc(d.label.slice(0, 3))}</a>`).join("")}</span></span></div>
+      <a class="door" href="#/week"><span class="door-icon" aria-hidden="true">🗓️</span><span class="door-text"><strong>I’m here all week</strong><span>Monday to Friday, with the clashes you’ll need to choose between.</span></span><span class="door-arrow" aria-hidden="true">→</span></a>
+      <a class="door" href="#/going"><span class="door-icon" aria-hidden="true">🤝</span><span class="door-text"><strong>I want to meet people</strong><span>Who’s going, and where to find them.</span></span><span class="door-arrow" aria-hidden="true">→</span></a>
     </div>
+    <p class="small muted" style="margin-top:10px">Tip: Thursday has the most prediction-market programming.</p>
   </section>
 
-  <section class="section" aria-labelledby="h-paths">
-    <h2 id="h-paths">Pick a route</h2>
-    <div class="paths">
-      <div class="path"><h3>I only have one day</h3><p>See the prediction-market and strongly relevant listings for a single day, with overlaps grouped so you can choose.</p>
-        <div class="btn-row">${D.days.map((d) => `<a class="btn btn-small" href="#/calendar/${d.slug}?show=pm&view=agenda">${esc(d.label.slice(0, 3))}</a>`).join("")}</div>
-        <p class="small muted">Thursday has the most prediction-market-specific programming.</p></div>
-      <div class="path"><h3>I’m here for the whole week</h3><p>A Monday–Friday route through the focused listings, with the clashes you’ll need to decide between.</p><div class="btn-row"><a class="btn btn-small btn-primary" href="#/week">See the week route</a></div></div>
-      <div class="path"><h3>I want to meet people</h3><p>Browse people and companies by role, then jump to the parties, meetups and closed-door rooms where they are listed.</p>
-        <div class="btn-row"><a class="btn btn-small" href="#/people">People</a><a class="btn btn-small" href="#/companies">Companies</a><a class="btn btn-small" href="#/events?type=networking,meetup">Networking events</a></div></div>
-    </div>
+  <section class="section" id="finder" aria-labelledby="h-finder">
+    <div class="section-head"><h2 id="h-finder"><span class="step">2</span> Get your shortlist</h2></div>
+    <div class="panel"><p class="muted" style="margin-top:0">Answer three quick questions. Nothing is sent anywhere.</p>
+    <div id="finder-root">${finderForm(q)}</div></div>
   </section>
 
-  <section class="section panel" id="finder" aria-labelledby="h-finder">
-    <h2 id="h-finder">Build your shortlist</h2>
-    <p class="muted">A simple rule-based filter over the directory. Nothing is sent anywhere.</p>
-    <div id="finder-root">${finderForm(q)}</div>
+  <section class="section" aria-labelledby="h-s3">
+    <div class="section-head"><h2 id="h-s3"><span class="step">3</span> Know where to look</h2></div>
+    <p class="muted">Prediction markets don’t have one home at TOKEN2049. They show up in four places:</p>
+    <div class="interest-grid">${places.map(([i, t, d, h, c]) => `<a class="interest interest-lg" href="${h}"><span aria-hidden="true">${i}</span><strong>${esc(t)}</strong><small>${esc(d)}</small><em>${c}</em></a>`).join("")}</div>
+    <h3 class="subhead">The main ecosystems</h3>
+    <div class="interest-grid">${ecos.map(([t, d, eco, cid]) => `<a class="interest" href="#/events?eco=${eco}"><strong>${esc(t)}</strong><small>${esc(d)}</small><em>${n((e) => e.ecosystems.includes(eco))} events · <span class="link-like" data-href="#/companies/${cid}">profile</span></em></a>`).join("")}</div>
   </section>
 
-  <section class="section" aria-labelledby="h-eco2">
-    <h2 id="h-eco2">The main ecosystems, in plain English</h2>
-    <div class="grid grid-2">
-      ${[["kalshi", "kalshi"], ["polymarket", "polymarket"], ["hyperliquid", "hyperliquid"], ["predict-fun", "independent"]].map(([cid, eco]) => {
-        const c = D.companies.get(cid);
-        return `<div class="path"><h3>${esc(eco === "independent" ? "Independent platforms (e.g. Predict.fun)" : c.name)}</h3><p>${esc(c.description)}</p><div class="btn-row"><a class="btn btn-small" href="#/events?eco=${eco}">${n((e) => e.ecosystems.includes(eco))} events</a><a class="btn btn-small" href="#/companies/${cid}">Company profile</a></div></div>`;
-      }).join("")}
-      <div class="path"><h3>Traders & market makers</h3><p>The firms and individuals who supply liquidity. Wintermute has publicly entered prediction markets, and Susquehanna Crypto is named as a liquidity provider for Predict.fun block trades.</p><div class="btn-row"><a class="btn btn-small" href="#/events?aud=traders,market-makers">Events</a><a class="btn btn-small" href="#/companies?c=trading">Firms</a></div></div>
-      <div class="path"><h3>Infrastructure</h3><p>DoubleZero (market-data transport), Chainlink (oracles), ION (clearing), Haruko (portfolio risk) and ChainUp (white-label platforms). The stack view explains where each fits.</p><div class="btn-row"><a class="btn btn-small" href="#/stack">The stack</a><a class="btn btn-small" href="#/companies?c=infrastructure">Companies</a></div></div>
-      <div class="path"><h3>Sports</h3><p>Sports pricing, data rights, latency and in-play market making. Most of it is concentrated at The Odds on Thursday.</p><div class="btn-row"><a class="btn btn-small" href="#/events/the-odds-prediction-markets-live">The Odds</a><a class="btn btn-small" href="#/people?g=sports">Sports people</a></div></div>
-      <div class="path"><h3>Institutional / TradFi</h3><p>Clearing, margin, portfolio systems and the question of whether event contracts fit existing mandates.</p><div class="btn-row"><a class="btn btn-small" href="#/events?aud=institutions">Events</a><a class="btn btn-small" href="#/companies?c=institutional">Firms</a></div></div>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="h-gloss">
-    <h2 id="h-gloss">Ten terms you’ll hear</h2>
-    <dl class="glossary">${glossary.map(([t, d]) => `<div><dt>${esc(t)}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>
+  <section class="section" aria-labelledby="h-ref">
+    <div class="section-head"><h2 id="h-ref">Handy reference</h2></div>
+    <details class="fold fold-card"><summary>What the labels mean</summary>
+      <div class="grid grid-3" style="margin-top:12px">
+        <div><h3>Relevance</h3>${Object.entries(REL).map(([k, v]) => `<p>${relChip(k)}<span class="def">${esc(v.desc)}</span></p>`).join("")}</div>
+        <div><h3>Access</h3>${["badge", "open", "registration", "approval", "invite", "waitlist"].map((k) => `<p style="margin:0 0 6px"><span class="chip chip-outline chip-access-${k}">${ACCESS[k]}</span></p>`).join("")}</div>
+        <div><h3>Verification</h3>${Object.entries(STATUS).map(([k, v]) => `<p><strong>${esc(v.label)}</strong><span class="def">${esc(v.desc)}</span></p>`).join("")}</div>
+      </div></details>
+    <details class="fold fold-card"><summary>Ten terms you’ll hear</summary>
+      <dl class="glossary" style="margin-top:12px">${glossary.map(([t, d]) => `<div><dt>${esc(t)}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl></details>
   </section>`;
 }
 afterRender.start = () => bindFinder();
@@ -1474,6 +1473,8 @@ document.addEventListener("click", (ev) => {
     download("my-token2049-pm-schedule.ics", buildICS(list, { sources: D.sources, pageUrl: (x) => absUrl(evUrl(x)) }));
     return;
   }
+  const lk = t.closest("[data-href]");
+  if (lk) { ev.preventDefault(); location.hash = lk.dataset.href; return; }
   const cp = t.closest("[data-copy]");
   if (cp) { navigator.clipboard?.writeText(cp.dataset.copy).then(() => toast("Code copied"), () => prompt("Copy this code:", cp.dataset.copy)); return; }
   const sh = t.closest("[data-share]");
