@@ -480,3 +480,129 @@ tr:last-child td { border-bottom: 0; }
   body { background: #fff; padding: 0; }
   .event-card { break-inside: avoid; box-shadow: none; }
 }
+
+/* =====================================================================
+   Design refresh: calmer, more readable, simpler to scan.
+   (Overrides earlier rules; kept together so it is easy to tweak.)
+   ===================================================================== */
+:root { --bg: #f7f5f0; --radius: 14px; --shadow: 0 1px 2px rgba(20, 20, 20, .04), 0 4px 14px rgba(20, 20, 20, .04); }
+@media (min-width: 900px) { html { font-size: 17px; } }
+body { line-height: 1.6; }
+.lede { font-size: 1.12rem; line-height: 1.55; max-width: 62ch; }
+h2 { font: 600 1.45rem/1.2 var(--serif); letter-spacing: -.01em; }
+.section { margin-top: 48px; }
+@media (min-width: 900px) { .section { margin-top: 64px; } }
+.section-head { padding-bottom: 10px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+.section-head .more { white-space: nowrap; text-decoration: none; }
+.section-head .more:hover { text-decoration: underline; }
+
+/* Header + More menu */
+.site-header { background: color-mix(in srgb, var(--bg) 94%, transparent); }
+.main-nav { align-items: center; }
+.main-nav a, .nav-more summary { font-size: .95rem; padding: 8px 12px; }
+.nav-more { position: relative; }
+.nav-more summary { list-style: none; cursor: pointer; color: var(--ink-2); font-weight: 500; border-radius: 6px; }
+.nav-more summary::-webkit-details-marker { display: none; }
+.nav-more summary::after { content: " ▾"; font-size: .8em; }
+.nav-more summary:hover, .nav-more[open] summary, .nav-more summary.current { background: var(--surface-2); color: var(--ink); }
+.nav-menu { position: absolute; right: 0; top: calc(100% + 6px); min-width: 240px; display: grid; padding: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.12); z-index: 50; }
+.nav-menu a { padding: 10px 12px; border-radius: 8px; }
+
+/* Hero */
+.hero { padding: 36px 0 8px; }
+.hero h1 { font-size: clamp(2.1rem, 6vw, 3.4rem); line-height: 1.05; max-width: 17ch; margin-bottom: 16px; }
+.hero-status { display: inline-flex; align-items: center; gap: 10px; margin: 6px 0 0; padding: 6px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-size: .9rem; color: var(--ink-2); }
+.pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--core); box-shadow: 0 0 0 4px var(--core-bg); }
+
+/* Three big doors */
+.doors { display: grid; gap: 12px; margin-top: 28px; }
+@media (min-width: 800px) { .doors { grid-template-columns: repeat(3, 1fr); } }
+.door { display: flex; align-items: center; gap: 14px; padding: 18px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); color: var(--ink); text-decoration: none; transition: transform .12s, border-color .12s; }
+.door:hover { transform: translateY(-2px); border-color: var(--ink-3); }
+.door:first-child { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.door:first-child .door-text span, .door:first-child .door-text em { color: color-mix(in srgb, var(--bg) 75%, transparent); }
+.door-icon { flex: none; width: 48px; height: 48px; display: grid; place-items: center; font-size: 1.5rem; border-radius: 12px; background: color-mix(in srgb, currentColor 9%, transparent); }
+.door-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.door-text strong { font-size: 1.1rem; }
+.door-text span { font-size: .9rem; color: var(--ink-2); line-height: 1.4; }
+.door-text em { font-style: normal; font: 500 .78rem var(--mono); color: var(--ink-3); margin-top: 4px; }
+.door-arrow { margin-left: auto; font-size: 1.2rem; opacity: .6; }
+
+/* Event rows: the calm list format */
+.row-list { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.event-row { position: relative; display: grid; grid-template-columns: 78px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 14px 14px 14px 16px; border-top: 1px solid var(--line); }
+.event-row:first-child { border-top: 0; }
+.event-row:hover { background: color-mix(in srgb, var(--surface-2) 55%, var(--surface)); }
+.er-when { display: flex; flex-direction: column; line-height: 1.25; }
+.er-day { font: 500 .72rem var(--mono); text-transform: uppercase; letter-spacing: .04em; color: var(--ink-3); }
+.er-time { font: 500 1rem var(--mono); color: var(--ink); }
+.er-main h3 { margin: 0 0 2px; font-size: 1rem; line-height: 1.35; }
+.er-main h3 a { color: var(--ink); text-decoration: none; }
+.er-main h3 a::after { content: ""; position: absolute; inset: 0; }
+.er-main p { margin: 0; font-size: .86rem; color: var(--ink-3); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.er-side { position: relative; z-index: 2; }
+.event-row .save-btn { width: 40px; height: 40px; }
+.event-row:has(h3 a:focus-visible) { outline: 3px solid var(--focus); outline-offset: -3px; }
+.warn-text { color: var(--warn); font-weight: 500; }
+.event-list .event-row { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+@media (max-width: 480px) { .event-row { grid-template-columns: 64px minmax(0, 1fr) auto; gap: 10px; padding: 12px 10px 12px 12px; } }
+
+/* Event cards: more air, fewer labels */
+.event-card { padding: 16px 16px 14px 18px; gap: 6px 14px; }
+.event-card h3 { font-size: 1.05rem; }
+.event-card .blurb { font-size: .92rem; line-height: 1.55; }
+.card, .event-card, .panel { border-radius: var(--radius); }
+
+/* Interest tiles */
+.interest-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+@media (min-width: 800px) { .interest-grid { grid-template-columns: repeat(4, 1fr); } }
+.interest { display: flex; flex-direction: column; gap: 4px; padding: 14px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); text-decoration: none; min-height: 96px; transition: border-color .12s; }
+.interest:hover { border-color: var(--ink-3); }
+.interest span { font-size: 1.3rem; }
+.interest strong { font-size: .95rem; line-height: 1.3; }
+.interest em { font: 500 .78rem var(--mono); font-style: normal; color: var(--ink-3); margin-top: auto; }
+
+/* Split footer section */
+.split { display: grid; gap: 16px; }
+@media (min-width: 900px) { .split { grid-template-columns: 1.2fr 1fr; align-items: start; } }
+.split .promo { margin: 0; }
+.panel { padding: 20px; }
+
+/* Who's going cards */
+.going-card { padding: 16px; }
+.going-card .apps { margin-top: auto; }
+.going-card .proof { position: relative; z-index: 2; }
+.chip-plain { background: transparent; color: var(--ink-3); padding-left: 2px; }
+.week { gap: 10px; }
+.legend { margin-top: 14px; }
+
+/* Readable long text on detail and about pages */
+.detail article > section p, .detail article > p { max-width: 68ch; }
+
+@media (prefers-reduced-motion: reduce) { .door, .interest { transition: none; } .door:hover { transform: none; } }
+.er-time.soft { font-size: .85rem; color: var(--ink-2); }
+.er-main p { display: block; }
+.er-main p .rel-dot { margin-right: 4px; vertical-align: 1px; }
+.day-card .big small { font-size: .55em; }
+@media (max-width: 599px) {
+  .door { padding: 14px; gap: 12px; }
+  .door-icon { width: 40px; height: 40px; font-size: 1.25rem; }
+  .door-text span { display: none; }
+  .hero { padding-top: 24px; }
+  .hero-status { font-size: .82rem; }
+  .day-card { padding: 10px 8px; align-items: center; text-align: center; }
+  .day-card .big { font-size: 1.5rem; }
+  .day-card .big small { display: none; }
+}
+.day-card .bars { width: 100%; }
+@media (max-width: 699px) {
+  .chip-scroll { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-left: -16px !important; margin-right: -16px !important; padding: 2px 16px; }
+  .chip-scroll::-webkit-scrollbar { display: none; }
+  .chip-scroll > * { flex: none; }
+}
+.quick-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; }
+.quick-actions .save-btn.wide { width: auto; }
+.qa-access { font-size: .85rem; color: var(--ink-3); }
+@media (min-width: 1000px) { .quick-actions { display: none; } }
+details.fold > summary { cursor: pointer; font-weight: 500; color: var(--accent); padding: 8px 0; min-height: 40px; }
+details.fold[open] > summary { margin-bottom: 8px; }

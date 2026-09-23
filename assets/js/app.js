@@ -134,6 +134,7 @@ const saveBtn = (e, wide = false) => {
 const updatedBadge = (rec) => (rec.last_updated && rec.last_updated > D.site.last_updated ? `<span class="chip chip-warn">Updated ${esc(rec.last_updated)}</span>` : "");
 
 function eventCard(e, o = {}) {
+  if (o.compact && !o.clashSaved) return eventRow(e);
   const isSaved = saved.has(e.id);
   const clashSaved = o.clashSaved ? (D.clash.get(e.id) || []).filter((x) => saved.has(x.id)) : [];
   const cls = ["event-card", `r-${e.relevance}`, isSaved ? "is-saved" : "", clashSaved.length ? "is-clash" : "", o.compact ? "compact" : ""].join(" ");
@@ -142,12 +143,12 @@ function eventCard(e, o = {}) {
     <div class="body">
       <div class="when"><span class="time">${esc(timeLabel(e))}${esc(multi)}</span>${o.showDay === false ? "" : `<span class="day">${esc(dayOf(e.date).label)}</span>`}</div>
       <h3><a href="${evUrl(e)}">${esc(e.title)}</a></h3>
-      <p class="venue">${esc(e.venue)}</p>
+      <p class="venue">${esc(e.venue)} · ${esc(TYPE[e.type])}</p>
     </div>
     <div class="side">${saveBtn(e)}</div>
     ${o.compact ? "" : `<p class="blurb">${esc(e.why)}</p>`}
     ${o.reasons?.length ? `<div class="reasons">${o.reasons.map((r) => `<span class="chip">${esc(r)}</span>`).join("")}</div>` : ""}
-    <div class="foot"><div class="chip-row">${relChip(e.relevance)}${typeChip(e)}${accessChip(e)}${statusChip(e)}${updatedBadge(e)}</div><span class="details" aria-hidden="true">Details →</span></div>
+    <div class="foot"><div class="chip-row">${relChip(e.relevance)}${accessChip(e)}${e.status === "provisional" || e.status === "conflict" ? statusChip(e) : ""}${updatedBadge(e)}</div></div>
     ${clashSaved.length ? `<p class="clash-line">⚠ Clashes with ${clashSaved.map((x) => `<a href="${evUrl(x)}">${esc(x.title)}</a> (${esc(timeLabel(x))})`).join(", ")}</p>` : ""}
   </article>`;
 }
@@ -236,9 +237,12 @@ function render({ keepScroll = false } = {}) {
   afterRender[key]?.(parts.slice(1), q);
   const navKey = key || "home";
   document.querySelectorAll("[data-nav]").forEach((a) => {
-    const match = a.dataset.nav === navKey || (navKey === "week" && a.dataset.nav === "start");
+    const match = a.dataset.nav === navKey;
     match ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current");
   });
+  const moreKeys = ["people", "companies", "stack", "week", "about"];
+  document.querySelector("[data-nav-more]")?.classList.toggle("current", moreKeys.includes(navKey));
+  document.querySelector(".nav-more")?.removeAttribute("open");
   updateCounts();
   if (keepScroll) window.scrollTo(0, y);
   else {
@@ -288,118 +292,87 @@ function home(_, q) {
   setMeta("", D.site.tagline);
   const E = D.events;
   const cnt = (fn) => E.filter(fn).length;
-  const entries = [
-    ["New to prediction markets", "#/start", null, true],
-    ["Who’s going?", "#/going", D.going.length],
-    ["Show me everything", "#/events", E.length],
-    ["Traders & market makers", "#/events?aud=traders,market-makers", cnt((e) => e.audiences.some((a) => a === "traders" || a === "market-makers"))],
-    ["Institutional / TradFi", "#/events?aud=institutions", cnt((e) => e.audiences.includes("institutions"))],
-    ["Builders & infrastructure", "#/events?aud=builders", cnt((e) => e.audiences.includes("builders"))],
-    ["Sports prediction markets", "#/events?aud=sports", cnt((e) => e.audiences.includes("sports"))],
-    ["Polymarket ecosystem", "#/events?eco=polymarket", cnt((e) => e.ecosystems.includes("polymarket"))],
-    ["Kalshi ecosystem", "#/events?eco=kalshi", cnt((e) => e.ecosystems.includes("kalshi"))],
-    ["Hyperliquid / outcome markets", "#/events?eco=hyperliquid", cnt((e) => e.ecosystems.includes("hyperliquid"))],
-    ["Parties & networking", "#/events?type=networking,meetup", cnt((e) => e.type === "networking" || e.type === "meetup")],
-    ["Media / journalism", "#/events?aud=media", cnt((e) => e.audiences.includes("media"))],
-  ];
   const nu = nextUp(q);
-  const official = E.filter((e) => e.type === "official" && (e.relevance === "core" || e.relevance === "strong"));
-  const side = E.filter((e) => e.type !== "official" && (e.relevance === "core" || e.relevance === "strong"));
-  const keyPeople = [...D.people.values()].filter((p) => p.group !== "speakers").slice(0, 12);
-  const roles = [["newcomer", "I’m new to this"], ["trader", "Trader"], ["market-maker", "Market maker"], ["founder", "Founder / builder"], ["institutional", "Institutional"], ["sports", "Sportsbook / iGaming"], ["journalist", "Journalist / creator"], ["infrastructure", "Infrastructure provider"]];
-  const ecos = [
-    ["Kalshi", "US event-contract exchange. Main-stage sessions plus trader and institutional evenings.", "#/companies/kalshi", "#/events?eco=kalshi"],
-    ["Polymarket", "Main-stage fireside and its first Singapore kick-off party.", "#/companies/polymarket", "#/events?eco=polymarket"],
-    ["Hyperliquid / HIP-4", "Permissionless outcome markets. Ecosystem event, forum and HypurrCo gathering.", "#/companies/hyperliquid", "#/events?eco=hyperliquid"],
-    ["Infrastructure", "Data transport, oracles, clearing, risk and white-label platforms.", "#/stack", "#/events?aud=builders"],
-    ["Traders & market makers", "Where liquidity providers and active traders gather.", "#/people?g=trading", "#/events?aud=traders,market-makers"],
-    ["Sports", "Sports pricing, data and market structure, concentrated at The Odds.", "#/people?g=sports", "#/events?aud=sports"],
-    ["Institutional", "Clearing, portfolio risk, margin and TradFi benchmarks.", "#/companies?c=institutional", "#/events?aud=institutions"],
+  const headline = ["polymarket-coplan-fireside", "the-speculation-age", "the-odds-prediction-markets-live", "kalshi-x-insilico-asia-session", "polymarket-singapore-kickoff", "hyperliquid-forum", "haruko-x-kalshi"]
+    .map((id) => D.ev.get(id)).filter((e) => e && !nu.list.includes(e)).sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
+  const interests = [
+    ["📈", "Traders & market makers", "#/events?aud=traders,market-makers", cnt((e) => e.audiences.some((a) => a === "traders" || a === "market-makers"))],
+    ["🏦", "Institutional & TradFi", "#/events?aud=institutions", cnt((e) => e.audiences.includes("institutions"))],
+    ["🛠️", "Builders & infrastructure", "#/events?aud=builders", cnt((e) => e.audiences.includes("builders"))],
+    ["⚽", "Sports", "#/events?aud=sports", cnt((e) => e.audiences.includes("sports"))],
+    ["🟦", "Polymarket", "#/events?eco=polymarket", cnt((e) => e.ecosystems.includes("polymarket"))],
+    ["🟩", "Kalshi", "#/events?eco=kalshi", cnt((e) => e.ecosystems.includes("kalshi"))],
+    ["💧", "Hyperliquid & outcome markets", "#/events?eco=hyperliquid", cnt((e) => e.ecosystems.includes("hyperliquid"))],
+    ["🥂", "Parties & networking", "#/events?type=networking,meetup", cnt((e) => e.type === "networking" || e.type === "meetup")],
+  ];
+  const doors = [
+    ["📅", "Calendar", "What’s on, day by day, with clashes marked.", "#/calendar", `${E.length} events · 5 days`],
+    ["👥", "Who’s going", "People and companies with evidence they’ll be in Singapore.", "#/going", `${D.going.length} people & companies`],
+    ["🧭", "New here?", "A two-minute guide and a shortlist built for you.", "#/start", "Start here"],
   ];
   return `
   <section class="hero">
-    <p class="eyebrow">TOKEN2049 Singapore · 5–9 October 2026 · Unofficial guide</p>
-    <h1>${esc(D.site.title)}</h1>
-    <p class="lede">${esc(D.site.tagline)}</p>
-    <div class="btn-row"><a class="btn btn-primary" href="#/calendar">Explore the calendar</a><a class="btn" href="#/start">Start here</a></div>
-    <div class="meta"><span>${E.length} events</span><span>${D.people.size} people</span><span>${D.companies.size} companies</span><span>Last updated ${esc(fmtDate(D.site.last_updated))}</span><span>All times SGT</span></div>
+    <p class="eyebrow">Singapore · 5–9 October 2026 · Unofficial guide</p>
+    <h1>Where prediction markets happen at TOKEN2049</h1>
+    <p class="lede">Every prediction-market event, session, company and person across TOKEN2049 week, in one place and sourced.</p>
+    <p class="hero-status"><span class="pulse" aria-hidden="true"></span>${esc(nu.title)} · all times Singapore (SGT)</p>
   </section>
 
-  ${promoCard(true)}
-
-  <section class="section" aria-labelledby="h-entry">
-    <div class="section-head"><h2 id="h-entry">Start here</h2></div>
-    <div class="entry-grid">${entries.map(([l, h, n, p]) => `<a class="entry${p ? " primary" : ""}" href="${h}">${esc(l)}${n != null ? ` <span class="n">${n}</span>` : ""}</a>`).join("")}</div>
-  </section>
-
-  <section class="section" aria-labelledby="h-going">
-    <div class="section-head"><h2 id="h-going">Who’s heading to Singapore?</h2><a class="more" href="#/going">Explore everyone (${D.going.length}) →</a></div>
-    <p class="muted small">Prediction-market people and companies with public evidence they’ll be there, drawn from across platforms, trading, infrastructure, builders, investors and media.</p>
-    <div class="grid grid-3">${homeGoing().map((g) => goingCard(g, { compact: true })).join("")}</div>
-  </section>
+  <nav class="doors" aria-label="Main sections">${doors.map(([i, t, d, h, m]) => `<a class="door" href="${h}"><span class="door-icon" aria-hidden="true">${i}</span><span class="door-text"><strong>${esc(t)}</strong><span>${esc(d)}</span><em>${esc(m)}</em></span><span class="door-arrow" aria-hidden="true">→</span></a>`).join("")}</nav>
 
   <section class="section" aria-labelledby="h-next">
-    <div class="section-head"><h2 id="h-next">${esc(nu.title)}</h2>${nu.today ? `<a class="more" href="#/calendar/${dayOf(nu.today).slug}">Today’s calendar →</a>` : `<a class="more" href="#/calendar">Full calendar →</a>`}</div>
-    <p class="muted small">${esc(nu.sub)}</p>
-    ${nu.list.length ? `<div class="event-list cols">${nu.list.map((e) => eventCard(e, { compact: true })).join("")}</div>` : ""}
+    <div class="section-head"><h2 id="h-next">${nu.today ? esc(nu.title) : "First up"}</h2><a class="more" href="${nu.today ? `#/calendar/${dayOf(nu.today).slug}` : "#/calendar"}">Full calendar →</a></div>
+    ${nu.list.length ? `<div class="row-list">${nu.list.map((e) => eventRow(e)).join("")}</div>` : `<p class="muted">${esc(nu.sub)}</p>`}
   </section>
 
   <section class="section" aria-labelledby="h-week">
-    <div class="section-head"><h2 id="h-week">Week at a glance</h2><a class="more" href="#/week">Whole-week route →</a></div>
+    <div class="section-head"><h2 id="h-week">The week at a glance</h2><a class="more" href="#/week">Day-by-day route →</a></div>
     <div class="week">${D.days.map((d) => {
       const list = eventsOn(d.date);
       const c = (r) => list.filter((e) => e.relevance === r).length;
       const bar = ["core", "strong", "adjacent", "wildcard"].map((r) => (c(r) ? `<span class="b-${r}" style="flex:${c(r)}"></span>` : "")).join("");
-      return `<a class="day-card" href="#/calendar/${d.slug}"><span class="d">${esc(d.label.slice(0, 3))}</span><span class="big">${d.label.slice(4)}</span>
+      return `<a class="day-card" href="#/calendar/${d.slug}"><span class="d">${esc(d.label.slice(0, 3))}</span><span class="big">${d.label.slice(4, 6).trim()}<small> ${d.label.slice(-3)}</small></span>
         <span class="bars" aria-hidden="true">${bar}</span>
         <span class="visually-hidden">${list.length} listings: ${c("core")} prediction-market, ${c("strong")} strongly relevant, ${c("adjacent")} adjacent, ${c("wildcard")} wildcard.</span>
-        <span class="counts" aria-hidden="true"><b>${list.length}</b> listed · ${c("core")} PM</span><span class="note">${esc(d.note)}</span></a>`;
+        <span class="counts" aria-hidden="true"><b>${list.length}</b> events</span><span class="note">${esc(d.note)}</span></a>`;
     }).join("")}</div>
-    <div class="legend" style="margin-top:12px">${Object.entries(REL).map(([k, v]) => `<span><i class="rel-dot dot-${k}"></i>${v.label}</span>`).join("")}</div>
+    <div class="legend">${Object.entries(REL).map(([k, v]) => `<span><i class="rel-dot dot-${k}"></i>${v.label}</span>`).join("")}</div>
   </section>
 
-  <section class="section" aria-labelledby="h-off">
-    <div class="section-head"><h2 id="h-off">Prediction markets inside TOKEN2049</h2><a class="more" href="#/events?type=official">All ${cnt((e) => e.type === "official")} official sessions →</a></div>
-    <p class="muted small">Official programme sessions at Marina Bay Sands (TOKEN2049 pass required) that are directly about, or strongly relevant to, prediction markets.</p>
-    <div class="event-list cols">${official.map((e) => eventCard(e)).join("")}</div>
+  <section class="section" aria-labelledby="h-head">
+    <div class="section-head"><h2 id="h-head">Don’t-miss prediction-market events</h2><a class="more" href="#/events?rel=core">All ${cnt((e) => e.relevance === "core")} →</a></div>
+    <div class="row-list">${headline.map((e) => eventRow(e)).join("")}</div>
   </section>
 
-  <section class="section" aria-labelledby="h-side">
-    <div class="section-head"><h2 id="h-side">Side events</h2><a class="more" href="#/events?type=side-event,forum,meetup,networking,closed-door">All side events →</a></div>
-    <p class="muted small">Prediction-market-focused and strongly relevant gatherings across the week. Many need approval or an invitation.</p>
-    <div class="event-list cols">${side.map((e) => eventCard(e)).join("")}</div>
+  <section class="section" aria-labelledby="h-going">
+    <div class="section-head"><h2 id="h-going">Who’s heading to Singapore</h2><a class="more" href="#/going">See all ${D.going.length} →</a></div>
+    <div class="grid grid-3">${homeGoing().slice(0, 6).map((g) => goingCard(g, { compact: true })).join("")}</div>
   </section>
 
-  <section class="section panel" aria-labelledby="h-find">
-    <h2 id="h-find">Find your TOKEN2049</h2>
-    <p class="muted">Tell us who you are and we’ll build a shortlist from the directory. You can save it in one tap.</p>
-    <div class="btn-row">${roles.map(([k, l]) => `<a class="toggle" href="#/start?role=${k}&at=finder">${esc(l)}</a>`).join("")}</div>
+  <section class="section" aria-labelledby="h-int">
+    <div class="section-head"><h2 id="h-int">Browse by interest</h2><a class="more" href="#/events">All events →</a></div>
+    <div class="interest-grid">${interests.map(([i, l, h, n]) => `<a class="interest" href="${h}"><span aria-hidden="true">${i}</span><strong>${esc(l)}</strong><em>${n}</em></a>`).join("")}</div>
   </section>
 
-  <section class="section" aria-labelledby="h-eco">
-    <div class="section-head"><h2 id="h-eco">Explore the ecosystem</h2></div>
-    <div class="grid grid-3">${ecos.map(([t, d, a, b]) => `<div class="path"><h3>${esc(t)}</h3><p>${esc(d)}</p><div class="btn-row"><a class="btn btn-small" href="${b}">Events</a><a class="btn btn-small" href="${a}">Learn more</a></div></div>`).join("")}</div>
-  </section>
-
-  <section class="section" aria-labelledby="h-stack">
-    <div class="section-head"><h2 id="h-stack">The prediction-market stack</h2><a class="more" href="#/stack">Explore the stack →</a></div>
-    <p class="muted small">Why does a networking company or a risk platform belong in a prediction-market directory? Because a working market needs every layer below.</p>
-    <div class="chip-row">${D.stack.map((l, i) => `<a class="chip chip-outline" href="#/stack/${l.id}"><span class="mono">${String(i + 1).padStart(2, "0")}</span> ${esc(l.name)}</a>`).join("")}</div>
-  </section>
-
-  <section class="section" aria-labelledby="h-people">
-    <div class="section-head"><h2 id="h-people">People to know</h2><a class="more" href="#/people">All ${D.people.size} people →</a></div>
-    <div class="person-list">${keyPeople.map(personMini).join("")}</div>
-  </section>
-
-  <section class="section panel" aria-labelledby="h-about">
-    <h2 id="h-about">About this directory</h2>
-    <p>An independent, curated guide to where prediction markets show up across TOKEN2049 week. It was compiled from the official TOKEN2049 programme, organiser pages, company announcements and other cited public sources. Every listing links back to its source.</p>
-    <p class="small muted">Last updated ${esc(fmtDate(D.site.last_updated))}. This is not live data: schedules and access details can change, so check the organiser link before travelling.</p>
-    ${curatorPanel()}
-  ${promoCard()}
-    <p style="margin-top:12px"><a href="#/about">How this directory is compiled →</a></p>
+  <section class="section split" aria-label="About and offer">
+    <div class="panel"><h2>About this guide</h2>
+      <p>An independent, curated guide to where prediction markets show up across TOKEN2049 week. Every listing links back to its source.</p>
+      <p class="small muted">Updated ${esc(fmtDate(D.site.last_updated))}. Schedules change, so check the organiser link before you travel.</p>
+      ${curatorPanel()}
+      <p class="small" style="margin:12px 0 0"><a href="#/about">How it’s compiled →</a></p></div>
+    ${promoCard()}
   </section>`;
+}
+
+/** A light, single-line-ish event row for lists (home, related, appearances). */
+function eventRow(e) {
+  const on = saved.has(e.id);
+  return `<article class="event-row r-${e.relevance}${on ? " is-saved" : ""}" data-id="${e.id}">
+    <div class="er-when"><span class="er-day">${esc(e.end_date ? dayRange(e) : dayOf(e.date).label.slice(0, 3) + " " + dayOf(e.date).label.slice(4, 6).trim())}</span><span class="er-time${e.start ? "" : " soft"}">${esc(e.start ? e.start : isAllDay(e) ? "All day" : "TBC")}</span></div>
+    <div class="er-main"><h3><a href="${evUrl(e)}">${esc(e.title)}</a></h3>
+      <p><i class="rel-dot dot-${e.relevance}" aria-hidden="true"></i><span class="visually-hidden">${esc(REL[e.relevance].label)}.</span> ${esc(e.venue)} · ${esc(ACCESS[e.access])}${e.status === "provisional" || e.status === "conflict" ? ` · <span class="warn-text">${esc(STATUS[e.status].label)}</span>` : ""}</p></div>
+    <div class="er-side">${saveBtn(e)}</div>
+  </article>`;
 }
 
 /** Home mix: round-robin across discovery groups so it isn't sorted by fame. */
@@ -855,13 +828,16 @@ function eventDetail(id) {
       <h1>${esc(e.title)}</h1>
       <p class="detail-when">${esc(e.end_date ? `${d.label.slice(0, 3)}–${dayOf(e.end_date).label}` : d.long)} · ${esc(timeLabel(e))} <span class="muted small">SGT</span></p>
       <p class="muted" style="margin:0">${esc(e.venue)}</p>
+      <div class="quick-actions">${saveBtn(e, true)}${srcs[0] ? `<a class="btn btn-primary" href="${esc(srcs[0].url)}" rel="noopener" target="_blank">${e.type === "official" ? "Agenda" : "Organiser"} ↗</a>` : ""}<span class="qa-access">${esc(ACCESS[e.access])}</span></div>
       ${e.status !== "verified" ? `<p class="notice${e.status === "listed" ? " info" : ""}" style="margin-top:14px"><strong>${esc(STATUS[e.status].label)}.</strong> ${esc(e.status_note || STATUS[e.status].desc)}</p>` : ""}
 
       <section><h2>Why it’s relevant</h2><p>${esc(e.why)}</p><p class="muted">${esc(e.summary)}</p></section>
 
       ${clashes.length || e.clash_note ? `<section><h2>Clashes</h2>
         ${e.clash_note ? `<p class="notice">${esc(e.clash_note)}</p>` : ""}
-        ${clashes.length ? `<p class="small muted">Overlaps ${plural(clashes.length, "other listing")}:</p><div class="event-list">${clashes.map((o) => eventCard(o, { compact: true })).join("")}</div>` : ""}</section>` : ""}
+        ${clashes.length ? (clashes.length > 3
+          ? `<details class="fold"><summary>Overlaps ${plural(clashes.length, "other listing")}: show them</summary><div class="row-list">${clashes.map((o) => eventRow(o)).join("")}</div></details>`
+          : `<p class="small muted">Overlaps ${plural(clashes.length, "other listing")}:</p><div class="row-list">${clashes.map((o) => eventRow(o)).join("")}</div>`) : ""}</section>` : ""}
 
       ${expectThere(e)}
 
@@ -1192,16 +1168,14 @@ const newChip = (g) => (g.isNew ? `<span class="chip chip-new">New</span>` : "")
 function goingCard(g, o = {}) {
   const line = g.person ? (g.person.role || g.company?.name || g.person.org_label || "") : g.ctypes.map((t) => CTYPE[t]).join(" · ");
   const best = g.recs.find((a) => a.attendance_status !== "official_speaker") || g.recs[0];
+  const main = g.statuses[0];
   const blurb = g.person?.why || best.evidence_summary;
-  const tags = [...new Set([...(g.roles.filter((r) => r !== "other").map((r) => AROLE[r])), ...g.ecos.filter((e) => e !== "independent").map((e) => ECO[e])])].slice(0, 3);
   return `<article class="card going-card${g.curator ? " is-curator" : ""}">
     <div class="gc-head"><span class="avatar${g.person ? "" : " sq"}" aria-hidden="true">${esc(initials(g.name))}</span>
       <div><h3><a href="${g.href}">${esc(g.name)}</a></h3><p class="org">${esc(line)}</p></div></div>
-    <div class="chip-row">${g.unverified ? `<span class="chip chip-warn" title="No public source link yet">Unverified</span>` : ""}${relChip(g.rel)}${g.statuses.map(evidenceChip).join("")}${newChip(g)}</div>
+    <div class="chip-row">${evidenceChip(main)}${g.statuses.length > 1 ? `<span class="chip chip-plain">+${g.statuses.length - 1} more</span>` : ""}${g.unverified ? `<span class="chip chip-warn" title="No public source link yet">Unverified</span>` : ""}${newChip(g)}</div>
     ${o.compact ? "" : `<p class="why">${esc(blurb)}</p>`}
-    ${tags.length && !o.compact ? `<p class="apps">${tags.map(esc).join(" · ")}</p>` : ""}
-    ${g.dates.length ? `<p class="apps">📍 ${g.dates.map((d) => esc(dayOf(d).label.slice(0, 3))).join(", ")}${g.events.length ? ` · ${plural(g.events.length, "event")}` : ""}</p>` : ""}
-    <div class="gc-actions"><a class="btn btn-small" href="${g.href}">Profile</a>${best.source_url ? `<a class="btn btn-small" href="${esc(best.source_url)}" target="_blank" rel="noopener">Proof / source ↗</a>` : ""}</div>
+    <p class="apps">${g.dates.length ? `📍 ${g.dates.map((d) => esc(dayOf(d).label.slice(0, 3))).join(", ")}` : "Days not stated"}${g.events.length ? ` · ${plural(g.events.length, "event")}` : ""}${best.source_url && !o.compact ? ` · <a class="proof" href="${esc(best.source_url)}" target="_blank" rel="noopener">Source ↗</a>` : ""}</p>
   </article>`;
 }
 
@@ -1218,11 +1192,11 @@ function going(parts, q) {
   ];
   return `<p class="eyebrow">Who’s going?</p>
   <h1>Who’s going to TOKEN2049?</h1>
-  <p class="lede">Prediction-market people, companies and adjacent organisations with public evidence that they’ll be around TOKEN2049 Singapore.</p>
-  <p class="notice info">This is <strong>not</strong> TOKEN2049’s official attendee list. It’s compiled from public attendance announcements, the official programme, sponsor and exhibitor listings, and side-event pages. Confirmed entries link to their evidence. Entries marked <strong>Unverified</strong> are research leads we haven’t sourced yet, so treat them as maybes. <a href="#/going?ver=confirmed">Show confirmed only</a>.</p>
+  <p class="lede">The prediction-market people and companies you can find in Singapore during TOKEN2049 week.</p>
+  <p class="notice info small">Not TOKEN2049’s official attendee list. Built from public announcements, the official programme, sponsor lists and event pages; every confirmed entry links to its source. <strong>Unverified</strong> means we haven’t found a source yet. <a href="#/going?ver=confirmed">Show confirmed only</a>.</p>
   <div class="stat-row">${stats.map(([v, l]) => `<div class="stat"><b>${v}</b><span>${esc(l)}</span></div>`).join("")}</div>
   <p class="small muted">Counts come straight from the ${D.att.length} public records (${D.going.filter((g) => g.unverified).length} unverified). Last verified ${esc(fmtDate(D.site.last_updated))}.</p>
-  <div class="chip-row" role="group" aria-label="Discover" style="margin:18px 0 6px">
+  <div class="chip-row chip-scroll" role="group" aria-label="Discover" style="margin:18px 0 6px">
     <a class="toggle" href="#/going" aria-pressed="${!q.get("g") && q.get("recent") !== "1"}">Everyone</a>
     <a class="toggle" href="#/going?recent=1" aria-pressed="${q.get("recent") === "1"}">✦ Recently confirmed <span class="n">${n((g) => g.isNew)}</span></a>
     ${DISCOVER.map(([k, l, fn]) => `<a class="toggle" href="#/going?g=${k}" aria-pressed="${q.get("g") === k}">${esc(l)} <span class="n">${n(fn)}</span></a>`).join("")}
@@ -1439,7 +1413,7 @@ function onSaveToggle(id, btn) {
     b.setAttribute("aria-label", `${on ? "Remove" : "Save"} ${e.title} ${on ? "from" : "to"} My schedule`);
     const span = b.querySelector("span");
     if (span) span.textContent = on ? "Saved to My schedule" : "Save to My schedule";
-    b.closest(".event-card")?.classList.toggle("is-saved", on);
+    b.closest(".event-card, .event-row")?.classList.toggle("is-saved", on);
   });
   updateCounts();
   if (on) maybeUnlockPromo();
@@ -1456,7 +1430,7 @@ function rerenderIfNeeded() {
     document.querySelectorAll("[data-save]").forEach((b) => {
       const on = saved.has(b.dataset.save);
       b.setAttribute("aria-pressed", on);
-      b.closest(".event-card")?.classList.toggle("is-saved", on);
+      b.closest(".event-card, .event-row")?.classList.toggle("is-saved", on);
       const span = b.querySelector("span");
       if (span) span.textContent = on ? "Saved to My schedule" : "Save to My schedule";
     });
@@ -1513,11 +1487,14 @@ document.addEventListener("click", (ev) => {
   const back = t.closest("[data-back]");
   if (back && navDepth > 0) { ev.preventDefault(); history.back(); return; }
   if (t.closest("[data-open-more]")) { document.getElementById("more-sheet").showModal(); return; }
+  const dd = document.querySelector(".nav-more[open]");
+  if (dd && !t.closest(".nav-more")) dd.removeAttribute("open");
   const more = document.getElementById("more-sheet");
   if (more.open && (t === more || t.closest("#more-sheet [data-close]") || t.closest("#more-sheet a"))) more.close();
 });
 
 window.addEventListener("hashchange", () => { navDepth++; render(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") document.querySelector(".nav-more[open]")?.removeAttribute("open"); });
 window.addEventListener("storage", (e) => { if (e.key?.startsWith("tpm2049:saved")) rerenderIfNeeded(); });
 
 (async function init() {
