@@ -52,6 +52,36 @@
       "dates": "22–23 October 2026",
       "place": "Hudson Yards, New York",
       "url": "https://nextpredict.io/summits/the-worlds-prediction-markets-summit/"
+    },
+    "community": {
+      "url": "https://nextpredict.io/community/",
+      "blurb": "A curated network of operators, traders, investors, builders and industry experts working on prediction markets.",
+      "links": [
+        {
+          "id": "whatsapp",
+          "label": "WhatsApp",
+          "url": "https://go.next.io/nextpredict",
+          "cta": "Join the WhatsApp community"
+        },
+        {
+          "id": "telegram",
+          "label": "Telegram",
+          "url": "https://telegram.me/nextpredictcommunity",
+          "cta": "Join on Telegram"
+        },
+        {
+          "id": "linkedin",
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/groups/26300069/",
+          "cta": "Join the LinkedIn group"
+        },
+        {
+          "id": "x",
+          "label": "X",
+          "url": "https://x.com/nextpredictio",
+          "cta": "Follow @nextpredictio"
+        }
+      ]
     }
   },
   "repo_url": "https://github.com/stuatnext/TOKEN2049-Prediction-Markets",

@@ -162,6 +162,56 @@ function eventCard(e, o = {}) {
   </article>`;
 }
 
+/** One row of the calendar programme: time column, kind marker on the spine, event card. */
+function progItem(e, o = {}) {
+  const k = kindOf(e), isSaved = saved.has(e.id);
+  const clashSaved = (D.clash.get(e.id) || []).filter((x) => saved.has(x.id));
+  const clash = isSaved && clashSaved.length;
+  const time = e.start
+    ? `<span class="t-start">${esc(e.start)}</span><span class="t-end">${e.end ? `to ${esc(e.end)}` : "end TBC"}</span>`
+    : `<span class="t-note">${esc(isAllDay(e) ? (e.time_note || "All day") : "TBC")}</span>`;
+  return `<article class="prog-item k-${k} r-${e.relevance}${isSaved ? " is-saved" : ""}${clash ? " is-clash" : ""}" data-id="${e.id}">
+    <div class="prog-time">${time}${e.end_date ? `<span class="t-range">${esc(dayRange(e))}</span>` : ""}</div>
+    <div class="prog-spine" aria-hidden="true"><i></i></div>
+    <div class="prog-card">
+      <p class="prog-eyebrow"><span class="prog-kind"><span aria-hidden="true">${KIND_ICON[k]}</span>${esc(KIND[k])}</span>${formatOf(e) ? `<span class="prog-format">${esc(formatOf(e))}</span>` : ""}</p>
+      <h3><a href="${evUrl(e)}">${esc(e.title)}</a></h3>
+      <p class="prog-venue">${esc(e.venue)}</p>
+      <p class="prog-blurb">${esc(e.why)}</p>
+      <div class="chip-row">${relChip(e.relevance)}${accessChip(e)}${e.status === "provisional" || e.status === "conflict" ? statusChip(e) : ""}${updatedBadge(e)}</div>
+      ${clash ? `<p class="clash-line">⚠ Clashes with ${clashSaved.map((x) => `<a href="${evUrl(x)}">${esc(x.title)}</a> (${esc(timeLabel(x))})`).join(", ")}</p>` : ""}
+      <div class="prog-save">${saveBtn(e)}</div>
+    </div>
+  </article>`;
+}
+
+const DAYPART = [["Morning", 0], ["Afternoon", 12 * 60], ["Evening", 17 * 60]];
+const daypartOf = (min) => DAYPART.filter(([, from]) => min >= from).pop()[0];
+
+/** Calendar agenda laid out like a printed conference programme. */
+function programme(list, day) {
+  const allDay = list.filter((e) => isAllDay(e));
+  const unknown = list.filter((e) => !e.start && !isAllDay(e));
+  const groups = clusters(list);
+  const sect = (title, sub, body, cls = "") => `<section class="prog-sect ${cls}"><h3 class="prog-sect-head"><span>${esc(title)}</span>${sub ? `<small>${sub}</small>` : ""}</h3>${body}</section>`;
+  let html = "";
+  if (allDay.length) html += sect("All day", `${plural(allDay.length, "listing")}${allDay.some((e) => e.end_date) ? " · includes expo hours" : ""}`, allDay.map((e) => progItem(e)).join(""), "is-allday");
+  let part = null, buf = "", count = 0;
+  const flush = () => { if (part) html += sect(part, plural(count, "listing"), buf); buf = ""; count = 0; };
+  for (const g of groups) {
+    const s = Math.min(...g.map((e) => toMin(e.start)));
+    const p = daypartOf(s);
+    if (p !== part) { flush(); part = p; }
+    count += g.length;
+    if (g.length === 1) { buf += progItem(g[0]); continue; }
+    const en = Math.max(...g.map((e) => toMin(e.end) ?? toMin(e.start)));
+    buf += `<div class="prog-overlap" role="group" aria-label="${g.length} overlapping events"><p class="prog-ov-head"><span>⚠ ${g.length} at once</span> ${fmtMin(s)}–${fmtMin(en)}</p>${g.map((e) => progItem(e)).join("")}</div>`;
+  }
+  flush();
+  if (unknown.length) html += sect("Time not yet published", plural(unknown.length, "listing"), unknown.map((e) => progItem(e)).join(""), "is-unknown");
+  return `<div class="programme">${html}</div>`;
+}
+
 /** Agenda for one day: all-day block, overlap clusters, then unknown-time items. */
 function agenda(list, day, o = {}) {
   const allDay = list.filter((e) => isAllDay(e));
@@ -231,7 +281,7 @@ function setQuery(q, { replace = true } = {}) {
   else location.hash = hash;
 }
 
-const ROUTES = { "": home, start, week, calendar, events, going, people, companies, stack, schedule, about };
+const ROUTES = { "": home, start, week, calendar, events, going, people, companies, stack, schedule, about, nextpredict };
 
 function render({ keepScroll = false } = {}) {
   const { parts, q } = parseHash();
@@ -320,6 +370,7 @@ function home(_, q) {
     ["🧭", "New here?", "A two-minute guide and a shortlist built for you.", "#/start", "Start here"],
   ];
   return `
+  ${npBanner()}
   <section class="hero">
     <p class="eyebrow">Singapore · 5–9 October 2026 · Unofficial guide</p>
     <h1>Where <span class="hl">prediction markets</span> happen at TOKEN2049</h1>
@@ -623,7 +674,8 @@ function calendar(parts, q) {
   <h1 class="page-title-sm">Calendar</h1>
   <nav class="day-tabs" aria-label="Choose a day">${D.days.map((x) => {
     const c = eventsOn(x.date).filter(filt).length;
-    return `<a class="day-tab" href="#/calendar/${x.slug}?${qs({})}" ${x.date === d.date ? 'aria-current="page"' : ""}><span>${esc(x.label.slice(0, 3))}</span><b>${x.label.slice(4, 6).trim()}</b><span class="n">${c}</span></a>`;
+    const main = D.site.main_days.includes(x.date);
+    return `<a class="day-tab${main ? " is-main" : ""}" href="#/calendar/${x.slug}?${qs({})}" ${x.date === d.date ? 'aria-current="page"' : ""}><span class="dt-wd">${esc(x.label.slice(0, 3))}</span><b>${x.label.slice(4, 6).trim()}</b><span class="n">${c}<span class="n-word"> ${c === 1 ? "listing" : "listings"}</span></span>${main ? `<span class="dt-main">Conference</span>` : ""}</a>`;
   }).join("")}</nav>
   <div class="cal-toolbar">
     <div class="segmented" role="group" aria-label="Layout">
@@ -644,9 +696,15 @@ function calendar(parts, q) {
     </details>
     ${nActive ? `<a class="cal-clear" href="${clearHref}" data-calfilter>Clear ${plural(nActive, "filter")}</a>` : ""}
   </section>
-  <h2 class="visually-hidden">${esc(d.long)}</h2>
-  <p class="day-intro"><strong>${esc(d.long)}</strong> · ${esc(d.note)} · ${plural(list.length, "listing")}${show === "pm" ? " (adjacent hidden)" : ""}${nActive ? ` · ${plural(nActive, "filter")} on` : ""} · times in SGT</p>
-  ${!list.length ? `<p class="empty">${show === "saved" && !nActive ? "You haven’t saved anything on this day yet." : nActive ? `Nothing on this day matches these filters. <a href="${clearHref}" data-calfilter>Clear filters</a>` : "Nothing listed for this day."}</p>` : viewMode === "timeline" ? timeline(list, d.date, now) : agenda(list, d.date, { clashSaved: true })}
+  <header class="day-hero">
+    <div class="day-leaf" aria-hidden="true"><span class="dl-month">Oct</span><span class="dl-num">${d.label.slice(4, 6).trim()}</span><span class="dl-wd">${esc(d.label.slice(0, 3))}</span></div>
+    <div class="day-hero-text">
+      <h2>${esc(d.long)}</h2>
+      <p class="day-note">${esc(d.note)}</p>
+      <p class="day-stats"><span>${plural(list.length, "listing")}</span>${Object.keys(KIND).map((k) => { const n = list.filter((e) => kindOf(e) === k).length; return n ? `<span class="ds-k k-${k}"><i aria-hidden="true"></i>${n} ${esc(n === 1 ? KIND_SHORT[k].toLowerCase() : KIND_SHORT[k].toLowerCase() + "s")}</span>` : ""; }).join("")}${show === "pm" ? "<span>adjacent hidden</span>" : ""}${nActive ? `<span>${plural(nActive, "filter")} on</span>` : ""}<span>times in SGT</span></p>
+    </div>
+  </header>
+  ${!list.length ? `<p class="empty">${show === "saved" && !nActive ? "You haven’t saved anything on this day yet." : nActive ? `Nothing on this day matches these filters. <a href="${clearHref}" data-calfilter>Clear filters</a>` : "Nothing listed for this day."}</p>` : viewMode === "timeline" ? timeline(list, d.date, now) : programme(list, d.date)}
   <div class="legend" style="margin-top:14px">${Object.entries(REL).map(([k, v]) => `<span><i class="rel-dot dot-${k}"></i>${v.label}</span>`).join("")}<span>★ saved</span><span style="color:var(--clash)">▌ clash between saved</span></div>`;
 }
 afterRender.calendar = () => {
@@ -1352,12 +1410,58 @@ function whereToFind(recs, entityName) {
 
 // ---------------------------------------------------------------- PROMO
 function maybeUnlockPromo() {}
+const COMMUNITY_MARK = { whatsapp: "WA", telegram: "TG", linkedin: "in", x: "𝕏" };
+const communityLinks = () => {
+  const M = D.site.curator.community;
+  return M ? `<div class="np-community">${M.links.map((l) => `<a class="np-comm np-${l.id}" href="${esc(l.url)}" target="_blank" rel="noopener"><span class="np-mark" aria-hidden="true">${COMMUNITY_MARK[l.id] || "↗"}</span><span>${esc(l.label)}</span></a>`).join("")}</div>` : "";
+};
+/** Slim NEXTPredict strip at the very top of the home page. */
+function npBanner() {
+  const P = D.site.promo, C = D.site.curator;
+  if (!P) return "";
+  return `<aside class="np-banner" aria-label="From the curators: NEXTPredict">
+    <div class="np-banner-main">
+      <span class="np-logo">NEXT<b>Predict</b></span>
+      <p><strong>${esc(C.summit.name)}</strong> · ${esc(C.summit.dates)} · ${esc(C.summit.place)}<span class="np-sub">The prediction-markets summit, from the team behind this guide. Use code <span class="mono">${esc(P.code)}</span> at checkout.</span></p>
+    </div>
+    <div class="np-banner-actions"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Get tickets ↗</a><a class="btn" href="#/nextpredict">Join the community</a></div>
+  </aside>`;
+}
+function nextpredict() {
+  const P = D.site.promo, C = D.site.curator, M = C.community;
+  setMeta("NEXTPredict", `${C.summit.name}, ${C.summit.dates}, and the NEXTPredict prediction-market community on WhatsApp, Telegram, LinkedIn and X.`);
+  return `
+  <section class="np-hero">
+    <p class="eyebrow">From the curators of this guide</p>
+    <h1><span class="np-logo">NEXT<b>Predict</b></span></h1>
+    <p class="lede">NEXTPredict brings together the people building, trading and regulating prediction markets. This TOKEN2049 guide is ours, and so is ${esc(C.summit.name)}.</p>
+  </section>
+  <section class="np-summit">
+    <div class="np-summit-date" aria-hidden="true"><span>Oct</span><b>22–23</b><span>2026</span></div>
+    <div>
+      <p class="eyebrow">The summit</p>
+      <h2>${esc(C.summit.name)}</h2>
+      <p class="np-where">${esc(C.summit.dates)} · ${esc(C.summit.place)}</p>
+      <p>Prediction markets’ own summit, two weeks before the US midterms. Use code <span class="mono">${esc(P.code)}</span> at checkout.</p>
+      <div class="btn-row"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Get your discounted ticket ↗</a><button type="button" class="btn" data-copy="${esc(P.code)}">Copy code ${esc(P.code)}</button><a class="btn" href="${esc(C.summit.url)}" target="_blank" rel="noopener">About the summit ↗</a></div>
+    </div>
+  </section>
+  ${M ? `<section class="section" id="community">
+    <div class="section-head"><h2>Join the community</h2></div>
+    <p class="muted">${esc(M.blurb)}</p>
+    <div class="np-comm-grid">${M.links.map((l) => `<a class="np-comm-card np-${l.id}" href="${esc(l.url)}" target="_blank" rel="noopener"><span class="np-mark" aria-hidden="true">${COMMUNITY_MARK[l.id] || "↗"}</span><strong>${esc(l.label)}</strong><span>${esc(l.cta)} ↗</span></a>`).join("")}</div>
+    <p class="small" style="margin-top:12px"><a href="${esc(M.url)}" target="_blank" rel="noopener">All NEXTPredict communities ↗</a></p>
+  </section>` : ""}
+  <section class="section">${curatorPanel()}</section>
+  <p class="small muted">${esc(P.disclosure)}</p>`;
+}
 function promoCard(compact = false) {
   const P = D.site.promo, C = D.site.curator;
   if (!P) return "";
   return `<div class="promo" id="promo"><p class="eyebrow">🎁 NEXTPredict offer</p><h3>${esc(C.summit.name)}: ${esc(C.summit.dates)}, ${esc(C.summit.place)}</h3>
     ${compact ? "" : `<p>Prediction markets’ own summit, two weeks before the US midterms. Use code <span class="mono">${esc(P.code)}</span> at checkout.</p>`}
     <div class="btn-row"><a class="btn btn-accent" href="${esc(P.url)}" target="_blank" rel="noopener">Get your NEXTPredict NYC discount ↗</a>${compact ? "" : `<button type="button" class="btn" data-copy="${esc(P.code)}">Copy code ${esc(P.code)}</button><a class="btn" href="${esc(C.summit.url)}" target="_blank" rel="noopener">About the summit</a>`}</div>
+    ${compact ? "" : `<p class="np-comm-label">Join the NEXTPredict community</p>${communityLinks()}`}
     <p class="small muted" style="margin:10px 0 0">${esc(P.disclosure)}</p></div>`;
 }
 function curatorPanel() {
@@ -1556,6 +1660,6 @@ window.addEventListener("storage", (e) => { if (e.key?.startsWith("tpm2049:saved
     return;
   }
   document.querySelector("[data-footer-meta]").innerHTML =
-    `Last updated ${esc(fmtDate(D.site.last_updated))} · Times in ${esc(D.site.timezone)} · Curated by <a href="${esc(D.site.curator.linkedin)}" rel="noopener" target="_blank">${esc(D.site.curator.person)}</a>, ${curator()} · <a href="${esc(D.site.curator.summit.url)}" rel="noopener" target="_blank">${esc(D.site.curator.summit.name)}</a> · <a href="#/about">How this is compiled</a> · <a href="${issueUrl("missing-event.yml")}" rel="noopener">Submit something we missed</a>`;
+    `Last updated ${esc(fmtDate(D.site.last_updated))} · Times in ${esc(D.site.timezone)} · Curated by <a href="${esc(D.site.curator.linkedin)}" rel="noopener" target="_blank">${esc(D.site.curator.person)}</a>, ${curator()} · <a href="${esc(D.site.curator.summit.url)}" rel="noopener" target="_blank">${esc(D.site.curator.summit.name)}</a> · <a href="#/nextpredict">Join the NEXTPredict community</a> · <a href="#/about">How this is compiled</a> · <a href="${issueUrl("missing-event.yml")}" rel="noopener">Submit something we missed</a>`;
   render();
 })();
