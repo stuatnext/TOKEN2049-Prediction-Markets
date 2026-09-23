@@ -3,7 +3,7 @@
 import {
   esc, initials, toMin, fmtMin, fmtDuration, eventDays, isTimed, isAllDay, timeLabel, sortKey,
   overlaps, clusters, sgtNow, icsBlocker, buildICS, download, saved, norm, matches,
-} from "./util.js";
+} from "./util.js?v=dev";
 
 // ---------------------------------------------------------------- labels
 const REL = {
