@@ -16,6 +16,14 @@ const TYPE = {
   official: "TOKEN2049 session", "side-event": "Side event", forum: "Forum / conference", meetup: "Meetup",
   networking: "Party / networking", "closed-door": "Closed-door / institutional", exhibition: "Exhibition / booth", other: "Other",
 };
+/** Top-level kind: every listing is a conference session, an exhibitor booth or a side event. */
+const KIND = { session: "Conference session", booth: "Exhibitor booth", side: "Side event" };
+const KIND_SHORT = { session: "Session", booth: "Booth", side: "Side event" };
+const KIND_ICON = { session: "🎤", booth: "🏢", side: "🥂" };
+const kindOf = (e) => (e.type === "official" ? "session" : e.type === "exhibition" ? "booth" : "side");
+/** Side-event format (Forum, Party…), or null when the kind already says it all. */
+const formatOf = (e) => (kindOf(e) === "side" && e.type !== "side-event" ? TYPE[e.type] : null);
+const kindLine = (e) => [KIND[kindOf(e)], formatOf(e)].filter(Boolean).join(" · ");
 const ACCESS = {
   open: "Open", registration: "Registration required", approval: "Approval required", invite: "Invite only",
   waitlist: "Waitlist", "sold-out": "Sold out", badge: "TOKEN2049 pass", unknown: "Status unknown",
@@ -89,7 +97,7 @@ async function loadData() {
   }
   for (const e of D.events) {
     e._hay = norm([
-      e.title, e.summary, e.why, e.venue, e.time_note, e.access_note, TYPE[e.type], ACCESS[e.access], REL[e.relevance].label,
+      e.title, e.summary, e.why, e.venue, e.time_note, e.access_note, TYPE[e.type], KIND[kindOf(e)], ACCESS[e.access], REL[e.relevance].label,
       STATUS[e.status].label, ...eventDays(e).map((d) => `${D.dayBy.get(d).long} ${D.dayBy.get(d).label}`),
       ...e.audiences.map((a) => AUD[a]), ...e.ecosystems.map((a) => ECO[a]), ...e.topics.map((t) => TOPIC[t] || t),
       ...e.stack_layers.map((l) => D.layer.get(l)?.name), ...e.also_listed,
@@ -123,7 +131,8 @@ const eventsOn = (iso) => D.events.filter((e) => eventDays(e).includes(iso)).sor
 const fmtDate = (iso) => new Date(iso + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 const plural = (n, one, many = one + "s") => `${n} ${n === 1 ? one : many}`;
 const relChip = (r) => `<span class="chip rel rel-${r}">${REL[r].label}</span>`;
-const typeChip = (e) => (e.type === "official" ? `<span class="chip chip-official">TOKEN2049 session</span>` : `<span class="chip">${esc(TYPE[e.type])}</span>`);
+const kindChip = (e, short = false) => { const k = kindOf(e); return `<span class="chip chip-kind kind-${k}"><span aria-hidden="true">${KIND_ICON[k]}</span>${esc(short ? KIND_SHORT[k] : KIND[k])}</span>`; };
+const typeChip = (e) => `${kindChip(e)}${formatOf(e) ? `<span class="chip">${esc(formatOf(e))}</span>` : ""}`;
 const accessChip = (e) => `<span class="chip chip-outline chip-access-${e.access}">${esc(ACCESS[e.access])}</span>`;
 const statusChip = (e) =>
   e.status === "verified" ? "" : `<span class="chip ${e.status === "listed" ? "chip-outline" : "chip-warn"}">${esc(STATUS[e.status].label)}</span>`;
@@ -143,12 +152,12 @@ function eventCard(e, o = {}) {
     <div class="body">
       <div class="when"><span class="time">${esc(timeLabel(e))}${esc(multi)}</span>${o.showDay === false ? "" : `<span class="day">${esc(dayOf(e.date).label)}</span>`}</div>
       <h3><a href="${evUrl(e)}">${esc(e.title)}</a></h3>
-      <p class="venue">${esc(e.venue)} · ${esc(TYPE[e.type])}</p>
+      <p class="venue">${esc(e.venue)}${formatOf(e) ? ` · ${esc(formatOf(e))}` : ""}</p>
     </div>
     <div class="side">${saveBtn(e)}</div>
     ${o.compact ? "" : `<p class="blurb">${esc(e.why)}</p>`}
     ${o.reasons?.length ? `<div class="reasons">${o.reasons.map((r) => `<span class="chip">${esc(r)}</span>`).join("")}</div>` : ""}
-    <div class="foot"><div class="chip-row">${relChip(e.relevance)}${accessChip(e)}${e.status === "provisional" || e.status === "conflict" ? statusChip(e) : ""}${updatedBadge(e)}</div></div>
+    <div class="foot"><div class="chip-row">${kindChip(e)}${relChip(e.relevance)}${accessChip(e)}${e.status === "provisional" || e.status === "conflict" ? statusChip(e) : ""}${updatedBadge(e)}</div></div>
     ${clashSaved.length ? `<p class="clash-line">⚠ Clashes with ${clashSaved.map((x) => `<a href="${evUrl(x)}">${esc(x.title)}</a> (${esc(timeLabel(x))})`).join(", ")}</p>` : ""}
   </article>`;
 }
@@ -370,7 +379,7 @@ function eventRow(e) {
   return `<article class="event-row r-${e.relevance}${on ? " is-saved" : ""}" data-id="${e.id}">
     <div class="er-when"><span class="er-day">${esc(e.end_date ? dayRange(e) : dayOf(e.date).label.slice(0, 3) + " " + dayOf(e.date).label.slice(4, 6).trim())}</span><span class="er-time${e.start ? "" : " soft"}">${esc(e.start ? e.start : isAllDay(e) ? "All day" : "TBC")}</span></div>
     <div class="er-main"><h3><a href="${evUrl(e)}">${esc(e.title)}</a></h3>
-      <p><i class="rel-dot dot-${e.relevance}" aria-hidden="true"></i><span class="visually-hidden">${esc(REL[e.relevance].label)}.</span> ${esc(e.venue)} · ${esc(ACCESS[e.access])}${e.status === "provisional" || e.status === "conflict" ? ` · <span class="warn-text">${esc(STATUS[e.status].label)}</span>` : ""}</p></div>
+      <p>${kindChip(e, true)} <i class="rel-dot dot-${e.relevance}" aria-hidden="true"></i><span class="visually-hidden">${esc(REL[e.relevance].label)}.</span> ${esc(e.venue)} · ${esc(ACCESS[e.access])}${e.status === "provisional" || e.status === "conflict" ? ` · <span class="warn-text">${esc(STATUS[e.status].label)}</span>` : ""}</p></div>
     <div class="er-side">${saveBtn(e)}</div>
   </article>`;
 }
@@ -481,12 +490,14 @@ function start(_, q) {
     ["Clearing & settlement", "The back-office process that confirms trades, holds collateral and pays out. It is familiar from futures markets."],
     ["Margin vs full collateral", "Most prediction markets require you to post your maximum possible loss up front. Margin would let institutions use less capital, which is a live regulatory question."],
     ["White-label", "Software another business can rebrand and run as its own prediction market."],
+    ["Conference session", "A talk, panel or keynote on the official TOKEN2049 programme, on a stage at Marina Bay Sands. Needs a TOKEN2049 pass."],
+    ["Exhibitor booth", "A company’s stand on the TOKEN2049 expo floor during the main conference days. Needs a TOKEN2049 pass."],
     ["Side event", "Anything around TOKEN2049 that isn’t on the official programme: parties, forums, breakfasts, meetups. Many need approval."],
   ];
   const places = [
-    ["🎤", "Official sessions", "Wed–Thu on the TOKEN2049 stages at Marina Bay Sands. Needs a TOKEN2049 pass.", "#/events?type=official", n((e) => e.type === "official")],
-    ["🏢", "The expo floor", "Prediction-market sponsors with booths during the main conference days.", "#/events?type=exhibition", n((e) => e.type === "exhibition")],
-    ["🥂", "Side events", "Forums, parties and closed-door rooms all week. Many need approval.", "#/events?type=side-event,forum,meetup,networking,closed-door", n((e) => e.type !== "official" && e.type !== "exhibition")],
+    ["🎤", "Official sessions", "Wed–Thu on the TOKEN2049 stages at Marina Bay Sands. Needs a TOKEN2049 pass.", "#/events?kind=session", n((e) => kindOf(e) === "session")],
+    ["🏢", "The expo floor", "Prediction-market sponsors with booths during the main conference days.", "#/events?kind=booth", n((e) => kindOf(e) === "booth")],
+    ["🥂", "Side events", "Forums, parties and closed-door rooms all week. Many need approval.", "#/events?kind=side", n((e) => kindOf(e) === "side")],
     ["🧱", "The stack", "Data, clearing, risk and market-making firms that make the markets work.", "#/stack", D.stack.length + " layers"],
   ];
   const ecos = [
@@ -668,7 +679,8 @@ function timeline(list, day, now) {
 const FILTERS = [
   { key: "rel", label: "Relevance", opts: REL, get: (e) => [e.relevance], lab: (v) => v.label },
   { key: "day", label: "Day", opts: null, get: (e) => eventDays(e) },
-  { key: "type", label: "Event type", opts: TYPE, get: (e) => [e.type] },
+  { key: "kind", label: "Kind", opts: KIND, get: (e) => [kindOf(e)] },
+  { key: "type", label: "Side-event format", opts: Object.fromEntries(Object.entries(TYPE).filter(([k]) => !["official", "exhibition", "side-event"].includes(k))), get: (e) => [e.type] },
   { key: "aud", label: "Audience", opts: AUD, get: (e) => e.audiences },
   { key: "eco", label: "Ecosystem", opts: ECO, get: (e) => e.ecosystems },
   { key: "acc", label: "Access", opts: ACCESS, get: (e) => [e.access] },
@@ -676,7 +688,7 @@ const FILTERS = [
   { key: "topic", label: "Topic", opts: TOPIC, get: (e) => e.topics, hidden: true },
 ];
 const filterOpts = (f) => (f.key === "day" ? Object.fromEntries(D.days.map((d) => [d.date, d.label])) : f.opts);
-const optLabel = (f, k) => { const v = filterOpts(f)[k]; return f.lab ? f.lab(v) : v; };
+const optLabel = (f, k) => { const v = filterOpts(f)[k] ?? (f.key === "type" ? TYPE[k] : k); return f.lab ? f.lab(v) : v; };
 const selected = (q) => Object.fromEntries(FILTERS.map((f) => [f.key, (q.get(f.key) || "").split(",").filter(Boolean)]));
 
 function applyFilters(q) {
@@ -823,7 +835,7 @@ function eventDetail(id) {
   return `<a class="back-link" href="#/events" data-back>← Back</a>
   <div class="detail">
     <article>
-      <div class="chip-row">${relChip(e.relevance)}${typeChip(e)}${e.official && e.type !== "official" ? `<span class="chip chip-official">TOKEN2049 official</span>` : ""}${statusChip(e)}${updatedBadge(e)}</div>
+      <div class="chip-row">${typeChip(e)}${relChip(e.relevance)}${e.official && e.type !== "official" ? `<span class="chip chip-official">TOKEN2049 official</span>` : ""}${statusChip(e)}${updatedBadge(e)}</div>
       <h1>${esc(e.title)}</h1>
       <p class="detail-when">${esc(e.end_date ? `${d.label.slice(0, 3)}–${dayOf(e.end_date).label}` : d.long)} · ${esc(timeLabel(e))} <span class="muted small">SGT</span></p>
       <p class="muted" style="margin:0">${esc(e.venue)}</p>
@@ -863,7 +875,7 @@ function eventDetail(id) {
           <dt>When</dt><dd>${esc(e.end_date ? dayRange(e) : d.label)}<br><span class="mono">${esc(timeLabel(e))}</span> SGT</dd>
           <dt>Where</dt><dd>${esc(e.venue)}${map ? `<br><a href="https://www.google.com/maps/search/?api=1&query=${map}" rel="noopener" target="_blank">Google Maps</a> · <a href="https://maps.apple.com/?q=${map}" rel="noopener" target="_blank">Apple Maps</a>` : ""}</dd>
           <dt>Access</dt><dd>${esc(ACCESS[e.access])}<span class="def">${esc(e.access_note || "")}</span></dd>
-          <dt>Type</dt><dd>${esc(TYPE[e.type])}</dd>
+          <dt>Kind</dt><dd>${esc(kindLine(e))}</dd>
           <dt>Relevance</dt><dd>${esc(REL[e.relevance].label)}<span class="def">${esc(REL[e.relevance].desc)}</span></dd>
           <dt>Verification</dt><dd>${esc(STATUS[e.status].label)}<span class="def">${esc(e.status_note || STATUS[e.status].desc)}</span></dd>
         </dl>

@@ -49,11 +49,25 @@
     "note": "Official side-event directory. Recheck close to the event because listings can change."
   },
   {
+    "id": "src-perps-institutional-luma",
+    "name": "Perps × Institutional: Trading, Liquidity & the Onchain Economy (Luma)",
+    "type": "Organiser / event page",
+    "url": "https://luma.com/keq5yo5b",
+    "note": "Organiser registration page, hosted by lil room. Wednesday 7 October, 16:00–19:40, Singapore. Registration is subject to host approval."
+  },
+  {
     "id": "src-dexpal",
     "name": "TOKEN2049 side events on Dexpal",
     "type": "Event directory",
     "url": "https://events.dexpal.io/token2049",
-    "note": "Side-event discovery and access status."
+    "note": "Community-run directory of TOKEN2049 week side events (about 440 listed), with access status. Its footer says it is an unofficial community guide, not affiliated with TOKEN2049. The official side-event directory is TOKEN2049 Week."
+  },
+  {
+    "id": "src-dexpal-perps-institutional",
+    "name": "Perps × Institutional on Dexpal",
+    "type": "Event directory",
+    "url": "https://events.dexpal.io/token2049?event=T2049-221",
+    "note": "Dexpal listing for this event (community-run directory, not affiliated with TOKEN2049)."
   },
   {
     "id": "src-haruko-event",
