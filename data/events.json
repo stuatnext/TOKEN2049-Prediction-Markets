@@ -2803,19 +2803,19 @@
   {
     "id": "reppo-gm-ai",
     "legacy_id": "",
-    "title": "gm AI v2: Open Reinforcement Learning via Prediction Markets (Reppo)",
+    "title": "gm AI v2 by 0xJeff, BlockRun, CodecFlow, Dolphin, Kite, OpenServ, Reppo",
     "date": "2026-10-08",
     "end_date": null,
-    "start": null,
-    "end": null,
-    "time_note": "Time TBC",
-    "venue": "Singapore (venue to confirm)",
+    "start": "13:20",
+    "end": "17:15",
+    "time_note": null,
+    "venue": "Singapore (address shared after registration)",
     "map_query": null,
     "type": "side-event",
     "official": false,
     "relevance": "wildcard",
-    "access": "unknown",
-    "access_note": "Check the organiser listing",
+    "access": "approval",
+    "access_note": "Approval required",
     "audiences": [
       "builders",
       "founders",
@@ -2829,13 +2829,13 @@
     "stack_layers": [
       "oracle"
     ],
-    "summary": "Reppo, which uses prediction markets to curate AI training data, is reported to be presenting “Open Reinforcement Learning via Prediction Markets” at gm AI v2.",
+    "summary": "Agentic-AI afternoon co-hosted by 0xJeff, BlockRun, CodecFlow, Dolphin, Kite, OpenServ and Reppo: an Agentic Economy Outlook 2026 briefing, six AI product showcases and a book launch. Reppo, which uses onchain prediction markets to curate AI training data, presents “Open Reinforcement Learning via Prediction Markets”.",
     "why": "The strange and interesting intersection of prediction markets and AI training.",
     "questions": [],
     "people": [
       {
         "id": "rg-reppo",
-        "role": "listed"
+        "role": "speaker"
       }
     ],
     "companies": [
@@ -2844,12 +2844,20 @@
         "role": "host"
       }
     ],
-    "also_listed": [],
+    "also_listed": [
+      "0xJeff",
+      "BlockRun",
+      "CodecFlow",
+      "Dolphin",
+      "Kite",
+      "OpenServ"
+    ],
     "sources": [
+      "src-gm-ai-luma",
       "src-reppo"
     ],
-    "status": "provisional",
-    "status_note": "Reported in our sweep. The organiser page hasn’t been linked yet, so confirm before going.",
+    "status": "listed",
+    "status_note": "Organiser Luma page.",
     "clash_note": null,
     "last_updated": "2026-09-23"
   },

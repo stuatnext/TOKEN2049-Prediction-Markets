@@ -1357,9 +1357,11 @@
     "org_label": "Reppo",
     "role": "Core contributor, Reppo",
     "group": "builders",
-    "why": "Reppo core contributor, reported to be presenting “Open Reinforcement Learning via Prediction Markets” at gm AI v2.",
-    "sources": [],
-    "note": "Unverified lead: no public source link yet.",
+    "why": "Reppo core contributor, listed as a speaker presenting “Open Reinforcement Learning via Prediction Markets” at gm AI v2.",
+    "sources": [
+      "src-gm-ai-luma"
+    ],
+    "note": null,
     "last_updated": "2026-09-23",
     "roles": [
       "builder"
