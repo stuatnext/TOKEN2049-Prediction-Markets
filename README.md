@@ -19,6 +19,9 @@ data/stack.json            The 10 layers of the prediction-market stack
 data/sources.json          Every source link
 data/attendance.json       Who's Going evidence records (one per piece of evidence)
 data/site.json             Site settings: last-updated date, days, curator, promo, "still checking" list
+manifest.webmanifest       Lets phones add the site to the home screen
+sw.js                      Offline helper (network first, saved copy when offline)
+assets/icons/              Home-screen icons
 scripts/validate-data.mjs  Checks the data files for mistakes
 .github/ISSUE_TEMPLATE/    "Suggest a missing event" and "Report a correction" forms
 DATA_GUIDE.md              How to add or change an event, person or company

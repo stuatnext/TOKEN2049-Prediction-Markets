@@ -18,6 +18,12 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="PM @ TOKEN">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@500;600&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -92,10 +98,20 @@
       <a href="#/stack">The prediction-market stack</a>
       <a href="#/schedule">My schedule</a>
       <a href="#/about">About &amp; sources</a>
+      <button type="button" class="sheet-link" data-a2hs-open>📲 Add to home screen</button>
     </nav>
   </dialog>
 
   <div class="toast" role="status" aria-live="polite" id="toast" hidden></div>
+
+  <aside class="a2hs" id="a2hs" role="dialog" aria-labelledby="a2hs-title" hidden>
+    <span class="a2hs-icon" aria-hidden="true"><i></i></span>
+    <div>
+      <p><strong id="a2hs-title">Add this guide to your home screen</strong><span data-a2hs-text>One tap to open it during TOKEN week, and it works on patchy conference Wi-Fi.</span></p>
+      <div class="a2hs-actions" data-a2hs-actions></div>
+    </div>
+    <button type="button" class="a2hs-close" data-a2hs-close aria-label="Dismiss">✕</button>
+  </aside>
 
   <footer class="site-footer">
     <div class="wrap footer-inner">

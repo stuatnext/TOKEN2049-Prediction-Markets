@@ -1814,6 +1814,51 @@ window.addEventListener("hashchange", () => { navDepth++; render(); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") document.querySelector(".nav-more[open]")?.removeAttribute("open"); });
 window.addEventListener("storage", (e) => { if (e.key?.startsWith("tpm2049:saved")) rerenderIfNeeded(); });
 
+// ---------------------------------------------------------------- ADD TO HOME SCREEN
+// Android/Chrome: one-tap install via the browser's install prompt.
+// iPhone/iPad Safari: no install API exists, so show the Share → Add to Home Screen steps.
+const a2hs = {
+  deferred: null,
+  key: "tpm2049:a2hs-dismissed",
+  isStandalone: () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true,
+  isIOS: () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1),
+  isMobile: () => matchMedia("(max-width: 899px)").matches && matchMedia("(pointer: coarse)").matches,
+  dismissed() { try { return !!localStorage.getItem(this.key); } catch { return false; } },
+  dismiss() { try { localStorage.setItem(this.key, String(Date.now())); } catch { /* ignore */ } document.getElementById("a2hs").hidden = true; },
+  show(force = false) {
+    if (this.isStandalone()) { if (force) toast("It’s already on your home screen."); return; }
+    if (!force && (this.dismissed() || !this.isMobile())) return;
+    const el = document.getElementById("a2hs");
+    const share = `<svg class="share-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7h14v-7"/></svg>`;
+    const text = el.querySelector("[data-a2hs-text]");
+    const actions = el.querySelector("[data-a2hs-actions]");
+    if (this.deferred) {
+      text.textContent = "One tap to open it during TOKEN week, and it works on patchy conference Wi-Fi.";
+      actions.innerHTML = `<button type="button" class="btn btn-small btn-accent" data-a2hs-install>Add to home screen</button><button type="button" class="btn btn-small btn-ghost" data-a2hs-close>Not now</button>`;
+    } else if (this.isIOS()) {
+      text.innerHTML = `Tap ${share} <b>Share</b> in Safari’s toolbar, then <b>Add to Home Screen</b>. It opens like an app and works on patchy Wi-Fi.`;
+      actions.innerHTML = `<button type="button" class="btn btn-small btn-ghost" data-a2hs-close>Got it</button>`;
+    } else {
+      text.innerHTML = `Open your browser menu (<b>⋮</b>) and choose <b>Add to Home screen</b> or <b>Install app</b>.`;
+      actions.innerHTML = `<button type="button" class="btn btn-small btn-ghost" data-a2hs-close>Got it</button>`;
+    }
+    el.hidden = false;
+  },
+};
+window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); a2hs.deferred = e; });
+window.addEventListener("appinstalled", () => { a2hs.deferred = null; a2hs.dismiss(); toast("Added to your home screen"); });
+document.addEventListener("click", async (ev) => {
+  if (ev.target.closest("[data-a2hs-close]")) { a2hs.dismiss(); return; }
+  if (ev.target.closest("[data-a2hs-open]")) { document.getElementById("more-sheet").close(); a2hs.show(true); return; }
+  if (ev.target.closest("[data-a2hs-install]") && a2hs.deferred) {
+    a2hs.deferred.prompt();
+    const { outcome } = await a2hs.deferred.userChoice;
+    a2hs.deferred = null;
+    if (outcome === "accepted") a2hs.dismiss(); else document.getElementById("a2hs").hidden = true;
+  }
+});
+if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
+
 (async function init() {
   try {
     await loadData();
@@ -1824,4 +1869,5 @@ window.addEventListener("storage", (e) => { if (e.key?.startsWith("tpm2049:saved
   document.querySelector("[data-footer-meta]").innerHTML =
     `Last updated ${esc(fmtDate(D.site.last_updated))} · Times in ${esc(D.site.timezone)} · Curated by <a href="${esc(D.site.curator.linkedin)}" rel="noopener" target="_blank">${esc(D.site.curator.person)}</a>, ${curator()} · <a href="${esc(D.site.curator.summit.url)}" rel="noopener" target="_blank">${esc(D.site.curator.summit.name)}</a> · <a href="#/nextpredict">Join the NEXTPredict community</a> · <a href="#/about">How this is compiled</a> · <a href="${issueUrl("missing-event.yml")}" rel="noopener">Submit something we missed</a>`;
   render();
+  setTimeout(() => a2hs.show(), 6000);
 })();
