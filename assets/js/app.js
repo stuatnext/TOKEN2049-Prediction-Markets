@@ -925,6 +925,10 @@ function eventDetail(id) {
   const block = icsBlocker(e);
   const map = e.map_query ? encodeURIComponent(e.map_query) : null;
   const related = relatedEvents(e);
+  const primaryLabel = e.type === "official" ? "Official agenda" : kindOf(e) === "booth" ? "Exhibitor page" : "Registration page";
+  const acts = `${srcs[0] ? `<a class="pa-primary" href="${esc(srcs[0].url)}" rel="noopener" target="_blank">${primaryLabel} <span aria-hidden="true">↗</span></a>` : ""}
+    ${saveBtn(e, true)}
+    <div class="pa-row">${block ? `<button type="button" class="pa-btn" aria-disabled="true" data-ics-blocked="${esc(block)}" title="${esc(block)}">Add to calendar</button>` : `<button type="button" class="pa-btn" data-ics="${e.id}">Add to calendar</button>`}<button type="button" class="pa-btn" data-share="${e.id}">Share link</button></div>`;
   if (!e.status.match(/provisional/) && e.start) {
     const off = (t) => `${e.date}T${t}:00+08:00`;
     setLD({
@@ -946,11 +950,10 @@ function eventDetail(id) {
         <div><dt>Getting in</dt><dd><b>${esc(ACCESS[e.access])}</b>${accessExtra(e) ? `<span>${esc(accessExtra(e))}</span>` : ""}</dd></div>
         <div><dt>Format</dt><dd><b>${esc(formatOf(e) || KIND[kindOf(e)])}</b></dd></div>
       </dl>
-      <div class="detail-cta">${srcs[0] ? `<a class="btn btn-primary btn-lg" href="${esc(srcs[0].url)}" rel="noopener" target="_blank">${e.type === "official" ? "Official agenda" : "Organiser / registration"} ↗</a>` : ""}${saveBtn(e, true)}
-        <span class="detail-minor">${block ? `<button type="button" class="link-btn" aria-disabled="true" data-ics-blocked="${esc(block)}" title="${esc(block)}">Add to calendar</button>` : `<button type="button" class="link-btn" data-ics="${e.id}">Add to calendar</button>`}<button type="button" class="link-btn" data-share="${e.id}">Share</button></span></div>
+      <div class="plan-actions plan-actions-inline">${acts}</div>
       ${e.status === "provisional" || e.status === "conflict"
         ? `<p class="notice" style="margin-top:16px"><strong>${esc(STATUS[e.status].label)}.</strong> ${esc(e.status_note || STATUS[e.status].desc)}</p>`
-        : `<p class="verify-line"><span class="verify-dot" aria-hidden="true"></span><strong>${esc(STATUS[e.status].label)}.</strong> ${esc(e.status_note || STATUS[e.status].desc)}</p>`}
+        : `<p class="verify-line verify-inline"><span class="verify-dot" aria-hidden="true"></span><strong>${esc(STATUS[e.status].label)}.</strong> ${esc(e.status_note || STATUS[e.status].desc)}</p>`}
 
       <section><h2>What it is</h2><p>${esc(e.summary)}</p></section>
 
@@ -978,6 +981,21 @@ function eventDetail(id) {
 
       ${related.length ? `<section><h2>Related events</h2><div class="event-list">${related.map((o) => eventCard(o, { compact: true })).join("")}</div></section>` : ""}
     </article>
+
+    <aside class="plan" aria-label="Plan it">
+      <div class="plan-card">
+        <p class="plan-title">Plan it</p>
+        <p class="plan-when"><b>${esc(e.end_date ? dayRange(e) : d.long)}</b><span class="mono">${esc(timeLabel(e))} SGT</span></p>
+        <p class="plan-where">${esc(e.venue)}</p>
+        <div class="plan-actions">${acts}</div>
+        <dl class="plan-facts">
+          <div><dt>Relevance</dt><dd><b>${esc(REL[e.relevance].label)}</b><span>${esc(REL[e.relevance].desc)}</span></dd></div>
+          <div><dt>Verification</dt><dd><b>${esc(STATUS[e.status].label)}</b><span>${esc(e.status_note || STATUS[e.status].desc)}</span></dd></div>
+          ${clashes.length ? `<div><dt>Clashes</dt><dd><b>${plural(clashes.length, "overlapping listing")}</b><span>See Clashes below.</span></dd></div>` : ""}
+          ${e.people.length ? `<div><dt>People</dt><dd><b>${plural(e.people.length, "person", "people")} named</b><span>See who you can expect there below.</span></dd></div>` : ""}
+        </dl>
+      </div>
+    </aside>
   </div>`;
 }
 /** The access note minus any words that just repeat the access label ("Invite-only; cap of 200" → "Cap of 200"). */
