@@ -1071,3 +1071,55 @@ a:hover { text-decoration-color: var(--ink); }
 :root[data-theme="dark"] .npx-icon { background: var(--brand); color: #0b0b0b; }
 .promo .btn.btn-accent { background: #0b0b0b; color: var(--brand); border-color: #0b0b0b; }
 .promo .btn.btn-accent:hover { background: #2a2a2a; }
+
+/* ------------------------------------------------------------------ Home: one message, one main action */
+/* NEXTPredict as a conventional announcement bar */
+.np-announce { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 16px; margin: 0 0 8px; padding: 9px 14px; border-radius: 10px; background: var(--brand); color: #0b0b0b; font-size: .88rem; }
+.np-announce p { margin: 0; }
+.np-announce-tag { display: inline-block; margin-right: 6px; padding: 1px 7px; border-radius: 4px; background: #0b0b0b; color: var(--brand); font: 600 .68rem var(--font); letter-spacing: .08em; text-transform: uppercase; vertical-align: 1px; }
+.np-announce-links { display: inline-flex; gap: 14px; font-weight: 600; }
+.np-announce-links a { color: #0b0b0b; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+.np-announce-links a:hover { text-decoration-thickness: 3px; }
+
+/* Hero: copy left, the week right */
+.home-hero { display: grid; gap: 28px; align-items: center; padding: 34px 0 10px; }
+@media (min-width: 960px) { .home-hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 48px; padding-top: 48px; } }
+.hh-eyebrow { margin: 0 0 14px; font: 600 .74rem var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.home-hero h1 { margin: 0; font: 600 clamp(2.1rem, 1.5rem + 2.6vw, 3.35rem)/1.04 var(--serif); letter-spacing: -.02em; max-width: 15ch; }
+.hh-lede { margin: 16px 0 0; font-size: 1.1rem; line-height: 1.55; color: var(--ink-2); max-width: 46ch; }
+.hh-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.hh-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 50px; padding: 12px 22px; border-radius: 999px; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; font-weight: 600; font-size: 1rem; text-decoration: none; transition: transform .15s ease, background .15s ease; }
+.hh-btn:hover { transform: translateY(-1px); background: var(--surface); }
+.hh-btn-primary { background: #0b0b0b; border-color: #0b0b0b; color: #fff; }
+.hh-btn-primary:hover { background: #262626; }
+.hh-btn-primary span { color: var(--brand); }
+.hh-new { margin: 16px 0 0; font-size: .92rem; color: var(--ink-3); }
+.hh-new a { font-weight: 600; }
+
+.hh-week { padding: 18px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 18px 40px -28px rgba(0, 0, 0, .35); }
+.hh-week-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 12px; padding: 2px 4px 12px; border-bottom: 1px solid var(--line); }
+.hh-week-head h2 { margin: 0; font: 600 .78rem var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.hh-week-head h2::before { display: none; }
+.hh-live { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--ink-2); }
+.hh-days { list-style: none; margin: 6px 0 0; padding: 0; }
+.hh-days a { position: relative; display: grid; grid-template-columns: 52px 1fr auto; gap: 14px; align-items: center; padding: 10px 6px; border-radius: 10px; color: var(--ink); text-decoration: none; }
+.hh-days li + li a { border-top: 1px solid var(--line); border-radius: 0; }
+.hh-days a:hover { background: color-mix(in srgb, var(--brand) 14%, transparent); border-radius: 10px; }
+.hh-date { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 10px; background: var(--surface-2); line-height: 1; }
+.hh-date small { font: 600 .62rem var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.hh-date b { font: 600 1.45rem var(--serif); }
+.hh-day-text { display: grid; gap: 5px; min-width: 0; }
+.hh-day-text strong { font-size: .95rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hh-bar { display: block; height: 4px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
+.hh-bar i { display: block; height: 100%; border-radius: 4px; background: #0b0b0b; }
+.hh-counts { font: 500 .74rem var(--mono); color: var(--ink-3); }
+.hh-counts b { color: var(--ink); font-weight: 600; }
+.hh-tag { font: 600 .62rem var(--font); letter-spacing: .1em; text-transform: uppercase; padding: 3px 7px; border-radius: 999px; background: var(--brand); color: #0b0b0b; white-space: nowrap; }
+.hh-foot { margin: 10px 4px 0; font: 500 .74rem var(--mono); color: var(--ink-3); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hh-bar i { background: var(--brand); } :root:not([data-theme="light"]) .hh-btn-primary { background: var(--brand); border-color: var(--brand); color: #0b0b0b; } :root:not([data-theme="light"]) .hh-btn-primary span { color: #0b0b0b; } }
+:root[data-theme="dark"] .hh-bar i { background: var(--brand); }
+:root[data-theme="dark"] .hh-btn-primary { background: var(--brand); border-color: var(--brand); color: #0b0b0b; }
+@media (max-width: 559px) { .hh-btn { flex: 1 1 100%; justify-content: center; } .hh-tag { display: none; } }
+@media (prefers-reduced-motion: reduce) { .hh-btn { transition: none; } }
+.hh-days .is-today a { background: color-mix(in srgb, var(--brand) 22%, transparent); border-radius: 10px; }
+.hh-days .is-today .hh-date { background: #0b0b0b; } .hh-days .is-today .hh-date small { color: var(--brand); } .hh-days .is-today .hh-date b { color: #fff; }
