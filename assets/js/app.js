@@ -404,13 +404,14 @@ function home(_, q) {
 
   ${order.map((k, i) => S[k](String(i + 1).padStart(2, "0"))).join("")}
 
+  ${meetStuart()}
+
   ${shareSiteBox()}
 
   <section class="section home-about" aria-label="About this guide">
     <div class="panel"><h2>About this guide</h2>
       <p>An independent, curated guide to where prediction markets show up across TOKEN2049 week. Every listing links back to its source.</p>
       <p class="small muted">Updated ${esc(fmtDate(D.site.last_updated))}. Schedules change, so check the organiser link before you travel.</p>
-      ${curatorPanel()}
       <p class="small" style="margin:12px 0 0"><a href="#/about">How it’s compiled →</a></p></div>
   </section>`;
 }
@@ -1656,11 +1657,37 @@ function promoCard(compact = false) {
     ${compact ? "" : `<p class="np-comm-label">Join the NEXTPredict community</p>${communityLinks()}`}
     <p class="small muted" style="margin:10px 0 0">${esc(P.disclosure)}</p></div>`;
 }
+/** Stuart's photo, or initials until a photo is added (site.json → curator.photo). */
+function curatorAvatar(cls = "") {
+  const C = D.site.curator;
+  return C.photo ? `<img class="curator-photo ${cls}" src="${esc(C.photo)}" alt="${esc(C.person)}" width="160" height="160" loading="lazy">`
+    : `<span class="curator-photo curator-initials ${cls}" aria-hidden="true">${esc(initials(C.person))}</span>`;
+}
+const introNote = () => `Hi ${D.site.curator.person.split(" ")[0]}, I found your TOKEN2049 prediction-markets guide. I work on prediction markets too and will be in Singapore that week. Would be good to meet.`;
 function curatorPanel() {
   const C = D.site.curator;
-  return `<div class="curator"><span class="avatar" aria-hidden="true">SC</span><div>
-    <p style="margin:0"><strong>Curated by <a href="#/people/${C.person_id}">${esc(C.person)}</a></strong>, ${esc(C.name)}. Stuart is in Singapore for TOKEN2049 week representing NEXTPredict and ${esc(C.summit.name)}. Say hello if you’re working on prediction markets.</p>
-    <div class="btn-row" style="margin-top:8px"><a class="btn btn-small" href="${esc(C.linkedin)}" target="_blank" rel="noopener">Stuart on LinkedIn ↗</a><a class="btn btn-small" href="${esc(C.summit.url)}" target="_blank" rel="noopener">${esc(C.summit.name)} ↗</a></div></div></div>`;
+  return `<div class="curator">${curatorAvatar("sm")}<div>
+    <p style="margin:0"><strong>Curated by <a href="#/people/${C.person_id}">${esc(C.person)}</a></strong>, ${esc(C.role || C.name)}. ${esc(C.person.split(" ")[0])} is in Singapore all TOKEN2049 week and happy to meet anyone working on prediction markets.</p>
+    <div class="btn-row" style="margin-top:8px"><a class="btn btn-small btn-accent" href="${esc(C.linkedin)}" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>${C.x_handle ? `<a class="btn btn-small" href="https://x.com/${esc(C.x_handle)}" target="_blank" rel="noopener">@${esc(C.x_handle)} on X ↗</a>` : ""}</div></div></div>`;
+}
+/** Home: feature the person behind the guide and invite people to meet at TOKEN2049. */
+function meetStuart() {
+  const C = D.site.curator, first = C.person.split(" ")[0];
+  return `<section class="meet" aria-labelledby="meet-title">
+    <div class="meet-photo">${curatorAvatar()}<span class="meet-badge">In Singapore all week</span></div>
+    <div class="meet-text">
+      <p class="np-offer-kicker"><span>The person behind this guide</span></p>
+      <h2 id="meet-title">Meet ${esc(first)} at TOKEN2049</h2>
+      <p class="meet-role"><strong>${esc(C.person)}</strong> · ${esc(C.role || C.name)}</p>
+      <p>${esc(first)} built this guide and is part of the team behind ${esc(C.summit.name)}. In Singapore for the whole of TOKEN2049 week, ${esc(first)} wants to meet people building, trading, investing in or regulating prediction markets. Coffee, a side event or a quick hello on the expo floor all work.</p>
+      <div class="meet-actions">
+        <a class="pa-primary" href="${esc(C.linkedin)}" target="_blank" rel="noopener">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
+        ${C.x_handle ? `<a class="pa-btn meet-btn" href="https://x.com/${esc(C.x_handle)}" target="_blank" rel="noopener">Message @${esc(C.x_handle)} on X ↗</a>` : ""}
+        <button type="button" class="pa-btn meet-btn" data-copy="${esc(introNote())}">Copy an intro note</button>
+      </div>
+      <p class="meet-hint">Tip: paste the intro note into your LinkedIn connection request so ${esc(first)} knows you’re coming from the guide.</p>
+    </div>
+  </section>`;
 }
 
 // ---------------------------------------------------------------- MY SCHEDULE
