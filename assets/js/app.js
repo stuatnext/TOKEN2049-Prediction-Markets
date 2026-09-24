@@ -375,7 +375,7 @@ function home(_, q) {
   ];
   const S = homeSections(nu, headline, interests, cnt);
   // During the week, "what's next" leads; before it, the must-see list does.
-  const order = nu.today ? ["next", "headline", "going", "interests"] : ["headline", "next", "going", "interests"];
+  const order = nu.today ? ["next", "headline", "going"] : ["headline", "going"];
   const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
   const pmOn = (iso) => eventsOn(iso).filter((e) => e.relevance === "core").length;
   const maxDay = Math.max(...D.days.map((d) => eventsOn(d.date).length));
@@ -386,7 +386,7 @@ function home(_, q) {
       <h1>Every prediction-market event at TOKEN2049, in one place.</h1>
       <p class="hh-lede">Conference sessions, side events, expo booths and the people going, each checked against its source.</p>
       <div class="hh-actions"><a class="hh-btn hh-btn-primary" href="#/calendar">Open the calendar <span aria-hidden="true">→</span></a><a class="hh-btn" href="#/going">See who’s going</a></div>
-      <p class="hh-new">New to prediction markets? <a href="#/start">Take the two-minute guide</a> or <a href="#/play">try the play-money game</a></p>
+      <p class="hh-new">New to prediction markets? <a href="#/start">Start with the two-minute guide</a></p>
     </div>
     <aside class="hh-week" aria-labelledby="hh-week-title">
       <div class="hh-week-head"><h2 id="hh-week-title">TOKEN2049 week</h2><span class="hh-live"><span class="pulse" aria-hidden="true"></span>${esc(cap(nu.title.replace(/^TOKEN2049 week /, "")))}</span></div>
@@ -406,13 +406,12 @@ function home(_, q) {
 
   ${shareSiteBox()}
 
-  <section class="section split" aria-label="About and offer">
+  <section class="section home-about" aria-label="About this guide">
     <div class="panel"><h2>About this guide</h2>
       <p>An independent, curated guide to where prediction markets show up across TOKEN2049 week. Every listing links back to its source.</p>
       <p class="small muted">Updated ${esc(fmtDate(D.site.last_updated))}. Schedules change, so check the organiser link before you travel.</p>
       ${curatorPanel()}
       <p class="small" style="margin:12px 0 0"><a href="#/about">How it’s compiled →</a></p></div>
-    ${promoCard()}
   </section>`;
 }
 
@@ -428,14 +427,11 @@ function homeSections(nu, headline, interests, cnt) {
   headline: (n) => `<section class="section" aria-labelledby="h-head">
     ${secHead("h-head", n, "Don’t-miss prediction-market events", "If you only go to a handful of things, start with these.", "#/events?rel=core", `All ${cnt((e) => e.relevance === "core")} →`)}
     <div class="row-list">${headline.map((e) => eventRow(e)).join("")}</div>
+    <nav class="topic-row" aria-label="Browse by interest"><span>Browse by interest</span>${interests.map(([i, l, h, c]) => `<a href="${h}"><span aria-hidden="true">${i}</span>${esc(l)} <em>${c}</em></a>`).join("")}</nav>
   </section>`,
   going: (n) => `<section class="section" aria-labelledby="h-going">
     ${secHead("h-going", n, "Who’s heading to Singapore", "People and companies with public evidence they’ll be there.", "#/going", `See all ${D.going.length} →`)}
     <div class="grid grid-3">${homeGoing().slice(0, 6).map((g) => goingCard(g, { compact: true })).join("")}</div>
-  </section>`,
-  interests: (n) => `<section class="section" aria-labelledby="h-int">
-    ${secHead("h-int", n, "Browse by interest", "Jump straight to the listings for your corner of the market.", "#/events", "All events →")}
-    <div class="interest-grid">${interests.map(([i, l, h, c]) => `<a class="interest" href="${h}"><span aria-hidden="true">${i}</span><strong>${esc(l)}</strong><em>${c}</em></a>`).join("")}</div>
   </section>`,
   };
 }
@@ -1571,7 +1567,6 @@ const communityLinks = () => {
   return M ? `<div class="np-community">${M.links.map((l) => `<a class="np-comm np-${l.id}" href="${esc(l.url)}" target="_blank" rel="noopener"><span class="np-mark" aria-hidden="true">${COMMUNITY_MARK[l.id] || "↗"}</span><span>${esc(l.label)}</span></a>`).join("")}</div>` : "";
 };
 /** Slim NEXTPredict strip at the very top of the home page. */
-/** Straight after the TOKEN2049 hero: carry the conversation on to NEXTPredict NYC. */
 function shareSiteText() {
   const h = D.site.curator?.x_handle;
   return `Heading to TOKEN2049 Singapore? Every prediction-market event, side event and who's going, in one free guide${h ? `, put together by @${h}` : ""}.`;
@@ -1595,17 +1590,24 @@ function shareSiteBox() {
   </section>`;
 }
 
+/** Straight after the TOKEN2049 hero: the reader discount for NEXTPredict NYC. */
 function npBanner() {
   const P = D.site.promo, C = D.site.curator;
   if (!P) return "";
-  return `<aside class="np-continue" aria-label="From the curators: NEXTPredict NYC">
-    <div class="np-continue-date" aria-hidden="true"><span>Oct</span><b>22–23</b><span>New York</span></div>
-    <div class="np-continue-text">
-      <p class="np-continue-kicker">After Singapore · from the curators of this guide</p>
-      <h2>Continue the conversation in New York</h2>
-      <p>The prediction-markets crowd you meet at TOKEN2049 reconvenes at <strong>${esc(C.summit.name)}</strong>, ${esc(C.summit.dates)} at ${esc(C.summit.place)}, two weeks before the US midterms.</p>
+  const title = P.amount ? `Reading this guide saves you ${esc(P.amount)} on NEXTPredict NYC` : "Reading this guide unlocks a discount on NEXTPredict NYC";
+  return `<aside class="np-offer" aria-label="Reader offer: NEXTPredict NYC">
+    <div class="np-offer-copy">
+      <p class="np-offer-kicker"><span>Reader offer</span> From the curators of this guide</p>
+      <h2>${title}</h2>
+      <p>Continue the conversation in New York. The prediction-markets crowd you meet at TOKEN2049 reconvenes at <strong>${esc(C.summit.name)}</strong>, ${esc(C.summit.dates)} at ${esc(C.summit.place)}, two weeks before the US midterms.</p>
+      <div class="np-offer-actions"><a class="pa-primary" href="${esc(P.url)}" target="_blank" rel="noopener">Claim your discount <span aria-hidden="true">↗</span></a><a class="np-offer-link" href="#/nextpredict">Join the community →</a></div>
     </div>
-    <div class="np-continue-actions"><a class="pa-primary" href="${esc(P.url)}" target="_blank" rel="noopener">Get tickets <span aria-hidden="true">↗</span></a><a class="np-continue-link" href="#/nextpredict">Join the community →</a></div>
+    <a class="np-offer-stub" href="${esc(P.url)}" target="_blank" rel="noopener" aria-label="Claim the discount with code ${esc(P.code)}">
+      <span class="np-offer-stub-label">${P.amount ? `Save ${esc(P.amount)}` : "Your reader code"}</span>
+      <b class="mono">${esc(P.code)}</b>
+      <em>Applied automatically at checkout</em>
+      <small>${esc(C.summit.dates)} · New York</small>
+    </a>
   </aside>`;
 }
 function nextpredict() {

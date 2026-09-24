@@ -192,7 +192,7 @@ People can also submit themselves through the "I'm going" GitHub issue form.
 
 ## Promo code and curator details
 
-`site.json` → `curator` holds Stuart's name, LinkedIn and summit link. `promo` holds the NEXTPredict NYC code and the claim link. The site shows it as a button on the home, Who’s Going, schedule and About pages.
+`site.json` → `curator` holds Stuart's name, LinkedIn and summit link. `promo` holds the NEXTPredict NYC code and the claim link, and shows as the reader offer on the home page and as a button on the Who’s Going, schedule and About pages. Set `promo.amount` to the saving exactly as it should read (for example `"$400"`) and the home page headline becomes “Reading this guide saves you $400 on NEXTPredict NYC”. Leave it `null` until the amount is confirmed.
 
 ## Changing the "What we're still checking" list
 
