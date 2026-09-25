@@ -1570,3 +1570,6 @@ a.pa-btn { display: flex; align-items: center; justify-content: center; text-ali
 .curator .curator-photo.sm { width: 56px; height: 56px; flex: none; border-width: 2px; box-shadow: 0 0 0 2px #0b0b0b; font-size: 1.1rem; }
 @media (max-width: 759px) { .curator-photo { width: 140px; height: 140px; } .curator-initials { font-size: 2.6rem; } .meet-actions > * { flex: 1 1 100%; justify-content: center; } }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .curator-photo { box-shadow: 0 0 0 4px var(--surface); } }
+
+/* Home: plain jump buttons to the Events and Who's going tabs */
+.home-jump { display: flex; flex-wrap: wrap; gap: 12px; }
