@@ -361,21 +361,9 @@ function home(_, q) {
   const E = D.events;
   const cnt = (fn) => E.filter(fn).length;
   const nu = nextUp(q);
-  const headline = ["polymarket-coplan-fireside", "the-speculation-age", "the-odds-prediction-markets-live", "kalshi-x-insilico-asia-session", "polymarket-singapore-kickoff", "hyperliquid-forum", "haruko-x-kalshi"]
-    .map((id) => D.ev.get(id)).filter((e) => e && !nu.list.includes(e)).sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
-  const interests = [
-    ["📈", "Traders & market makers", "#/events?aud=traders,market-makers", cnt((e) => e.audiences.some((a) => a === "traders" || a === "market-makers"))],
-    ["🏦", "Institutional & TradFi", "#/events?aud=institutions", cnt((e) => e.audiences.includes("institutions"))],
-    ["🛠️", "Builders & infrastructure", "#/events?aud=builders", cnt((e) => e.audiences.includes("builders"))],
-    ["⚽", "Sports", "#/events?aud=sports", cnt((e) => e.audiences.includes("sports"))],
-    ["🟦", "Polymarket", "#/events?eco=polymarket", cnt((e) => e.ecosystems.includes("polymarket"))],
-    ["🟩", "Kalshi", "#/events?eco=kalshi", cnt((e) => e.ecosystems.includes("kalshi"))],
-    ["💧", "Hyperliquid & outcome markets", "#/events?eco=hyperliquid", cnt((e) => e.ecosystems.includes("hyperliquid"))],
-    ["🥂", "Parties & networking", "#/events?type=networking,meetup", cnt((e) => e.type === "networking" || e.type === "meetup")],
-  ];
-  const S = homeSections(nu, headline, interests, cnt);
-  // During the week, "what's next" leads; before it, the must-see list does.
-  const order = nu.today ? ["next", "headline", "going"] : ["headline", "going"];
+  const S = homeSections(nu);
+  // During the week, "what's next" leads. Curated lists stay on their own tabs.
+  const order = nu.today ? ["next"] : [];
   const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
   const pmOn = (iso) => eventsOn(iso).filter((e) => e.relevance === "core").length;
   const maxDay = Math.max(...D.days.map((d) => eventsOn(d.date).length));
@@ -404,6 +392,11 @@ function home(_, q) {
 
   ${order.map((k, i) => S[k](String(i + 1).padStart(2, "0"))).join("")}
 
+  <nav class="section home-jump" aria-label="Explore the guide">
+    <a class="hh-btn hh-btn-primary" href="#/events">Browse all ${E.length} events <span aria-hidden="true">→</span></a>
+    <a class="hh-btn" href="#/going">See who’s going (${D.going.length}) <span aria-hidden="true">→</span></a>
+  </nav>
+
   ${meetStuart()}
 
   ${shareSiteBox()}
@@ -419,20 +412,11 @@ function home(_, q) {
 /** Home section heading: step number, title, one-line explainer and a "more" link. */
 const secHead = (id, n, title, sub, href, more) => `<div class="section-head home-head"><div><h2 id="${id}">${title}</h2>${sub ? `<p class="section-sub">${sub}</p>` : ""}</div>${href ? `<a class="more" href="${href}">${more}</a>` : ""}</div>`;
 
-function homeSections(nu, headline, interests, cnt) {
+function homeSections(nu) {
   return {
   next: (n) => `<section class="section" aria-labelledby="h-next">
     ${secHead("h-next", n, nu.today ? esc(nu.title) : "First up", nu.today ? "What’s on next today, in time order." : "The first listings of the week, in time order.", nu.today ? `#/calendar/${dayOf(nu.today).slug}` : "#/calendar", "Full calendar →")}
     ${nu.list.length ? `<div class="row-list">${nu.list.map((e) => eventRow(e)).join("")}</div>` : `<p class="muted">${esc(nu.sub)}</p>`}
-  </section>`,
-  headline: (n) => `<section class="section" aria-labelledby="h-head">
-    ${secHead("h-head", n, "Don’t-miss prediction-market events", "If you only go to a handful of things, start with these.", "#/events?rel=core", `All ${cnt((e) => e.relevance === "core")} →`)}
-    <div class="row-list">${headline.map((e) => eventRow(e)).join("")}</div>
-    <nav class="topic-row" aria-label="Browse by interest"><span>Browse by interest</span>${interests.map(([i, l, h, c]) => `<a href="${h}"><span aria-hidden="true">${i}</span>${esc(l)} <em>${c}</em></a>`).join("")}</nav>
-  </section>`,
-  going: (n) => `<section class="section" aria-labelledby="h-going">
-    ${secHead("h-going", n, "Who’s heading to Singapore", "People and companies with public evidence they’ll be there.", "#/going", `See all ${D.going.length} →`)}
-    <div class="grid grid-3">${homeGoing().slice(0, 6).map((g) => goingCard(g, { compact: true })).join("")}</div>
   </section>`,
   };
 }
@@ -446,15 +430,6 @@ function eventRow(e) {
       <p>${kindChip(e, true)} ${scoreChip(e)} <i class="rel-dot dot-${e.relevance}" aria-hidden="true"></i><span class="visually-hidden">${esc(REL[e.relevance].label)}.</span> ${esc(e.venue)} · ${esc(ACCESS[e.access])}${e.status === "provisional" || e.status === "conflict" ? ` · <span class="warn-text">${esc(STATUS[e.status].label)}</span>` : ""}${HOOKS.rowBadge?.(e) || ""}</p></div>
     <div class="er-side">${saveBtn(e)}</div>
   </article>`;
-}
-
-/** Home mix: round-robin across discovery groups so it isn't sorted by fame. */
-function homeGoing() {
-  const picked = [], seen = new Set();
-  const pools = DISCOVER.map(([, , fn]) => D.going.filter(fn).sort((a, b) => Number(b.isNew) - Number(a.isNew) || RELR[a.rel] - RELR[b.rel]));
-  for (let round = 0; picked.length < 9 && round < 6; round++)
-    for (const pool of pools) { const g = pool.find((x) => !seen.has(x.key)); if (g && picked.length < 9) { picked.push(g); seen.add(g.key); } }
-  return picked;
 }
 
 function personMini(p) {
