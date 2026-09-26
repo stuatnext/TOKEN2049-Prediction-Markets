@@ -392,21 +392,10 @@ function home(_, q) {
 
   ${order.map((k, i) => S[k](String(i + 1).padStart(2, "0"))).join("")}
 
-  <nav class="section home-jump" aria-label="Explore the guide">
-    <a class="hh-btn hh-btn-primary" href="#/events">Browse all ${E.length} events <span aria-hidden="true">→</span></a>
-    <a class="hh-btn" href="#/going">See who’s going (${D.going.length}) <span aria-hidden="true">→</span></a>
-  </nav>
-
   ${meetStuart()}
 
   ${shareSiteBox()}
-
-  <section class="section home-about" aria-label="About this guide">
-    <div class="panel"><h2>About this guide</h2>
-      <p>An independent, curated guide to where prediction markets show up across TOKEN2049 week. Every listing links back to its source.</p>
-      <p class="small muted">Updated ${esc(fmtDate(D.site.last_updated))}. Schedules change, so check the organiser link before you travel.</p>
-      <p class="small" style="margin:12px 0 0"><a href="#/about">How it’s compiled →</a></p></div>
-  </section>`;
+`;
 }
 
 /** Home section heading: step number, title, one-line explainer and a "more" link. */
@@ -902,6 +891,13 @@ function relatedEvents(e) {
   })).filter((x) => x.s >= 3).sort((a, b) => b.s - a.s).slice(0, 4).map((x) => x.o);
 }
 
+/** "Add to calendar" as one button: a small menu with .ics (Apple, Outlook) and Google. */
+function calMenu(e) {
+  const g = HOOKS.gcalUrl?.(e);
+  return `<details class="pa-menu"><summary class="pa-btn">Add to calendar</summary><div class="pa-menu-list">
+    <button type="button" data-ics="${e.id}">Apple or Outlook (.ics)</button>${g ? `<a href="${esc(g)}" target="_blank" rel="noopener">Google Calendar ↗</a>` : ""}</div></details>`;
+}
+
 function eventDetail(id) {
   const e = D.ev.get(id);
   if (!e) return notFound();
@@ -915,7 +911,7 @@ function eventDetail(id) {
   const primaryLabel = e.type === "official" ? "Official agenda" : kindOf(e) === "booth" ? "Exhibitor page" : "Registration page";
   const acts = `${srcs[0] ? `<a class="pa-primary" href="${esc(srcs[0].url)}" rel="noopener" target="_blank">${primaryLabel} <span aria-hidden="true">↗</span></a>` : ""}
     ${saveBtn(e, true)}
-    <div class="pa-row">${block ? `<button type="button" class="pa-btn" aria-disabled="true" data-ics-blocked="${esc(block)}" title="${esc(block)}">Add to calendar</button>` : `<button type="button" class="pa-btn" data-ics="${e.id}">Add to calendar</button>`}<button type="button" class="pa-btn" data-share="${e.id}">Share link</button></div>
+    <div class="pa-row">${block ? `<button type="button" class="pa-btn" aria-disabled="true" data-ics-blocked="${esc(block)}" title="${esc(block)}">Add to calendar</button>` : calMenu(e)}<button type="button" class="pa-btn" data-share="${e.id}">Share</button></div>
     ${HOOKS.eventActions?.(e) || ""}`;
   if (!e.status.match(/provisional/) && e.start) {
     const off = (t) => `${e.date}T${t}:00+08:00`;
@@ -1550,7 +1546,6 @@ function shareSiteText() {
 
 function shareSiteBox() {
   const url = absUrl(""), text = shareSiteText(), u = encodeURIComponent(url), t = encodeURIComponent(text);
-  const both = encodeURIComponent(`${text} ${url}`);
   return `<section class="share-site" aria-labelledby="share-site-title">
     <div class="share-site-text">
       <h2 id="share-site-title">Know someone going to TOKEN2049?</h2>
@@ -1558,10 +1553,7 @@ function shareSiteBox() {
     </div>
     <div class="share-site-btns">
       <a class="btn share-x" href="https://x.com/intent/post?text=${t}&url=${u}" target="_blank" rel="noopener">Post on X (Twitter)</a>
-      <button type="button" class="btn" data-share-linkedin="https://www.linkedin.com/sharing/share-offsite/?url=${u}">LinkedIn</button>
-      <a class="btn" href="https://wa.me/?text=${both}" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="btn" href="https://t.me/share/url?url=${u}&text=${t}" target="_blank" rel="noopener">Telegram</a>
-      <button type="button" class="btn" data-share-site>More…</button>
+      <button type="button" class="btn" data-share-site>Share another way</button>
     </div>
   </section>`;
 }
@@ -1658,9 +1650,8 @@ function meetStuart() {
       <div class="meet-actions">
         <a class="pa-primary" href="${esc(C.linkedin)}" target="_blank" rel="noopener">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
         ${C.x_handle ? `<a class="pa-btn meet-btn" href="https://x.com/${esc(C.x_handle)}" target="_blank" rel="noopener">Message @${esc(C.x_handle)} on X ↗</a>` : ""}
-        <button type="button" class="pa-btn meet-btn" data-copy="${esc(introNote())}">Copy an intro note</button>
       </div>
-      <p class="meet-hint">Tip: paste the intro note into your LinkedIn connection request so ${esc(first)} knows you’re coming from the guide.</p>
+      <p class="meet-hint">Tip: <button type="button" class="link-btn" data-copy="${esc(introNote())}" data-copy-msg="Intro note copied">copy an intro note</button> and paste it into your LinkedIn request so ${esc(first)} knows you’re coming from the guide.</p>
     </div>
   </section>`;
 }
@@ -1803,6 +1794,11 @@ async function share(url, title) {
   }
 }
 
+// Close any open "Add to calendar" menu on an outside click or once an option is picked.
+document.addEventListener("click", (ev) => {
+  document.querySelectorAll("details.pa-menu[open]").forEach((d) => { if (!d.contains(ev.target) || ev.target.closest(".pa-menu-list")) d.open = false; });
+});
+
 document.addEventListener("click", (ev) => {
   const t = ev.target;
   const sv = t.closest("[data-save]");
@@ -1833,7 +1829,7 @@ document.addEventListener("click", (ev) => {
   const lk = t.closest("[data-href]");
   if (lk) { ev.preventDefault(); location.hash = lk.dataset.href; return; }
   const cp = t.closest("[data-copy]");
-  if (cp) { navigator.clipboard?.writeText(cp.dataset.copy).then(() => toast("Code copied"), () => prompt("Copy this code:", cp.dataset.copy)); return; }
+  if (cp) { navigator.clipboard?.writeText(cp.dataset.copy).then(() => toast(cp.dataset.copyMsg || "Code copied"), () => prompt("Copy this code:", cp.dataset.copy)); return; }
   const sh = t.closest("[data-share]");
   if (sh) { const e = D.ev.get(sh.dataset.share); share(HOOKS.shareUrl ? HOOKS.shareUrl(e) : absUrl(evUrl(e)), e.title); return; }
   if (t.closest("[data-share-schedule]")) { share(absUrl(`#/schedule?share=${saved.all().filter((id) => D.ev.has(id)).join(",")}`), "My TOKEN2049 prediction-market schedule"); return; }

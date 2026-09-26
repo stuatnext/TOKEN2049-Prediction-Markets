@@ -415,7 +415,6 @@ export async function installFeatures(C) {
       <nav class="quick-tools" aria-label="Quick tools">
         <a href="#/now"><span aria-hidden="true">⚡</span><strong>${inWeek ? "What’s on now" : "Now & next"}</strong><small>${inWeek ? "Live, with walking times" : "Preview the on-the-day view"}</small></a>
         <a href="#/plan"><span aria-hidden="true">🗺️</span><strong>Plan my day</strong><small>A clash-free day, built for you</small></a>
-        <button type="button" data-open-search><span aria-hidden="true">🔎</span><strong>Find anyone</strong><small>People, events, companies</small></button>
       </nav>`;
     },
     /** Small extras on every event row: named people, people you follow, changes, application status. */
@@ -425,10 +424,11 @@ export async function installFeatures(C) {
       const fol = e.people.filter((p) => follow.has(p.id)).map((p) => D.people.get(p.id)?.name).filter(Boolean);
       return `${c.changed.includes(e.id) ? `<span class="chip chip-warn">Changed</span>` : c.added.includes(e.id) ? `<span class="chip chip-warn">New</span>` : ""}${appPill(e.id)}${fol.length ? `<span class="row-follow">★ ${esc(fol[0])}${fol.length > 1 ? ` +${fol.length - 1}` : ""}</span>` : ""}${named ? `<span class="row-people" title="${plural(named, "person", "people")} named">👥 ${named}</span>` : ""}`;
     },
+    gcalUrl,
     /** Extra action buttons on an event page. */
-    eventActions(e) {
-      const g = gcalUrl(e);
-      return `<div class="pa-row">${g ? `<a class="pa-btn" href="${esc(g)}" target="_blank" rel="noopener">Google Calendar ↗</a>` : ""}<a class="pa-btn" href="${esc(issueUrl("correction.yml", { title: `Correction: ${e.title}`, record: `events/${e.id}` }))}" target="_blank" rel="noopener">Report a problem</a></div>`;
+    eventActions() {
+      // Google Calendar now sits in the "Add to calendar" menu; corrections link from "Last checked".
+      return "";
     },
     /** Event page extras: getting there, application tracker, deadline. */
     eventExtras(e) {
