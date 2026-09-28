@@ -4101,5 +4101,34 @@
     "id": "dexsport-partner",
     "attendance_status": "sponsor",
     "company_label": "Dexsport"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "stuart-b-richardson",
+    "company_id": "heimdall-global",
+    "name": null,
+    "confidence": "unverified",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [
+      "prediction-markets",
+      "market-structure"
+    ],
+    "event_ids": [],
+    "source_type": "internal_lead",
+    "source_id": null,
+    "source_url": null,
+    "source_date": "2026-09-28",
+    "evidence_summary": "Told the curator directly that Heimdall Global will be at TOKEN2049. No public post linked yet.",
+    "first_confirmed": null,
+    "last_verified": "2026-09-28",
+    "id": "stuart-b-richardson-attending",
+    "attendance_status": "publicly_attending",
+    "company_label": "Heimdall Global"
   }
 ]

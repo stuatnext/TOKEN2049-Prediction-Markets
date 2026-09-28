@@ -586,5 +586,12 @@
     "type": "Organiser / event page",
     "url": "https://luma.com/xn1chytf",
     "note": "Registration page. Tue 6 Oct, 20:00–23:00, Monti, 82 Collyer Quay. Approval required."
+  },
+  {
+    "id": "src-heimdall-site",
+    "name": "Heimdall Global (company site)",
+    "type": "Company / primary",
+    "url": "https://heimdall.global/",
+    "note": "Describes Heimdall as a Tier-1 regulated financial market infrastructure (FMI) operator building exchange, clearing and settlement for information markets. Tagline: “The Infrastructure Layer for Human Foresight.”"
   }
 ]

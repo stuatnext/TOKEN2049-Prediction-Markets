@@ -1426,5 +1426,27 @@
       "venue",
       "sports"
     ]
+  },
+  {
+    "id": "heimdall-global",
+    "name": "Heimdall Global",
+    "category": "platforms",
+    "description": "Building regulated market infrastructure for information markets: exchange, clearing and settlement for prediction markets and digital-asset derivatives, running 24x7. It describes itself as a Tier-1 regulated financial market infrastructure (FMI) operator.",
+    "stack_layers": [
+      "venue",
+      "clearing"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-heimdall-site"
+    ],
+    "note": "The site names no specific regulator or licence.",
+    "last_updated": "2026-09-28",
+    "types": [
+      "exchange",
+      "infrastructure"
+    ]
   }
 ]
