@@ -593,5 +593,26 @@
     "type": "Company / primary",
     "url": "https://heimdall.global/",
     "note": "Describes Heimdall as a Tier-1 regulated financial market infrastructure (FMI) operator building exchange, clearing and settlement for information markets. Tagline: “The Infrastructure Layer for Human Foresight.”"
+  },
+  {
+    "id": "src-dexsport-cryptodaily",
+    "name": "Dexsport Heads to TOKEN2049 Singapore (Crypto Daily, sponsored release)",
+    "type": "Company / press release",
+    "url": "https://cryptodaily.co.uk/2026/09/dexsport-heads-to-token2049-singapore-as-prediction-markets-scale",
+    "note": "Sponsored press release, 23 Sep 2026. Dexsport will be at TOKEN2049 on 7–8 Oct; its prediction markets went live in September beside its sportsbook and casino. Volume figures are the company's own."
+  },
+  {
+    "id": "src-wang-2025-keynote",
+    "name": "John Wang: Prediction Markets As The Next Wave After Memecoins (TOKEN2049 Singapore 2025)",
+    "type": "Primary / official",
+    "url": "https://www.youtube.com/watch?v=rjPztIVJSfc",
+    "note": "Last year's MEXC Stage keynote, recorded 1 Oct 2025. Covers Kalshi's broker-integration pipeline and plans to bring Kalshi on-chain."
+  },
+  {
+    "id": "src-wang-2025-theblock",
+    "name": "Kalshi will be on 'every major crypto app' in next 12 months, says John Wang (The Block)",
+    "type": "Reported / trade media",
+    "url": "https://www.theblock.co/post/373185/kalshi-every-crypto-app-john-wang",
+    "note": "Interview at TOKEN2049 Singapore 2025. Also reported by Finance Magnates as prediction markets being a 'Trojan Horse' for crypto."
   }
 ]

@@ -24,13 +24,15 @@
     "org_label": null,
     "role": "Head of Crypto, Kalshi",
     "group": "platforms",
-    "why": "Kalshi’s Head of Crypto. Speaks twice on the official programme and is a named host of the Thursday-night Kalshi x Insilico trader session.",
+    "why": "Kalshi’s Head of Crypto. Speaks twice on the official programme and is a named host of the Thursday-night Kalshi x Insilico trader session. Last year on the same stage he said Kalshi would be in every major crypto app within 12 months, which makes this year a natural check-in.",
     "sources": [
       "src-token-agenda1",
-      "src-token-agenda2"
+      "src-token-agenda2",
+      "src-wang-2025-keynote",
+      "src-wang-2025-theblock"
     ],
     "note": null,
-    "last_updated": "2026-09-22",
+    "last_updated": "2026-09-28",
     "roles": [
       "business",
       "trader"
@@ -304,17 +306,19 @@
     "name": "CJ Hetherington",
     "org": "limitless-labs",
     "org_label": null,
-    "role": null,
-    "group": "sports",
-    "why": "Sports market making, pricing and liquidity mechanics.",
+    "role": "Co-Founder & CEO, Limitless Labs",
+    "group": "platforms",
+    "why": "Co-founder and CEO of Limitless Labs. Speaks at both co-hosted Suntec summits on Thu 8 Oct: the Agentic Trading panel at Agentic Finance and “The Fans Were Already Trading” at The Odds, according to the organiser.",
     "sources": [
+      "src-mnm-agentic",
+      "src-agentic",
       "src-theodds"
     ],
-    "note": "Listed in connection with The Odds in our research. Confirm on the organiser page.",
-    "last_updated": "2026-09-22",
+    "note": null,
+    "last_updated": "2026-09-28",
     "roles": [
-      "sports",
-      "market-maker"
+      "founder",
+      "sports"
     ]
   },
   {
