@@ -1816,9 +1816,9 @@
   {
     "entity_type": "person",
     "person_id": "cj-hetherington",
-    "company_id": null,
+    "company_id": "limitless-labs",
     "name": null,
-    "confidence": "unverified",
+    "confidence": "confirmed",
     "public": true,
     "attendance_scope": "TOKEN2049 week",
     "dates": [
@@ -1830,16 +1830,16 @@
     "event_ids": [
       "the-odds-prediction-markets-live"
     ],
-    "source_type": "internal_lead",
-    "source_id": null,
-    "source_url": null,
-    "source_date": null,
-    "evidence_summary": "Unverified lead. Linked to The Odds in a captured speaker post. Not yet confirmed on the organiser page.",
-    "first_confirmed": null,
-    "last_verified": "2026-09-23",
-    "id": "cj-hetherington-unverified",
+    "source_type": "organiser_page",
+    "source_id": "src-mnm-agentic",
+    "source_url": "https://mnm.live/agentic-finance",
+    "source_date": "2026-09-28",
+    "evidence_summary": "Listed as Co-Founder and CEO, Limitless Labs, on the Agentic Finance speaker page (Thu 8 Oct, Suntec City, co-hosted with The Odds). The organiser has also posted that he speaks on the Agentic Trading panel and on The Odds panel “The Fans Were Already Trading”.",
+    "first_confirmed": "2026-09-28",
+    "last_verified": "2026-09-28",
+    "id": "cj-hetherington-side-event-speaker",
     "attendance_status": "side_event_speaker",
-    "company_label": null
+    "company_label": "Limitless Labs"
   },
   {
     "entity_type": "person",
@@ -4130,5 +4130,37 @@
     "id": "stuart-b-richardson-attending",
     "attendance_status": "publicly_attending",
     "company_label": "Heimdall Global"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "dexsport",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main days",
+    "dates": [
+      "2026-10-07",
+      "2026-10-08"
+    ],
+    "pm_relevance": "strong",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [
+      "prediction-markets",
+      "sports"
+    ],
+    "event_ids": [],
+    "source_type": "company_press",
+    "source_id": "src-dexsport-cryptodaily",
+    "source_url": "https://cryptodaily.co.uk/2026/09/dexsport-heads-to-token2049-singapore-as-prediction-markets-scale",
+    "source_date": "2026-09-23",
+    "evidence_summary": "Sponsored press release says Dexsport will be at TOKEN2049 Singapore on 7 and 8 October, weeks after launching its prediction markets.",
+    "first_confirmed": "2026-09-28",
+    "last_verified": "2026-09-28",
+    "id": "dexsport-company-attending",
+    "attendance_status": "company_attending",
+    "company_label": "Dexsport"
   }
 ]

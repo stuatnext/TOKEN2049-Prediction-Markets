@@ -1152,7 +1152,8 @@
     "why": "Kalshi increasingly sits where event contracts meet broader derivatives. Separately, Kalshi Klear has been reported as requesting permission to margin event contracts for qualifying institutions. That is a request, not an approval.",
     "questions": [
       "If institutional event contracts move from full collateralisation toward margin, what changes first in risk, clearing and participation?",
-      "Does Kalshi see event contracts and perps converging operationally?"
+      "Does Kalshi see event contracts and perps converging operationally?",
+      "A year ago John Wang said Kalshi would be in every major crypto app within 12 months. How far did that get, and what held it back?"
     ],
     "people": [
       {
@@ -2314,7 +2315,7 @@
     "people": [
       {
         "id": "cj-hetherington",
-        "role": "listed"
+        "role": "speaker"
       },
       {
         "id": "par-helgosson",
