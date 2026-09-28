@@ -1451,5 +1451,23 @@
       "exchange",
       "infrastructure"
     ]
+  },
+  {
+    "id": "dune",
+    "name": "Dune",
+    "category": "infrastructure",
+    "description": "Onchain data platform. Its institutional product tracks stablecoins, payments, tokenized assets and prediction markets across 130+ chains, and it published a prediction-markets report in December 2025.",
+    "stack_layers": [],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-dune-pm-report"
+    ],
+    "note": "TOKEN2049 attendance comes from a company LinkedIn post whose link hasn't been recovered.",
+    "last_updated": "2026-09-28",
+    "types": [
+      "data"
+    ]
   }
 ]

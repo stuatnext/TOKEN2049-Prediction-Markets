@@ -308,7 +308,7 @@
     "org_label": null,
     "role": "Co-Founder & CEO, Limitless Labs",
     "group": "platforms",
-    "why": "Co-founder and CEO of Limitless Labs. Speaks at both co-hosted Suntec summits on Thu 8 Oct: the Agentic Trading panel at Agentic Finance and “The Fans Were Already Trading” at The Odds, according to the organiser.",
+    "why": "Co-founder and CEO of Limitless Labs. Speaks at both co-hosted Suntec summits on Thu 8 Oct: the Agentic Trading panel at Agentic Finance, and The Odds sports panel with Michael Adams and PSG Labs (billed as both “The Fans Were Already Trading” and “The Billion Dollar Sports Market” in organiser posts).",
     "sources": [
       "src-mnm-agentic",
       "src-agentic",
@@ -363,13 +363,13 @@
     "org_label": "Background: Caerus / Swish (per organiser bio)",
     "role": null,
     "group": "sports",
-    "why": "Sports trading infrastructure and prediction-market expansion.",
+    "why": "Sports trading infrastructure and prediction-market expansion. On The Odds sports panel with CJ Hetherington (Limitless Labs) and PSG Labs.",
     "sources": [
       "src-michael-adams",
       "src-theodds"
     ],
-    "note": "Affiliation taken from the current organiser bio. Reconfirm close to the event.",
-    "last_updated": "2026-09-22",
+    "note": "Organiser bio lists a Caerus / Swish background; More & More’s Head of Partnerships now names him with Seneca Sports. Reconfirm close to the event.",
+    "last_updated": "2026-09-28",
     "roles": [
       "sports",
       "trader"
