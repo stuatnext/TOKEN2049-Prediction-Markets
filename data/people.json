@@ -1437,5 +1437,37 @@
     "roles": [
       "investor"
     ]
+  },
+  {
+    "id": "stuart-b-richardson",
+    "name": "Stuart B Richardson",
+    "org": "heimdall-global",
+    "org_label": null,
+    "role": "Founder, Heimdall Global",
+    "group": "platforms",
+    "why": "Founder of Heimdall Global, which is building regulated exchange, clearing and settlement for prediction and information markets. In Singapore for TOKEN2049 week.",
+    "sources": [
+      "src-heimdall-site"
+    ],
+    "note": null,
+    "last_updated": "2026-09-28",
+    "links": [
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/stuac/"
+      },
+      {
+        "label": "X",
+        "url": "https://x.com/stuac"
+      },
+      {
+        "label": "Heimdall Global",
+        "url": "https://heimdall.global/"
+      }
+    ],
+    "roles": [
+      "founder",
+      "infrastructure"
+    ]
   }
 ]
