@@ -614,5 +614,12 @@
     "type": "Reported / trade media",
     "url": "https://www.theblock.co/post/373185/kalshi-every-crypto-app-john-wang",
     "note": "Interview at TOKEN2049 Singapore 2025. Also reported by Finance Magnates as prediction markets being a 'Trojan Horse' for crypto."
+  },
+  {
+    "id": "src-dune-pm-report",
+    "name": "Prediction Markets: The Next Frontier (Dune report)",
+    "type": "Company / primary",
+    "url": "https://dune.com/prediction-markets-report",
+    "note": "Dune's prediction-markets report covering Polymarket, Kalshi, Crypto.com, MYRIAD, Limitless, Opinion and others."
   }
 ]

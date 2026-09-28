@@ -4162,5 +4162,35 @@
     "id": "dexsport-company-attending",
     "attendance_status": "company_attending",
     "company_label": "Dexsport"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "dune",
+    "name": null,
+    "confidence": "unverified",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "adjacent",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [
+      "data",
+      "prediction-markets",
+      "institutions"
+    ],
+    "event_ids": [],
+    "source_type": "company_social",
+    "source_id": null,
+    "source_url": null,
+    "source_date": null,
+    "evidence_summary": "Unverified lead. A Dune LinkedIn post says its institutional team will be in Singapore 5–8 October to meet banks, asset managers and data teams, including on prediction-market data. The post link hasn't been recovered.",
+    "first_confirmed": null,
+    "last_verified": "2026-09-28",
+    "id": "dune-unverified",
+    "attendance_status": "company_attending",
+    "company_label": "Dune"
   }
 ]
