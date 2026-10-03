@@ -777,15 +777,16 @@
     "id": "pantera",
     "name": "Pantera",
     "category": "investors",
-    "description": "Participants listed on the White House to Wall Street policy session.",
+    "description": "Participants listed on the White House to Wall Street policy session. Scott Lawin speaks on an Agentic Finance panel (Thu 8 Oct).",
     "stack_layers": [],
     "ecosystems": [],
     "sources": [
       "src-token-agenda1",
-      "src-tls-luma"
+      "src-tls-luma",
+      "src-mnm-x"
     ],
     "note": null,
-    "last_updated": "2026-09-22",
+    "last_updated": "2026-10-03",
     "types": [
       "investor"
     ]
@@ -902,7 +903,7 @@
     "id": "predictive-labs",
     "name": "Predictive Labs (Nijinn)",
     "category": "infrastructure",
-    "description": "Builds Nijinn, a data product that sits above multiple prediction-market venues and pulls together pricing, fees and resolution rules. The commercial launch of Nijinn Pro is planned around TOKEN2049 Singapore (company announcement). This doesn’t confirm which individuals will attend.",
+    "description": "Builds Nijinn, a data product that sits above multiple prediction-market venues and pulls together pricing, fees and resolution rules. The commercial launch of Nijinn Pro is planned around TOKEN2049 Singapore. The company says Johann Evrard and Alexis Nicosia will be around throughout the week.",
     "stack_layers": [
       "data-transport"
     ],
@@ -911,10 +912,11 @@
     ],
     "sources": [
       "src-nijinn-launch",
-      "src-nijinn-proactive"
+      "src-nijinn-proactive",
+      "src-predictive-labs-x"
     ],
     "note": null,
-    "last_updated": "2026-09-23",
+    "last_updated": "2026-10-03",
     "types": [
       "data"
     ]
@@ -1468,6 +1470,86 @@
     "last_updated": "2026-09-28",
     "types": [
       "data"
+    ]
+  },
+  {
+    "id": "noos-network",
+    "name": "Noos Network",
+    "category": "organisers",
+    "description": "Hosts the AI Agent Summit at Suntec on Tue 6 Oct (co-hosted by TECHUB NEWS), about AI agents as economic actors in finance, payments and trading.",
+    "stack_layers": [],
+    "ecosystems": [],
+    "sources": [
+      "src-ai-agent-summit"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "types": [
+      "other"
+    ]
+  },
+  {
+    "id": "fortune-protocol",
+    "name": "Fortune Protocol",
+    "category": "builders",
+    "description": "AI-driven prediction derivatives protocol that aggregates liquidity from several prediction markets into one trading interface, paired with AI agents (Fortune Agent). Strategic Partner of Noos Network’s AI Agent Summit in TOKEN week.",
+    "stack_layers": [
+      "execution",
+      "frontend"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-fortune-noos",
+      "src-fortune-protocol"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "types": [
+      "infrastructure"
+    ]
+  },
+  {
+    "id": "ask-gina",
+    "name": "Ask Gina",
+    "category": "builders",
+    "description": "Onchain execution infrastructure for AI agents across prediction markets, perps and DeFi. A TOKEN2049 NEXUS Top 10 finalist, pitching on Wed 7 Oct.",
+    "stack_layers": [
+      "execution"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-nexus",
+      "src-nexus-top10"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "types": [
+      "infrastructure"
+    ]
+  },
+  {
+    "id": "crshmarket",
+    "name": "CRSHMARKET",
+    "category": "platforms",
+    "description": "A livestream prediction market with 60-second settlements. A TOKEN2049 NEXUS Top 10 finalist, pitching on Wed 7 Oct.",
+    "stack_layers": [
+      "venue"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "sources": [
+      "src-nexus",
+      "src-nexus-top10"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "types": [
+      "venue"
     ]
   }
 ]

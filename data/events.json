@@ -184,7 +184,7 @@
       "liquidity",
       "data-transport"
     ],
-    "summary": "Full-day institutional Hyperliquid forum, run by DAYS as part of the Digital Asset Yield Summit and reported as co-hosted by Grayscale. Its six themes include custody, liquidity and execution, capital efficiency, tokenised markets, and prediction and outcome markets.",
+    "summary": "Full-day institutional Hyperliquid forum, run by DAYS as part of the Digital Asset Yield Summit and reported as co-hosted by Grayscale. Its six themes include custody, liquidity and execution, capital efficiency, tokenised markets, and prediction and outcome markets. Mainstage panel at 14:40: “Will Hyperliquid eat the world of finance?” with Ryan Watkins, Hanson Birringer, Spencer Applebaum, Austin Federa and Ian Weisberger.",
     "why": "The clearest place to see what happens when outcome markets become infrastructure that other teams can deploy (Hyperliquid's HIP-4). Listed participants include people from DoubleZero, Outcome, Outcome Labs and Selini.",
     "questions": [
       "What exactly is live under HIP-4 now?",
@@ -341,12 +341,13 @@
       "src-sec-hl",
       "src-cryptonews-hlforum",
       "src-grayscale-hlforum",
-      "src-hlforum-speakers"
+      "src-hlforum-speakers",
+      "src-hlforum-x"
     ],
     "status": "listed",
     "status_note": "Organiser page and Luma registration (09:00–17:00). Hyperliquid's SEC filing and announcements provide HIP-4 context.",
     "clash_note": "Runs alongside the Digital Asset Yield Summit at the same venue.",
-    "last_updated": "2026-09-23"
+    "last_updated": "2026-10-03"
   },
   {
     "id": "digital-asset-yield-summit",
@@ -2305,7 +2306,7 @@
       "oracle",
       "venue"
     ],
-    "summary": "A dedicated prediction-markets conference by More & More covering market structure, liquidity and regulation, with private meeting rooms and a partner/demo area. Co-hosted with Agentic Finance (a closed-door, invitation-only summit for about 400 senior decision-makers) at the same venue on the same day.",
+    "summary": "A dedicated prediction-markets conference by More & More covering market structure, liquidity and regulation, with private meeting rooms and a partner/demo area. Co-hosted with Agentic Finance (a closed-door, invitation-only summit for about 400 senior decision-makers) at the same venue on the same day. Agentic Finance panels announced so far include “When does AI stop advising and start deciding?”, hosted by Henri Arslanian with Reza Bundy, Scott Lawin, Shiliang Tang and Omar-Shakeeb Zahir.",
     "why": "The biggest block of prediction-market-specific programming of the week, with particular depth on sports market structure and infrastructure. The co-located Agentic Finance audience adds finance, compliance and media people.",
     "questions": [
       "What sports-book infrastructure transfers into prediction markets and what does not?",
@@ -2328,6 +2329,34 @@
       {
         "id": "matt-restivo",
         "role": "listed"
+      },
+      {
+        "id": "henri-arslanian",
+        "role": "moderator"
+      },
+      {
+        "id": "reza-bundy",
+        "role": "speaker"
+      },
+      {
+        "id": "scott-lawin",
+        "role": "speaker"
+      },
+      {
+        "id": "shiliang-tang",
+        "role": "speaker"
+      },
+      {
+        "id": "omar-shakeeb-zahir",
+        "role": "speaker"
+      },
+      {
+        "id": "tal-mor",
+        "role": "host"
+      },
+      {
+        "id": "guy-kaufman",
+        "role": "host"
       }
     ],
     "companies": [
@@ -2343,12 +2372,13 @@
       "src-theodds",
       "src-theodds-luma",
       "src-agentic",
-      "src-mnm-agentic"
+      "src-mnm-agentic",
+      "src-mnm-x"
     ],
     "status": "conflict",
     "status_note": "Organiser currently shows a 20:00 finish, but the final end time still needs confirming in event week.",
     "clash_note": null,
-    "last_updated": "2026-09-23"
+    "last_updated": "2026-10-03"
   },
   {
     "id": "powerscale-social-prediction-market",
@@ -3223,5 +3253,144 @@
     ],
     "status": "listed",
     "status_note": "Organiser Luma page."
+  },
+  {
+    "legacy_id": null,
+    "end_date": null,
+    "time_note": "The venue listing says 14:00–18:00; Fortune Protocol’s post says 13:00–18:00. Check before you go.",
+    "official": false,
+    "map_query": "Suntec Singapore Convention and Exhibition Centre",
+    "questions": [
+      "How do agents get liquidity across fragmented prediction-market venues?",
+      "Who is accountable when an agent’s trade goes wrong?"
+    ],
+    "also_listed": [],
+    "clash_note": null,
+    "people": [],
+    "companies": [
+      {
+        "id": "noos-network",
+        "role": "host"
+      },
+      {
+        "id": "fortune-protocol",
+        "role": "partner"
+      }
+    ],
+    "status_note": "Venue listing plus partner posts from Fortune Protocol and Noos (30 Sep).",
+    "last_updated": "2026-10-03",
+    "id": "noos-ai-agent-summit",
+    "title": "AI Agent Summit by Noos Network",
+    "date": "2026-10-06",
+    "start": "14:00",
+    "end": "18:00",
+    "venue": "Suntec Singapore Convention Centre, Level 3, Room 331",
+    "type": "forum",
+    "relevance": "adjacent",
+    "score": 5,
+    "access": "unknown",
+    "access_note": "How to attend isn’t stated on the venue listing; check the organiser’s channels.",
+    "audiences": [
+      "builders",
+      "traders",
+      "founders"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "topics": [
+      "ai-agents",
+      "trading"
+    ],
+    "stack_layers": [
+      "execution"
+    ],
+    "summary": "An afternoon summit on AI agents becoming economic actors: making decisions, paying for services and trading. Hosted by Noos Network and co-hosted by TECHUB NEWS. Fortune Protocol, an AI prediction-derivatives protocol, is a Strategic Partner, bringing a prediction-market and trading angle.",
+    "why": "AI agents trading prediction markets is one of the week’s recurring themes. This is the Tuesday session for it, two days before Agentic Finance.",
+    "sources": [
+      "src-ai-agent-summit",
+      "src-fortune-noos",
+      "src-fortune-protocol"
+    ],
+    "status": "listed"
+  },
+  {
+    "legacy_id": null,
+    "end_date": "2026-10-08",
+    "time_note": "Pitch times and stage aren’t published yet. Ask Gina and CRSHMARKET are both listed for Wed 7 Oct.",
+    "official": true,
+    "map_query": "Marina Bay Sands Expo and Convention Centre",
+    "questions": [
+      "Do 60-second livestream markets have a real audience beyond novelty?",
+      "What do agents need to trade prediction markets safely?"
+    ],
+    "also_listed": [
+      "The Risk Protocol",
+      "Liquida",
+      "Gyld Finance",
+      "Surge Credit",
+      "Crebit Pay",
+      "Helix",
+      "Bermuda",
+      "HUMAN.TECH"
+    ],
+    "clash_note": null,
+    "people": [
+      {
+        "id": "sid-shekhar",
+        "role": "speaker"
+      },
+      {
+        "id": "evan-rama",
+        "role": "speaker"
+      }
+    ],
+    "companies": [
+      {
+        "id": "ask-gina",
+        "role": "participant"
+      },
+      {
+        "id": "crshmarket",
+        "role": "participant"
+      }
+    ],
+    "status_note": "Official competition page and TOKEN2049’s finalist announcement (29 Sep).",
+    "last_updated": "2026-10-03",
+    "id": "nexus-startup-competition",
+    "title": "TOKEN2049 NEXUS Startup Competition (two prediction-market finalists)",
+    "date": "2026-10-07",
+    "start": null,
+    "end": null,
+    "venue": "Marina Bay Sands (TOKEN2049 main conference)",
+    "type": "official",
+    "relevance": "strong",
+    "score": 6,
+    "access": "badge",
+    "access_note": "TOKEN2049 badge",
+    "audiences": [
+      "founders",
+      "investors",
+      "builders"
+    ],
+    "ecosystems": [
+      "independent"
+    ],
+    "topics": [
+      "ai-agents",
+      "consumer",
+      "category"
+    ],
+    "stack_layers": [
+      "venue",
+      "execution"
+    ],
+    "summary": "Crypto’s largest startup competition: ten finalists pitch to judges from Dragonfly, Multicoin Capital and Maelstrom for a share of a US$250,000 prize pool powered by AWS. Two finalists are direct prediction-market plays: Ask Gina (execution for AI agents across prediction markets, perps and DeFi) and CRSHMARKET (a livestream prediction market with 60-second settlements).",
+    "why": "A quick read on what early-stage founders and top crypto VCs think the next prediction-market products look like.",
+    "sources": [
+      "src-nexus",
+      "src-nexus-top10"
+    ],
+    "status": "listed"
   }
 ]

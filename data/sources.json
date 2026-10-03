@@ -621,5 +621,68 @@
     "type": "Company / primary",
     "url": "https://dune.com/prediction-markets-report",
     "note": "Dune's prediction-markets report covering Polymarket, Kalshi, Crypto.com, MYRIAD, Limitless, Opinion and others."
+  },
+  {
+    "id": "src-ai-agent-summit",
+    "name": "AI Agent Summit 2026 (Suntec Singapore event listing)",
+    "type": "Venue / event listing",
+    "url": "https://www.suntecsingapore.com/visit-events/ai-agent-summit-2026",
+    "note": "Hosted by Noos Network, co-hosted by TECHUB NEWS. Tue 6 Oct, 14:00–18:00, Level 3, Room 331."
+  },
+  {
+    "id": "src-fortune-noos",
+    "name": "Fortune Protocol on X: Strategic Partner of Noos Network’s AI Agent Summit",
+    "type": "Company / social",
+    "url": "https://x.com/fortuneglobal_",
+    "note": "Post of 30 Sep 2026: “Fortune is heading to TOKEN2049 Singapore”, Tue 6 Oct at Suntec. Noos posted the same partnership the same day."
+  },
+  {
+    "id": "src-fortune-protocol",
+    "name": "Fortune Protocol closes Pre-A round (KuCoin News)",
+    "type": "Media report",
+    "url": "https://www.kucoin.com/news/flash/ai-driven-prediction-derivatives-protocol-fortune-protocol-completes-pre-a-round-financing",
+    "note": "Describes Fortune Protocol as an AI-driven prediction derivatives protocol aggregating liquidity across prediction markets."
+  },
+  {
+    "id": "src-nexus",
+    "name": "TOKEN2049 NEXUS Startup Competition",
+    "type": "Official / TOKEN2049",
+    "url": "https://www.token2049.com/singapore/nexus-startup-competition",
+    "note": "Early-stage startups pitch on 7–8 Oct for a share of a US$250,000 equity-free prize pool."
+  },
+  {
+    "id": "src-nexus-top10",
+    "name": "TOKEN2049 on LinkedIn: “The NEXUS Top 10 revealed”",
+    "type": "Official / social",
+    "url": "https://www.linkedin.com/company/token2049/",
+    "note": "Post of 29 Sep 2026 naming the finalists, including Ask Gina and CRSHMARKET; judges from Dragonfly, Multicoin Capital and Maelstrom; prize pool powered by AWS."
+  },
+  {
+    "id": "src-predictive-labs-x",
+    "name": "Predictive Labs on X: “See you at TOKEN2049 Singapore”",
+    "type": "Company / social",
+    "url": "https://x.com/Predictive_Labs",
+    "note": "Post of 30 Sep 2026 saying Johann Evrard and Alexis Nicosia will be around throughout the week. A company LinkedIn post (29 Sep) says the same for 7–8 Oct."
+  },
+  {
+    "id": "src-predictive-labs-team",
+    "name": "Predictive Labs team page",
+    "type": "Company / primary",
+    "url": "https://predictivelabs.io/team",
+    "note": "Team and founder background."
+  },
+  {
+    "id": "src-mnm-x",
+    "name": "More & More on X (@moreandmorebd)",
+    "type": "Organiser / social",
+    "url": "https://x.com/moreandmorebd",
+    "note": "Late-September posts announcing Agentic Finance panels, including “When does AI stop advising and start deciding?” and the Institutional Capital panel (Thu 8 Oct, Suntec)."
+  },
+  {
+    "id": "src-hlforum-x",
+    "name": "Hyperliquid Forum by DAYS on X (@HL_forum)",
+    "type": "Organiser / social",
+    "url": "https://x.com/HL_forum",
+    "note": "Post announcing the 14:40 Mainstage panel “Will Hyperliquid eat the world of finance?” (Tue 6 Oct, Raffles Hotel)."
   }
 ]
