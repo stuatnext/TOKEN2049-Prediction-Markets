@@ -4186,11 +4186,506 @@
     "source_id": null,
     "source_url": null,
     "source_date": null,
-    "evidence_summary": "Unverified lead. A Dune LinkedIn post says its institutional team will be in Singapore 5–8 October to meet banks, asset managers and data teams, including on prediction-market data. The post link hasn't been recovered.",
+    "evidence_summary": "Unverified lead. Dune’s LinkedIn post says its institutional team will be on the ground 5–8 October (naming Arnaud Simeray, Alsie L., Ben Stamm, Fritz Sprueth and Silvestre Ramos) to meet banks, asset managers and data teams, including on prediction-market data. Its Head of Marketing posted the same. The post links haven’t been recovered.",
     "first_confirmed": null,
-    "last_verified": "2026-09-28",
+    "last_verified": "2026-10-03",
     "id": "dune-unverified",
     "attendance_status": "company_attending",
     "company_label": "Dune"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "johann-evrard",
+    "company_id": "predictive-labs",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07",
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [
+      "data",
+      "prediction-markets"
+    ],
+    "event_ids": [],
+    "source_type": "company_social",
+    "source_id": "src-predictive-labs-x",
+    "source_url": "https://x.com/Predictive_Labs",
+    "source_date": "2026-09-30",
+    "evidence_summary": "Predictive Labs posted that Johann Evrard will be around throughout TOKEN2049 week and wants to meet people building in prediction markets. Its LinkedIn post names 7–8 October.",
+    "first_confirmed": "2026-10-03",
+    "last_verified": "2026-10-03",
+    "id": "johann-evrard-publicly-attending",
+    "attendance_status": "publicly_attending",
+    "company_label": "Predictive Labs"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "alexis-nicosia",
+    "company_id": "predictive-labs",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-07",
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [
+      "data",
+      "prediction-markets"
+    ],
+    "event_ids": [],
+    "source_type": "company_social",
+    "source_id": "src-predictive-labs-x",
+    "source_url": "https://x.com/Predictive_Labs",
+    "source_date": "2026-09-30",
+    "evidence_summary": "Predictive Labs posted that Alexis Nicosia will be around throughout TOKEN2049 week alongside Johann Evrard.",
+    "first_confirmed": "2026-10-03",
+    "last_verified": "2026-10-03",
+    "id": "alexis-nicosia-publicly-attending",
+    "attendance_status": "publicly_attending",
+    "company_label": "Predictive Labs"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "sid-shekhar",
+    "company_id": "ask-gina",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [
+      "prediction-markets",
+      "startups"
+    ],
+    "event_ids": [
+      "nexus-startup-competition"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-nexus",
+    "source_url": "https://www.token2049.com/singapore/nexus-startup-competition",
+    "source_date": null,
+    "evidence_summary": "Ask Gina is a NEXUS Top 10 finalist (execution infrastructure for AI agents across prediction markets, perps and DeFi), listed to pitch on Wed 7 Oct.",
+    "first_confirmed": "2026-10-03",
+    "last_verified": "2026-10-03",
+    "id": "sid-shekhar-nexus-finalist",
+    "attendance_status": "confirmed_participant",
+    "company_label": "Ask Gina"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "evan-rama",
+    "company_id": "crshmarket",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [
+      "prediction-markets",
+      "startups"
+    ],
+    "event_ids": [
+      "nexus-startup-competition"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-nexus",
+    "source_url": "https://www.token2049.com/singapore/nexus-startup-competition",
+    "source_date": null,
+    "evidence_summary": "CRSHMARKET is a NEXUS Top 10 finalist (a livestream prediction market with 60-second settlements), listed to pitch on Wed 7 Oct.",
+    "first_confirmed": "2026-10-03",
+    "last_verified": "2026-10-03",
+    "id": "evan-rama-nexus-finalist",
+    "attendance_status": "confirmed_participant",
+    "company_label": "CRSHMARKET"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "ask-gina",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [
+      "prediction-markets",
+      "startups"
+    ],
+    "event_ids": [
+      "nexus-startup-competition"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-nexus",
+    "source_url": "https://www.token2049.com/singapore/nexus-startup-competition",
+    "source_date": null,
+    "evidence_summary": "Named by TOKEN2049 as a NEXUS Top 10 finalist. Execution for AI agents across prediction markets.",
+    "first_confirmed": "2026-10-03",
+    "last_verified": "2026-10-03",
+    "id": "ask-gina-nexus-finalist",
+    "attendance_status": "confirmed_participant"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "crshmarket",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 main conference",
+    "dates": [
+      "2026-10-07"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [
+      "prediction-markets",
+      "startups"
+    ],
+    "event_ids": [
+      "nexus-startup-competition"
+    ],
+    "source_type": "official_programme",
+    "source_id": "src-nexus",
+    "source_url": "https://www.token2049.com/singapore/nexus-startup-competition",
+    "source_date": null,
+    "evidence_summary": "Named by TOKEN2049 as a NEXUS Top 10 finalist. Livestream prediction market.",
+    "first_confirmed": "2026-10-03",
+    "last_verified": "2026-10-03",
+    "id": "crshmarket-nexus-finalist",
+    "attendance_status": "confirmed_participant"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "fortune-protocol",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-06"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [
+      "independent"
+    ],
+    "interests": [
+      "ai-agents",
+      "prediction-markets"
+    ],
+    "event_ids": [
+      "noos-ai-agent-summit"
+    ],
+    "source_type": "company_social",
+    "source_id": "src-fortune-noos",
+    "source_url": "https://x.com/fortuneglobal_",
+    "source_date": "2026-09-30",
+    "evidence_summary": "Posted “Fortune is heading to TOKEN2049 Singapore” as Strategic Partner of Noos Network’s AI Agent Summit (Tue 6 Oct, Suntec).",
+    "first_confirmed": "2026-10-03",
+    "last_verified": "2026-10-03",
+    "id": "fortune-protocol-partner",
+    "attendance_status": "sponsor"
+  },
+  {
+    "entity_type": "company",
+    "person_id": null,
+    "company_id": "noos-network",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-06"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "ai-agents"
+    ],
+    "event_ids": [
+      "noos-ai-agent-summit"
+    ],
+    "source_type": "event_listing",
+    "source_id": "src-ai-agent-summit",
+    "source_url": "https://www.suntecsingapore.com/visit-events/ai-agent-summit-2026",
+    "source_date": null,
+    "evidence_summary": "Host of the AI Agent Summit at Suntec on Tue 6 Oct, per the venue’s event listing.",
+    "first_confirmed": "2026-10-03",
+    "last_verified": "2026-10-03",
+    "id": "noos-network-host",
+    "attendance_status": "side_event_host"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "henri-arslanian",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "ai-agents",
+      "trading"
+    ],
+    "event_ids": [
+      "the-odds-prediction-markets-live"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-mnm-x",
+    "source_url": "https://x.com/moreandmorebd",
+    "source_date": "2026-09-28",
+    "evidence_summary": "Hosts the panel “When does AI stop advising and start deciding?” at Agentic Finance, per the organiser More & More (Thu 8 Oct, Suntec, co-located with The Odds).",
+    "first_confirmed": "2026-10-03",
+    "last_verified": "2026-10-03",
+    "id": "henri-arslanian-agentic-finance",
+    "attendance_status": "side_event_speaker",
+    "company_label": "9BlocksCap"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "reza-bundy",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "ai-agents",
+      "trading"
+    ],
+    "event_ids": [
+      "the-odds-prediction-markets-live"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-mnm-x",
+    "source_url": "https://x.com/moreandmorebd",
+    "source_date": "2026-09-28",
+    "evidence_summary": "Speaks on the Institutional Capital panel (Atlas Capital) at Agentic Finance, per the organiser More & More (Thu 8 Oct, Suntec, co-located with The Odds).",
+    "first_confirmed": "2026-10-03",
+    "last_verified": "2026-10-03",
+    "id": "reza-bundy-agentic-finance",
+    "attendance_status": "side_event_speaker",
+    "company_label": "Atlas Capital / USAFi"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "scott-lawin",
+    "company_id": "pantera",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "ai-agents",
+      "trading"
+    ],
+    "event_ids": [
+      "the-odds-prediction-markets-live"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-mnm-x",
+    "source_url": "https://x.com/moreandmorebd",
+    "source_date": "2026-09-28",
+    "evidence_summary": "Speaks on the panel “When does AI stop advising and start deciding?” at Agentic Finance, per the organiser More & More (Thu 8 Oct, Suntec, co-located with The Odds).",
+    "first_confirmed": "2026-10-03",
+    "last_verified": "2026-10-03",
+    "id": "scott-lawin-agentic-finance",
+    "attendance_status": "side_event_speaker",
+    "company_label": "Pantera Capital"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "omar-shakeeb-zahir",
+    "company_id": null,
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "ai-agents",
+      "trading"
+    ],
+    "event_ids": [
+      "the-odds-prediction-markets-live"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-mnm-x",
+    "source_url": "https://x.com/moreandmorebd",
+    "source_date": "2026-09-28",
+    "evidence_summary": "Speaks on the panel “When does AI stop advising and start deciding?” at Agentic Finance, per the organiser More & More (Thu 8 Oct, Suntec, co-located with The Odds).",
+    "first_confirmed": "2026-10-03",
+    "last_verified": "2026-10-03",
+    "id": "omar-shakeeb-zahir-agentic-finance",
+    "attendance_status": "side_event_speaker",
+    "company_label": "Second Lane"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "shiliang-tang",
+    "company_id": "monarq",
+    "name": null,
+    "confidence": "confirmed",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "ai-agents",
+      "trading"
+    ],
+    "event_ids": [
+      "the-odds-prediction-markets-live"
+    ],
+    "source_type": "organiser_page",
+    "source_id": "src-mnm-x",
+    "source_url": "https://x.com/moreandmorebd",
+    "source_date": "2026-09-28",
+    "evidence_summary": "Speaks on the panel “When does AI stop advising and start deciding?” at Agentic Finance, per the organiser More & More (Thu 8 Oct, Suntec, co-located with The Odds).",
+    "first_confirmed": "2026-10-03",
+    "last_verified": "2026-10-03",
+    "id": "shiliang-tang-agentic-finance",
+    "attendance_status": "side_event_speaker",
+    "company_label": "Monarq"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "tal-mor",
+    "company_id": "more-and-more",
+    "name": null,
+    "confidence": "unverified",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [],
+    "interests": [],
+    "event_ids": [
+      "the-odds-prediction-markets-live"
+    ],
+    "source_type": "linkedin",
+    "source_id": null,
+    "source_url": null,
+    "source_date": null,
+    "evidence_summary": "Unverified lead. Tal Mor’s public LinkedIn profile headline reads “The Odds & Agentic Finance → Singapore Oct 8”. The post link hasn’t been recovered.",
+    "first_confirmed": null,
+    "last_verified": "2026-10-03",
+    "id": "tal-mor-unverified",
+    "attendance_status": "side_event_host",
+    "company_label": "More & More"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "guy-kaufman",
+    "company_id": "more-and-more",
+    "name": null,
+    "confidence": "unverified",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [
+      "2026-10-08"
+    ],
+    "pm_relevance": "core",
+    "ecosystems": [],
+    "interests": [
+      "sports"
+    ],
+    "event_ids": [
+      "the-odds-prediction-markets-live"
+    ],
+    "source_type": "linkedin",
+    "source_id": null,
+    "source_url": null,
+    "source_date": null,
+    "evidence_summary": "Unverified lead. Guy Kaufman’s public LinkedIn posts say More & More is a TOKEN2049 sponsor and describe programming The Odds sports panel for 8 Oct at Suntec. The post links haven’t been recovered.",
+    "first_confirmed": null,
+    "last_verified": "2026-10-03",
+    "id": "guy-kaufman-unverified",
+    "attendance_status": "side_event_host",
+    "company_label": "More & More"
+  },
+  {
+    "entity_type": "person",
+    "person_id": "marina-dangelo",
+    "company_id": null,
+    "name": null,
+    "confidence": "unverified",
+    "public": true,
+    "attendance_scope": "TOKEN2049 week",
+    "dates": [],
+    "pm_relevance": "adjacent",
+    "ecosystems": [],
+    "interests": [
+      "regulation",
+      "prediction-markets"
+    ],
+    "event_ids": [],
+    "source_type": "self_declared",
+    "source_id": null,
+    "source_url": null,
+    "source_date": null,
+    "evidence_summary": "Unverified lead. A public LinkedIn post (1 Oct) jokes about “opening markets” on her TOKEN2049 trip, putting her chance of being in Singapore at 97%. The post link hasn’t been recovered.",
+    "first_confirmed": null,
+    "last_verified": "2026-10-03",
+    "id": "marina-dangelo-unverified",
+    "attendance_status": "publicly_attending",
+    "company_label": "DLT LAW"
   }
 ]

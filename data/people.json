@@ -1473,5 +1473,199 @@
       "founder",
       "infrastructure"
     ]
+  },
+  {
+    "id": "johann-evrard",
+    "name": "Johann Evrard",
+    "org": "predictive-labs",
+    "org_label": null,
+    "role": "Founder, Predictive Labs",
+    "group": "builders",
+    "why": "Building Nijinn, a cross-venue prediction-market data layer, with the paid tier launching around TOKEN2049.",
+    "sources": [
+      "src-predictive-labs-x",
+      "src-predictive-labs-team"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "roles": [
+      "founder",
+      "infrastructure"
+    ]
+  },
+  {
+    "id": "alexis-nicosia",
+    "name": "Alexis V. Nicosia",
+    "org": "predictive-labs",
+    "org_label": null,
+    "role": "Predictive Labs",
+    "group": "builders",
+    "why": "Part of the Predictive Labs (Nijinn) team in Singapore for the week.",
+    "sources": [
+      "src-predictive-labs-x"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "roles": [
+      "builder",
+      "infrastructure"
+    ]
+  },
+  {
+    "id": "sid-shekhar",
+    "name": "Sid Shekhar",
+    "org": "ask-gina",
+    "org_label": null,
+    "role": "CEO, Ask Gina",
+    "group": "builders",
+    "why": "Pitching onchain execution for AI agents across prediction markets, perps and DeFi in the NEXUS final.",
+    "sources": [
+      "src-nexus"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "roles": [
+      "founder",
+      "builder"
+    ]
+  },
+  {
+    "id": "evan-rama",
+    "name": "Evan Rama",
+    "org": "crshmarket",
+    "org_label": null,
+    "role": "Co-Founder and CEO, CRSHMARKET",
+    "group": "platforms",
+    "why": "Pitching a livestream prediction market with 60-second settlements in the NEXUS final.",
+    "sources": [
+      "src-nexus"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "roles": [
+      "founder",
+      "builder"
+    ]
+  },
+  {
+    "id": "henri-arslanian",
+    "name": "Henri Arslanian",
+    "org": null,
+    "org_label": "9BlocksCap; co-founder, ACX Compliance",
+    "role": "Host, Agentic Finance panel",
+    "group": "institutional",
+    "why": "Hosts the Agentic Finance panel “When does AI stop advising and start deciding?” at the summit co-located with The Odds.",
+    "sources": [
+      "src-mnm-x",
+      "src-agentic"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "roles": [
+      "investor",
+      "regulation"
+    ]
+  },
+  {
+    "id": "reza-bundy",
+    "name": "Reza Bundy",
+    "org": null,
+    "org_label": "Atlas Capital / USAFi",
+    "role": "Agentic Finance speaker",
+    "group": "investors",
+    "why": "On the Agentic Finance Institutional Capital panel: capital preservation, volatility and agents allocating capital.",
+    "sources": [
+      "src-mnm-x"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "roles": [
+      "investor",
+      "institutional"
+    ]
+  },
+  {
+    "id": "scott-lawin",
+    "name": "Scott Lawin",
+    "org": "pantera",
+    "org_label": null,
+    "role": "Pantera Capital",
+    "group": "investors",
+    "why": "On the Agentic Finance panel “When does AI stop advising and start deciding?”.",
+    "sources": [
+      "src-mnm-x"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "roles": [
+      "investor"
+    ]
+  },
+  {
+    "id": "omar-shakeeb-zahir",
+    "name": "Omar-Shakeeb Zahir",
+    "org": null,
+    "org_label": "Second Lane",
+    "role": "Agentic Finance speaker",
+    "group": "trading",
+    "why": "On the Agentic Finance panel “When does AI stop advising and start deciding?”.",
+    "sources": [
+      "src-mnm-x"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "roles": [
+      "trader"
+    ]
+  },
+  {
+    "id": "tal-mor",
+    "name": "Tal Mor",
+    "org": "more-and-more",
+    "org_label": null,
+    "role": "Founder, More & More",
+    "group": "organisers",
+    "why": "Founder of the organiser behind The Odds and Agentic Finance on Thu 8 Oct.",
+    "sources": [
+      "src-mnm-agentic"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "roles": [
+      "business"
+    ]
+  },
+  {
+    "id": "guy-kaufman",
+    "name": "Guy Kaufman",
+    "org": "more-and-more",
+    "org_label": null,
+    "role": "Head of Partnerships, More & More",
+    "group": "organisers",
+    "why": "Programmes the partner and sports side of The Odds (“The Billion Dollar Sports Market” panel).",
+    "sources": [
+      "src-mnm-agentic"
+    ],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "roles": [
+      "business",
+      "sports"
+    ]
+  },
+  {
+    "id": "marina-dangelo",
+    "name": "Marina D'Angelo",
+    "org": null,
+    "org_label": "Head of Europe, DLT LAW",
+    "role": "Legal adviser",
+    "group": "policy",
+    "why": "Legal advisory for founders going global; has posted about prediction-market legality ahead of TOKEN week.",
+    "sources": [],
+    "note": null,
+    "last_updated": "2026-10-03",
+    "roles": [
+      "regulation"
+    ]
   }
 ]
